@@ -1,26 +1,108 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OKg-xq-bB5">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Restaurants View Controller-->
+        <scene sceneID="ZMB-ya-9uD">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8oJ-Pw-WAe" customClass="RestaurantsViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="WbT-Fl-zqr"/>
+                        <viewControllerLayoutGuide type="bottom" id="GV6-9p-RYl"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="1gI-l9-JKl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Nqd-Jk-y3R">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="cvX-A8-qbp">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="didTouchButtonMenu:" destination="8oJ-Pw-WAe" id="Z0R-cN-j1V"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DNc-zY-ucy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="386.39999999999998" y="-406.14692653673166"/>
+        </scene>
+        <!--Left Menu Table View Controller-->
+        <scene sceneID="bmg-WJ-VmS">
+            <objects>
+                <viewController storyboardIdentifier="LeftMenuTableViewController" id="s4Z-TA-Rig" customClass="LeftMenuTableViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WIz-Fi-Lji"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zno-SM-taL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e8l-NO-NVt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oT7-fj-0u5">
+                                <rect key="frame" x="0.0" y="220" width="375" height="447"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="s4Z-TA-Rig" id="IpE-Iu-3PG"/>
+                                    <outlet property="delegate" destination="s4Z-TA-Rig" id="JOQ-l9-Q4v"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h0N-AC-EeE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="IBE-CT-yd7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zno-SM-taL" firstAttribute="top" secondItem="oT7-fj-0u5" secondAttribute="bottom" id="A3H-mr-PL4"/>
+                            <constraint firstAttribute="trailing" secondItem="oT7-fj-0u5" secondAttribute="trailing" id="L2a-E1-Ub1"/>
+                            <constraint firstItem="oT7-fj-0u5" firstAttribute="leading" secondItem="e8l-NO-NVt" secondAttribute="leading" id="XMN-4f-NCL"/>
+                            <constraint firstAttribute="trailing" secondItem="h0N-AC-EeE" secondAttribute="trailing" id="cFG-bG-Q1n"/>
+                            <constraint firstItem="oT7-fj-0u5" firstAttribute="top" secondItem="h0N-AC-EeE" secondAttribute="bottom" id="dTz-HC-KTM"/>
+                            <constraint firstItem="h0N-AC-EeE" firstAttribute="leading" secondItem="e8l-NO-NVt" secondAttribute="leading" id="dsD-V9-u9Z"/>
+                            <constraint firstItem="h0N-AC-EeE" firstAttribute="top" secondItem="e8l-NO-NVt" secondAttribute="top" id="yps-a9-Vhy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="menuTableView" destination="oT7-fj-0u5" id="unb-tS-eDd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U2p-SO-Nt5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-530.39999999999998" y="-1150.0749625187407"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="deH-ht-tuN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OKg-xq-bB5" customClass="SMNavigationController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WTK-eZ-6r8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8oJ-Pw-WAe" kind="relationship" relationship="rootViewController" id="hMV-Ss-eUo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vhh-OD-PC4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-552.79999999999995" y="-406.14692653673166"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="menu" width="15" height="15"/>
+    </resources>
 </document>
