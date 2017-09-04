@@ -33,15 +33,13 @@ class SMNavigationController: LNSideMenuNavigationController {
   
   fileprivate func setContentVC(_ index: Int) {
     print("Did select item at index: \(index)")
-//    var nViewController: UIViewController? = nil
-//    if let viewController = viewControllers.first , viewController is NextViewController {
-//      nViewController = storyboard?.instantiateViewController(withIdentifier: "ViewController")
-//    } else {
-//      nViewController = storyboard?.instantiateViewController(withIdentifier: "NextViewController")
-//    }
-//    if let viewController = nViewController {
-//      self.setContentViewController(viewController)
-//    }
+    var nViewController: UIViewController? = nil
+    if index == 0 {
+      nViewController = storyboard?.instantiateViewController(withIdentifier: "RestaurantViewController")
+    }
+    if let viewController = nViewController {
+      self.setContentViewController(viewController)
+    }
     // Test moving up/down the menu view
     if let sm = sideMenu, sm.isCustomMenu {
       sideMenu?.underNavigationBar = false
