@@ -27,7 +27,6 @@ class KitchenDataModel {
         let data = try Data(contentsOf: file)
         let json = try JSONSerialization.jsonObject(with: data, options: [])
         if let object = json as? [String: Any] {
-          print("====bingo")
           result = Mapper<ResultKitchen>().map(JSON: object)
           kitchens = result!.kitchens
           

@@ -4,7 +4,7 @@
             "id": 2,
             "open": "11:00:00",
             "close": "23:00:00",
-            "name": "Duy",
+            "name": "Duy's Kitchen",
             "avatar": "https://s3.amazonaws.com/demouploadimage/meet.jpg",
             "point": 4.6,
             "address": {
@@ -18,7 +18,7 @@
             "id": 1,
             "open": "07:00",
             "close": "19:00",
-            "name": "Tan",
+            "name": "Tan's Kitchen",
             "avatar": "https://s3.amazonaws.com/demouploadimage/meet.jpg",
             "point": 4.5,
             "address": {

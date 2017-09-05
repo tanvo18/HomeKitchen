@@ -23,9 +23,11 @@ class KitchenTableViewCell: UITableViewCell {
   
   @IBOutlet weak var backgroundImageView: UIImageView!
   
+  
+  @IBOutlet weak var myIndicator: UIActivityIndicatorView!
   override func awakeFromNib() {
     super.awakeFromNib()
-    // Initialization code
+    
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,6 +37,7 @@ class KitchenTableViewCell: UITableViewCell {
   }
   
   func configureWithItem(kitchen: Kitchen) {
+    myIndicator.startAnimating()
     kitchenNameLabel.text = kitchen.name
     addressLabel.text = "\(kitchen.address.address) \(kitchen.address.district) \(kitchen.address.city)"
     timeLabel.text = "\(kitchen.open) to \(kitchen.close)"
@@ -49,7 +52,7 @@ class KitchenTableViewCell: UITableViewCell {
     case let point where point <= 4:
       qualityLabel.text = "VERYGOOD"
     case let point where point <= 5:
-      qualityLabel.text = "EXCELENT"
+      qualityLabel.text = "EXCELLENT"
     default:
       break
     }
@@ -61,6 +64,9 @@ class KitchenTableViewCell: UITableViewCell {
     ImageDownloader.default.downloadImage(with: url, options: [], progressBlock: nil) {
       (image, error, url, data) in
       self.backgroundImageView.image = image
+      // stop indicator
+      self.myIndicator.stopAnimating()
+      self.myIndicator.removeFromSuperview()
     }
   }
 }

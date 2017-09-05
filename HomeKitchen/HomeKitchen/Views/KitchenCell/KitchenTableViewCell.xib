@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="316" height="139.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X2j-1A-mnS">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X2j-1A-mnS">
                         <rect key="frame" x="0.0" y="0.0" width="316" height="139.5"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewo-6v-0Np">
@@ -50,7 +50,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.49004048552300938" green="1" blue="0.1940487177846606" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.3624220451976583" green="0.83558058375634514" blue="0.11959442330407072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="38" id="3Xv-uD-NFX"/>
                             <constraint firstAttribute="height" constant="27" id="VmB-Ye-KzC"/>
@@ -69,6 +69,10 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="uUg-mg-oeH">
+                        <rect key="frame" x="148" y="59" width="20" height="20"/>
+                        <color key="color" red="0.49961048317842544" green="0.5" blue="0.49903781062144598" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="2cx-1p-JpC" firstAttribute="top" secondItem="Frq-Tq-3mA" secondAttribute="bottom" constant="8" id="4Oq-MN-uh7"/>
@@ -85,14 +89,17 @@
                     <constraint firstItem="1W9-Hn-0Kn" firstAttribute="leading" secondItem="Frq-Tq-3mA" secondAttribute="trailing" constant="8" symbolic="YES" id="lpW-FP-QOd"/>
                     <constraint firstItem="1W9-Hn-0Kn" firstAttribute="centerY" secondItem="Frq-Tq-3mA" secondAttribute="centerY" id="n6d-9k-2Gz"/>
                     <constraint firstItem="3GI-Zn-Qai" firstAttribute="leading" secondItem="qWs-h6-euE" secondAttribute="trailing" constant="8" id="n7Y-SR-PC2"/>
+                    <constraint firstItem="uUg-mg-oeH" firstAttribute="centerY" secondItem="X2j-1A-mnS" secondAttribute="centerY" id="qEn-L8-Jee"/>
                     <constraint firstItem="X2j-1A-mnS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="t8E-I7-Xj1"/>
                     <constraint firstAttribute="bottom" secondItem="X2j-1A-mnS" secondAttribute="bottom" id="tkz-YN-Woa"/>
+                    <constraint firstItem="uUg-mg-oeH" firstAttribute="centerX" secondItem="X2j-1A-mnS" secondAttribute="centerX" id="xvI-W7-SU3"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="addressLabel" destination="1W9-Hn-0Kn" id="jWN-TS-XJ9"/>
                 <outlet property="backgroundImageView" destination="X2j-1A-mnS" id="1mh-m1-3Be"/>
                 <outlet property="kitchenNameLabel" destination="ewo-6v-0Np" id="pnc-F4-pwG"/>
+                <outlet property="myIndicator" destination="uUg-mg-oeH" id="ouc-KE-oqx"/>
                 <outlet property="pointLabel" destination="0Rl-8B-JQG" id="9aO-zG-F5f"/>
                 <outlet property="qualityLabel" destination="qWs-h6-euE" id="eHt-C8-eRU"/>
                 <outlet property="timeLabel" destination="2cx-1p-JpC" id="xD4-ZM-UWF"/>

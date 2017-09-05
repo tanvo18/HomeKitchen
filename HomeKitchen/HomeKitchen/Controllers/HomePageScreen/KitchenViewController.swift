@@ -16,7 +16,6 @@ class KitchenViewController: UIViewController {
   var kitchens: [Kitchen] = [] {
     didSet {
       tableView.reloadData()
-      myActivityIndicator.stopAnimating()
     }
   }
   let kitchenModelDatasource = KitchenDataModel()
@@ -37,7 +36,8 @@ class KitchenViewController: UIViewController {
     
     // Start Activity Indicator
     myActivityIndicator.center = view.center
-    myActivityIndicator.startAnimating()
+    myActivityIndicator.color = .red
+//    myActivityIndicator.startAnimating()
     view.addSubview(myActivityIndicator)
   }
   
