@@ -1,0 +1,32 @@
+{
+    "kitchens": [
+        {
+            "id": 2,
+            "open": "11:00:00",
+            "close": "23:00:00",
+            "name": "Duy",
+            "avatar": "https://s3.amazonaws.com/demouploadimage/meet.jpg",
+            "point": 4.6,
+            "address": {
+                "city": "Da Nang",
+                "district": "Hai Chau",
+                "address": "2 Le Dinh Duong",
+                "phonenumber": "09212312"
+            }
+        },
+        {
+            "id": 1,
+            "open": "07:00",
+            "close": "19:00",
+            "name": "Tan",
+            "avatar": "https://s3.amazonaws.com/demouploadimage/meet.jpg",
+            "point": 4.5,
+            "address": {
+                "city": "Sai Gon",
+                "district": "Quan 1",
+                "address": "12 abc",
+                "phonenumber": "09999999"
+            }
+        }
+    ]
+}

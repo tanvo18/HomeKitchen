@@ -18,6 +18,11 @@
 		4DACF0B91F55C9A00043ED79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DACF0B71F55C9A00043ED79 /* LaunchScreen.storyboard */; };
 		4DEDD3371F5BF90100D24E79 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEDD3361F5BF90100D24E79 /* LoginViewController.swift */; };
 		4DEDD33D1F5C075500D24E79 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEDD33C1F5C075500D24E79 /* SignupViewController.swift */; };
+		4DF43FF71F5E39CE00365F57 /* getrestaurants.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF43FF61F5E39CE00365F57 /* getrestaurants.json */; };
+		4DF43FFB1F5E3B6B00365F57 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF43FFA1F5E3B6B00365F57 /* Address.swift */; };
+		4DF43FFD1F5E3B7A00365F57 /* Kitchen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF43FFC1F5E3B7A00365F57 /* Kitchen.swift */; };
+		4DF43FFF1F5E3DC200365F57 /* ResultKitchen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF43FFE1F5E3DC200365F57 /* ResultKitchen.swift */; };
+		4DF440011F5E448E00365F57 /* KitchenDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF440001F5E448E00365F57 /* KitchenDataModel.swift */; };
 		4DFAAEC31F5D44B600FE2EAE /* KitchenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFAAEC21F5D44B600FE2EAE /* KitchenViewController.swift */; };
 		4DFAAEC61F5D459500FE2EAE /* KitchenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFAAEC41F5D459500FE2EAE /* KitchenTableViewCell.swift */; };
 		4DFAAEC71F5D459500FE2EAE /* KitchenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFAAEC51F5D459500FE2EAE /* KitchenTableViewCell.xib */; };
@@ -32,7 +37,7 @@
 		4D1587FF1F59657500B1FFB4 /* LeftMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuTableViewController.swift; sourceTree = "<group>"; };
 		4D1588021F59663C00B1FFB4 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		4D1588031F59663C00B1FFB4 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
-		4D6620E61F5C5A6200B96DC7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = HomeKitchen/Controllers/User.swift; sourceTree = SOURCE_ROOT; };
+		4D6620E61F5C5A6200B96DC7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4DACF0AB1F55C9A00043ED79 /* HomeKitchen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeKitchen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DACF0AE1F55C9A00043ED79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DACF0B51F55C9A00043ED79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +45,11 @@
 		4DACF0BA1F55C9A00043ED79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DEDD3361F5BF90100D24E79 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4DEDD33C1F5C075500D24E79 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		4DF43FF61F5E39CE00365F57 /* getrestaurants.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getrestaurants.json; sourceTree = "<group>"; };
+		4DF43FFA1F5E3B6B00365F57 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		4DF43FFC1F5E3B7A00365F57 /* Kitchen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kitchen.swift; sourceTree = "<group>"; };
+		4DF43FFE1F5E3DC200365F57 /* ResultKitchen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultKitchen.swift; sourceTree = "<group>"; };
+		4DF440001F5E448E00365F57 /* KitchenDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenDataModel.swift; sourceTree = "<group>"; };
 		4DFAAEC21F5D44B600FE2EAE /* KitchenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenViewController.swift; sourceTree = "<group>"; };
 		4DFAAEC41F5D459500FE2EAE /* KitchenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenTableViewCell.swift; sourceTree = "<group>"; };
 		4DFAAEC51F5D459500FE2EAE /* KitchenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KitchenTableViewCell.xib; sourceTree = "<group>"; };
@@ -98,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				4DDB7ED01F59486300A24730 /* Controllers */,
+				4DF43FF31F5E395B00365F57 /* Json File */,
 				4DDB7ED21F59487700A24730 /* Models */,
 				4DDB7ED11F59486C00A24730 /* Views */,
 				4DACF0AE1F55C9A00043ED79 /* AppDelegate.swift */,
@@ -132,6 +143,10 @@
 			isa = PBXGroup;
 			children = (
 				4D6620E61F5C5A6200B96DC7 /* User.swift */,
+				4DF43FFA1F5E3B6B00365F57 /* Address.swift */,
+				4DF43FFC1F5E3B7A00365F57 /* Kitchen.swift */,
+				4DF43FFE1F5E3DC200365F57 /* ResultKitchen.swift */,
+				4DF440001F5E448E00365F57 /* KitchenDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -153,13 +168,21 @@
 			path = LoginAndSignup;
 			sourceTree = "<group>";
 		};
+		4DF43FF31F5E395B00365F57 /* Json File */ = {
+			isa = PBXGroup;
+			children = (
+				4DF43FF61F5E39CE00365F57 /* getrestaurants.json */,
+			);
+			path = "Json File";
+			sourceTree = "<group>";
+		};
 		4DFAAEC81F5D45B900FE2EAE /* KitchenCell */ = {
 			isa = PBXGroup;
 			children = (
 				4DFAAEC41F5D459500FE2EAE /* KitchenTableViewCell.swift */,
 				4DFAAEC51F5D459500FE2EAE /* KitchenTableViewCell.xib */,
 			);
-			name = KitchenCell;
+			path = KitchenCell;
 			sourceTree = "<group>";
 		};
 		59DA56E9BE7B31EB6A86CD31 /* Pods */ = {
@@ -243,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DFAAEC71F5D459500FE2EAE /* KitchenTableViewCell.xib in Resources */,
+				4DF43FF71F5E39CE00365F57 /* getrestaurants.json in Resources */,
 				4D1587F91F59639100B1FFB4 /* Main.storyboard in Resources */,
 				4DACF0B91F55C9A00043ED79 /* LaunchScreen.storyboard in Resources */,
 				4D1588051F59663C00B1FFB4 /* MenuTableViewCell.xib in Resources */,
@@ -306,14 +330,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DEDD3371F5BF90100D24E79 /* LoginViewController.swift in Sources */,
+				4DF43FFD1F5E3B7A00365F57 /* Kitchen.swift in Sources */,
 				4DEDD33D1F5C075500D24E79 /* SignupViewController.swift in Sources */,
 				4DACF0AF1F55C9A00043ED79 /* AppDelegate.swift in Sources */,
 				4D1588001F59657500B1FFB4 /* LeftMenuTableViewController.swift in Sources */,
+				4DF43FFB1F5E3B6B00365F57 /* Address.swift in Sources */,
 				4DFAAEC61F5D459500FE2EAE /* KitchenTableViewCell.swift in Sources */,
 				4D6620E71F5C5A6200B96DC7 /* User.swift in Sources */,
 				4DFAAEC31F5D44B600FE2EAE /* KitchenViewController.swift in Sources */,
+				4DF440011F5E448E00365F57 /* KitchenDataModel.swift in Sources */,
 				4D1587FE1F59651900B1FFB4 /* SMNavigationController.swift in Sources */,
 				4D1588041F59663C00B1FFB4 /* MenuTableViewCell.swift in Sources */,
+				4DF43FFF1F5E3DC200365F57 /* ResultKitchen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
