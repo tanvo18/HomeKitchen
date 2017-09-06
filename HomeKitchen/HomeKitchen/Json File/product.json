@@ -5,7 +5,7 @@
             "price": 30000,
             "type": "Com",
             "name": "Com Suon",
-            "imageUrl": "",
+            "imageUrl": "https://s3.amazonaws.com/demouploadimage/sushi.jpg",
             "recipe": {
                 "direction": "blah com suon",
                 "type": "Not Charge",
@@ -17,7 +17,7 @@
             "price": 15000,
             "type": "Do An",
             "name": "Banh Cuon",
-            "imageUrl": "",
+            "imageUrl": "https://s3.amazonaws.com/demouploadimage/sushi.jpg",
             "recipe": {
                 "direction": "blah Banh Cuon",
                 "type": "Not Charge",
@@ -39,7 +39,7 @@
             "price": 15000,
             "type": "Drink",
             "name": "Tra sua",
-            "imageUrl": "",
+            "imageUrl": "https://s3.amazonaws.com/demouploadimage/sushi.jpg",
             "recipe": {
                 "direction": "blah tra sua",
                 "type": "Not Charge",
@@ -51,7 +51,7 @@
             "price": 30000,
             "type": "Com",
             "name": "Com Ga",
-            "imageUrl": "",
+            "imageUrl": "https://s3.amazonaws.com/demouploadimage/sushi.jpg",
             "recipe": {
                 "direction": "blah com ga",
                 "type": "Not Charge",
@@ -73,7 +73,7 @@
             "price": 30000,
             "type": "Com",
             "name": "Com Chay",
-            "imageUrl": "",
+            "imageUrl": "https://s3.amazonaws.com/demouploadimage/sushi.jpg",
             "recipe": {
                 "direction": "blah com chay",
                 "type": "Not Charge",
@@ -85,7 +85,7 @@
             "price": 10000,
             "type": "Do An",
             "name": "Banh Canh",
-            "imageUrl": "",
+            "imageUrl": "https://s3.amazonaws.com/demouploadimage/sushi.jpg",
             "recipe": {
                 "direction": "blah Banh Canh",
                 "type": "Not Charge",
