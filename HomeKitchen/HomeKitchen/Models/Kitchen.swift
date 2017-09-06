@@ -15,7 +15,7 @@ class Kitchen: Mappable {
   var open: String = ""
   var close: String = ""
   var name: String = ""
-  var avatar: String = ""
+  var imageUrl: String = ""
   var point: Double = 0.0
   var address: Address = Address()
   
@@ -27,26 +27,26 @@ class Kitchen: Mappable {
     self.init()
   }
   
-  convenience init(id: Int, open: String, close: String, name: String, avatar: String, point: Double, address: Address) {
+  convenience init(id: Int, open: String, close: String, name: String, imageUrl: String, point: Double, address: Address) {
     self.init()
     self.id = id
     self.open = open
     self.close = close
     self.name = name
-    self.avatar = avatar
+    self.imageUrl = imageUrl
     self.point = point
     self.address = address
   }
   
   // Mappable
   func mapping(map: Map) {
-    id            <- map["id"]
-    open          <- map["open"]
-    close         <- map["close"]
-    name          <- map["name"]
-    avatar        <- map["avatar"]
-    point         <- map["point"]
-    address       <- map["address"]
+    id              <- map["id"]
+    open            <- map["open"]
+    close           <- map["close"]
+    name            <- map["name"]
+    imageUrl        <- map["imageUrl"]
+    point           <- map["point"]
+    address         <- map["address"]
     
   }
 }

@@ -20,8 +20,6 @@ class KitchenViewController: UIViewController {
   }
   let kitchenModelDatasource = KitchenDataModel()
   let reuseableCell = "Cell"
-  // Indicator
-  let myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -33,12 +31,6 @@ class KitchenViewController: UIViewController {
     kitchenModelDatasource.delegate = self
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    
-    // Start Activity Indicator
-    myActivityIndicator.center = view.center
-    myActivityIndicator.color = .red
-//    myActivityIndicator.startAnimating()
-    view.addSubview(myActivityIndicator)
   }
   
   override func didReceiveMemoryWarning() {
@@ -49,16 +41,14 @@ class KitchenViewController: UIViewController {
     kitchenModelDatasource.requestKitchen()
   }
   
-  @IBAction func didTouchButtonMenu(_ sender: Any) {
-    sideMenuManager?.toggleSideMenuView()
-  }
-  
 }
 
+// MARK: Tableview Delegate
 extension KitchenViewController: UITableViewDelegate {
   
 }
 
+// MARK: Tableview Datasource
 extension KitchenViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return kitchens.count
@@ -73,9 +63,21 @@ extension KitchenViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 200
   }
-
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    performSegue(withIdentifier: "showKitchenDetail", sender: self)
+  }
+  
 }
 
+// MARK: IBAction
+extension KitchenViewController {
+  @IBAction func didTouchButtonMenu(_ sender: Any) {
+    sideMenuManager?.toggleSideMenuView()
+  }
+}
+
+// MARK: KitchenDataModel Delegate
 extension KitchenViewController: KitchenDataModelDelegate {
   func didRecieveKitchenUpdate(data: [Kitchen]) {
     kitchens = data

@@ -9,7 +9,8 @@
 import UIKit
 
 class SignupViewController: UIViewController {
-
+  
+  // MARK: IBOutlet
   @IBOutlet weak var usernameTextField: UITextField!
   
   @IBOutlet weak var passwordTextField: UITextField!
@@ -19,15 +20,19 @@ class SignupViewController: UIViewController {
   @IBOutlet weak var phoneTextField: UITextField!
   
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupTextfield()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupTextfield()
+  }
   
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+  }
+  
+}
+
+// MARK: Setting for UITextField
+extension SignupViewController {
   func setupTextfield() {
     let paddingViewUser = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: self.usernameTextField.frame.height))
     usernameTextField.leftView = paddingViewUser
@@ -46,3 +51,4 @@ class SignupViewController: UIViewController {
     phoneTextField.leftViewMode = UITextFieldViewMode.always
   }
 }
+

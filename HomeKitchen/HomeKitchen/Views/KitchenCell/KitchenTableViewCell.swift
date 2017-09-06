@@ -44,19 +44,21 @@ class KitchenTableViewCell: UITableViewCell {
     pointLabel.text = "\(kitchen.point)"
     switch kitchen.point {
     case let point where point <= 1:
-      qualityLabel.text = "BAD"
+      qualityLabel.text = "VERY BAD"
     case let point where point <= 2:
-      qualityLabel.text = "FAIR"
+      qualityLabel.text = "BAD"
     case let point where point <= 3:
-      qualityLabel.text = "GOOD"
+      qualityLabel.text = "FAIR"
     case let point where point <= 4:
-      qualityLabel.text = "VERYGOOD"
-    case let point where point <= 5:
+      qualityLabel.text = "GOOD"
+    case let point where point < 5:
+      qualityLabel.text = "VERY GOOD"
+    case let point where point == 5:
       qualityLabel.text = "EXCELLENT"
     default:
       break
     }
-    downloadImage(imageUrl: kitchen.avatar)
+    downloadImage(imageUrl: kitchen.imageUrl)
   }
   
   func downloadImage(imageUrl: String) {
@@ -66,7 +68,7 @@ class KitchenTableViewCell: UITableViewCell {
       self.backgroundImageView.image = image
       // stop indicator
       self.myIndicator.stopAnimating()
-      self.myIndicator.removeFromSuperview()
+      self.myIndicator.isHidden = true
     }
   }
 }
