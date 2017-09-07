@@ -18,6 +18,9 @@
 		4D3BB8101F5FFDAF00D6686C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BB80F1F5FFDAF00D6686C /* Product.swift */; };
 		4D3BB8121F60035100D6686C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BB8111F60035100D6686C /* Recipe.swift */; };
 		4D4086581F5F9558004697CE /* KitchenDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4086571F5F9558004697CE /* KitchenDetailViewController.swift */; };
+		4D4466FC1F60DEA40022C91C /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4466FB1F60DEA40022C91C /* OrderViewController.swift */; };
+		4D4467001F60DF1E0022C91C /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */; };
+		4D4467011F60DF1E0022C91C /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */; };
 		4D6620E71F5C5A6200B96DC7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6620E61F5C5A6200B96DC7 /* User.swift */; };
 		4D7471DD1F604B23007C53E2 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7471DC1F604B23007C53E2 /* Ingredient.swift */; };
 		4D7471DF1F604C63007C53E2 /* ResultProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7471DE1F604C63007C53E2 /* ResultProduct.swift */; };
@@ -52,6 +55,9 @@
 		4D3BB80F1F5FFDAF00D6686C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4D3BB8111F60035100D6686C /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		4D4086571F5F9558004697CE /* KitchenDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenDetailViewController.swift; sourceTree = "<group>"; };
+		4D4466FB1F60DEA40022C91C /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
 		4D6620E61F5C5A6200B96DC7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4D7471DC1F604B23007C53E2 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		4D7471DE1F604C63007C53E2 /* ResultProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultProduct.swift; sourceTree = "<group>"; };
@@ -121,6 +127,23 @@
 			name = KitchenDetailScreen;
 			sourceTree = "<group>";
 		};
+		4D4466FA1F60DE5A0022C91C /* OrderScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D4466FB1F60DEA40022C91C /* OrderViewController.swift */,
+			);
+			name = OrderScreen;
+			sourceTree = "<group>";
+		};
+		4D4466FD1F60DEDE0022C91C /* ListOrderCell */ = {
+			isa = PBXGroup;
+			children = (
+				4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */,
+				4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */,
+			);
+			name = ListOrderCell;
+			sourceTree = "<group>";
+		};
 		4DACF0A21F55C9A00043ED79 = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +181,7 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D4466FA1F60DE5A0022C91C /* OrderScreen */,
 				4D4086541F5F8E33004697CE /* KitchenDetailScreen */,
 				4DDB7ED51F59623500A24730 /* HomePageScreen */,
 				4DEDD3351F5BF8D500D24E79 /* LoginAndSignup */,
@@ -169,6 +193,7 @@
 		4DDB7ED11F59486C00A24730 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4D4466FD1F60DEDE0022C91C /* ListOrderCell */,
 				4D3BB8081F5FF4EF00D6686C /* TopOrderCell */,
 				4DFAAEC81F5D45B900FE2EAE /* KitchenCell */,
 				4D1588011F59661600B1FFB4 /* MenuCell */,
@@ -311,6 +336,7 @@
 				4D3BB80C1F5FF52B00D6686C /* TopOrderTableViewCell.xib in Resources */,
 				4DFAAEC71F5D459500FE2EAE /* KitchenTableViewCell.xib in Resources */,
 				4DF43FF71F5E39CE00365F57 /* getrestaurants.json in Resources */,
+				4D4467011F60DF1E0022C91C /* OrderTableViewCell.xib in Resources */,
 				4D1587F91F59639100B1FFB4 /* Main.storyboard in Resources */,
 				4DACF0B91F55C9A00043ED79 /* LaunchScreen.storyboard in Resources */,
 				4D3BB80E1F5FFD0000D6686C /* product.json in Resources */,
@@ -390,7 +416,9 @@
 				4DFAAEC31F5D44B600FE2EAE /* KitchenViewController.swift in Sources */,
 				4D3BB80B1F5FF52B00D6686C /* TopOrderTableViewCell.swift in Sources */,
 				4DF440011F5E448E00365F57 /* KitchenDataModel.swift in Sources */,
+				4D4467001F60DF1E0022C91C /* OrderTableViewCell.swift in Sources */,
 				4D1587FE1F59651900B1FFB4 /* SMNavigationController.swift in Sources */,
+				4D4466FC1F60DEA40022C91C /* OrderViewController.swift in Sources */,
 				4D7471DF1F604C63007C53E2 /* ResultProduct.swift in Sources */,
 				4D1588041F59663C00B1FFB4 /* MenuTableViewCell.swift in Sources */,
 				4DF43FFF1F5E3DC200365F57 /* ResultKitchen.swift in Sources */,

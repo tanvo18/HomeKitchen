@@ -1,15 +1,14 @@
 //
-//  KitchenDetailViewController.swift
+//  OrderViewController.swift
 //  HomeKitchen
 //
-//  Created by Tan Vo on 9/6/17.
+//  Created by Tan Vo on 9/7/17.
 //  Copyright © 2017 Tan Vo. All rights reserved.
 //
 
 import UIKit
 
-class KitchenDetailViewController: UIViewController {
-  
+class OrderViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   var products: [Product] = []{
@@ -20,6 +19,7 @@ class KitchenDetailViewController: UIViewController {
   let reuseableCell = "Cell"
   let productModelDatasource = ProductDataModel()
   
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // MARK: Disable sidemenu
@@ -27,17 +27,15 @@ class KitchenDetailViewController: UIViewController {
     
     tableView.delegate = self
     tableView.dataSource = self
-    tableView.register(UINib(nibName: "TopOrderTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
+    tableView.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // MARK: KitchenDataModelDelegate
     productModelDatasource.delegate = self
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -45,17 +43,17 @@ class KitchenDetailViewController: UIViewController {
   }
 }
 
-extension KitchenDetailViewController: UITableViewDelegate {
+extension OrderViewController: UITableViewDelegate {
   
 }
 
-extension KitchenDetailViewController: UITableViewDataSource {
+extension OrderViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return products.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! TopOrderTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! OrderTableViewCell
     cell.configureWithItem(product: products[indexPath.row])
     return cell
   }
@@ -63,13 +61,9 @@ extension KitchenDetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 70
   }
-  
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    performSegue(withIdentifier: "showListOrder", sender: self)
-  }
 }
 
-extension KitchenDetailViewController: ProductDataModelDelegate {
+extension OrderViewController: ProductDataModelDelegate {
   func didRecieveProductUpdate(data: [Product]) {
     products = data
   }
@@ -77,5 +71,3 @@ extension KitchenDetailViewController: ProductDataModelDelegate {
     print("error \(error)")
   }
 }
-
-

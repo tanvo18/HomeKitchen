@@ -1,15 +1,15 @@
 //
-//  TopOrderTableViewCell.swift
+//  OrderTableViewCell.swift
 //  HomeKitchen
 //
-//  Created by Tan Vo on 9/6/17.
+//  Created by Tan Vo on 9/7/17.
 //  Copyright © 2017 Tan Vo. All rights reserved.
 //
 
 import UIKit
 import Kingfisher
 
-class TopOrderTableViewCell: UITableViewCell {
+class OrderTableViewCell: UITableViewCell {
   
   @IBOutlet weak var foodImageView: UIImageView!
   
@@ -34,7 +34,7 @@ class TopOrderTableViewCell: UITableViewCell {
     typeLabel.text = product.type
     priceLabel.text = "\(product.price)"
     downloadProductImage(imageUrl: product.imageUrl)
-
+    
   }
   
   // MARK: download image with url
@@ -45,4 +45,5 @@ class TopOrderTableViewCell: UITableViewCell {
       self.foodImageView.image = image
     }
   }
+  
 }

@@ -36,6 +36,7 @@ class KitchenTableViewCell: UITableViewCell {
     // Configure the view for the selected state
   }
   
+  // MARK: configure view cell
   func configureWithItem(kitchen: Kitchen) {
     myIndicator.startAnimating()
     kitchenNameLabel.text = kitchen.name
@@ -61,6 +62,7 @@ class KitchenTableViewCell: UITableViewCell {
     downloadImage(imageUrl: kitchen.imageUrl)
   }
   
+  // MARK: download image with url
   func downloadImage(imageUrl: String) {
     let url = URL(string: imageUrl)!
     ImageDownloader.default.downloadImage(with: url, options: [], progressBlock: nil) {
