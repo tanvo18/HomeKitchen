@@ -54,6 +54,11 @@ extension OrderViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! OrderTableViewCell
     cell.configureWithItem(product: products[indexPath.row])
+    // click button plus and button minus
+    cell.buttonPlus.tag = indexPath.row
+    cell.buttonPlus.addTarget(self, action: #selector(self.didTouchButtonPlus), for: .touchUpInside)
+    cell.buttonMinus.tag = indexPath.row
+    cell.buttonMinus.addTarget(self, action: #selector(self.didTouchButtonMinus), for: .touchUpInside)
     return cell
   }
   

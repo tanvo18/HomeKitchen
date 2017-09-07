@@ -19,9 +19,9 @@ class OrderTableViewCell: UITableViewCell {
   
   @IBOutlet weak var priceLabel: UILabel!
   
-  @IBOutlet weak var buttonMinus: UIImageView!
+  @IBOutlet weak var buttonMinus: UIButton!
   
-  @IBOutlet weak var buttonPlus: UIImageView!
+  @IBOutlet weak var buttonPlus: UIButton!
   
   @IBOutlet weak var quantitiesLabel: UILabel!
   
