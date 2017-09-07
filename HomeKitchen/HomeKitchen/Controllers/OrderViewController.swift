@@ -19,7 +19,6 @@ class OrderViewController: UIViewController {
   let reuseableCell = "Cell"
   let productModelDatasource = ProductDataModel()
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     // MARK: Disable sidemenu
@@ -69,5 +68,19 @@ extension OrderViewController: ProductDataModelDelegate {
   }
   func didFailProductUpdateWithError(error: String) {
     print("error \(error)")
+  }
+}
+
+extension OrderViewController {
+  // MARK: click button plus
+  func didTouchButtonPlus(sender: UIButton) {
+    let position = sender.tag
+    tableView.reloadData()
+  }
+  
+  // MARK: click button minus
+  func didTouchButtonMinus(sender: UIButton) {
+    let position = sender.tag
+    tableView.reloadData()
   }
 }

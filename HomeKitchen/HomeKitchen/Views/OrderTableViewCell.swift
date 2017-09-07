@@ -19,6 +19,12 @@ class OrderTableViewCell: UITableViewCell {
   
   @IBOutlet weak var priceLabel: UILabel!
   
+  @IBOutlet weak var buttonMinus: UIImageView!
+  
+  @IBOutlet weak var buttonPlus: UIImageView!
+  
+  @IBOutlet weak var quantitiesLabel: UILabel!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
   }

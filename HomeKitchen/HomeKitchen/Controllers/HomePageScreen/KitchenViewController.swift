@@ -26,7 +26,6 @@ class KitchenViewController: UIViewController {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UINib(nibName: "KitchenTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
-    
     // MARK: KitchenDataModelDelegate
     kitchenModelDatasource.delegate = self
     // Hide Foot view
@@ -38,6 +37,8 @@ class KitchenViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    // MARK: enable sidemenu
+    sideMenuManager?.sideMenuController()?.sideMenu?.disabled = false
     kitchenModelDatasource.requestKitchen()
   }
   
