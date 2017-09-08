@@ -5,7 +5,7 @@
                "open": "11:00:00",
                "close": "23:00:00",
                "name": "Duy's Kitchen",
-               "imageUrl": "https://s3.amazonaws.com/demouploadimage/meet-600.jpg",
+               "imageUrl": "https://s3.amazonaws.com/demouploadimage/restaurantbg.png",
                "point": 4.6,
                "address": {
                "city": "Da Nang",
@@ -19,7 +19,7 @@
                "open": "07:00",
                "close": "19:00",
                "name": "Tan's Kitchen",
-               "imageUrl": "https://s3.amazonaws.com/demouploadimage/meet-600.jpg",
+               "imageUrl": "https://s3.amazonaws.com/demouploadimage/restaurantbg.png",
                "point": 4.5,
                "address": {
                "city": "Sai Gon",
@@ -33,7 +33,7 @@
                "open": "07:00",
                "close": "19:00",
                "name": "Trung's Kitchen",
-               "imageUrl": "https://s3.amazonaws.com/demouploadimage/meet-600.jpg",
+               "imageUrl": "https://s3.amazonaws.com/demouploadimage/restaurantbg.png",
                "point": 3.5,
                "address": {
                "city": "Sai Gon",

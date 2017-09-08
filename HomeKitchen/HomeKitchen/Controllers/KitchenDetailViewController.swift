@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 class KitchenDetailViewController: UIViewController {
   
-  
   @IBOutlet weak var tableView: UITableView!
+  
+  @IBOutlet weak var backgroundImage: UIImageView!
+  
   var products: [Product] = []{
     didSet {
       tableView.reloadData()
@@ -32,7 +35,8 @@ class KitchenDetailViewController: UIViewController {
     productModelDatasource.delegate = self
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-
+    
+    downloadBackgroundImage()
   }
   
   override func didReceiveMemoryWarning() {
@@ -43,6 +47,7 @@ class KitchenDetailViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     productModelDatasource.requestProduct()
   }
+  
 }
 
 extension KitchenDetailViewController: UITableViewDelegate {
@@ -78,4 +83,14 @@ extension KitchenDetailViewController: ProductDataModelDelegate {
   }
 }
 
+extension KitchenDetailViewController {
+  // MARK: download image with url
+  func downloadBackgroundImage() {
+    let url = URL(string: "https://s3.amazonaws.com/demouploadimage/restaurantbg.png")!
+    ImageDownloader.default.downloadImage(with: url, options: [], progressBlock: nil) {
+      (image, error, url, data) in
+      self.backgroundImage.image = image
+    }
+  }
+}
 
