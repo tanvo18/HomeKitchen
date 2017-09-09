@@ -92,6 +92,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D0932C11F63E2A6001CEFF5 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4DFAAEC81F5D45B900FE2EAE /* KitchenCell */,
+			);
+			name = HomeScreen;
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		4D0932C21F63E2E7001CEFF5 /* KitchenDetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D3BB8081F5FF4EF00D6686C /* TopOrderCell */,
+			);
+			name = KitchenDetailScreen;
+			path = KitchenDetailScreen;
+			sourceTree = "<group>";
+		};
+		4D0932C31F63E306001CEFF5 /* OrderScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D4466FD1F60DEDE0022C91C /* ListOrderCell */,
+			);
+			name = OrderScreen;
+			path = OrderScreen;
+			sourceTree = "<group>";
+		};
 		4D1587FC1F5964F400B1FFB4 /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +144,7 @@
 				4D3BB80A1F5FF52B00D6686C /* TopOrderTableViewCell.xib */,
 			);
 			name = TopOrderCell;
+			path = TopOrderCell;
 			sourceTree = "<group>";
 		};
 		4D4086541F5F8E33004697CE /* KitchenDetailScreen */ = {
@@ -125,6 +153,7 @@
 				4D4086571F5F9558004697CE /* KitchenDetailViewController.swift */,
 			);
 			name = KitchenDetailScreen;
+			path = KitchenDetailScreen;
 			sourceTree = "<group>";
 		};
 		4D4466FA1F60DE5A0022C91C /* OrderScreen */ = {
@@ -133,6 +162,7 @@
 				4D4466FB1F60DEA40022C91C /* OrderViewController.swift */,
 			);
 			name = OrderScreen;
+			path = OrderScreen;
 			sourceTree = "<group>";
 		};
 		4D4466FD1F60DEDE0022C91C /* ListOrderCell */ = {
@@ -142,6 +172,7 @@
 				4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */,
 			);
 			name = ListOrderCell;
+			path = ListOrderCell;
 			sourceTree = "<group>";
 		};
 		4DACF0A21F55C9A00043ED79 = {
@@ -181,10 +212,10 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4D4466FA1F60DE5A0022C91C /* OrderScreen */,
+				4DDB7ED51F59623500A24730 /* HomeScreen */,
 				4D4086541F5F8E33004697CE /* KitchenDetailScreen */,
-				4DDB7ED51F59623500A24730 /* HomePageScreen */,
 				4DEDD3351F5BF8D500D24E79 /* LoginAndSignup */,
+				4D4466FA1F60DE5A0022C91C /* OrderScreen */,
 				4D1587FC1F5964F400B1FFB4 /* SideMenu */,
 			);
 			path = Controllers;
@@ -193,10 +224,10 @@
 		4DDB7ED11F59486C00A24730 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4D4466FD1F60DEDE0022C91C /* ListOrderCell */,
-				4D3BB8081F5FF4EF00D6686C /* TopOrderCell */,
-				4DFAAEC81F5D45B900FE2EAE /* KitchenCell */,
+				4D0932C11F63E2A6001CEFF5 /* HomeScreen */,
+				4D0932C21F63E2E7001CEFF5 /* KitchenDetailScreen */,
 				4D1588011F59661600B1FFB4 /* MenuCell */,
+				4D0932C31F63E306001CEFF5 /* OrderScreen */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,26 +235,27 @@
 		4DDB7ED21F59487700A24730 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4D6620E61F5C5A6200B96DC7 /* User.swift */,
 				4DF43FFA1F5E3B6B00365F57 /* Address.swift */,
+				4D7471DC1F604B23007C53E2 /* Ingredient.swift */,
 				4DF43FFC1F5E3B7A00365F57 /* Kitchen.swift */,
-				4DF43FFE1F5E3DC200365F57 /* ResultKitchen.swift */,
 				4DF440001F5E448E00365F57 /* KitchenDataModel.swift */,
 				4D3BB80F1F5FFDAF00D6686C /* Product.swift */,
-				4D3BB8111F60035100D6686C /* Recipe.swift */,
-				4D7471DC1F604B23007C53E2 /* Ingredient.swift */,
-				4D7471DE1F604C63007C53E2 /* ResultProduct.swift */,
 				4D7471E01F604CB0007C53E2 /* ProductDataModel.swift */,
+				4D3BB8111F60035100D6686C /* Recipe.swift */,
+				4DF43FFE1F5E3DC200365F57 /* ResultKitchen.swift */,
+				4D7471DE1F604C63007C53E2 /* ResultProduct.swift */,
+				4D6620E61F5C5A6200B96DC7 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		4DDB7ED51F59623500A24730 /* HomePageScreen */ = {
+		4DDB7ED51F59623500A24730 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
 				4DFAAEC21F5D44B600FE2EAE /* KitchenViewController.swift */,
 			);
-			path = HomePageScreen;
+			name = HomeScreen;
+			path = HomeScreen;
 			sourceTree = "<group>";
 		};
 		4DEDD3351F5BF8D500D24E79 /* LoginAndSignup */ = {
@@ -238,8 +270,8 @@
 		4DF43FF31F5E395B00365F57 /* Json File */ = {
 			isa = PBXGroup;
 			children = (
-				4D3BB80D1F5FFD0000D6686C /* product.json */,
 				4DF43FF61F5E39CE00365F57 /* getrestaurants.json */,
+				4D3BB80D1F5FFD0000D6686C /* product.json */,
 			);
 			path = "Json File";
 			sourceTree = "<group>";
