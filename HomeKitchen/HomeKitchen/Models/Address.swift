@@ -11,15 +11,12 @@ import ObjectMapper
 
 class Address: Mappable {
   
-  var id: Int = 0
   var city: String = ""
   var district: String = ""
   var address: String = ""
   var phoneNumber: String = ""
   
-  init() {
-    
-  }
+  init() {}
   
   required convenience init?(map: Map) {
     self.init()
@@ -27,7 +24,6 @@ class Address: Mappable {
   
   convenience init(city: String, district: String, address: String, phoneNumber: String) {
     self.init()
-    self.id = 0
     self.city = city
     self.district = district
     self.address = address
@@ -36,11 +32,9 @@ class Address: Mappable {
   
   // Mappable
   func mapping(map: Map) {
-    
     city            <- map["city"]
     district        <- map["district"]
     address         <- map["address"]
     phoneNumber     <- map["phoneNumber"]
-    
   }
 }

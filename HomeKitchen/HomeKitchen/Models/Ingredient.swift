@@ -13,9 +13,7 @@ class Ingredient: Mappable {
   
   var detail: String = ""
   
-  init() {
-    
-  }
+  init() {}
   
   required convenience init?(map: Map) {
     self.init()

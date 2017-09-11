@@ -16,10 +16,13 @@ class KitchenViewController: UIViewController {
   var kitchens: [Kitchen] = [] {
     didSet {
       tableView.reloadData()
+      myIndicator.stopAnimating()
     }
   }
   let kitchenModelDatasource = KitchenDataModel()
   let reuseableCell = "Cell"
+  // Indicator
+  let myIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,6 +33,12 @@ class KitchenViewController: UIViewController {
     kitchenModelDatasource.delegate = self
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
+    
+    // Position Activity Indicator in the center of the main view
+    myIndicator.center = view.center
+    // Start Activity Indicator
+    myIndicator.startAnimating()
+    view.addSubview(myIndicator)
   }
   
   override func didReceiveMemoryWarning() {

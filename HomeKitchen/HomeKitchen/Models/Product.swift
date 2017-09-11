@@ -18,9 +18,7 @@ class Product: Mappable {
   var name: String = ""
   var recipe: Recipe = Recipe()
   
-  init() {
-    
-  }
+  init() {}
   
   required convenience init?(map: Map) {
     self.init()

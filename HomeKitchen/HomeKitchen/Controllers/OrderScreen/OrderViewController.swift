@@ -11,13 +11,28 @@ import UIKit
 class OrderViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
+  
+  @IBOutlet weak var totalPriceLabel: UILabel!
+  
   var products: [Product] = []{
     didSet {
+      if Global.cart.products.isEmpty {
+        Global.cart.products = products
+        totalPriceLabel.text = "0 item - 0 $"
+        totalPrice = 0
+        productQuantityInCart = 0
+      } else {
+        products = Global.cart.products
+        calculatePriceInCart()
+      }
       tableView.reloadData()
     }
   }
   let reuseableCell = "Cell"
   let productModelDatasource = ProductDataModel()
+  var position: Int = 0
+  var totalPrice: Int = 0
+  var productQuantityInCart = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -79,13 +94,57 @@ extension OrderViewController: ProductDataModelDelegate {
 extension OrderViewController {
   // MARK: click button plus
   func didTouchButtonPlus(sender: UIButton) {
-    let position = sender.tag
+    position = sender.tag
+//    Global.cart.products[position].quantity += 1
+    addPrice(position: position)
     tableView.reloadData()
   }
   
   // MARK: click button minus
   func didTouchButtonMinus(sender: UIButton) {
-    let position = sender.tag
+    position = sender.tag
+//    if products[position].quantity > 0 {
+//      Global.cart.products[position].quantity -= 1
+//      subtractPrice(position: position)
+//    }
     tableView.reloadData()
+  }
+}
+
+extension OrderViewController {
+  func addPrice(position: Int) {
+    totalPrice += Global.cart.products[position].price
+    productQuantityInCart += 1
+    if productQuantityInCart <= 1 {
+      totalPriceLabel.text = "\(productQuantityInCart) item - \(totalPrice)"
+    } else {
+      totalPriceLabel.text = "\(productQuantityInCart) items - \(totalPrice)"
+    }
+  }
+  
+  func subtractPrice(position: Int) {
+    totalPrice -= Global.cart.products[position].price
+    productQuantityInCart -= 1
+    if productQuantityInCart <= 1 {
+      totalPriceLabel.text = "\(productQuantityInCart) item - \(totalPrice)"
+    } else {
+      totalPriceLabel.text = "\(productQuantityInCart) items - \(totalPrice)"
+    }
+  }
+  
+  func calculatePriceInCart() {
+    var price = 0
+    var quantity = 0
+    for item in Global.cart.products {
+//      price += item.price * item.quantity
+//      quantity += item.quantity
+    }
+    if quantity <= 1 {
+      totalPriceLabel.text = "\(quantity) item - \(price)"
+    } else {
+      totalPriceLabel.text = "\(quantity) items - \(price)"
+    }
+    totalPrice = price
+    productQuantityInCart = quantity
   }
 }

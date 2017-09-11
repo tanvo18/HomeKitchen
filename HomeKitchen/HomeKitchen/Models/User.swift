@@ -18,9 +18,7 @@ class User: Mappable {
   var role: String = ""
   var name: String = ""
   
-  init() {
-    
-  }
+  init() {}
   
   required convenience init?(map: Map) {
     self.init()
@@ -37,13 +35,11 @@ class User: Mappable {
   }
   
   func mapping(map: Map) {
-    
     username          <- map["username"]
     birthday          <- map["birthday"]
     gender            <- map["gender"]
     phoneNumber       <- map["phoneNumber"]
     role              <- map["role"]
     name              <- map["name"]
-    
   }
 }

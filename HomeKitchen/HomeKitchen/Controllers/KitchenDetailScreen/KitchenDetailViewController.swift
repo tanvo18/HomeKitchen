@@ -23,6 +23,8 @@ class KitchenDetailViewController: UIViewController {
   let reuseableCell = "Cell"
   let productModelDatasource = ProductDataModel()
   
+  //init cart for kitchen
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // MARK: Disable sidemenu
@@ -35,8 +37,9 @@ class KitchenDetailViewController: UIViewController {
     productModelDatasource.delegate = self
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    
     downloadBackgroundImage()
+    //init cart for kitchen
+    Global.cart = Cart()
   }
   
   override func didReceiveMemoryWarning() {

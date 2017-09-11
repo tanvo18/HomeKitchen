@@ -23,7 +23,6 @@ class KitchenTableViewCell: UITableViewCell {
   
   @IBOutlet weak var backgroundImageView: UIImageView!
   
-  
   @IBOutlet weak var myIndicator: UIActivityIndicatorView!
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -38,7 +37,6 @@ class KitchenTableViewCell: UITableViewCell {
   
   // MARK: configure view cell
   func configureWithItem(kitchen: Kitchen) {
-    myIndicator.startAnimating()
     kitchenNameLabel.text = kitchen.name
     addressLabel.text = "\(kitchen.address.address) \(kitchen.address.district) \(kitchen.address.city)"
     timeLabel.text = "\(kitchen.open) to \(kitchen.close)"
@@ -64,6 +62,7 @@ class KitchenTableViewCell: UITableViewCell {
   
   // MARK: download image with url
   func downloadImage(imageUrl: String) {
+    myIndicator.startAnimating()
     let url = URL(string: imageUrl)!
     ImageDownloader.default.downloadImage(with: url, options: [], progressBlock: nil) {
       (image, error, url, data) in

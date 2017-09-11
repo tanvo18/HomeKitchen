@@ -28,6 +28,9 @@
 		4DACF0AF1F55C9A00043ED79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACF0AE1F55C9A00043ED79 /* AppDelegate.swift */; };
 		4DACF0B61F55C9A00043ED79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DACF0B51F55C9A00043ED79 /* Assets.xcassets */; };
 		4DACF0B91F55C9A00043ED79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DACF0B71F55C9A00043ED79 /* LaunchScreen.storyboard */; };
+		4DCC35191F668B870005BD40 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC35181F668B870005BD40 /* OrderItem.swift */; };
+		4DDE9F7B1F6425D400EE875D /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE9F7A1F6425D400EE875D /* Cart.swift */; };
+		4DDE9F7E1F6432F100EE875D /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE9F7D1F6432F100EE875D /* Global.swift */; };
 		4DEDD3371F5BF90100D24E79 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEDD3361F5BF90100D24E79 /* LoginViewController.swift */; };
 		4DEDD33D1F5C075500D24E79 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEDD33C1F5C075500D24E79 /* SignupViewController.swift */; };
 		4DF43FF71F5E39CE00365F57 /* getrestaurants.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF43FF61F5E39CE00365F57 /* getrestaurants.json */; };
@@ -67,6 +70,9 @@
 		4DACF0B51F55C9A00043ED79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DACF0B81F55C9A00043ED79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DACF0BA1F55C9A00043ED79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4DCC35181F668B870005BD40 /* OrderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
+		4DDE9F7A1F6425D400EE875D /* Cart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		4DDE9F7D1F6432F100EE875D /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		4DEDD3361F5BF90100D24E79 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4DEDD33C1F5C075500D24E79 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		4DF43FF61F5E39CE00365F57 /* getrestaurants.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getrestaurants.json; sourceTree = "<group>"; };
@@ -97,7 +103,6 @@
 			children = (
 				4DFAAEC81F5D45B900FE2EAE /* KitchenCell */,
 			);
-			name = HomeScreen;
 			path = HomeScreen;
 			sourceTree = "<group>";
 		};
@@ -106,7 +111,6 @@
 			children = (
 				4D3BB8081F5FF4EF00D6686C /* TopOrderCell */,
 			);
-			name = KitchenDetailScreen;
 			path = KitchenDetailScreen;
 			sourceTree = "<group>";
 		};
@@ -115,7 +119,6 @@
 			children = (
 				4D4466FD1F60DEDE0022C91C /* ListOrderCell */,
 			);
-			name = OrderScreen;
 			path = OrderScreen;
 			sourceTree = "<group>";
 		};
@@ -143,7 +146,6 @@
 				4D3BB8091F5FF52B00D6686C /* TopOrderTableViewCell.swift */,
 				4D3BB80A1F5FF52B00D6686C /* TopOrderTableViewCell.xib */,
 			);
-			name = TopOrderCell;
 			path = TopOrderCell;
 			sourceTree = "<group>";
 		};
@@ -152,7 +154,6 @@
 			children = (
 				4D4086571F5F9558004697CE /* KitchenDetailViewController.swift */,
 			);
-			name = KitchenDetailScreen;
 			path = KitchenDetailScreen;
 			sourceTree = "<group>";
 		};
@@ -161,7 +162,6 @@
 			children = (
 				4D4466FB1F60DEA40022C91C /* OrderViewController.swift */,
 			);
-			name = OrderScreen;
 			path = OrderScreen;
 			sourceTree = "<group>";
 		};
@@ -171,7 +171,6 @@
 				4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */,
 				4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */,
 			);
-			name = ListOrderCell;
 			path = ListOrderCell;
 			sourceTree = "<group>";
 		};
@@ -196,6 +195,7 @@
 		4DACF0AD1F55C9A00043ED79 /* HomeKitchen */ = {
 			isa = PBXGroup;
 			children = (
+				4DDE9F7C1F642AE800EE875D /* CommonVariable */,
 				4DDB7ED01F59486300A24730 /* Controllers */,
 				4DF43FF31F5E395B00365F57 /* Json File */,
 				4DDB7ED21F59487700A24730 /* Models */,
@@ -245,6 +245,8 @@
 				4DF43FFE1F5E3DC200365F57 /* ResultKitchen.swift */,
 				4D7471DE1F604C63007C53E2 /* ResultProduct.swift */,
 				4D6620E61F5C5A6200B96DC7 /* User.swift */,
+				4DDE9F7A1F6425D400EE875D /* Cart.swift */,
+				4DCC35181F668B870005BD40 /* OrderItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -254,8 +256,15 @@
 			children = (
 				4DFAAEC21F5D44B600FE2EAE /* KitchenViewController.swift */,
 			);
-			name = HomeScreen;
 			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		4DDE9F7C1F642AE800EE875D /* CommonVariable */ = {
+			isa = PBXGroup;
+			children = (
+				4DDE9F7D1F6432F100EE875D /* Global.swift */,
+			);
+			name = CommonVariable;
 			sourceTree = "<group>";
 		};
 		4DEDD3351F5BF8D500D24E79 /* LoginAndSignup */ = {
@@ -440,13 +449,16 @@
 				4D7471E11F604CB0007C53E2 /* ProductDataModel.swift in Sources */,
 				4D4086581F5F9558004697CE /* KitchenDetailViewController.swift in Sources */,
 				4D3BB8121F60035100D6686C /* Recipe.swift in Sources */,
+				4DDE9F7E1F6432F100EE875D /* Global.swift in Sources */,
 				4D1588001F59657500B1FFB4 /* LeftMenuTableViewController.swift in Sources */,
 				4DF43FFB1F5E3B6B00365F57 /* Address.swift in Sources */,
 				4DFAAEC61F5D459500FE2EAE /* KitchenTableViewCell.swift in Sources */,
 				4D6620E71F5C5A6200B96DC7 /* User.swift in Sources */,
+				4DDE9F7B1F6425D400EE875D /* Cart.swift in Sources */,
 				4D3BB8101F5FFDAF00D6686C /* Product.swift in Sources */,
 				4DFAAEC31F5D44B600FE2EAE /* KitchenViewController.swift in Sources */,
 				4D3BB80B1F5FF52B00D6686C /* TopOrderTableViewCell.swift in Sources */,
+				4DCC35191F668B870005BD40 /* OrderItem.swift in Sources */,
 				4DF440011F5E448E00365F57 /* KitchenDataModel.swift in Sources */,
 				4D4467001F60DF1E0022C91C /* OrderTableViewCell.swift in Sources */,
 				4D1587FE1F59651900B1FFB4 /* SMNavigationController.swift in Sources */,

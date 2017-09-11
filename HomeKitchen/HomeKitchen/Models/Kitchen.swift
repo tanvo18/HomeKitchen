@@ -19,9 +19,7 @@ class Kitchen: Mappable {
   var point: Double = 0.0
   var address: Address = Address()
   
-  init() {
-    
-  }
+  init() {}
   
   required convenience init?(map: Map) {
     self.init()
@@ -47,6 +45,5 @@ class Kitchen: Mappable {
     imageUrl        <- map["imageUrl"]
     point           <- map["point"]
     address         <- map["address"]
-    
   }
 }

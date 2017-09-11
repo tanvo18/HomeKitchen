@@ -15,9 +15,7 @@ class Recipe: Mappable {
   var type: String = ""
   var ingredients: [Ingredient] = []
   
-  init() {
-    
-  }
+  init() {}
   
   required convenience init?(map: Map) {
     self.init()
