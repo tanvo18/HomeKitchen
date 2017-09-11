@@ -2,8 +2,8 @@
   "kitchens": [
                {
                "id": 2,
-               "open": "11:00:00",
-               "close": "23:00:00",
+               "open": "11:00",
+               "close": "23:00",
                "name": "Duy's Kitchen",
                "imageUrl": "https://s3.amazonaws.com/demouploadimage/restaurantbg.png",
                "point": 4.6,
