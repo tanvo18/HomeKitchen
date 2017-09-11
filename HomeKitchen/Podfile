@@ -9,5 +9,5 @@ target 'HomeKitchen' do
   pod 'Alamofire', '~> 4.4'
   pod 'ObjectMapper', '~> 2.2'
   pod 'Kingfisher', '~> 3.0'
-  pod 'LNSideMenu', '~> 2.2'
+  pod 'LNSideMenu', '~> 2.3.2'
 end
