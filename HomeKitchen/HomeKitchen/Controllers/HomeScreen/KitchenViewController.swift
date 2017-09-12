@@ -12,7 +12,6 @@ class KitchenViewController: UIViewController {
   
   // MARK: IBOutlet
   @IBOutlet weak var tableView: UITableView!
-  
   var kitchens: [Kitchen] = [] {
     didSet {
       tableView.reloadData()
@@ -23,6 +22,7 @@ class KitchenViewController: UIViewController {
   let reuseableCell = "Cell"
   // Indicator
   let myIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+  var position: Int = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -75,6 +75,7 @@ extension KitchenViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    position = indexPath.row
     performSegue(withIdentifier: "showKitchenDetail", sender: self)
   }
   
@@ -94,6 +95,18 @@ extension KitchenViewController: KitchenDataModelDelegate {
   }
   func didFailKitchenUpdateWithError(error: String) {
     print("error \(error)")
+  }
+}
+
+extension KitchenViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showKitchenDetail" {
+      if let destination = segue.destination as? KitchenDetailViewController {
+        destination.imageUrl = kitchens[position].imageUrl
+        destination.point = kitchens[position].point
+        destination.time = "\(kitchens[position].open)-\(kitchens[position].close)"
+      }
+    }
   }
 }
 

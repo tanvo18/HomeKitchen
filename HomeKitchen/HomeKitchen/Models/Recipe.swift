@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 class Recipe: Mappable {
-  
+  var id: Int = 0
   var direction: String = ""
   var type: String = ""
   var ingredients: [Ingredient] = []
@@ -21,8 +21,9 @@ class Recipe: Mappable {
     self.init()
   }
   
-  convenience init(direction: String, type: String, ingredients: [Ingredient]) {
+  convenience init(id: Int, direction: String, type: String, ingredients: [Ingredient]) {
     self.init()
+    self.id = id
     self.direction = direction
     self.type = type
     self.ingredients = ingredients
@@ -30,6 +31,7 @@ class Recipe: Mappable {
   
   // Mappable
   func mapping(map: Map) {
+    id                       <- map["id"]
     direction                <- map["direction"]
     type                     <- map["type"]
     ingredients              <- map["ingredients"]

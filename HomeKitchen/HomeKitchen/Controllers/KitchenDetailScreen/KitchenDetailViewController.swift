@@ -12,18 +12,22 @@ import Kingfisher
 class KitchenDetailViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
-  
   @IBOutlet weak var backgroundImage: UIImageView!
+  @IBOutlet weak var pointLabel: UILabel!
+  @IBOutlet weak var indicator: UIActivityIndicatorView!
+  @IBOutlet weak var timeLabel: UILabel!
   
-  var products: [Product] = []{
+  var products: [OrderItem] = []{
     didSet {
+     
       tableView.reloadData()
     }
   }
   let reuseableCell = "Cell"
   let productModelDatasource = ProductDataModel()
-  
-  //init cart for kitchen
+  var imageUrl: String = ""
+  var point: Double = 0.0
+  var time: String = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -37,34 +41,36 @@ class KitchenDetailViewController: UIViewController {
     productModelDatasource.delegate = self
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
+    // Start indicator
+    indicator.startAnimating()
     downloadBackgroundImage()
-    //init cart for kitchen
-    Global.cart = Cart()
+    pointLabel.text = "\(point)"
+    timeLabel.text = time
+    // Request data through delagate
+    productModelDatasource.requestProduct()
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    productModelDatasource.requestProduct()
-  }
-  
 }
 
+// MARK: tableView Delegate
 extension KitchenDetailViewController: UITableViewDelegate {
   
 }
 
+// MARK: tableView Datasource
 extension KitchenDetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return products.count
+    return 3
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! TopOrderTableViewCell
-    cell.configureWithItem(product: products[indexPath.row])
+    cell.backgroundColor = .gray
+    //  cell.configureWithItem(product: products[indexPath.row])
     return cell
   }
   
@@ -72,13 +78,11 @@ extension KitchenDetailViewController: UITableViewDataSource {
     return 70
   }
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    performSegue(withIdentifier: "showListOrder", sender: self)
-  }
 }
 
+// MARK: ProductDataModelDelegate
 extension KitchenDetailViewController: ProductDataModelDelegate {
-  func didRecieveProductUpdate(data: [Product]) {
+  func didRecieveProductUpdate(data: [OrderItem]) {
     products = data
   }
   func didFailProductUpdateWithError(error: String) {
@@ -89,11 +93,32 @@ extension KitchenDetailViewController: ProductDataModelDelegate {
 extension KitchenDetailViewController {
   // MARK: download image with url
   func downloadBackgroundImage() {
-    let url = URL(string: "https://s3.amazonaws.com/demouploadimage/restaurantbg.png")!
+    let url = URL(string: imageUrl)!
     ImageDownloader.default.downloadImage(with: url, options: [], progressBlock: nil) {
       (image, error, url, data) in
       self.backgroundImage.image = image
+      self.indicator.stopAnimating()
+      self.indicator.isHidden = true
     }
   }
 }
+
+// MARK: IBAction
+extension KitchenDetailViewController {
+  @IBAction func buttonDelevery(_ sender: Any) {
+    performSegue(withIdentifier: "showListOrder", sender: self)
+  }
+}
+
+extension KitchenDetailViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showListOrder" {
+      if let destination = segue.destination as? OrderViewController {
+        destination.products = products
+      }
+    }
+  }
+}
+
+
 

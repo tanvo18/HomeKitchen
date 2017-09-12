@@ -35,12 +35,12 @@ class OrderTableViewCell: UITableViewCell {
   }
   
   // MARK: configure view cell
-  func configureWithItem(product: Product) {
+  func configureWithItem(product: Product, quantity: Int) {
     nameLabel.text = product.name
     typeLabel.text = product.type
     priceLabel.text = "\(product.price)"
+    quantitiesLabel.text = "\(quantity)"
     downloadProductImage(imageUrl: product.imageUrl)
-    
   }
   
   // MARK: download image with url

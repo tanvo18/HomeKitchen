@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -44,13 +43,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="Dxa-4G-sAP">
-                        <rect key="frame" x="288" y="23" width="24" height="24"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="24" id="gmS-Cs-05c"/>
-                            <constraint firstAttribute="width" constant="24" id="lJn-R0-dam"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqO-Vn-iEe">
                         <rect key="frame" x="75" y="27" width="131" height="23"/>
                         <constraints>
@@ -65,11 +57,9 @@
                 <constraints>
                     <constraint firstItem="bsX-72-GeG" firstAttribute="leading" secondItem="ieL-hH-7Ue" secondAttribute="trailing" constant="17" id="2YA-M3-mYX"/>
                     <constraint firstItem="tqO-Vn-iEe" firstAttribute="leading" secondItem="ieL-hH-7Ue" secondAttribute="trailing" constant="17" id="8pu-Ki-Nbu"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Dxa-4G-sAP" secondAttribute="trailing" id="IyT-cn-6Op"/>
                     <constraint firstAttribute="bottom" secondItem="ieL-hH-7Ue" secondAttribute="bottom" constant="8.5" id="KKU-0Y-ZFl"/>
                     <constraint firstItem="HJM-ce-H8y" firstAttribute="leading" secondItem="ieL-hH-7Ue" secondAttribute="trailing" constant="17" id="VvO-Yy-NTJ"/>
                     <constraint firstItem="tqO-Vn-iEe" firstAttribute="top" secondItem="HJM-ce-H8y" secondAttribute="bottom" constant="-4" id="baE-fH-Jkt"/>
-                    <constraint firstItem="Dxa-4G-sAP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dsA-JZ-Fdr"/>
                     <constraint firstItem="ieL-hH-7Ue" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="fce-AH-R6W"/>
                     <constraint firstItem="HJM-ce-H8y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="fk1-OV-Wz9"/>
                     <constraint firstAttribute="bottom" secondItem="bsX-72-GeG" secondAttribute="bottom" constant="1" id="mo3-7R-vMG"/>
@@ -85,7 +75,4 @@
             <point key="canvasLocation" x="-64" y="39"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="right-arrow" width="7" height="14"/>
-    </resources>
 </document>

@@ -11,7 +11,7 @@ import ObjectMapper
 
 class ResultProduct: Mappable {
   
-  var products: [Product] = []
+  var products: [OrderItem] = []
   
   required init?(map: Map) {
     

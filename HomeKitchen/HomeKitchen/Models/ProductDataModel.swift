@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 protocol ProductDataModelDelegate: class {
-  func didRecieveProductUpdate(data: [Product])
+  func didRecieveProductUpdate(data: [OrderItem])
   func didFailProductUpdateWithError(error: String)
 }
 
@@ -19,7 +19,7 @@ class ProductDataModel {
   weak var delegate: ProductDataModelDelegate?
   
   func requestProduct() {
-    var products: [Product] = []
+    var products: [OrderItem] = []
     var result: ResultProduct?
     do {
       if let file = Bundle.main.url(forResource: "product", withExtension: "json") {

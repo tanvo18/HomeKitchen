@@ -39,7 +39,7 @@ class Product: Mappable {
     id            <- map["id"]
     price         <- map["price"]
     type          <- map["type"]
-    imageUrl      <- map["imageUrl"]
+    imageUrl      <- map["image_url"]
     name          <- map["name"]
     recipe        <- map["recipe"]
   }

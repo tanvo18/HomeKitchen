@@ -8,5 +8,5 @@
 
 import Foundation
 class Global {
-  static var cart: Cart = Cart()
+  
 }
