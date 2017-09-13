@@ -68,7 +68,6 @@ extension OrderViewController: UITableViewDataSource {
 }
 
 extension OrderViewController {
-  // MARK: click button plus
   func didTouchButtonPlus(sender: UIButton) {
     position = sender.tag
     products[position].quantity += 1
@@ -76,7 +75,6 @@ extension OrderViewController {
     tableView.reloadData()
   }
   
-  // MARK: click button minus
   func didTouchButtonMinus(sender: UIButton) {
     position = sender.tag
     if products[position].quantity > 0 {
@@ -112,7 +110,6 @@ extension OrderViewController {
 }
 
 extension OrderViewController {
-  // MARK: Calculate if cart have item
   func calculatePriceInCart() {
     var price = 0
     var quantity = 0

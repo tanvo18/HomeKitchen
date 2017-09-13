@@ -1,0 +1,138 @@
+{
+    "order": {
+        "id": 0,
+        "order_date": "",
+        "total_amount": 0,
+        "products": [
+            {
+                "item": {
+                    "id": 2,
+                    "price": 30000,
+                    "type": "Com",
+                    "name": "Com Suon",
+                    "image_url": "",
+                    "recipe": {
+                        "id": 2,
+                        "direction": "blah com suon",
+                        "type": "Not Charge",
+                        "ingredients": []
+                    }
+                }
+            },
+            {
+                "item": {
+                    "id": 13,
+                    "price": 15000,
+                    "type": "Do An",
+                    "name": "Banh Cuon",
+                    "image_url": "",
+                    "recipe": {
+                        "id": 10,
+                        "direction": "blah Banh Cuon",
+                        "type": "Not Charge",
+                        "ingredients": [
+                            {
+                                "id": 6,
+                                "detail": "1 Banh Cuon"
+                            },
+                            {
+                                "id": 7,
+                                "detail": "ABC"
+                            },
+                            {
+                                "id": 8,
+                                "detail": "XYZ"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "item": {
+                    "id": 4,
+                    "price": 15000,
+                    "type": "Drink",
+                    "name": "Tra sua",
+                    "image_url": "",
+                    "recipe": {
+                        "id": 4,
+                        "direction": "blah tra sua",
+                        "type": "Not Charge",
+                        "ingredients": []
+                    }
+                }
+            },
+            {
+                "item": {
+                    "id": 1,
+                    "price": 10000,
+                    "type": "Food",
+                    "name": "Com Ga",
+                    "image_url": "",
+                    "recipe": {
+                        "id": 1,
+                        "direction": "blah com ga",
+                        "type": "Not Charge",
+                        "ingredients": [
+                            {
+                                "id": 1,
+                                "detail": "1 con ga"
+                            },
+                            {
+                                "id": 2,
+                                "detail": "5g gao"
+                            },
+                            {
+                                "id": 3,
+                                "detail": "rau"
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "item": {
+                    "id": 3,
+                    "price": 30000,
+                    "type": "Com",
+                    "name": "Com Chay",
+                    "image_url": "",
+                    "recipe": {
+                        "id": 3,
+                        "direction": "blah com chay",
+                        "type": "Not Charge",
+                        "ingredients": []
+                    }
+                }
+            },
+            {
+                "item": {
+                    "id": 14,
+                    "price": 10000,
+                    "type": "Do An",
+                    "name": "Banh Canh",
+                    "image_url": "",
+                    "recipe": {
+                        "id": 11,
+                        "direction": "blah Banh Canh",
+                        "type": "Not Charge",
+                        "ingredients": [
+                            {
+                                "id": 9,
+                                "detail": "2 Banh Canh"
+                            },
+                            {
+                                "id": 10,
+                                "detail": "DEF"
+                            },
+                            {
+                                "id": 11,
+                                "detail": "ABC"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

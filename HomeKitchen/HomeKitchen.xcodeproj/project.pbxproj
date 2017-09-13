@@ -30,6 +30,7 @@
 		4DACF0B91F55C9A00043ED79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DACF0B71F55C9A00043ED79 /* LaunchScreen.storyboard */; };
 		4DCC35191F668B870005BD40 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC35181F668B870005BD40 /* OrderItem.swift */; };
 		4DDE9F7E1F6432F100EE875D /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE9F7D1F6432F100EE875D /* Global.swift */; };
+		4DE6EC2D1F68EC1000A1A4DE /* getorder.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE6EC2C1F68EC1000A1A4DE /* getorder.json */; };
 		4DEDD3371F5BF90100D24E79 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEDD3361F5BF90100D24E79 /* LoginViewController.swift */; };
 		4DEDD33D1F5C075500D24E79 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEDD33C1F5C075500D24E79 /* SignupViewController.swift */; };
 		4DF43FF71F5E39CE00365F57 /* getrestaurants.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DF43FF61F5E39CE00365F57 /* getrestaurants.json */; };
@@ -71,6 +72,7 @@
 		4DACF0BA1F55C9A00043ED79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DCC35181F668B870005BD40 /* OrderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
 		4DDE9F7D1F6432F100EE875D /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		4DE6EC2C1F68EC1000A1A4DE /* getorder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getorder.json; sourceTree = "<group>"; };
 		4DEDD3361F5BF90100D24E79 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4DEDD33C1F5C075500D24E79 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		4DF43FF61F5E39CE00365F57 /* getrestaurants.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getrestaurants.json; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 		4DF43FF31F5E395B00365F57 /* Json File */ = {
 			isa = PBXGroup;
 			children = (
+				4DE6EC2C1F68EC1000A1A4DE /* getorder.json */,
 				4DF43FF61F5E39CE00365F57 /* getrestaurants.json */,
 				4D3BB80D1F5FFD0000D6686C /* product.json */,
 			);
@@ -380,6 +383,7 @@
 				4D3BB80E1F5FFD0000D6686C /* product.json in Resources */,
 				4D1588051F59663C00B1FFB4 /* MenuTableViewCell.xib in Resources */,
 				4DACF0B61F55C9A00043ED79 /* Assets.xcassets in Resources */,
+				4DE6EC2D1F68EC1000A1A4DE /* getorder.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
