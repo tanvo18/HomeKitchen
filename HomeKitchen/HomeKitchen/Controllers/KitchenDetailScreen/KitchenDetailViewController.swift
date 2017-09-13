@@ -19,7 +19,6 @@ class KitchenDetailViewController: UIViewController {
   
   var products: [OrderItem] = []{
     didSet {
-     
       tableView.reloadData()
     }
   }

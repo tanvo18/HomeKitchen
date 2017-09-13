@@ -22,12 +22,12 @@ class ProductDataModel {
     var products: [OrderItem] = []
     var result: ResultProduct?
     do {
-      if let file = Bundle.main.url(forResource: "product", withExtension: "json") {
+      if let file = Bundle.main.url(forResource: "getorder", withExtension: "json") {
         let data = try Data(contentsOf: file)
         let json = try JSONSerialization.jsonObject(with: data, options: [])
         if let object = json as? [String: Any] {
           result = Mapper<ResultProduct>().map(JSON: object)
-          products = result!.products
+          products = result!.orderInfo.products
           
         } else {
           print("JSON is invalid")

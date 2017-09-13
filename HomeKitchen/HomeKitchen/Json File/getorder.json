@@ -40,7 +40,7 @@
                  "price": 30000,
                  "type": "Com",
                  "name": "Com Ga",
-                 "image_url": "",
+                 "image_url": "https://s3.amazonaws.com/demouploadimage/sushi.jpg",
                  "recipe": {
                  "id": 1,
                  "direction": "abc xyz",

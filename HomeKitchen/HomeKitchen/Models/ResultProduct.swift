@@ -11,13 +11,13 @@ import ObjectMapper
 
 class ResultProduct: Mappable {
   
-  var products: [OrderItem] = []
+  var orderInfo: OrderInfo = OrderInfo()
   
   required init?(map: Map) {
     
   }
   
   func mapping(map: Map) {
-    products <- map["products"]
+    orderInfo <- map["order"]
   }
 }
