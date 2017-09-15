@@ -10,7 +10,7 @@
                  "price": 30000,
                  "type": "Com",
                  "name": "Com Suon",
-                 "image_url": "https://s3.amazonaws.com/demouploadimage/sushi.jpg",
+                 "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
                  "recipe": {
                  "id": 2,
                  "direction": "blah com suon",
@@ -25,7 +25,7 @@
                  "price": 15000,
                  "type": "Drink",
                  "name": "Tra sua",
-                 "image_url": "https://s3.amazonaws.com/demouploadimage/sushi.jpg",
+                 "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
                  "recipe": {
                  "id": 4,
                  "direction": "blah tra sua",
@@ -40,7 +40,7 @@
                  "price": 30000,
                  "type": "Com",
                  "name": "Com Ga",
-                 "image_url": "https://s3.amazonaws.com/demouploadimage/sushi.jpg",
+                 "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
                  "recipe": {
                  "id": 1,
                  "direction": "abc xyz",
@@ -68,7 +68,7 @@
                  "price": 30000,
                  "type": "Com",
                  "name": "Com Chay",
-                 "image_url": "https://s3.amazonaws.com/demouploadimage/sushi.jpg",
+                 "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
                  "recipe": {
                  "id": 3,
                  "direction": "blah com chay",

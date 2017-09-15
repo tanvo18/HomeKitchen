@@ -20,7 +20,7 @@ class LeftMenuTableViewController: UIViewController {
   
   // MARK: Properties
   let kCellIdentifier = "menuCell"
-  let items = ["All","Hot Food","Sandwiches","Hot Pots","Hot Rolls", "Salads","Pies","Dessrts","Drinks","Breakfast","Cookies","Lunch", "Bibimbap", "Salmon", "Shrimp", "Tofu"]
+  let items = ["Home","Hot Food","Sandwiches"]
   weak var delegate: LeftMenuDelegate?
   
   override func viewDidLoad() {

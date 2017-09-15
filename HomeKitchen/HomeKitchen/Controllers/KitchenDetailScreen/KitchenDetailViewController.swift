@@ -11,17 +11,18 @@ import Kingfisher
 
 class KitchenDetailViewController: UIViewController {
   
+  // MARK: IBOutlet
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var backgroundImage: UIImageView!
   @IBOutlet weak var pointLabel: UILabel!
   @IBOutlet weak var indicator: UIActivityIndicatorView!
   @IBOutlet weak var timeLabel: UILabel!
-  
   var products: [OrderItem] = []{
     didSet {
       tableView.reloadData()
     }
   }
+  
   let reuseableCell = "Cell"
   let productModelDatasource = ProductDataModel()
   var imageUrl: String = ""
@@ -47,6 +48,8 @@ class KitchenDetailViewController: UIViewController {
     timeLabel.text = time
     // Request data through delagate
     productModelDatasource.requestProduct()
+    // Set title for back button in navigation bar
+    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
   }
   
   override func didReceiveMemoryWarning() {
@@ -104,7 +107,7 @@ extension KitchenDetailViewController {
 
 // MARK: IBAction
 extension KitchenDetailViewController {
-  @IBAction func buttonDelevery(_ sender: Any) {
+  @IBAction func buttonDelivery(_ sender: Any) {
     performSegue(withIdentifier: "showListOrder", sender: self)
   }
 }

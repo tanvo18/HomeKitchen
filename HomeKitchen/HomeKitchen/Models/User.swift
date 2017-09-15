@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 class User: Mappable {
-  
+
   var username: String = ""
   var birthday: Date = Date()
   var gender: Int = 0

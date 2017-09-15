@@ -29,16 +29,17 @@ class KitchenViewController: UIViewController {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UINib(nibName: "KitchenTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
-    // MARK: KitchenDataModelDelegate
+    // Declare KitchenDataModelDelegate
     kitchenModelDatasource.delegate = self
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     
-    // Position Activity Indicator in the center of the main view
+    // Setup indicator
     myIndicator.center = view.center
-    // Start Activity Indicator
     myIndicator.startAnimating()
     view.addSubview(myIndicator)
+    // Set title for back button in navigation bar
+    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
   }
   
   override func didReceiveMemoryWarning() {
@@ -50,12 +51,10 @@ class KitchenViewController: UIViewController {
     sideMenuManager?.sideMenuController()?.sideMenu?.disabled = false
     kitchenModelDatasource.requestKitchen()
   }
-  
 }
 
 // MARK: Tableview Delegate
 extension KitchenViewController: UITableViewDelegate {
-  
 }
 
 // MARK: Tableview Datasource

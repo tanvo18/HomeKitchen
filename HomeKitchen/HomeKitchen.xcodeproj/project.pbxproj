@@ -12,6 +12,7 @@
 		4D1588001F59657500B1FFB4 /* LeftMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1587FF1F59657500B1FFB4 /* LeftMenuTableViewController.swift */; };
 		4D1588041F59663C00B1FFB4 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1588021F59663C00B1FFB4 /* MenuTableViewCell.swift */; };
 		4D1588051F59663C00B1FFB4 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D1588031F59663C00B1FFB4 /* MenuTableViewCell.xib */; };
+		4D3118A01F6C10CD00ACA713 /* OrderInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31189F1F6C10CD00ACA713 /* OrderInfoViewController.swift */; };
 		4D3BB80B1F5FF52B00D6686C /* TopOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BB8091F5FF52B00D6686C /* TopOrderTableViewCell.swift */; };
 		4D3BB80C1F5FF52B00D6686C /* TopOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D3BB80A1F5FF52B00D6686C /* TopOrderTableViewCell.xib */; };
 		4D3BB8101F5FFDAF00D6686C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BB80F1F5FFDAF00D6686C /* Product.swift */; };
@@ -52,6 +53,7 @@
 		4D1587FF1F59657500B1FFB4 /* LeftMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuTableViewController.swift; sourceTree = "<group>"; };
 		4D1588021F59663C00B1FFB4 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		4D1588031F59663C00B1FFB4 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		4D31189F1F6C10CD00ACA713 /* OrderInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInfoViewController.swift; sourceTree = "<group>"; };
 		4D3BB8091F5FF52B00D6686C /* TopOrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopOrderTableViewCell.swift; sourceTree = "<group>"; };
 		4D3BB80A1F5FF52B00D6686C /* TopOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopOrderTableViewCell.xib; sourceTree = "<group>"; };
 		4D3BB80F1F5FFDAF00D6686C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -140,6 +142,14 @@
 			path = MenuCell;
 			sourceTree = "<group>";
 		};
+		4D31189E1F6C10B600ACA713 /* OrderInfoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D31189F1F6C10CD00ACA713 /* OrderInfoViewController.swift */,
+			);
+			name = OrderInfoScreen;
+			sourceTree = "<group>";
+		};
 		4D3BB8081F5FF4EF00D6686C /* TopOrderCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +222,7 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D31189E1F6C10B600ACA713 /* OrderInfoScreen */,
 				4DDB7ED51F59623500A24730 /* HomeScreen */,
 				4D4086541F5F8E33004697CE /* KitchenDetailScreen */,
 				4DEDD3351F5BF8D500D24E79 /* LoginAndSignup */,
@@ -444,6 +455,7 @@
 				4DEDD3371F5BF90100D24E79 /* LoginViewController.swift in Sources */,
 				4DF43FFD1F5E3B7A00365F57 /* Kitchen.swift in Sources */,
 				4D7471DD1F604B23007C53E2 /* Ingredient.swift in Sources */,
+				4D3118A01F6C10CD00ACA713 /* OrderInfoViewController.swift in Sources */,
 				4DEDD33D1F5C075500D24E79 /* SignupViewController.swift in Sources */,
 				4D6E96D61F693B45000DD7EE /* OrderInfo.swift in Sources */,
 				4DACF0AF1F55C9A00043ED79 /* AppDelegate.swift in Sources */,
