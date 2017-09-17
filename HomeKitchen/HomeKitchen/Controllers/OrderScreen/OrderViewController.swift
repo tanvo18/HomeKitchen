@@ -161,6 +161,13 @@ extension OrderViewController {
   
   // Go to OrderInfoScreen
   @IBAction func didTouchButtonContinue(_ sender: Any) {
-    performSegue(withIdentifier: "showOrderInfo", sender: self)
+    // Check empty cart
+    if productQuantityInCart > 0 {
+      performSegue(withIdentifier: "showOrderInfo", sender: self)
+    } else {
+      let alert = UIAlertController(title: "Error", message: "You don't have any product in your cart.", preferredStyle: UIAlertControllerStyle.alert)
+      alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+      self.present(alert, animated: true, completion: nil)
+    }
   }
 }

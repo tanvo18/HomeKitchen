@@ -27,11 +27,13 @@ class OrderInfoViewController: UIViewController {
   
   @IBOutlet weak var phoneTextField: UITextField!
   
-  @IBOutlet weak var dateTextField: UITextField!
-  
   @IBOutlet weak var timeTextField: UITextField!
   
+  @IBOutlet weak var dateLabel: UILabel!
+  
   // Calendar
+  
+  @IBOutlet weak var containCalendarView: UIView!
   
   @IBOutlet weak var menuView: CVCalendarMenuView!
   
@@ -62,6 +64,14 @@ class OrderInfoViewController: UIViewController {
     disablePreviousDays()
     // Delegate of scrollview of calendarView
     calendarView.contentController.scrollView.delegate = self
+    // Hide calendar
+    containCalendarView.isHidden = true
+    // Tapping dateLabel
+    let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapDateLabel))
+    dateLabel.isUserInteractionEnabled = true
+    dateLabel.addGestureRecognizer(tap)
+    // Hide keyboard when tap around
+    self.hideKeyboardWhenTappedAround()
   }
   
   override func didReceiveMemoryWarning() {
@@ -172,6 +182,15 @@ extension OrderInfoViewController: CVCalendarViewDelegate, CVCalendarMenuViewDel
     print("====weekdayIndex: \(dayView.weekdayIndex!)")
     print("====month: \(dayView.date.month)")
     print("====year: \(dayView.date.year)")
+    
+//    let chosenDayString: String = "\(dayView.date.year)-\(dayView.date.month)-\(dayView.date.day)"
+//    let dateFormatter = DateFormatter()
+//    dateFormatter.dateStyle = .medium
+//    dateFormatter.timeStyle = .none
+//    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+//    dateFormatter.dateFormat = "yyyy-MM-dd"
+//    let date = dateFormatter.date(from: chosenDayString)
+//    print("====format: \(date!)")
   }
   
   func presentedDateUpdated(_ date: CVDate) {
@@ -340,5 +359,18 @@ extension OrderInfoViewController {
     
     timeTextField.text = dateFormatter.string(from: datePicker.date)
     self.view.endEditing(true)
+  }
+}
+
+extension OrderInfoViewController {
+  func tapDateLabel(sender:UITapGestureRecognizer) {
+    containCalendarView.isHidden = false
+  }
+}
+
+// MARK: IBAction
+extension OrderInfoViewController {
+  @IBAction func didTouchCalendarDone(_ sender: Any) {
+    containCalendarView.isHidden = true
   }
 }
