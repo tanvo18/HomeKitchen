@@ -466,7 +466,7 @@
         <!--Login View Controller-->
         <scene sceneID="qOp-Hd-Zlr">
             <objects>
-                <viewController id="bXk-9h-FX4" customClass="LoginViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="bXk-9h-FX4" customClass="LoginViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9qc-YC-4EP"/>
                         <viewControllerLayoutGuide type="bottom" id="u6V-h8-RRu"/>
@@ -525,6 +525,9 @@
                                 <rect key="frame" x="131" y="563" width="47" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="facebook"/>
+                                <connections>
+                                    <action selector="didTouchFacebookButton:" destination="bXk-9h-FX4" eventType="touchUpInside" id="mY9-4u-SzF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnV-tc-7Wf">
                                 <rect key="frame" x="199" y="563" width="47" height="47"/>

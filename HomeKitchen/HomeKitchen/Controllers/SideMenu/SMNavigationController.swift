@@ -34,8 +34,13 @@ class SMNavigationController: LNSideMenuNavigationController {
   fileprivate func setContentVC(_ index: Int) {
     print("Did select item at index: \(index)")
     var nViewController: UIViewController? = nil
-    if index == 0 {
+    switch index {
+    case 0:
       nViewController = storyboard?.instantiateViewController(withIdentifier: "RestaurantViewController")
+    case 1:
+      nViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+    default:
+      break
     }
     if let viewController = nViewController {
       self.setContentViewController(viewController)

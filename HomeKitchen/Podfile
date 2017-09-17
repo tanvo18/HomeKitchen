@@ -11,4 +11,7 @@ target 'HomeKitchen' do
   pod 'Kingfisher', '~> 3.0'
   pod 'LNSideMenu', '~> 2.3.2'
   pod 'CVCalendar', '~> 1.5.2'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare', :git => 'https://github.com/1amageek/facebook-sdk-swift'
 end

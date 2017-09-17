@@ -1,6 +1,31 @@
 PODS:
   - Alamofire (4.5.0)
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
   - CVCalendar (1.5.2)
+  - FacebookCore (0.2.0):
+    - Bolts (~> 1.8)
+    - FBSDKCoreKit (~> 4.15)
+  - FacebookLogin (0.2.0):
+    - Bolts (~> 1.8)
+    - FacebookCore (~> 0.2)
+    - FBSDKCoreKit (~> 4.15)
+    - FBSDKLoginKit (~> 4.15)
+  - FacebookShare (0.2.0):
+    - Bolts (~> 1.8)
+    - FacebookCore (~> 0.2)
+    - FBSDKCoreKit (~> 4.21)
+    - FBSDKShareKit (~> 4.21)
+  - FBSDKCoreKit (4.26.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.26.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.26.0):
+    - FBSDKCoreKit
   - Kingfisher (3.10.2)
   - LNSideMenu (2.3.2)
   - ObjectMapper (2.2.7)
@@ -8,17 +33,36 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - CVCalendar (~> 1.5.2)
+  - FacebookCore
+  - FacebookLogin
+  - FacebookShare (from `https://github.com/1amageek/facebook-sdk-swift`)
   - Kingfisher (~> 3.0)
   - LNSideMenu (~> 2.3.2)
   - ObjectMapper (~> 2.2)
 
+EXTERNAL SOURCES:
+  FacebookShare:
+    :git: https://github.com/1amageek/facebook-sdk-swift
+
+CHECKOUT OPTIONS:
+  FacebookShare:
+    :commit: 3ac76c770e9849285c380f380309d866911d2e93
+    :git: https://github.com/1amageek/facebook-sdk-swift
+
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   CVCalendar: 6d429042961f2abdf90a1795e66ef5e1032c88bb
+  FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
+  FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
+  FacebookShare: d086f7a4610bbbca9cec5e774de450a9b3e1a20b
+  FBSDKCoreKit: c8b8582311ec11b145451d8b9717dc6cc2ae5a76
+  FBSDKLoginKit: f3f03b94c21eb834af243c0a881d48641f47ca60
+  FBSDKShareKit: 320712d8293fde6392872c91eb80ef0da5d73cc3
   Kingfisher: 7297492bf8cec9b2e2dee3519f2219948580d98e
   LNSideMenu: a36d902c8142af3febafa63e118c351a150f2321
   ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
 
-PODFILE CHECKSUM: 446949c5982bdd4149c326f0502664a68417cae2
+PODFILE CHECKSUM: 320a1e954f1216c21781980efa1ea5f63a90a97a
 
 COCOAPODS: 1.2.1
