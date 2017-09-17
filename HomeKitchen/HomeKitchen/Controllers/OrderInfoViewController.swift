@@ -318,7 +318,7 @@ extension OrderInfoViewController {
 extension OrderInfoViewController {
   func createDatePicker() {
     // Format the display of datepicker
-    datePicker.datePickerMode = .dateAndTime
+    datePicker.datePickerMode = .time
     
     timeTextField.inputView = datePicker
     

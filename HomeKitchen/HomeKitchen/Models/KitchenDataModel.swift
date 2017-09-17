@@ -8,6 +8,7 @@
 
 import Foundation
 import ObjectMapper
+import Alamofire
 
 protocol KitchenDataModelDelegate: class {
   func didRecieveKitchenUpdate(data: [Kitchen])
@@ -22,23 +23,22 @@ class KitchenDataModel {
     var kitchens: [Kitchen] = []
     var result: ResultKitchen?
     
-    do {
-      if let file = Bundle.main.url(forResource: "getrestaurants", withExtension: "json") {
-        let data = try Data(contentsOf: file)
-        let json = try JSONSerialization.jsonObject(with: data, options: [])
-        if let object = json as? [String: Any] {
-          result = Mapper<ResultKitchen>().map(JSON: object)
+    let headers: HTTPHeaders = [
+      "Authorization": Global.accessToken,
+      "Accept": "application/json"
+    ]
+    Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/kitchen/list", method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+      switch response.result {
+      case .success:
+        if let json = response.result.value as? [String: Any]{
+          result = Mapper<ResultKitchen>().map(JSON: json)
           kitchens = result!.kitchens
-          
-        } else {
-          print("JSON is invalid")
+          self.delegate?.didRecieveKitchenUpdate(data: kitchens)
         }
-      } else {
-        print("no file")
+      case .failure(let error):
+        self.delegate?.didFailKitchenUpdateWithError(error: "\(error)")
       }
-      delegate?.didRecieveKitchenUpdate(data: kitchens)
-    } catch {
-      print(error.localizedDescription)
+      
     }
   }
 }

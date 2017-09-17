@@ -61,16 +61,17 @@ extension LoginViewController {
     Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
       switch response.result {
       case .success:
-        print("=====")
-        if let authorization = response.response?.allHeaderFields["Authorization"] as? String {
-          print("author: \(authorization)")
+        if let authorizationToken = response.response?.allHeaderFields["Authorization"] as? String {
+          Global.accessToken = authorizationToken
+          // Go to HomeScreen after get authorization
+          self.performSegue(withIdentifier: "showHomeScreen", sender: self)
         }
       case .failure(let error):
         print(error)
       }
     }
   }
-
+  
 }
 
 extension LoginViewController {
@@ -83,9 +84,8 @@ extension LoginViewController {
         print(error.localizedDescription)
       case .cancelled:
         print("user cancelled the login")
-      case .success(let grantedPermissions, _, let userInfo):
+      case .success(_ , _, let userInfo):
         print("====\(userInfo.authenticationToken)")
-        print("====\(grantedPermissions.map{"\($0)"}.joined(separator: " "))")
         self.getUserInfo { info, error in
           if let info = info, let name = info["name"] as? String, let email = info["email"] as? String{
             self.getAuthorizationFromServer(username: email, password: "" , facebookToken: userInfo.authenticationToken)
@@ -93,6 +93,14 @@ extension LoginViewController {
         }
       }
     }
+  }
+  
+  @IBAction func didTouchRegisterButton(_ sender: Any) {
+    performSegue(withIdentifier: "showSignup", sender: self)
+  }
+  
+  // Back to Login screen
+  @IBAction func unwindToLoginScreen(segue:UIStoryboardSegue) {
   }
 }
 

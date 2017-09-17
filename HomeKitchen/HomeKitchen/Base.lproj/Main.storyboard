@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OKg-xq-bB5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bXk-9h-FX4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -520,6 +520,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTouchRegisterButton:" destination="bXk-9h-FX4" eventType="touchUpInside" id="hMm-G0-fuI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7uZ-lm-NxH">
                                 <rect key="frame" x="131" y="563" width="47" height="47"/>
@@ -554,11 +557,13 @@
                     <connections>
                         <outlet property="passwordTextfield" destination="xhe-zI-eK6" id="93s-UV-Xpw"/>
                         <outlet property="usernameTextfield" destination="YTc-lb-zK5" id="tar-uA-JF1"/>
+                        <segue destination="e4m-KE-ahx" kind="show" identifier="showSignup" id="PYb-Wj-QGr"/>
+                        <segue destination="OKg-xq-bB5" kind="show" identifier="showHomeScreen" id="ixT-ty-4nl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="opv-Bk-ZJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1602.4000000000001" y="-1150.0749625187407"/>
+            <point key="canvasLocation" x="-209" y="-1207"/>
         </scene>
         <!--Left Menu Table View Controller-->
         <scene sceneID="bmg-WJ-VmS">
@@ -605,7 +610,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2p-SO-Nt5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-530.39999999999998" y="-1150.0749625187407"/>
+            <point key="canvasLocation" x="-1388" y="-406"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="3du-5Y-odA">
@@ -627,6 +632,9 @@
                                 <rect key="frame" x="16" y="28" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="backarrow"/>
+                                <connections>
+                                    <segue destination="HFz-at-sMA" kind="unwind" unwindAction="unwindToLoginScreenWithSegue:" id="BoM-j7-NcL"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vj-tb-ZAO">
                                 <rect key="frame" x="147" y="149" width="80" height="30"/>
@@ -696,8 +704,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uGN-Oa-EIM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="HFz-at-sMA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1602.4000000000001" y="-406.14692653673166"/>
+            <point key="canvasLocation" x="-1268" y="-1182"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="deH-ht-tuN">

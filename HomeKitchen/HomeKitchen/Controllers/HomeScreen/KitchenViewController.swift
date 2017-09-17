@@ -75,6 +75,8 @@ extension KitchenViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     position = indexPath.row
+    // Save kitchenID
+    Global.kitchenId = kitchens[indexPath.row].id
     performSegue(withIdentifier: "showKitchenDetail", sender: self)
   }
   

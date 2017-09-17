@@ -8,6 +8,7 @@
 
 import Foundation
 import ObjectMapper
+import Alamofire
 
 protocol ProductDataModelDelegate: class {
   func didRecieveProductUpdate(data: [OrderItem])
@@ -21,23 +22,43 @@ class ProductDataModel {
   func requestProduct() {
     var products: [OrderItem] = []
     var result: ResultProduct?
-    do {
-      if let file = Bundle.main.url(forResource: "getorder", withExtension: "json") {
-        let data = try Data(contentsOf: file)
-        let json = try JSONSerialization.jsonObject(with: data, options: [])
-        if let object = json as? [String: Any] {
-          result = Mapper<ResultProduct>().map(JSON: object)
+    
+    let headers: HTTPHeaders = [
+      "Authorization": Global.accessToken,
+      "Accept": "application/json"
+    ]
+    let parameters: Parameters = ["kitchenId" : Global.kitchenId]
+    Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/kitchen/products", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { response in
+      switch response.result {
+      case .success:
+        if let json = response.result.value as? [String: Any]{
+          result = Mapper<ResultProduct>().map(JSON: json)
           products = result!.orderInfo.products
-          
-        } else {
-          print("JSON is invalid")
+          self.delegate?.didRecieveProductUpdate(data: products)
         }
-      } else {
-        print("no file")
+      case .failure(let error):
+        self.delegate?.didFailProductUpdateWithError(error: "\(error)")
       }
-      delegate?.didRecieveProductUpdate(data: products)
-    } catch {
-      print(error.localizedDescription)
+      
     }
+    
+    //    do {
+    //      if let file = Bundle.main.url(forResource: "getorder", withExtension: "json") {
+    //        let data = try Data(contentsOf: file)
+    //        let json = try JSONSerialization.jsonObject(with: data, options: [])
+    //        if let object = json as? [String: Any] {
+    //          result = Mapper<ResultProduct>().map(JSON: object)
+    //          products = result!.orderInfo.products
+    //
+    //        } else {
+    //          print("JSON is invalid")
+    //        }
+    //      } else {
+    //        print("no file")
+    //      }
+    //      delegate?.didRecieveProductUpdate(data: products)
+    //    } catch {
+    //      print(error.localizedDescription)
+    //    }
   }
 }

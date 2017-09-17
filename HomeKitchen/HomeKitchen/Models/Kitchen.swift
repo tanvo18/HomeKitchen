@@ -42,7 +42,7 @@ class Kitchen: Mappable {
     open            <- map["open"]
     close           <- map["close"]
     name            <- map["name"]
-    imageUrl        <- map["imageUrl"]
+    imageUrl        <- map["image_url"]
     point           <- map["point"]
     address         <- map["address"]
   }
