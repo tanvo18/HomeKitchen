@@ -31,7 +31,7 @@ class OrderInfoViewController: UIViewController {
   
   @IBOutlet weak var dateLabel: UILabel!
   
-  // Calendar
+  // For Calendar
   
   @IBOutlet weak var containCalendarView: UIView!
   
@@ -44,6 +44,8 @@ class OrderInfoViewController: UIViewController {
   var currentCalendar: Calendar?
   var animationFinished = true
   var shouldShowDaysOut = true
+  // The first time we go to orderInfoViewController
+  var isFinishView: Bool = false
   
   let datePicker = UIDatePicker()
   
@@ -85,7 +87,9 @@ class OrderInfoViewController: UIViewController {
   }
   
   override func awakeFromNib() {
-    let timeZoneBias = 480 // (UTC+08:00)
+    // Vietnam Timezone UTC +07
+    // timeZoneBias for UTC +07 is minute
+    let timeZoneBias = 420 // (UTC+07:00)
     currentCalendar = Calendar.init(identifier: .gregorian)
     if let timeZone = TimeZone.init(secondsFromGMT: -timeZoneBias * 60) {
       currentCalendar?.timeZone = timeZone
@@ -178,19 +182,20 @@ extension OrderInfoViewController: CVCalendarViewDelegate, CVCalendarMenuViewDel
   
   func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
     selectedDay = dayView
-    print("====date: \(dayView.date.day)")
-    print("====weekdayIndex: \(dayView.weekdayIndex!)")
-    print("====month: \(dayView.date.month)")
-    print("====year: \(dayView.date.year)")
-    
-//    let chosenDayString: String = "\(dayView.date.year)-\(dayView.date.month)-\(dayView.date.day)"
-//    let dateFormatter = DateFormatter()
-//    dateFormatter.dateStyle = .medium
-//    dateFormatter.timeStyle = .none
-//    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-//    dateFormatter.dateFormat = "yyyy-MM-dd"
-//    let date = dateFormatter.date(from: chosenDayString)
-//    print("====format: \(date!)")
+    let chosenDayString: String = "\(selectedDay.date.year)-\(selectedDay.date.month)-\(selectedDay.date.day) 00:00:00"
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+    let dateFromString: Date = dateFormatter.date(from: chosenDayString)!
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    let datePicking = dateFormatter.string(from: dateFromString)
+    print("====date \(datePicking)")
+    // Because didSelectDayView run before viewDidLoad and auto select today when screen start, if we put dateLabel.text, it will be nil
+    // dateLabel will catch datePicking later, when we select day
+    if isFinishView {
+      dateLabel.text = datePicking
+      dateLabel.textColor = .black
+    }
+    isFinishView = true
   }
   
   func presentedDateUpdated(_ date: CVDate) {
@@ -317,7 +322,6 @@ extension OrderInfoViewController {
     let components = Manager.componentsForDate(date, calendar: currentCalendar) // from today
     
     print("Showing Month: \(components.month!)")
-    // Disable the day before current date
   }
   
   
@@ -329,7 +333,6 @@ extension OrderInfoViewController {
     let components = Manager.componentsForDate(date, calendar: currentCalendar) // from today
     
     print("Showing Month: \(components.month!)")
-    // Disable the day before current date
   }
   
 }
