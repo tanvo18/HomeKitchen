@@ -7,6 +7,8 @@
 //
 
 import LNSideMenu
+import Alamofire
+import ObjectMapper
 
 class KitchenViewController: UIViewController {
   
@@ -79,12 +81,11 @@ extension KitchenViewController: UITableViewDataSource {
     Global.kitchenId = kitchens[indexPath.row].id
     performSegue(withIdentifier: "showKitchenDetail", sender: self)
   }
-  
 }
 
 // MARK: IBAction
 extension KitchenViewController {
-  @IBAction func didTouchButtonMenu(_ sender: Any) {
+  @IBAction func didTouchMenuButton(_ sender: Any) {
     sideMenuManager?.toggleSideMenuView()
   }
 }
@@ -110,6 +111,8 @@ extension KitchenViewController {
     }
   }
 }
+
+
 
 
 

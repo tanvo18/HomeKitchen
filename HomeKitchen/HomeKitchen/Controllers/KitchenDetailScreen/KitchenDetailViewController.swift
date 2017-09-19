@@ -107,7 +107,7 @@ extension KitchenDetailViewController {
 
 // MARK: IBAction
 extension KitchenDetailViewController {
-  @IBAction func buttonDelivery(_ sender: Any) {
+  @IBAction func didTouchDeliveryButton(_ sender: Any) {
     performSegue(withIdentifier: "showListOrder", sender: self)
   }
 }

@@ -62,6 +62,7 @@ extension LoginViewController {
       switch response.result {
       case .success:
         if let authorizationToken = response.response?.allHeaderFields["Authorization"] as? String {
+          // Save accessToken to global variable
           Global.accessToken = authorizationToken
           // Go to HomeScreen after get authorization
           self.performSegue(withIdentifier: "showHomeScreen", sender: self)
@@ -87,7 +88,7 @@ extension LoginViewController {
       case .success(_ , _, let userInfo):
         print("====\(userInfo.authenticationToken)")
         self.getUserInfo { info, error in
-          if let info = info, let name = info["name"] as? String, let email = info["email"] as? String{
+          if let info = info, let _ = info["name"] as? String, let email = info["email"] as? String{
             self.getAuthorizationFromServer(username: email, password: "" , facebookToken: userInfo.authenticationToken)
           }
         }

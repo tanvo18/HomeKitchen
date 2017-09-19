@@ -8,6 +8,8 @@
 
 import UIKit
 import CVCalendar
+import Alamofire
+import ObjectMapper
 
 struct Color {
   static let selectedText = UIColor.white
@@ -52,6 +54,8 @@ class OrderInfoViewController: UIViewController {
   // Check for function prevent scroll to previous month
   var isCurrentMonth: Bool = true
   var savingCurrentMonth: String = ""
+  // Items which customer ordered
+  var orderedItems: [OrderItem] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -74,8 +78,9 @@ class OrderInfoViewController: UIViewController {
     dateLabel.addGestureRecognizer(tap)
     // Hide keyboard when tap around
     self.hideKeyboardWhenTappedAround()
-  }
-  
+   
+    
+}
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
@@ -366,8 +371,19 @@ extension OrderInfoViewController {
 }
 
 extension OrderInfoViewController {
+  // Unhide calendar when tap date label
   func tapDateLabel(sender:UITapGestureRecognizer) {
     containCalendarView.isHidden = false
+  }
+  
+  func checkNotNil() -> Bool {
+    if nameTextField.text!.isEmpty || phoneTextField.text!.isEmpty || timeTextField.text!.isEmpty{
+      return false
+    }
+    if dateLabel.text! == "date" {
+      return false
+    }
+    return true
   }
 }
 
@@ -376,4 +392,46 @@ extension OrderInfoViewController {
   @IBAction func didTouchCalendarDone(_ sender: Any) {
     containCalendarView.isHidden = true
   }
+  
+  @IBAction func didTouchButtonCheckout(_ sender: Any) {
+    if checkNotNil() {
+      postOrder()
+    } else {
+      let alert = UIAlertController(title: "Error", message: "All fields are required.", preferredStyle: UIAlertControllerStyle.alert)
+      alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+      self.present(alert, animated: true, completion: nil)
+    }
+  }
 }
+
+// MARK: Networking
+extension OrderInfoViewController {
+  // Using responseString instead of responseJSON
+  // Post order to server
+  func postOrder() {
+    let headers: HTTPHeaders = [
+      "Authorization": Global.accessToken,
+      "Accept": "application/json"
+    ]
+    let parameters: Parameters = ["order_date": dateLabel.text!,
+                                  "kitchen" : ["id" : Global.kitchenId],
+                                  "products" : orderedItems.toJSON()
+    ]
+    
+    Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/order", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString { response in
+      switch response.result {
+      case .success:
+        let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+          print("you have pressed the ok button")
+        }))
+        self.present(alert, animated: true, completion: nil)
+      case .failure(let error):
+        print(error)
+      }
+      
+    }
+  }
+
+}
+

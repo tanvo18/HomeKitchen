@@ -41,7 +41,7 @@
                         <barButtonItem key="leftBarButtonItem" image="menu" id="cvX-A8-qbp">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="didTouchButtonMenu:" destination="8oJ-Pw-WAe" id="Z0R-cN-j1V"/>
+                                <action selector="didTouchMenuButton:" destination="8oJ-Pw-WAe" id="lAt-Pc-FCo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -206,7 +206,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="buttonDelivery:" destination="tLD-3D-VJE" eventType="touchUpInside" id="WG8-n7-qJE"/>
+                                                    <action selector="didTouchDeliveryButton:" destination="tLD-3D-VJE" eventType="touchUpInside" id="Dzt-bb-7H4"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3.3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNE-6G-CDa">
@@ -329,7 +329,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="didTouchButtonContinue:" destination="2DS-XS-LJa" eventType="touchUpInside" id="X56-xY-KVi"/>
+                                            <action selector="didTouchContinueButton:" destination="2DS-XS-LJa" eventType="touchUpInside" id="d6S-yr-rOc"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uTG-Im-eV1">
@@ -339,7 +339,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTouchButtonReset:" destination="2DS-XS-LJa" eventType="touchUpInside" id="yps-cI-SEI"/>
+                                            <action selector="didTouchResetButton:" destination="2DS-XS-LJa" eventType="touchUpInside" id="KgD-wJ-LcP"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -469,6 +469,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTouchButtonCheckout:" destination="7H9-XT-YV1" eventType="touchUpInside" id="W8d-yJ-Dkc"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-clock" translatesAutoresizingMaskIntoConstraints="NO" id="JEb-3W-94u">
                                 <rect key="frame" x="16" y="229" width="20" height="20"/>

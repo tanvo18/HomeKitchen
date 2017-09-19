@@ -13,6 +13,8 @@ class OrderViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var totalPriceLabel: UILabel!
   var products: [OrderItem] = []
+  // Items which customer ordered
+  var orderedItems: [OrderItem] = []
   let reuseableCell = "Cell"
   let productModelDatasource = ProductDataModel()
   var position: Int = 0
@@ -140,11 +142,22 @@ extension OrderViewController {
     productQuantityInCart = 0
     tableView.reloadData()
   }
+  
+  // Add ordered item to orderedItems
+  func addOrderedItems() {
+    // Reset orderedItems avoid similar items
+    orderedItems.removeAll()
+    for item in products {
+      if item.quantity > 0 {
+        orderedItems.append(item)
+      }
+    }
+  }
 }
 
 // MARK: IBAction
 extension OrderViewController {
-  @IBAction func didTouchButtonReset(_ sender: Any) {
+  @IBAction func didTouchResetButton(_ sender: Any) {
     
     let alert = UIAlertController(title: "Warning", message: "Do you want to reset the cart?", preferredStyle: UIAlertControllerStyle.alert)
     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
@@ -160,14 +173,25 @@ extension OrderViewController {
   }
   
   // Go to OrderInfoScreen
-  @IBAction func didTouchButtonContinue(_ sender: Any) {
+  @IBAction func didTouchContinueButton(_ sender: Any) {
     // Check empty cart
     if productQuantityInCart > 0 {
+      addOrderedItems()
       performSegue(withIdentifier: "showOrderInfo", sender: self)
     } else {
       let alert = UIAlertController(title: "Error", message: "You don't have any product in your cart.", preferredStyle: UIAlertControllerStyle.alert)
       alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
       self.present(alert, animated: true, completion: nil)
+    }
+  }
+}
+
+extension OrderViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showOrderInfo" {
+      if let destination = segue.destination as? OrderInfoViewController {
+        destination.orderedItems = orderedItems
+      }
     }
   }
 }

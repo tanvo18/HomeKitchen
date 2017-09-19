@@ -13,18 +13,18 @@ class User: Mappable {
 
   var username: String = ""
   var birthday: Date = Date()
-  var gender: Int = 0
+  var gender: Int = 1
   var phoneNumber: String = ""
   var role: String = ""
   var name: String = ""
-  
+  var contactInformations: [ContactInfo] = []
   init() {}
   
   required convenience init?(map: Map) {
     self.init()
   }
   
-  convenience init(username: String, birthday: Date, gender: Int, phoneNumber: String, role: String, name: String) {
+  convenience init(username: String, birthday: Date, gender: Int, phoneNumber: String, role: String, name: String,contactInformations: [ContactInfo]) {
     self.init()
     self.username = username
     self.birthday = birthday
@@ -32,14 +32,16 @@ class User: Mappable {
     self.phoneNumber = phoneNumber
     self.role = role
     self.name = name
+    self.contactInformations = contactInformations
   }
   
   func mapping(map: Map) {
-    username          <- map["username"]
-    birthday          <- map["birthday"]
-    gender            <- map["gender"]
-    phoneNumber       <- map["phoneNumber"]
-    role              <- map["role"]
-    name              <- map["name"]
+    username                         <- map["username"]
+    birthday                         <- map["birthday"]
+    gender                           <- map["gender"]
+    phoneNumber                      <- map["phoneNumber"]
+    role                             <- map["role"]
+    name                             <- map["name"]
+    contactInformations              <- map["contact_information"]
   }
 }

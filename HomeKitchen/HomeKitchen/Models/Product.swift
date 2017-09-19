@@ -13,6 +13,7 @@ class Product: Mappable {
   
   var id: Int = 0
   var price: Int = 0
+  var totalOrderAmount: Int = 0
   var type: String = ""
   var imageUrl: String = ""
   var name: String = ""
@@ -24,10 +25,11 @@ class Product: Mappable {
     self.init()
   }
   
-  convenience init(id: Int, price: Int, type: String, imageUrl: String, name: String, recipe: Recipe) {
+  convenience init(id: Int, price: Int, totalOrderAmount: Int, type: String, imageUrl: String, name: String, recipe: Recipe) {
     self.init()
     self.id = id
     self.price = price
+    self.totalOrderAmount = totalOrderAmount
     self.type = type
     self.imageUrl = imageUrl
     self.name = name
@@ -36,11 +38,12 @@ class Product: Mappable {
   
   // Mappable
   func mapping(map: Map) {
-    id            <- map["id"]
-    price         <- map["price"]
-    type          <- map["type"]
-    imageUrl      <- map["image_url"]
-    name          <- map["name"]
-    recipe        <- map["recipe"]
+    id                       <- map["id"]
+    price                    <- map["price"]
+    totalOrderAmount         <- map["order_amt"]
+    type                     <- map["type"]
+    imageUrl                 <- map["image_url"]
+    name                     <- map["name"]
+    recipe                   <- map["recipe"]
   }
 }
