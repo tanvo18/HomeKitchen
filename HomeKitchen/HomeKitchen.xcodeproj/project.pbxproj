@@ -28,6 +28,7 @@
 		4D7471DD1F604B23007C53E2 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7471DC1F604B23007C53E2 /* Ingredient.swift */; };
 		4D7471DF1F604C63007C53E2 /* ResultProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7471DE1F604C63007C53E2 /* ResultProduct.swift */; };
 		4D7471E11F604CB0007C53E2 /* ProductDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7471E01F604CB0007C53E2 /* ProductDataModel.swift */; };
+		4D900EFC1F716FB600D7C9A8 /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D900EFB1F716FB600D7C9A8 /* UserDataModel.swift */; };
 		4DACF0AF1F55C9A00043ED79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACF0AE1F55C9A00043ED79 /* AppDelegate.swift */; };
 		4DACF0B61F55C9A00043ED79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DACF0B51F55C9A00043ED79 /* Assets.xcassets */; };
 		4DACF0B91F55C9A00043ED79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DACF0B71F55C9A00043ED79 /* LaunchScreen.storyboard */; };
@@ -71,6 +72,7 @@
 		4D7471DC1F604B23007C53E2 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		4D7471DE1F604C63007C53E2 /* ResultProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultProduct.swift; sourceTree = "<group>"; };
 		4D7471E01F604CB0007C53E2 /* ProductDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDataModel.swift; sourceTree = "<group>"; };
+		4D900EFB1F716FB600D7C9A8 /* UserDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		4DACF0AB1F55C9A00043ED79 /* HomeKitchen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeKitchen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DACF0AE1F55C9A00043ED79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DACF0B51F55C9A00043ED79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				4D6E96D51F693B45000DD7EE /* OrderInfo.swift */,
 				4D2F0BCB1F711AC70017B8E7 /* ContactInfo.swift */,
 				4D2F0BCD1F711F550017B8E7 /* ResultUser.swift */,
+				4D900EFB1F716FB600D7C9A8 /* UserDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				4DCC35191F668B870005BD40 /* OrderItem.swift in Sources */,
 				4DF440011F5E448E00365F57 /* KitchenDataModel.swift in Sources */,
 				4D4467001F60DF1E0022C91C /* OrderTableViewCell.swift in Sources */,
+				4D900EFC1F716FB600D7C9A8 /* UserDataModel.swift in Sources */,
 				4D2F0BCE1F711F550017B8E7 /* ResultUser.swift in Sources */,
 				4D1587FE1F59651900B1FFB4 /* SMNavigationController.swift in Sources */,
 				4D4466FC1F60DEA40022C91C /* OrderViewController.swift in Sources */,

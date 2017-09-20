@@ -25,10 +25,6 @@ class OrderInfoViewController: UIViewController {
   
   // MARK: IBOutlet
   
-  @IBOutlet weak var nameTextField: UITextField!
-  
-  @IBOutlet weak var phoneTextField: UITextField!
-  
   @IBOutlet weak var timeTextField: UITextField!
   
   @IBOutlet weak var dateLabel: UILabel!
@@ -376,8 +372,9 @@ extension OrderInfoViewController {
     containCalendarView.isHidden = false
   }
   
+  // Check all textfield not empty
   func checkNotNil() -> Bool {
-    if nameTextField.text!.isEmpty || phoneTextField.text!.isEmpty || timeTextField.text!.isEmpty{
+    if  timeTextField.text!.isEmpty {
       return false
     }
     if dateLabel.text! == "date" {
@@ -385,6 +382,7 @@ extension OrderInfoViewController {
     }
     return true
   }
+
 }
 
 // MARK: IBAction
