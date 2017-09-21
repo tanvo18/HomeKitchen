@@ -29,6 +29,10 @@ class OrderInfoViewController: UIViewController {
   
   @IBOutlet weak var dateLabel: UILabel!
   
+  // TableView
+  
+  @IBOutlet weak var tableView: UITableView!
+  
   // For Calendar
   
   @IBOutlet weak var containCalendarView: UIView!
@@ -38,6 +42,9 @@ class OrderInfoViewController: UIViewController {
   @IBOutlet weak var calendarView: CVCalendarView!
   
   @IBOutlet weak var monthLabel: UILabel!
+  let reuseableCell = "Cell"
+  // Save index of tableview cell
+  var position = 0
   var selectedDay:DayView!
   var currentCalendar: Calendar?
   var animationFinished = true
@@ -72,11 +79,13 @@ class OrderInfoViewController: UIViewController {
     let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapDateLabel))
     dateLabel.isUserInteractionEnabled = true
     dateLabel.addGestureRecognizer(tap)
-    // Hide keyboard when tap around
-    self.hideKeyboardWhenTappedAround()
-   
-    
-}
+    // TableView Delegate
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.register(UINib(nibName: "ContactInfoTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
+    // Hide Foot view
+    tableView.tableFooterView = UIView(frame: CGRect.zero)
+  }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
@@ -101,6 +110,37 @@ class OrderInfoViewController: UIViewController {
     super.viewDidLayoutSubviews()
     menuView.commitMenuViewUpdate()
     calendarView.commitCalendarViewUpdate()
+  }
+}
+
+// MARK: Tableview Delegate
+extension OrderInfoViewController: UITableViewDelegate {
+}
+
+// MARK: Tableview Datasource
+extension OrderInfoViewController: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return Helper.user.contactInformations.count
+  }
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! ContactInfoTableViewCell
+    if Helper.user.contactInformations.count > 0 {
+      let contact = Helper.user.contactInformations[indexPath.row]
+      cell.configureWithItem(contact: contact)
+      cell.radioButton.tag = indexPath.row
+      cell.radioButton.addTarget(self, action: #selector(self.didTouchRadioButton), for: .touchUpInside)
+      return cell
+    } else {
+      return cell
+    }
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 100
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
   }
 }
 
@@ -382,7 +422,40 @@ extension OrderInfoViewController {
     }
     return true
   }
-
+  
+  // Click radio Button
+  func didTouchRadioButton(sender: UIButton) {
+    position = sender.tag
+    let contacts = Helper.user.contactInformations
+    for (index,contact) in contacts.enumerated() {
+      if index == position {
+        contact.isChosen = true
+      }
+      else {
+        contact.isChosen = false
+      }
+    }
+    tableView.reloadData()
+  }
+  
+  func chosenContact() -> ContactInfo {
+    var chosenContact: ContactInfo = ContactInfo()
+    for contact in Helper.user.contactInformations {
+      if contact.isChosen {
+        chosenContact = contact
+      }
+    }
+    return chosenContact
+  }
+  
+  func chooseCurrentDate() -> String {
+    let date = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    let result = formatter.string(from: date)
+    return result
+  }
+  
 }
 
 // MARK: IBAction
@@ -407,14 +480,23 @@ extension OrderInfoViewController {
   // Using responseString instead of responseJSON
   // Post order to server
   func postOrder() {
+    let contact = chosenContact()
+    let dateString = chooseCurrentDate()
+    print("dateString:\(dateString)")
+    print("timeTF \(timeTextField.text!)")
+    print("contact \(contact.toJSON())")
     let headers: HTTPHeaders = [
-      "Authorization": Global.accessToken,
+      "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
-    let parameters: Parameters = ["order_date": dateLabel.text!,
-                                  "kitchen" : ["id" : Global.kitchenId],
-                                  "products" : orderedItems.toJSON()
-    ]
+    
+    let  parameters: Parameters = ["contact_information" : contact.toJSON(),
+      "order_date": dateString,
+      "delivery_time" : timeTextField.text!,
+      "delivery_date" : dateLabel.text!,
+      "kitchen" : ["id" : Helper.kitchenId],
+      "products" : orderedItems.toJSON()
+      ]
     
     Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/order", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString { response in
       switch response.result {
@@ -430,6 +512,6 @@ extension OrderInfoViewController {
       
     }
   }
-
+  
 }
 

@@ -28,12 +28,14 @@
 		4D7471DD1F604B23007C53E2 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7471DC1F604B23007C53E2 /* Ingredient.swift */; };
 		4D7471DF1F604C63007C53E2 /* ResultProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7471DE1F604C63007C53E2 /* ResultProduct.swift */; };
 		4D7471E11F604CB0007C53E2 /* ProductDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7471E01F604CB0007C53E2 /* ProductDataModel.swift */; };
+		4D86C0411F72504B00C3D555 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D86C0401F72504B00C3D555 /* Helper.swift */; };
+		4D86C0461F7251AC00C3D555 /* ContactInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D86C0441F7251AC00C3D555 /* ContactInfoTableViewCell.swift */; };
+		4D86C0471F7251AC00C3D555 /* ContactInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D86C0451F7251AC00C3D555 /* ContactInfoTableViewCell.xib */; };
 		4D900EFC1F716FB600D7C9A8 /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D900EFB1F716FB600D7C9A8 /* UserDataModel.swift */; };
 		4DACF0AF1F55C9A00043ED79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DACF0AE1F55C9A00043ED79 /* AppDelegate.swift */; };
 		4DACF0B61F55C9A00043ED79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DACF0B51F55C9A00043ED79 /* Assets.xcassets */; };
 		4DACF0B91F55C9A00043ED79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DACF0B71F55C9A00043ED79 /* LaunchScreen.storyboard */; };
 		4DCC35191F668B870005BD40 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC35181F668B870005BD40 /* OrderItem.swift */; };
-		4DDE9F7E1F6432F100EE875D /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDE9F7D1F6432F100EE875D /* Global.swift */; };
 		4DE6EC2D1F68EC1000A1A4DE /* getorder.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE6EC2C1F68EC1000A1A4DE /* getorder.json */; };
 		4DEDD3371F5BF90100D24E79 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEDD3361F5BF90100D24E79 /* LoginViewController.swift */; };
 		4DEDD33D1F5C075500D24E79 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEDD33C1F5C075500D24E79 /* SignupViewController.swift */; };
@@ -72,6 +74,9 @@
 		4D7471DC1F604B23007C53E2 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		4D7471DE1F604C63007C53E2 /* ResultProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultProduct.swift; sourceTree = "<group>"; };
 		4D7471E01F604CB0007C53E2 /* ProductDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDataModel.swift; sourceTree = "<group>"; };
+		4D86C0401F72504B00C3D555 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		4D86C0441F7251AC00C3D555 /* ContactInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoTableViewCell.swift; sourceTree = "<group>"; };
+		4D86C0451F7251AC00C3D555 /* ContactInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactInfoTableViewCell.xib; sourceTree = "<group>"; };
 		4D900EFB1F716FB600D7C9A8 /* UserDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		4DACF0AB1F55C9A00043ED79 /* HomeKitchen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeKitchen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DACF0AE1F55C9A00043ED79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +84,6 @@
 		4DACF0B81F55C9A00043ED79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DACF0BA1F55C9A00043ED79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DCC35181F668B870005BD40 /* OrderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
-		4DDE9F7D1F6432F100EE875D /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		4DE6EC2C1F68EC1000A1A4DE /* getorder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getorder.json; sourceTree = "<group>"; };
 		4DEDD3361F5BF90100D24E79 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4DEDD33C1F5C075500D24E79 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +194,23 @@
 			path = ListOrderCell;
 			sourceTree = "<group>";
 		};
+		4D86C0421F72515F00C3D555 /* OrderInfoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D86C0431F72518C00C3D555 /* ContactInfoCell */,
+			);
+			name = OrderInfoScreen;
+			sourceTree = "<group>";
+		};
+		4D86C0431F72518C00C3D555 /* ContactInfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				4D86C0441F7251AC00C3D555 /* ContactInfoTableViewCell.swift */,
+				4D86C0451F7251AC00C3D555 /* ContactInfoTableViewCell.xib */,
+			);
+			name = ContactInfoCell;
+			sourceTree = "<group>";
+		};
 		4DACF0A21F55C9A00043ED79 = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +262,7 @@
 		4DDB7ED11F59486C00A24730 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4D86C0421F72515F00C3D555 /* OrderInfoScreen */,
 				4D0932C11F63E2A6001CEFF5 /* HomeScreen */,
 				4D0932C21F63E2E7001CEFF5 /* KitchenDetailScreen */,
 				4D1588011F59661600B1FFB4 /* MenuCell */,
@@ -282,7 +304,7 @@
 		4DDE9F7C1F642AE800EE875D /* CommonVariable */ = {
 			isa = PBXGroup;
 			children = (
-				4DDE9F7D1F6432F100EE875D /* Global.swift */,
+				4D86C0401F72504B00C3D555 /* Helper.swift */,
 			);
 			name = CommonVariable;
 			sourceTree = "<group>";
@@ -394,6 +416,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D86C0471F7251AC00C3D555 /* ContactInfoTableViewCell.xib in Resources */,
 				4D3BB80C1F5FF52B00D6686C /* TopOrderTableViewCell.xib in Resources */,
 				4DFAAEC71F5D459500FE2EAE /* KitchenTableViewCell.xib in Resources */,
 				4DF43FF71F5E39CE00365F57 /* getrestaurants.json in Resources */,
@@ -469,15 +492,16 @@
 				4D6E96D61F693B45000DD7EE /* OrderInfo.swift in Sources */,
 				4DACF0AF1F55C9A00043ED79 /* AppDelegate.swift in Sources */,
 				4D7471E11F604CB0007C53E2 /* ProductDataModel.swift in Sources */,
+				4D86C0461F7251AC00C3D555 /* ContactInfoTableViewCell.swift in Sources */,
 				4D4086581F5F9558004697CE /* KitchenDetailViewController.swift in Sources */,
 				4D3BB8121F60035100D6686C /* Recipe.swift in Sources */,
-				4DDE9F7E1F6432F100EE875D /* Global.swift in Sources */,
 				4D1588001F59657500B1FFB4 /* LeftMenuTableViewController.swift in Sources */,
 				4DF43FFB1F5E3B6B00365F57 /* Address.swift in Sources */,
 				4DFAAEC61F5D459500FE2EAE /* KitchenTableViewCell.swift in Sources */,
 				4D6620E71F5C5A6200B96DC7 /* User.swift in Sources */,
 				4D3BB8101F5FFDAF00D6686C /* Product.swift in Sources */,
 				4DFAAEC31F5D44B600FE2EAE /* KitchenViewController.swift in Sources */,
+				4D86C0411F72504B00C3D555 /* Helper.swift in Sources */,
 				4D3BB80B1F5FF52B00D6686C /* TopOrderTableViewCell.swift in Sources */,
 				4DCC35191F668B870005BD40 /* OrderItem.swift in Sources */,
 				4DF440011F5E448E00365F57 /* KitchenDataModel.swift in Sources */,

@@ -82,7 +82,7 @@ extension KitchenViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     position = indexPath.row
     // Save kitchenID
-    Global.kitchenId = kitchens[indexPath.row].id
+    Helper.kitchenId = kitchens[indexPath.row].id
     performSegue(withIdentifier: "showKitchenDetail", sender: self)
   }
 }
@@ -108,7 +108,7 @@ extension KitchenViewController: KitchenDataModelDelegate {
 extension KitchenViewController: UserDataModelDelegate {
   func didRecieveUserUpdate(data: User) {
     // Save user info to global user
-    Global.user = data
+    Helper.user = data
   }
   
   func didFailUserUpdateWithError(error: String) {

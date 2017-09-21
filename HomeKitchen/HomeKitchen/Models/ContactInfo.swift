@@ -15,6 +15,7 @@ class ContactInfo: Mappable {
   var name: String = ""
   var phoneNumber: String = ""
   var address: String = ""
+  var isChosen: Bool = false
   
   init() {}
   

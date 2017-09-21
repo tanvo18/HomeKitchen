@@ -44,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqO-Vn-iEe">
-                        <rect key="frame" x="75" y="27" width="131" height="23"/>
+                        <rect key="frame" x="75" y="31" width="131" height="23"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="23" id="6GO-n0-ddR"/>
                             <constraint firstAttribute="width" constant="131" id="uc9-N7-94Y"/>
@@ -59,7 +59,7 @@
                     <constraint firstItem="tqO-Vn-iEe" firstAttribute="leading" secondItem="ieL-hH-7Ue" secondAttribute="trailing" constant="17" id="8pu-Ki-Nbu"/>
                     <constraint firstAttribute="bottom" secondItem="ieL-hH-7Ue" secondAttribute="bottom" constant="8.5" id="KKU-0Y-ZFl"/>
                     <constraint firstItem="HJM-ce-H8y" firstAttribute="leading" secondItem="ieL-hH-7Ue" secondAttribute="trailing" constant="17" id="VvO-Yy-NTJ"/>
-                    <constraint firstItem="tqO-Vn-iEe" firstAttribute="top" secondItem="HJM-ce-H8y" secondAttribute="bottom" constant="-4" id="baE-fH-Jkt"/>
+                    <constraint firstItem="tqO-Vn-iEe" firstAttribute="top" secondItem="HJM-ce-H8y" secondAttribute="bottom" id="baE-fH-Jkt"/>
                     <constraint firstItem="ieL-hH-7Ue" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="fce-AH-R6W"/>
                     <constraint firstItem="HJM-ce-H8y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="fk1-OV-Wz9"/>
                     <constraint firstAttribute="bottom" secondItem="bsX-72-GeG" secondAttribute="bottom" constant="1" id="mo3-7R-vMG"/>

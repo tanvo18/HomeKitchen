@@ -24,7 +24,7 @@ class KitchenDataModel {
     var result: ResultKitchen?
     
     let headers: HTTPHeaders = [
-      "Authorization": Global.accessToken,
+      "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
     Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/kitchen/list", method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in

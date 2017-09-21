@@ -24,10 +24,10 @@ class ProductDataModel {
     var result: ResultProduct?
     
     let headers: HTTPHeaders = [
-      "Authorization": Global.accessToken,
+      "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
-    let parameters: Parameters = ["kitchenId" : Global.kitchenId]
+    let parameters: Parameters = ["kitchenId" : Helper.kitchenId]
     Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/kitchen/products", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { response in
       switch response.result {
       case .success:
