@@ -232,7 +232,7 @@
 		4DACF0AD1F55C9A00043ED79 /* HomeKitchen */ = {
 			isa = PBXGroup;
 			children = (
-				4DDE9F7C1F642AE800EE875D /* CommonVariable */,
+				4DDE9F7C1F642AE800EE875D /* Helper */,
 				4DDB7ED01F59486300A24730 /* Controllers */,
 				4DF43FF31F5E395B00365F57 /* Json File */,
 				4DDB7ED21F59487700A24730 /* Models */,
@@ -301,12 +301,12 @@
 			path = HomeScreen;
 			sourceTree = "<group>";
 		};
-		4DDE9F7C1F642AE800EE875D /* CommonVariable */ = {
+		4DDE9F7C1F642AE800EE875D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				4D86C0401F72504B00C3D555 /* Helper.swift */,
 			);
-			name = CommonVariable;
+			name = Helper;
 			sourceTree = "<group>";
 		};
 		4DEDD3351F5BF8D500D24E79 /* LoginAndSignup */ = {

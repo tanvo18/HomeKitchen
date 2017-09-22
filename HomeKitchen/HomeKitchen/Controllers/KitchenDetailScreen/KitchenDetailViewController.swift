@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import Alamofire
 
 class KitchenDetailViewController: UIViewController {
   
@@ -56,6 +57,35 @@ class KitchenDetailViewController: UIViewController {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
+  
+  // When return HomeScreen
+  override func willMove(toParentViewController parent: UIViewController?)
+  {
+    if parent == nil
+    {
+      if Helper.status == "pending" {
+        if isExistProductInCart() {
+          // post with status in_cart
+        }
+      } else if Helper.status == "in_cart" {
+        if isExistProductInCart() {
+          // update with status in_cart
+        } else {
+          // delete order
+        }
+      }
+    }
+  }
+  
+  func isExistProductInCart() -> Bool {
+    for item in products {
+      if item.quantity > 0 {
+        return true
+      }
+    }
+    return false
+  }
+  
 }
 
 // MARK: tableView Delegate

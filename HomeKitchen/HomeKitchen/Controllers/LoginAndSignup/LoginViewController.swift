@@ -42,7 +42,7 @@ extension LoginViewController {
   
   // Get Facebook user information
   func getUserInfo(completion: @escaping (_ : [String : Any]?, _ :Error?) -> Void) {
-    let request = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: FacebookCore.GraphAPIVersion.defaultVersion)
+    let request = GraphRequest(graphPath: "me", parameters: ["fields":"id,email,name"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: FacebookCore.GraphAPIVersion.defaultVersion)
     request.start { (response, result) in
       switch result {
       case .success(let value):
@@ -88,7 +88,8 @@ extension LoginViewController {
         print("user cancelled the login")
       case .success(_ , _, let userInfo):
         self.getUserInfo { info, error in
-          if let info = info, let _ = info["name"] as? String, let email = info["email"] as? String{
+          if let info = info, let _ = info["name"] as? String, let email = info["email"] as? String, let id = info["id"] as? String{
+            print("====id\(id)")
             self.getAuthorizationFromServer(username: email, password: "" , facebookToken: userInfo.authenticationToken)
           }
         }

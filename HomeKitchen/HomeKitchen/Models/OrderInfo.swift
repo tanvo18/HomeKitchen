@@ -27,8 +27,8 @@ class OrderInfo: Mappable {
   func mapping(map: Map) {
     id                    <- map["id"]
     orderDate             <- map["order_date"]
-    deliveryTime             <- map["delivery_time"]
-    deliveryDate             <- map["delivery_date"]
+    deliveryTime          <- map["delivery_time"]
+    deliveryDate          <- map["delivery_date"]
     totalAmount           <- map["total_amount"]
     products              <- map["products"]
   }
