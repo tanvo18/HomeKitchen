@@ -89,8 +89,17 @@ extension LoginViewController {
       case .success(_ , _, let userInfo):
         self.getUserInfo { info, error in
           if let info = info, let _ = info["name"] as? String, let email = info["email"] as? String, let id = info["id"] as? String{
-            print("====id\(id)")
-            self.getAuthorizationFromServer(username: email, password: "" , facebookToken: userInfo.authenticationToken)
+            print("====facebookId: \(id)")
+            NetworkingService.sharedInstance.getAuthorizationFromServer(username: email, password: "", facebookToken: userInfo.authenticationToken) { [unowned self] (accessToken, error) in
+              if error != nil {
+                print(error!)
+              } else {
+                // Save access token
+                Helper.accessToken = accessToken!
+                print("accessToken: \(Helper.accessToken)")
+                self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+              }
+            }
           }
         }
       }

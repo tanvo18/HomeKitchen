@@ -467,11 +467,34 @@ extension OrderInfoViewController {
   @IBAction func didTouchButtonCheckout(_ sender: Any) {
     if checkNotNil() {
       if Helper.status == "pending" {
-        postOrder()
+        NetworkingService.sharedInstance.sendOrder(contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, kitchenId: Helper.kitchenId, orderedItems: orderedItems) { [unowned self] (error) in
+          if error != nil {
+            print(error!)
+          } else {
+            let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+              // Add action here
+              
+              }))
+            self.present(alert, animated: true, completion: nil)
+            
+          }
+        
+        }
       } else if Helper.status == "in_cart" {
-        updateOrder()
+        NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, orderedItems: orderedItems) { [unowned self] (error) in
+          if error != nil {
+            print(error!)
+          } else {
+            let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+              // Add action here
+              
+            }))
+            self.present(alert, animated: true, completion: nil)
+          }
+        }
       }
-      
     } else {
       let alert = UIAlertController(title: "Error", message: "All fields are required.", preferredStyle: UIAlertControllerStyle.alert)
       alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
@@ -480,83 +503,4 @@ extension OrderInfoViewController {
   }
 }
 
-// MARK: Networking
-extension OrderInfoViewController {
-  // Using responseString instead of responseJSON
-  // Post order to server
-  func postOrder() {
-    let contact = chosenContact()
-    let dateString = chooseCurrentDate()
-    print("dateString:\(dateString)")
-    print("timeTF \(timeTextField.text!)")
-    print("contact \(contact.toJSON())")
-    let headers: HTTPHeaders = [
-      "Authorization": Helper.accessToken,
-      "Accept": "application/json"
-    ]
-    
-    let  parameters: Parameters = ["contact_information" : contact.toJSON(),
-      "order_date": dateString,
-      "delivery_time" : timeTextField.text!,
-      "status" : Helper.status,
-      "delivery_date" : dateLabel.text!,
-      "kitchen" : ["id" : Helper.kitchenId],
-      "products" : orderedItems.toJSON()
-      ]
-    
-    Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/order", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString { response in
-      switch response.result {
-      case .success:
-        let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-          print("you have pressed the ok button")
-        }))
-        self.present(alert, animated: true, completion: nil)
-      case .failure(let error):
-        print(error)
-      }
-      
-    }
-  }
-  
-  // Using responseString instead of responseJSON
-  // Update order to server when order is not a new order
-  func updateOrder() {
-    let contact = chosenContact()
-    let dateString = chooseCurrentDate()
-    print("dateString:\(dateString)")
-    print("timeTF \(timeTextField.text!)")
-    print("contact \(contact.toJSON())")
-    let headers: HTTPHeaders = [
-      "Authorization": Helper.accessToken,
-      "Accept": "application/json"
-    ]
-    
-    // Change Helper status for checkout
-    Helper.status = "pending"
-    
-    let  parameters: Parameters = ["id" : Helper.orderInfo.id,
-                                   "contact_information" : contact.toJSON(),
-                                   "order_date": dateString,
-                                   "delivery_time" : timeTextField.text!,
-                                   "status" : Helper.status,
-                                   "delivery_date" : dateLabel.text!,
-                                   "products" : orderedItems.toJSON()
-    ]
-    
-    Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/order", method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString { response in
-      switch response.result {
-      case .success:
-        let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-          print("you have pressed the ok button")
-        }))
-        self.present(alert, animated: true, completion: nil)
-      case .failure(let error):
-        print(error)
-      }
-      
-    }
-  }
-}
 
