@@ -34,7 +34,7 @@ class ProductDataModel {
         if let json = response.result.value as? [String: Any]{
           result = Mapper<ResultProduct>().map(JSON: json)
           products = result!.orderInfo.products
-         
+          print("====count: \(products.count)")
           // Remember order info
           Helper.orderInfo = result!.orderInfo
           // Assign status

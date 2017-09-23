@@ -40,7 +40,7 @@ class NetworkingService {
   
   // Using responseString instead of responseJSON
   // Send order to server
-  func sendOrder(contact: ContactInfo, orderDate: String, deliveryDate: String, deliveryTime: String,
+  func sendOrder(contact: ContactInfo, orderDate: String, deliveryDate: String, deliveryTime: String, status: String,
                  kitchenId: Int, orderedItems: [OrderItem], completion: @escaping (_ error: Error?) -> Void) {
     let url = NetworkingService.baseURLString + "order"
     let headers: HTTPHeaders = [
@@ -51,7 +51,7 @@ class NetworkingService {
     let  parameters: Parameters = ["contact_information" : contact.toJSON(),
                                    "order_date": orderDate,
                                    "delivery_time" : deliveryTime,
-                                   "status" : Helper.status,
+                                   "status" : status,
                                    "delivery_date" : deliveryDate,
                                    "kitchen" : ["id" : Helper.kitchenId],
                                    "products" : orderedItems.toJSON()
@@ -69,21 +69,18 @@ class NetworkingService {
   
   // Using responseString instead of responseJSON
   // Update order to server when order is not a new order
-  func updateOrder(id: Int,contact: ContactInfo, orderDate: String, deliveryDate: String, deliveryTime: String, orderedItems: [OrderItem], completion: @escaping (_ error: Error?) -> Void) {
+  func updateOrder(id: Int,contact: ContactInfo, orderDate: String, deliveryDate: String, deliveryTime: String, status: String, orderedItems: [OrderItem], completion: @escaping (_ error: Error?) -> Void) {
     let url = NetworkingService.baseURLString + "order"
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
     
-    // Change Helper status for checkout
-    Helper.status = "pending"
-    
     let  parameters: Parameters = ["id" : id,
                                    "contact_information" : contact.toJSON(),
                                    "order_date": orderDate,
                                    "delivery_time" : deliveryTime,
-                                   "status" : Helper.status,
+                                   "status" : status,
                                    "delivery_date" : deliveryDate,
                                    "products" : orderedItems.toJSON()
     ]
@@ -96,6 +93,24 @@ class NetworkingService {
         completion(error)
       }
       
+    }
+  }
+  
+  // Delete order
+  func deleteOrder(id: Int,completion: @escaping (_ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "order" + "/" + "\(id)"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    Alamofire.request(url, method: .delete, encoding: JSONEncoding.default, headers: headers).responseJSON
+      { response in
+      switch response.result {
+      case .success:
+        completion(nil)
+      case .failure(let error):
+        completion(error)
+      }
     }
   }
 }

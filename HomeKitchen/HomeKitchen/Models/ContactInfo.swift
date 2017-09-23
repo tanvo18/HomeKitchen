@@ -23,7 +23,7 @@ class ContactInfo: Mappable {
     self.init()
   }
   
-  convenience init(id: Int, name: String, phoneNumber: String, address: String) {
+  convenience init(id: Int = 0, name: String, phoneNumber: String, address: String) {
     self.init()
     self.id = id
     self.name = name

@@ -21,6 +21,7 @@
 		4D3BB80C1F5FF52B00D6686C /* TopOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D3BB80A1F5FF52B00D6686C /* TopOrderTableViewCell.xib */; };
 		4D3BB8101F5FFDAF00D6686C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BB80F1F5FFDAF00D6686C /* Product.swift */; };
 		4D3BB8121F60035100D6686C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3BB8111F60035100D6686C /* Recipe.swift */; };
+		4D3F6DAB1F76167700F95EB9 /* AddNewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3F6DAA1F76167700F95EB9 /* AddNewContactViewController.swift */; };
 		4D4086581F5F9558004697CE /* KitchenDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4086571F5F9558004697CE /* KitchenDetailViewController.swift */; };
 		4D4466FC1F60DEA40022C91C /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4466FB1F60DEA40022C91C /* OrderViewController.swift */; };
 		4D4467001F60DF1E0022C91C /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */; };
@@ -69,6 +70,7 @@
 		4D3BB80A1F5FF52B00D6686C /* TopOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopOrderTableViewCell.xib; sourceTree = "<group>"; };
 		4D3BB80F1F5FFDAF00D6686C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		4D3BB8111F60035100D6686C /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		4D3F6DAA1F76167700F95EB9 /* AddNewContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewContactViewController.swift; sourceTree = "<group>"; };
 		4D4086571F5F9558004697CE /* KitchenDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenDetailViewController.swift; sourceTree = "<group>"; };
 		4D4466FB1F60DEA40022C91C /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
@@ -173,6 +175,14 @@
 			path = TopOrderCell;
 			sourceTree = "<group>";
 		};
+		4D3F6DA91F76165900F95EB9 /* AddNewContactScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D3F6DAA1F76167700F95EB9 /* AddNewContactViewController.swift */,
+			);
+			name = AddNewContactScreen;
+			sourceTree = "<group>";
+		};
 		4D4086541F5F8E33004697CE /* KitchenDetailScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +263,7 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D3F6DA91F76165900F95EB9 /* AddNewContactScreen */,
 				4D31189E1F6C10B600ACA713 /* OrderInfoScreen */,
 				4DDB7ED51F59623500A24730 /* HomeScreen */,
 				4D4086541F5F8E33004697CE /* KitchenDetailScreen */,
@@ -505,6 +516,7 @@
 				4D3BB8121F60035100D6686C /* Recipe.swift in Sources */,
 				4D1588001F59657500B1FFB4 /* LeftMenuTableViewController.swift in Sources */,
 				4DF43FFB1F5E3B6B00365F57 /* Address.swift in Sources */,
+				4D3F6DAB1F76167700F95EB9 /* AddNewContactViewController.swift in Sources */,
 				4DFAAEC61F5D459500FE2EAE /* KitchenTableViewCell.swift in Sources */,
 				4D6620E71F5C5A6200B96DC7 /* User.swift in Sources */,
 				4D3BB8101F5FFDAF00D6686C /* Product.swift in Sources */,

@@ -23,6 +23,8 @@ class KitchenDetailViewController: UIViewController {
       tableView.reloadData()
     }
   }
+  // Items which customer ordered at Order Screen
+  var orderedItems: [OrderItem] = []
   
   let reuseableCell = "Cell"
   let productModelDatasource = ProductDataModel()
@@ -61,17 +63,52 @@ class KitchenDetailViewController: UIViewController {
   // When return HomeScreen
   override func willMove(toParentViewController parent: UIViewController?)
   {
+    
     if parent == nil
     {
+      print("====WillMove")
+      // Current date
+      let currentDate: String = chooseCurrentDate()
+      // Create default contact
+      var defaultContact: ContactInfo = ContactInfo()
+      if Helper.user.contactInformations.isEmpty {
+        // Default id for contact info = 69
+        defaultContact.id = 69
+      } else {
+        defaultContact = Helper.user.contactInformations[0]
+      }
+      
+      // There are 2 status represent for cart status: pending and in_cart
       if Helper.status == "pending" {
         if isExistProductInCart() {
-          // post with status in_cart
+          
+          // add items customer ordered
+          addOrderedItems()
+          // send order with status in_cart
+          NetworkingService.sharedInstance.sendOrder(contact: defaultContact, orderDate: currentDate, deliveryDate: "", deliveryTime: "", status: "in_cart", kitchenId: Helper.kitchenId, orderedItems: orderedItems) { (error) in
+            if error != nil {
+              print(error!)
+            }
+          }
         }
       } else if Helper.status == "in_cart" {
         if isExistProductInCart() {
-          // update with status in_cart
+          // add items customer ordered
+          addOrderedItems()
+          // Update with status in_cart
+          NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: defaultContact, orderDate: currentDate, deliveryDate: Helper.orderInfo.deliveryDate, deliveryTime: Helper.orderInfo.deliveryTime, status: "in_cart", orderedItems: orderedItems) { (error) in
+            if error != nil {
+               print(error!)
+            }
+           
+          }
         } else {
-          // delete order
+          // Delete order if there are nothing in cart
+          NetworkingService.sharedInstance.deleteOrder(id: Helper.orderInfo.id) { (error) in
+            if error != nil {
+              print(error!)
+            }
+          }
         }
       }
     }
@@ -132,6 +169,25 @@ extension KitchenDetailViewController {
       self.indicator.stopAnimating()
       self.indicator.isHidden = true
     }
+  }
+  
+  // Add ordered item to orderedItems
+  func addOrderedItems() {
+    // Reset orderedItems avoid similar items
+    orderedItems.removeAll()
+    for item in products {
+      if item.quantity > 0 {
+        orderedItems.append(item)
+      }
+    }
+  }
+  
+  func chooseCurrentDate() -> String {
+    let date = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    let result = formatter.string(from: date)
+    return result
   }
 }
 

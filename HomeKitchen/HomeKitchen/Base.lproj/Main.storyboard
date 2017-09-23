@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="GV6-9p-RYl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1gI-l9-JKl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0vM-aN-bsY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <sections/>
@@ -441,6 +441,9 @@
                                 <rect key="frame" x="13" y="446" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="didTouchButtonAdd:" destination="7H9-XT-YV1" eventType="touchUpInside" id="m8D-lg-9RR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Je-7d-lzh">
                                 <rect key="frame" x="18" y="484" width="339" height="30"/>
@@ -472,11 +475,73 @@
                         <outlet property="monthLabel" destination="oRM-rj-ehK" id="qYT-0O-iXA"/>
                         <outlet property="tableView" destination="HN7-lz-09c" id="xxI-aQ-EhZ"/>
                         <outlet property="timeTextField" destination="Iib-2Y-de9" id="Ayz-OV-mIC"/>
+                        <segue destination="OKg-xq-bB5" kind="show" identifier="showHomeScreen" id="VfJ-pa-Xs3"/>
+                        <segue destination="ubC-01-fcu" kind="show" identifier="showAddContact" id="GgF-CS-DNJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8RA-I5-fL7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3120.8000000000002" y="-407.49625187406298"/>
+        </scene>
+        <!--Add New Contact View Controller-->
+        <scene sceneID="9UT-RH-Esy">
+            <objects>
+                <viewController id="ubC-01-fcu" customClass="AddNewContactViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gOC-u6-27Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="X99-E3-PkB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fuh-iP-HXq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oei-M7-JCv">
+                                <rect key="frame" x="16" y="174" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qnu-Qd-SBA">
+                                <rect key="frame" x="16" y="258" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yUQ-bT-1Ra">
+                                <rect key="frame" x="16" y="336" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSw-8o-pJg">
+                                <rect key="frame" x="16" y="425" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.39456164836883545" green="0.68822318315505981" blue="0.21897965669631958" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Add">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTouchButtonAdd:" destination="ubC-01-fcu" eventType="touchUpInside" id="MQD-ki-rA8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="addressTextField" destination="yUQ-bT-1Ra" id="12F-Hq-nJ1"/>
+                        <outlet property="nameTextField" destination="oei-M7-JCv" id="X3W-BF-Bdw"/>
+                        <outlet property="phoneTextField" destination="qnu-Qd-SBA" id="1gd-1W-L5a"/>
+                        <segue destination="uS3-Sb-L8i" kind="unwind" identifier="unwindToOrderInfo" unwindAction="unwindToOrderInfoWithSegue:" id="nR5-zq-VVS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b4m-lG-XjS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="uS3-Sb-L8i" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4101.6000000000004" y="-407.49625187406298"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="qOp-Hd-Zlr">
@@ -762,4 +827,7 @@
         <image name="user-textfield" width="339" height="41"/>
         <image name="wallpaper" width="375" height="667"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="VfJ-pa-Xs3"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -23,6 +23,7 @@ struct Color {
 
 class OrderInfoViewController: UIViewController {
   
+  
   // MARK: IBOutlet
   
   @IBOutlet weak var timeTextField: UITextField!
@@ -467,14 +468,14 @@ extension OrderInfoViewController {
   @IBAction func didTouchButtonCheckout(_ sender: Any) {
     if checkNotNil() {
       if Helper.status == "pending" {
-        NetworkingService.sharedInstance.sendOrder(contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, kitchenId: Helper.kitchenId, orderedItems: orderedItems) { [unowned self] (error) in
+        NetworkingService.sharedInstance.sendOrder(contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", kitchenId: Helper.kitchenId, orderedItems: orderedItems) { [unowned self] (error) in
           if error != nil {
             print(error!)
           } else {
             let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-              // Add action here
-              
+              // Go to HomeScreen
+              self.performSegue(withIdentifier: "showHomeScreen", sender: self)
               }))
             self.present(alert, animated: true, completion: nil)
             
@@ -482,14 +483,14 @@ extension OrderInfoViewController {
         
         }
       } else if Helper.status == "in_cart" {
-        NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, orderedItems: orderedItems) { [unowned self] (error) in
+        NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", orderedItems: orderedItems) { [unowned self] (error) in
           if error != nil {
             print(error!)
           } else {
             let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-              // Add action here
-              
+              // Go to HomeScreen
+              self.performSegue(withIdentifier: "showHomeScreen", sender: self)
             }))
             self.present(alert, animated: true, completion: nil)
           }
@@ -501,6 +502,25 @@ extension OrderInfoViewController {
       self.present(alert, animated: true, completion: nil)
     }
   }
+  
+  @IBAction func didTouchButtonAdd(_ sender: Any) {
+    self.performSegue(withIdentifier: "showAddContact", sender: self)
+  }
+  
+  @IBAction func unwindToOrderInfo(segue:UIStoryboardSegue) {
+    if segue.source is AddNewContactViewController {
+      if let senderVC = segue.source as? AddNewContactViewController {
+        let name = senderVC.nameTextField.text!
+        let phoneNumber = senderVC.phoneTextField.text!
+        let address = senderVC.phoneTextField.text!
+        var contact = ContactInfo(name: name, phoneNumber: phoneNumber, address: address)
+        Helper.user.contactInformations.append(contact)
+        // Reload tableview
+        tableView.reloadData()
+      }
+    }
+  }
+
 }
 
 
