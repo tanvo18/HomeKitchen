@@ -79,7 +79,7 @@ class KitchenDetailViewController: UIViewController {
       }
       
       // There are 2 status represent for cart status: pending and in_cart
-      if Helper.status == "pending" {
+      if Helper.orderInfo.status == "pending" {
         if isExistProductInCart() {
           
           // add items customer ordered
@@ -91,7 +91,7 @@ class KitchenDetailViewController: UIViewController {
             }
           }
         }
-      } else if Helper.status == "in_cart" {
+      } else if Helper.orderInfo.status == "in_cart" {
         if isExistProductInCart() {
           // add items customer ordered
           addOrderedItems()

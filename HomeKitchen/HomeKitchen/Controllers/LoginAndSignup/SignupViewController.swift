@@ -25,6 +25,9 @@ class SignupViewController: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
+  @IBAction func didTouchButtonBack(_ sender: Any) {
+    performSegue(withIdentifier: "unwindToLogin", sender: self)
+  }
 }
 
 // MARK: Setting for UITextField

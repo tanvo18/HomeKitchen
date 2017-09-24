@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bXk-9h-FX4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mi3-E6-qgR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,11 +18,11 @@
                         <viewControllerLayoutGuide type="bottom" id="GV6-9p-RYl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1gI-l9-JKl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0vM-aN-bsY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <sections/>
@@ -359,6 +359,34 @@
             </objects>
             <point key="canvasLocation" x="2125.5999999999999" y="-407.0464767616192"/>
         </scene>
+        <!--List Order View Controller-->
+        <scene sceneID="ENx-cJ-sUl">
+            <objects>
+                <viewController storyboardIdentifier="ListOrderViewController" id="mi3-E6-qgR" customClass="ListOrderViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="90W-63-men"/>
+                        <viewControllerLayoutGuide type="bottom" id="5uD-AD-8Dc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DE0-v6-OxO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LYT-2P-xLb">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="LYT-2P-xLb" id="sSK-4T-PBI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="akC-Ip-upR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3120.8000000000002" y="-1348.8755622188908"/>
+        </scene>
         <!--Calendar Appearance Delegate-->
         <scene sceneID="dn6-xo-Ckw">
             <objects>
@@ -639,13 +667,13 @@
                     <connections>
                         <outlet property="passwordTextfield" destination="xhe-zI-eK6" id="93s-UV-Xpw"/>
                         <outlet property="usernameTextfield" destination="YTc-lb-zK5" id="tar-uA-JF1"/>
-                        <segue destination="e4m-KE-ahx" kind="show" identifier="showSignup" id="PYb-Wj-QGr"/>
+                        <segue destination="e4m-KE-ahx" kind="custom" identifier="showSignup" customClass="SegueFromRight" customModule="HomeKitchen" customModuleProvider="target" id="PYb-Wj-QGr"/>
                         <segue destination="OKg-xq-bB5" kind="show" identifier="showHomeScreen" id="ixT-ty-4nl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="opv-Bk-ZJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-210.40000000000001" y="-1207.6461769115442"/>
+            <point key="canvasLocation" x="-185" y="-1397"/>
         </scene>
         <!--Left Menu Table View Controller-->
         <scene sceneID="bmg-WJ-VmS">
@@ -710,14 +738,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mm-QA-csq">
-                                <rect key="frame" x="16" y="28" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="backarrow"/>
-                                <connections>
-                                    <segue destination="HFz-at-sMA" kind="unwind" unwindAction="unwindToLoginScreenWithSegue:" id="BoM-j7-NcL"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vj-tb-ZAO">
                                 <rect key="frame" x="147" y="149" width="80" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -767,22 +787,24 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tdp-OX-HbQ">
-                                <rect key="frame" x="151" y="602" width="73" height="30"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mm-QA-csq">
+                                <rect key="frame" x="16" y="37" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                <state key="normal" title="Sign in">
-                                    <color key="titleColor" red="0.91923778553299496" green="0.92833914974619292" blue="0.92833914974619292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <state key="normal" backgroundImage="backarrow"/>
+                                <connections>
+                                    <action selector="didTouchButtonBack:" destination="e4m-KE-ahx" eventType="touchUpInside" id="5bZ-nv-9LT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="AYc-GW-ahZ"/>
                     <connections>
                         <outlet property="confirmPassTextField" destination="Q9T-Ge-4nc" id="CdY-hV-vRj"/>
                         <outlet property="passwordTextField" destination="589-Sx-2Me" id="xjV-PO-nwW"/>
                         <outlet property="phoneTextField" destination="OGq-aM-tgV" id="cCB-6o-JJ7"/>
                         <outlet property="usernameTextField" destination="Wth-rJ-ajX" id="H1b-H3-sMa"/>
+                        <segue destination="HFz-at-sMA" kind="unwind" identifier="unwindToLogin" customClass="SegueFromLeft" customModule="HomeKitchen" customModuleProvider="target" unwindAction="unwindToLoginScreenWithSegue:" id="x8k-k5-xQN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uGN-Oa-EIM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -828,6 +850,6 @@
         <image name="wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VfJ-pa-Xs3"/>
+        <segue reference="ixT-ty-4nl"/>
     </inferredMetricsTieBreakers>
 </document>

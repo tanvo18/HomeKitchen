@@ -467,7 +467,7 @@ extension OrderInfoViewController {
   
   @IBAction func didTouchButtonCheckout(_ sender: Any) {
     if checkNotNil() {
-      if Helper.status == "pending" {
+      if Helper.orderInfo.status == "pending" {
         NetworkingService.sharedInstance.sendOrder(contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", kitchenId: Helper.kitchenId, orderedItems: orderedItems) { [unowned self] (error) in
           if error != nil {
             print(error!)
@@ -482,7 +482,7 @@ extension OrderInfoViewController {
           }
         
         }
-      } else if Helper.status == "in_cart" {
+      } else if Helper.orderInfo.status == "in_cart" {
         NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", orderedItems: orderedItems) { [unowned self] (error) in
           if error != nil {
             print(error!)
@@ -513,7 +513,7 @@ extension OrderInfoViewController {
         let name = senderVC.nameTextField.text!
         let phoneNumber = senderVC.phoneTextField.text!
         let address = senderVC.phoneTextField.text!
-        var contact = ContactInfo(name: name, phoneNumber: phoneNumber, address: address)
+        let contact = ContactInfo(name: name, phoneNumber: phoneNumber, address: address)
         Helper.user.contactInformations.append(contact)
         // Reload tableview
         tableView.reloadData()

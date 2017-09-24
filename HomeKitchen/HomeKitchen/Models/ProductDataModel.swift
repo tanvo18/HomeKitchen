@@ -39,9 +39,9 @@ class ProductDataModel {
           Helper.orderInfo = result!.orderInfo
           // Assign status
           if Helper.orderInfo.id != 0 {
-            Helper.status = "in_cart"
+            Helper.orderInfo.status = "in_cart"
           } else {
-            Helper.status = "pending"
+            Helper.orderInfo.status = "pending"
           }
           
           self.delegate?.didRecieveProductUpdate(data: products)

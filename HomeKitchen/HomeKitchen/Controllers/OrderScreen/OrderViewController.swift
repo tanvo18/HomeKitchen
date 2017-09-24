@@ -47,7 +47,6 @@ class OrderViewController: UIViewController {
 }
 
 extension OrderViewController: UITableViewDelegate {
-  
 }
 
 extension OrderViewController: UITableViewDataSource {
