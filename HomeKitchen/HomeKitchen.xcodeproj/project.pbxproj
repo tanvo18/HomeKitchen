@@ -298,6 +298,7 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4DEBE0651F77A70A00A0305D /* OrderDetailScreen */,
 				4D237C001F775AFA007C1201 /* GetListOrderScreen */,
 				4D3F6DA91F76165900F95EB9 /* AddNewContactScreen */,
 				4D31189E1F6C10B600ACA713 /* OrderInfoScreen */,
@@ -363,6 +364,13 @@
 				4D06C9541F76731A00ED4E95 /* SegueFromLeft.swift */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		4DEBE0651F77A70A00A0305D /* OrderDetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = OrderDetailScreen;
 			sourceTree = "<group>";
 		};
 		4DEDD3351F5BF8D500D24E79 /* LoginAndSignup */ = {
