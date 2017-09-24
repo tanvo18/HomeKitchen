@@ -21,7 +21,7 @@ class ProductDataModel {
   
   func requestProduct() {
     var products: [OrderItem] = []
-    var result: ResultProduct?
+    var result: ResultOrderInfo?
     
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
@@ -32,7 +32,7 @@ class ProductDataModel {
       switch response.result {
       case .success:
         if let json = response.result.value as? [String: Any]{
-          result = Mapper<ResultProduct>().map(JSON: json)
+          result = Mapper<ResultOrderInfo>().map(JSON: json)
           products = result!.orderInfo.products
           print("====count: \(products.count)")
           // Remember order info
@@ -57,7 +57,7 @@ class ProductDataModel {
     //        let data = try Data(contentsOf: file)
     //        let json = try JSONSerialization.jsonObject(with: data, options: [])
     //        if let object = json as? [String: Any] {
-    //          result = Mapper<ResultProduct>().map(JSON: object)
+    //          result = Mapper<ResultOrderInfo>().map(JSON: object)
     //          products = result!.orderInfo.products
     //
     //        } else {
