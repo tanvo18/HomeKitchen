@@ -31,8 +31,7 @@ class OrderViewController: UIViewController {
     tableView.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    // Set title for back button in navigation bar
-    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    settingForNavigationBar()
   }
   
   override func didReceiveMemoryWarning() {
@@ -151,6 +150,12 @@ extension OrderViewController {
         orderedItems.append(item)
       }
     }
+  }
+  
+  func settingForNavigationBar() {
+    // Set title for back button in navigation bar
+    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    navigationItem.title = "Menu"
   }
 }
 

@@ -14,17 +14,25 @@ class GetOrderTableViewCell: UITableViewCell {
   
   @IBOutlet weak var statusLabel: UILabel!
   
-  @IBOutlet weak var orderDateLabel: UILabel!
-  
   @IBOutlet weak var imageViewCell: UIImageView!
   
+  @IBOutlet weak var deliveryDateLabel: UILabel!
   
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
+  @IBOutlet weak var deliveryTimeLabel: UILabel!
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+  }
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+  }
+  
+  func configureWithItem(orderInfo: OrderInfo) {
+    nameLabel.text = orderInfo.kitchen.name
+    statusLabel.text = orderInfo.status
+    deliveryDateLabel.text = orderInfo.deliveryDate
+    deliveryTimeLabel.text = orderInfo.deliveryTime
+  }
+  
 }

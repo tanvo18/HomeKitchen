@@ -23,4 +23,10 @@ class OrderDetailTableViewCell: UITableViewCell {
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
   }
+  
+  func configureWithItem(orderItem: OrderItem) {
+    quantityLabel.text = "\(orderItem.quantity) X"
+    nameProductLabel.text = orderItem.product.name
+    priceLabel.text = "\(orderItem.product.price)"
+  }
 }

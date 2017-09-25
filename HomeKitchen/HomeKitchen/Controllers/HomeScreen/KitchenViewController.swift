@@ -43,8 +43,8 @@ class KitchenViewController: UIViewController {
     myIndicator.center = view.center
     myIndicator.startAnimating()
     view.addSubview(myIndicator)
-    // Set title for back button in navigation bar
-    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    // Adjust navigation bar
+    settingForNavigationBar()
   }
   
   override func didReceiveMemoryWarning() {
@@ -114,6 +114,12 @@ extension KitchenViewController: UserDataModelDelegate {
   
   func didFailUserUpdateWithError(error: String) {
     print(error)
+  }
+  
+  func settingForNavigationBar() {
+    // Set title for back button in navigation bar
+    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    navigationItem.title = "Home"
   }
 }
 

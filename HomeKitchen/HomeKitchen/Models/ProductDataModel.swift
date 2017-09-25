@@ -15,6 +15,7 @@ protocol ProductDataModelDelegate: class {
   func didFailProductUpdateWithError(error: String)
 }
 
+// Get product when click to restaurant's detail
 class ProductDataModel {
   
   weak var delegate: ProductDataModelDelegate?
@@ -27,8 +28,9 @@ class ProductDataModel {
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
+    let url = NetworkingService.baseURLString + "kitchen/products"
     let parameters: Parameters = ["kitchenId" : Helper.kitchenId]
-    Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/kitchen/products", method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { response in
+    Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { response in
       switch response.result {
       case .success:
         if let json = response.result.value as? [String: Any]{

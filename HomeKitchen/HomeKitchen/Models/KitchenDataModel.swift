@@ -27,7 +27,8 @@ class KitchenDataModel {
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
-    Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/kitchen/list", method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+    let url = NetworkingService.baseURLString + "kitchen/list"
+    Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
       switch response.result {
       case .success:
         if let json = response.result.value as? [String: Any]{

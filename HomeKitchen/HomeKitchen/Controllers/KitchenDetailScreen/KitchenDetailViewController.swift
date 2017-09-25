@@ -52,7 +52,7 @@ class KitchenDetailViewController: UIViewController {
     // Request data through delagate
     productModelDatasource.requestProduct()
     // Set title for back button in navigation bar
-    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    settingForNavigationBar()
   }
   
   override func didReceiveMemoryWarning() {
@@ -189,18 +189,25 @@ extension KitchenDetailViewController {
     let result = formatter.string(from: date)
     return result
   }
+  
+  func settingForNavigationBar() {
+    // Set title for back button in navigation bar
+    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    // Set title for navigation bar
+    navigationItem.title = "Kitchen Detail"
+  }
 }
 
 // MARK: IBAction
 extension KitchenDetailViewController {
   @IBAction func didTouchDeliveryButton(_ sender: Any) {
-    performSegue(withIdentifier: "showListOrder", sender: self)
+    performSegue(withIdentifier: "showOrderScreen", sender: self)
   }
 }
 
 extension KitchenDetailViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "showListOrder" {
+    if segue.identifier == "showOrderScreen" {
       if let destination = segue.destination as? OrderViewController {
         destination.products = products
       }

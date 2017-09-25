@@ -12,6 +12,14 @@ class ListOrderViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   let reuseableCell = "Cell"
+  var orderInfos: [OrderInfo] = [] {
+    didSet {
+      tableView.reloadData()
+    }
+  }
+  // Save index of table row
+  var index: Int = 0
+  let customerOrderModelDatasource = CustomerOrderDataModel()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,10 +28,21 @@ class ListOrderViewController: UIViewController {
     tableView.register(UINib(nibName: "GetOrderTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
+    // Declare customerOrderModelDatasource
+    customerOrderModelDatasource.delegate = self
+    // Add left bar button
+    let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
+    self.navigationItem.leftBarButtonItem  = menuButton
+    // Set title for back button in navigation bar
+    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    customerOrderModelDatasource.requestCustomerOrder()
   }
 }
 
@@ -33,15 +52,50 @@ extension ListOrderViewController: UITableViewDelegate {
 extension ListOrderViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 4
+    return orderInfos.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! GetOrderTableViewCell
+    cell.configureWithItem(orderInfo: orderInfos[indexPath.row])
     return cell
   }
   
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    // Save index
+    index = indexPath.row
+    performSegue(withIdentifier: "showOrderDetail", sender: self)
+  }
+  
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 110
+    return 150
   }
 }
+
+// MARK: CustomerOrderDataModel Delegate
+extension ListOrderViewController: CustomerOrderDataModelDelegate {
+  func didRecieveCustomerOrder(data: [OrderInfo]) {
+    orderInfos = data
+  }
+  func didFailUpdateWithError(error: String) {
+    print(error)
+  }
+}
+
+extension ListOrderViewController {
+  func didTouchMenuButton(sender: UIButton) {
+    sideMenuManager?.toggleSideMenuView()
+  }
+}
+
+extension ListOrderViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showOrderDetail" {
+      if let destination = segue.destination as? OrderDetailViewController {
+        destination.orderInfo = orderInfos[index]
+      }
+    }
+  }
+}
+
+

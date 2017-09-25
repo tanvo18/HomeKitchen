@@ -10,8 +10,27 @@ import UIKit
 
 class OrderDetailViewController: UIViewController {
   
+  // MARK: IBOutlet
   @IBOutlet weak var tableView: UITableView!
+  
+  @IBOutlet weak var idLabel: UILabel!
+  
+  @IBOutlet weak var orderDateLabel: UILabel!
+  
+  @IBOutlet weak var deliveryTimeLabel: UILabel!
+  
+  @IBOutlet weak var deliveryDateLabel: UILabel!
+  
+  @IBOutlet weak var statusLabel: UILabel!
+  
+  @IBOutlet weak var nameLabel: UILabel!
+  
+  @IBOutlet weak var addressLabel: UILabel!
+  
+  
   let reuseableCell = "Cell"
+  
+  var orderInfo: OrderInfo = OrderInfo()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,6 +45,9 @@ class OrderDetailViewController: UIViewController {
     super.didReceiveMemoryWarning()
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    parseDataForLabel()
+  }
 }
 
 extension OrderDetailViewController: UITableViewDelegate {
@@ -34,15 +56,29 @@ extension OrderDetailViewController: UITableViewDelegate {
 extension OrderDetailViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 4
+    return orderInfo.products.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! OrderDetailTableViewCell
+    cell.configureWithItem(orderItem: orderInfo.products[indexPath.row])
     return cell
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 30
+    return 70
   }
+}
+
+extension OrderDetailViewController {
+  func parseDataForLabel() {
+    idLabel.text = "\(orderInfo.id)"
+    orderDateLabel.text = orderInfo.orderDate
+    deliveryTimeLabel.text = orderInfo.deliveryTime
+    deliveryDateLabel.text = orderInfo.deliveryDate
+    statusLabel.text = orderInfo.status
+    nameLabel.text = orderInfo.kitchen.name
+    addressLabel.text = orderInfo.kitchen.address.address
+  }
+  
 }

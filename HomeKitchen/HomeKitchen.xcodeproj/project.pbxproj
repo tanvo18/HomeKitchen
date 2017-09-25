@@ -57,6 +57,8 @@
 		4DF440011F5E448E00365F57 /* KitchenDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF440001F5E448E00365F57 /* KitchenDataModel.swift */; };
 		4DF5896C1F78FE5A00CC8149 /* SuggestionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF5896B1F78FE5A00CC8149 /* SuggestionItem.swift */; };
 		4DF5896E1F7900F500CC8149 /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF5896D1F7900F500CC8149 /* Suggestion.swift */; };
+		4DF589721F790C2A00CC8149 /* ResultCustomerOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF589711F790C2A00CC8149 /* ResultCustomerOrder.swift */; };
+		4DF589741F79101D00CC8149 /* CustomerOrderDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF589731F79101D00CC8149 /* CustomerOrderDataModel.swift */; };
 		4DFAAEC31F5D44B600FE2EAE /* KitchenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFAAEC21F5D44B600FE2EAE /* KitchenViewController.swift */; };
 		4DFAAEC61F5D459500FE2EAE /* KitchenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFAAEC41F5D459500FE2EAE /* KitchenTableViewCell.swift */; };
 		4DFAAEC71F5D459500FE2EAE /* KitchenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFAAEC51F5D459500FE2EAE /* KitchenTableViewCell.xib */; };
@@ -118,6 +120,8 @@
 		4DF440001F5E448E00365F57 /* KitchenDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenDataModel.swift; sourceTree = "<group>"; };
 		4DF5896B1F78FE5A00CC8149 /* SuggestionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionItem.swift; sourceTree = "<group>"; };
 		4DF5896D1F7900F500CC8149 /* Suggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
+		4DF589711F790C2A00CC8149 /* ResultCustomerOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCustomerOrder.swift; sourceTree = "<group>"; };
+		4DF589731F79101D00CC8149 /* CustomerOrderDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerOrderDataModel.swift; sourceTree = "<group>"; };
 		4DFAAEC21F5D44B600FE2EAE /* KitchenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenViewController.swift; sourceTree = "<group>"; };
 		4DFAAEC41F5D459500FE2EAE /* KitchenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenTableViewCell.swift; sourceTree = "<group>"; };
 		4DFAAEC51F5D459500FE2EAE /* KitchenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KitchenTableViewCell.xib; sourceTree = "<group>"; };
@@ -355,6 +359,8 @@
 				4DEBE0661F77ED2E00A0305D /* ResultOrderInfo.swift */,
 				4DF5896B1F78FE5A00CC8149 /* SuggestionItem.swift */,
 				4DF5896D1F7900F500CC8149 /* Suggestion.swift */,
+				4DF589711F790C2A00CC8149 /* ResultCustomerOrder.swift */,
+				4DF589731F79101D00CC8149 /* CustomerOrderDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -594,6 +600,7 @@
 				4DACF0AF1F55C9A00043ED79 /* AppDelegate.swift in Sources */,
 				4D18E2191F750243007B83B6 /* NetworkingService.swift in Sources */,
 				4D7471E11F604CB0007C53E2 /* ProductDataModel.swift in Sources */,
+				4DF589741F79101D00CC8149 /* CustomerOrderDataModel.swift in Sources */,
 				4DEBE0691F78082A00A0305D /* OrderDetailViewController.swift in Sources */,
 				4DF5896C1F78FE5A00CC8149 /* SuggestionItem.swift in Sources */,
 				4D06C9531F766EF300ED4E95 /* SegueFromRight.swift in Sources */,
@@ -614,6 +621,7 @@
 				4D06C9551F76731A00ED4E95 /* SegueFromLeft.swift in Sources */,
 				4DCC35191F668B870005BD40 /* OrderItem.swift in Sources */,
 				4DF440011F5E448E00365F57 /* KitchenDataModel.swift in Sources */,
+				4DF589721F790C2A00CC8149 /* ResultCustomerOrder.swift in Sources */,
 				4D4467001F60DF1E0022C91C /* OrderTableViewCell.swift in Sources */,
 				4D900EFC1F716FB600D7C9A8 /* UserDataModel.swift in Sources */,
 				4D2F0BCE1F711F550017B8E7 /* ResultUser.swift in Sources */,

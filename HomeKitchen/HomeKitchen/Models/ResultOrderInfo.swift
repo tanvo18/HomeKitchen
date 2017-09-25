@@ -9,6 +9,7 @@
 import Foundation
 import ObjectMapper
 
+// Get customer's order (customer's Cart) when click to restaurant's detail
 class ResultOrderInfo: Mappable {
   
   var orderInfo: OrderInfo = OrderInfo()

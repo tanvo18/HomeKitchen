@@ -76,6 +76,7 @@ extension LoginViewController {
   
 }
 
+// MARK: IBAction
 extension LoginViewController {
   @IBAction func didTouchFacebookButton(_ sender: Any) {
     let loginManager = LoginManager()
