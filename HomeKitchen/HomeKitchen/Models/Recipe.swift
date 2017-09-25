@@ -21,14 +21,6 @@ class Recipe: Mappable {
     self.init()
   }
   
-  convenience init(id: Int, direction: String, type: String, ingredients: [Ingredient]) {
-    self.init()
-    self.id = id
-    self.direction = direction
-    self.type = type
-    self.ingredients = ingredients
-  }
-  
   // Mappable
   func mapping(map: Map) {
     id                       <- map["id"]

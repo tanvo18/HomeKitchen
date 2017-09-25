@@ -25,17 +25,6 @@ class Kitchen: Mappable {
     self.init()
   }
   
-  convenience init(id: Int, open: String, close: String, name: String, imageUrl: String, point: Double, address: Address) {
-    self.init()
-    self.id = id
-    self.open = open
-    self.close = close
-    self.name = name
-    self.imageUrl = imageUrl
-    self.point = point
-    self.address = address
-  }
-  
   // Mappable
   func mapping(map: Map) {
     id              <- map["id"]

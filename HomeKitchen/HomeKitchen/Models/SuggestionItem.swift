@@ -1,20 +1,20 @@
 //
-//  OrderItem.swift
+//  SuggestionItem.swift
 //  HomeKitchen
 //
-//  Created by Tan Vo on 9/11/17.
+//  Created by Tan Vo on 9/25/17.
 //  Copyright © 2017 Tan Vo. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
 
-class OrderItem: Mappable {
+class SuggestionItem: Mappable {
   
+  var id: Int = 0
   var quantity: Int = 0
+  var price: Int = 0
   var product: Product = Product()
-  // orderItemPrice is product price X quantity = price of OrderItem
-  var orderItemPrice: Int = 0
   
   init() {}
   
@@ -24,8 +24,9 @@ class OrderItem: Mappable {
   
   // Mappable
   func mapping(map: Map) {
-    quantity        <- map["quantity"]
-    product         <- map["item"]
-    orderItemPrice  <- map["price"]
+    id                    <- map["id"]
+    quantity              <- map["quantity"]
+    price                 <- map["price"]
+    product               <- map["item"]
   }
 }

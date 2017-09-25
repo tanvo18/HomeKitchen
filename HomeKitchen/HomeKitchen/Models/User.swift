@@ -24,17 +24,6 @@ class User: Mappable {
     self.init()
   }
   
-  convenience init(username: String, birthday: Date, gender: Int, phoneNumber: String, role: String, name: String,contactInformations: [ContactInfo]) {
-    self.init()
-    self.username = username
-    self.birthday = birthday
-    self.gender = gender
-    self.phoneNumber = phoneNumber
-    self.role = role
-    self.name = name
-    self.contactInformations = contactInformations
-  }
-  
   func mapping(map: Map) {
     username                         <- map["username"]
     birthday                         <- map["birthday"]

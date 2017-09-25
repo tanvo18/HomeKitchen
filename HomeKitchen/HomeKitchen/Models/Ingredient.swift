@@ -20,12 +20,6 @@ class Ingredient: Mappable {
     self.init()
   }
   
-  convenience init(id: Int, detail: String) {
-    self.init()
-    self.id = id
-    self.detail = detail
-  }
-  
   // Mappable
   func mapping(map: Map) {
     id             <- map["id"]

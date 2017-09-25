@@ -25,21 +25,10 @@ class Product: Mappable {
     self.init()
   }
   
-  convenience init(id: Int, price: Int, totalOrderAmount: Int, type: String, imageUrl: String, name: String, recipe: Recipe) {
-    self.init()
-    self.id = id
-    self.price = price
-    self.totalOrderAmount = totalOrderAmount
-    self.type = type
-    self.imageUrl = imageUrl
-    self.name = name
-    self.recipe = recipe
-  }
-  
   // Mappable
   func mapping(map: Map) {
     id                       <- map["id"]
-    price                    <- map["price"]
+    price                    <- map["product_price"]
     totalOrderAmount         <- map["order_amt"]
     type                     <- map["type"]
     imageUrl                 <- map["image_url"]
