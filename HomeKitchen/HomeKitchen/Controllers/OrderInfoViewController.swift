@@ -414,6 +414,11 @@ extension OrderInfoViewController {
   // Unhide calendar when tap date label
   func tapDateLabel(sender:UITapGestureRecognizer) {
     containCalendarView.isHidden = false
+    UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut],
+                   animations: {
+                    self.calendarView.center.y = 300
+                    self.view.layoutIfNeeded()
+    }, completion: nil)
   }
   
   // Check all textfield not empty
@@ -502,11 +507,11 @@ extension OrderInfoViewController {
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
               // Go to HomeScreen
               self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-              }))
+            }))
             self.present(alert, animated: true, completion: nil)
             
           }
-        
+          
         }
       } else if Helper.orderInfo.status == "in_cart" {
         NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", orderedItems: orderedItems) { [unowned self] (error) in
@@ -547,7 +552,7 @@ extension OrderInfoViewController {
       }
     }
   }
-
+  
 }
 
 

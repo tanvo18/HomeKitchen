@@ -21,6 +21,7 @@
 		4D237C0A1F775C3C007C1201 /* GetOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D237C081F775C3C007C1201 /* GetOrderTableViewCell.xib */; };
 		4D24855A1F7A3F940025F810 /* SuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2485581F7A3F940025F810 /* SuggestionTableViewCell.swift */; };
 		4D24855B1F7A3F940025F810 /* SuggestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D2485591F7A3F940025F810 /* SuggestionTableViewCell.xib */; };
+		4D24855E1F7A5EE00025F810 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D24855D1F7A5EE00025F810 /* CalendarViewController.swift */; };
 		4D2F0BCC1F711AC70017B8E7 /* ContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2F0BCB1F711AC70017B8E7 /* ContactInfo.swift */; };
 		4D2F0BCE1F711F550017B8E7 /* ResultUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2F0BCD1F711F550017B8E7 /* ResultUser.swift */; };
 		4D3118A01F6C10CD00ACA713 /* OrderInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31189F1F6C10CD00ACA713 /* OrderInfoViewController.swift */; };
@@ -85,6 +86,7 @@
 		4D237C081F775C3C007C1201 /* GetOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetOrderTableViewCell.xib; sourceTree = "<group>"; };
 		4D2485581F7A3F940025F810 /* SuggestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionTableViewCell.swift; sourceTree = "<group>"; };
 		4D2485591F7A3F940025F810 /* SuggestionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestionTableViewCell.xib; sourceTree = "<group>"; };
+		4D24855D1F7A5EE00025F810 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		4D2F0BCB1F711AC70017B8E7 /* ContactInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfo.swift; sourceTree = "<group>"; };
 		4D2F0BCD1F711F550017B8E7 /* ResultUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultUser.swift; sourceTree = "<group>"; };
 		4D31189F1F6C10CD00ACA713 /* OrderInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInfoViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,14 @@
 			name = CustomerSuggestionScreen;
 			sourceTree = "<group>";
 		};
+		4D24855C1F7A5E4B0025F810 /* CalendarScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D24855D1F7A5EE00025F810 /* CalendarViewController.swift */,
+			);
+			name = CalendarScreen;
+			sourceTree = "<group>";
+		};
 		4D31189E1F6C10B600ACA713 /* OrderInfoScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +345,7 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D24855C1F7A5E4B0025F810 /* CalendarScreen */,
 				4D62A24A1F7A12B600326E9B /* CustomerSuggestionScreen */,
 				4DEBE0651F77A70A00A0305D /* OrderDetailScreen */,
 				4D237C001F775AFA007C1201 /* GetListOrderScreen */,
@@ -617,6 +628,7 @@
 				4D18E21D1F750DA6007B83B6 /* UI.swift in Sources */,
 				4D24855A1F7A3F940025F810 /* SuggestionTableViewCell.swift in Sources */,
 				4DEBE06E1F78095A00A0305D /* OrderDetailTableViewCell.swift in Sources */,
+				4D24855E1F7A5EE00025F810 /* CalendarViewController.swift in Sources */,
 				4DF43FFD1F5E3B7A00365F57 /* Kitchen.swift in Sources */,
 				4D237C091F775C3C007C1201 /* GetOrderTableViewCell.swift in Sources */,
 				4D237C021F775B71007C1201 /* ListOrderViewController.swift in Sources */,
