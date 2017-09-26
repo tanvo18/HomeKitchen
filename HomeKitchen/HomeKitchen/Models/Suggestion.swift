@@ -31,6 +31,6 @@ class Suggestion: Mappable {
     deliveryTime              <- map["delivery_time"]
     deliveryDate              <- map["delivery_date"]
     totalPrice                <- map["total_price"]
-    suggestItems              <- map["suggest_items"]
+    suggestItems              <- map["suggestion_items"]
   }
 }

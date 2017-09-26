@@ -58,6 +58,9 @@ extension ListOrderViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! GetOrderTableViewCell
     cell.configureWithItem(orderInfo: orderInfos[indexPath.row])
+    // Handle button on cell
+    cell.buttonNotification.tag = indexPath.row
+    cell.buttonNotification.addTarget(self, action: #selector(self.didTouchButtonNotification), for: .touchUpInside)
     return cell
   }
   
@@ -86,6 +89,10 @@ extension ListOrderViewController {
   func didTouchMenuButton(sender: UIButton) {
     sideMenuManager?.toggleSideMenuView()
   }
+  
+  func didTouchButtonNotification(sender: UIButton) {
+    performSegue(withIdentifier: "showListSuggestion", sender: self)
+  }
 }
 
 extension ListOrderViewController {
@@ -93,6 +100,10 @@ extension ListOrderViewController {
     if segue.identifier == "showOrderDetail" {
       if let destination = segue.destination as? OrderDetailViewController {
         destination.orderInfo = orderInfos[index]
+      }
+    } else if segue.identifier == "showListSuggestion" {
+      if let destination = segue.destination as? SuggestionViewController {
+        destination.suggestions = orderInfos[index].suggestions
       }
     }
   }

@@ -19,6 +19,8 @@
 		4D237C021F775B71007C1201 /* ListOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D237C011F775B71007C1201 /* ListOrderViewController.swift */; };
 		4D237C091F775C3C007C1201 /* GetOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D237C071F775C3C007C1201 /* GetOrderTableViewCell.swift */; };
 		4D237C0A1F775C3C007C1201 /* GetOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D237C081F775C3C007C1201 /* GetOrderTableViewCell.xib */; };
+		4D24855A1F7A3F940025F810 /* SuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2485581F7A3F940025F810 /* SuggestionTableViewCell.swift */; };
+		4D24855B1F7A3F940025F810 /* SuggestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D2485591F7A3F940025F810 /* SuggestionTableViewCell.xib */; };
 		4D2F0BCC1F711AC70017B8E7 /* ContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2F0BCB1F711AC70017B8E7 /* ContactInfo.swift */; };
 		4D2F0BCE1F711F550017B8E7 /* ResultUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2F0BCD1F711F550017B8E7 /* ResultUser.swift */; };
 		4D3118A01F6C10CD00ACA713 /* OrderInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31189F1F6C10CD00ACA713 /* OrderInfoViewController.swift */; };
@@ -31,6 +33,7 @@
 		4D4466FC1F60DEA40022C91C /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4466FB1F60DEA40022C91C /* OrderViewController.swift */; };
 		4D4467001F60DF1E0022C91C /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */; };
 		4D4467011F60DF1E0022C91C /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */; };
+		4D62A24E1F7A13C500326E9B /* SuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62A24D1F7A13C500326E9B /* SuggestionViewController.swift */; };
 		4D6620E71F5C5A6200B96DC7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6620E61F5C5A6200B96DC7 /* User.swift */; };
 		4D6E96D61F693B45000DD7EE /* OrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E96D51F693B45000DD7EE /* OrderInfo.swift */; };
 		4D7471DD1F604B23007C53E2 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7471DC1F604B23007C53E2 /* Ingredient.swift */; };
@@ -80,6 +83,8 @@
 		4D237C011F775B71007C1201 /* ListOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOrderViewController.swift; sourceTree = "<group>"; };
 		4D237C071F775C3C007C1201 /* GetOrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetOrderTableViewCell.swift; sourceTree = "<group>"; };
 		4D237C081F775C3C007C1201 /* GetOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GetOrderTableViewCell.xib; sourceTree = "<group>"; };
+		4D2485581F7A3F940025F810 /* SuggestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionTableViewCell.swift; sourceTree = "<group>"; };
+		4D2485591F7A3F940025F810 /* SuggestionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestionTableViewCell.xib; sourceTree = "<group>"; };
 		4D2F0BCB1F711AC70017B8E7 /* ContactInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfo.swift; sourceTree = "<group>"; };
 		4D2F0BCD1F711F550017B8E7 /* ResultUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultUser.swift; sourceTree = "<group>"; };
 		4D31189F1F6C10CD00ACA713 /* OrderInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInfoViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +97,7 @@
 		4D4466FB1F60DEA40022C91C /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
+		4D62A24D1F7A13C500326E9B /* SuggestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionViewController.swift; sourceTree = "<group>"; };
 		4D6620E61F5C5A6200B96DC7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4D6E96D51F693B45000DD7EE /* OrderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInfo.swift; sourceTree = "<group>"; };
 		4D7471DC1F604B23007C53E2 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
@@ -207,6 +213,15 @@
 			name = GetListOrderCell;
 			sourceTree = "<group>";
 		};
+		4D2485571F7A3F710025F810 /* CustomerSuggestionScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D2485581F7A3F940025F810 /* SuggestionTableViewCell.swift */,
+				4D2485591F7A3F940025F810 /* SuggestionTableViewCell.xib */,
+			);
+			name = CustomerSuggestionScreen;
+			sourceTree = "<group>";
+		};
 		4D31189E1F6C10B600ACA713 /* OrderInfoScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +270,14 @@
 				4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */,
 			);
 			path = ListOrderCell;
+			sourceTree = "<group>";
+		};
+		4D62A24A1F7A12B600326E9B /* CustomerSuggestionScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D62A24D1F7A13C500326E9B /* SuggestionViewController.swift */,
+			);
+			name = CustomerSuggestionScreen;
 			sourceTree = "<group>";
 		};
 		4D86C0421F72515F00C3D555 /* OrderInfoScreen */ = {
@@ -312,6 +335,7 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D62A24A1F7A12B600326E9B /* CustomerSuggestionScreen */,
 				4DEBE0651F77A70A00A0305D /* OrderDetailScreen */,
 				4D237C001F775AFA007C1201 /* GetListOrderScreen */,
 				4D3F6DA91F76165900F95EB9 /* AddNewContactScreen */,
@@ -328,6 +352,7 @@
 		4DDB7ED11F59486C00A24730 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4D2485571F7A3F710025F810 /* CustomerSuggestionScreen */,
 				4DEBE06A1F78092800A0305D /* OrderDetailScreen */,
 				4D237C031F775BA8007C1201 /* GetListOrderScreen */,
 				4D86C0421F72515F00C3D555 /* OrderInfoScreen */,
@@ -523,6 +548,7 @@
 				4DF43FF71F5E39CE00365F57 /* getrestaurants.json in Resources */,
 				4D4467011F60DF1E0022C91C /* OrderTableViewCell.xib in Resources */,
 				4D1587F91F59639100B1FFB4 /* Main.storyboard in Resources */,
+				4D24855B1F7A3F940025F810 /* SuggestionTableViewCell.xib in Resources */,
 				4DACF0B91F55C9A00043ED79 /* LaunchScreen.storyboard in Resources */,
 				4D1588051F59663C00B1FFB4 /* MenuTableViewCell.xib in Resources */,
 				4DACF0B61F55C9A00043ED79 /* Assets.xcassets in Resources */,
@@ -589,6 +615,7 @@
 			files = (
 				4DEDD3371F5BF90100D24E79 /* LoginViewController.swift in Sources */,
 				4D18E21D1F750DA6007B83B6 /* UI.swift in Sources */,
+				4D24855A1F7A3F940025F810 /* SuggestionTableViewCell.swift in Sources */,
 				4DEBE06E1F78095A00A0305D /* OrderDetailTableViewCell.swift in Sources */,
 				4DF43FFD1F5E3B7A00365F57 /* Kitchen.swift in Sources */,
 				4D237C091F775C3C007C1201 /* GetOrderTableViewCell.swift in Sources */,
@@ -619,6 +646,7 @@
 				4D86C0411F72504B00C3D555 /* Helper.swift in Sources */,
 				4D3BB80B1F5FF52B00D6686C /* TopOrderTableViewCell.swift in Sources */,
 				4D06C9551F76731A00ED4E95 /* SegueFromLeft.swift in Sources */,
+				4D62A24E1F7A13C500326E9B /* SuggestionViewController.swift in Sources */,
 				4DCC35191F668B870005BD40 /* OrderItem.swift in Sources */,
 				4DF440011F5E448E00365F57 /* KitchenDataModel.swift in Sources */,
 				4DF589721F790C2A00CC8149 /* ResultCustomerOrder.swift in Sources */,

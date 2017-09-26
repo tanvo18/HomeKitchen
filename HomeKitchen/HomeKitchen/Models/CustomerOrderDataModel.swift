@@ -33,7 +33,6 @@ class CustomerOrderDataModel {
         if let json = response.result.value as? [String: Any]{
           result = Mapper<ResultCustomerOrder>().map(JSON: json)
           customerOrders = result!.orderInfos
-          print("====count:\(customerOrders.count)")
           self.delegate?.didRecieveCustomerOrder(data: customerOrders)
         }
       case .failure(let error):

@@ -60,6 +60,8 @@ class OrderInfoViewController: UIViewController {
   var savingCurrentMonth: String = ""
   // Items which customer ordered
   var orderedItems: [OrderItem] = []
+  // Message for notification not nil required
+  var message: String = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -86,6 +88,7 @@ class OrderInfoViewController: UIViewController {
     tableView.register(UINib(nibName: "ContactInfoTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
+    
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -416,12 +419,34 @@ extension OrderInfoViewController {
   // Check all textfield not empty
   func checkNotNil() -> Bool {
     if  timeTextField.text!.isEmpty {
+      self.message = "Time is required"
       return false
     }
     if dateLabel.text! == "date" {
+      self.message = "Date is required"
       return false
     }
+    if Helper.user.contactInformations.isEmpty {
+      self.message = "You have to add contact"
+      return false
+    }
+    
+    if !isContactChosen() {
+      self.message = "You have to choose a contact"
+      return false
+    }
+    
     return true
+  }
+  
+  // Check is there any contact chosen, avoid customer didn't choose any contact
+  func isContactChosen() -> Bool {
+    for contact in Helper.user.contactInformations {
+      if contact.isChosen == true {
+        return true
+      }
+    }
+    return false
   }
   
   // Click radio Button
@@ -468,6 +493,7 @@ extension OrderInfoViewController {
   @IBAction func didTouchButtonCheckout(_ sender: Any) {
     if checkNotNil() {
       if Helper.orderInfo.status == "pending" {
+        print("====chosenContactId \(chosenContact().toJSON())")
         NetworkingService.sharedInstance.sendOrder(contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", kitchenId: Helper.kitchenId, orderedItems: orderedItems) { [unowned self] (error) in
           if error != nil {
             print(error!)
@@ -497,7 +523,7 @@ extension OrderInfoViewController {
         }
       }
     } else {
-      let alert = UIAlertController(title: "Error", message: "All fields are required.", preferredStyle: UIAlertControllerStyle.alert)
+      let alert = UIAlertController(title: "Error", message: self.message, preferredStyle: UIAlertControllerStyle.alert)
       alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
       self.present(alert, animated: true, completion: nil)
     }
@@ -512,8 +538,9 @@ extension OrderInfoViewController {
       if let senderVC = segue.source as? AddNewContactViewController {
         let name = senderVC.nameTextField.text!
         let phoneNumber = senderVC.phoneTextField.text!
-        let address = senderVC.phoneTextField.text!
+        let address = senderVC.addressTextField.text!
         let contact = ContactInfo(name: name, phoneNumber: phoneNumber, address: address)
+        print("====newcontactID \(contact.id)")
         Helper.user.contactInformations.append(contact)
         // Reload tableview
         tableView.reloadData()

@@ -14,7 +14,7 @@ class GetOrderTableViewCell: UITableViewCell {
   
   @IBOutlet weak var statusLabel: UILabel!
   
-  @IBOutlet weak var imageViewCell: UIImageView!
+  @IBOutlet weak var buttonNotification: UIButton!
   
   @IBOutlet weak var deliveryDateLabel: UILabel!
   
