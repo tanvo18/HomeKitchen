@@ -9,10 +9,17 @@
 import UIKit
 import CVCalendar
 
-// Add struct color in orderinfo screen
+struct Color {
+  static let selectedText = UIColor.white
+  static let text = UIColor.black
+  static let textDisabled = UIColor.gray
+  static let selectionBackground = UIColor(red: 0.2, green: 0.2, blue: 1.0, alpha: 1.0)
+  static let sundayText = UIColor(red: 1.0, green: 0.2, blue: 0.2, alpha: 1.0)
+  static let sundayTextDisabled = UIColor(red: 1.0, green: 0.6, blue: 0.6, alpha: 1.0)
+  static let sundaySelectionBackground = sundayText
+}
 
 class CalendarViewController: UIViewController {
-  
   
   @IBOutlet weak var menuView: CVCalendarMenuView!
   
@@ -21,6 +28,7 @@ class CalendarViewController: UIViewController {
   @IBOutlet weak var monthLabel: UILabel!
   
   var selectedDay:DayView!
+  var datePicking: String = ""
   var currentCalendar: Calendar?
   
   var animationFinished = true
@@ -41,6 +49,8 @@ class CalendarViewController: UIViewController {
     disablePreviousDays()
     // Delegate of scrollview of calendarView
     calendarView.contentController.scrollView.delegate = self
+    // Init current date for datePicking
+    initCurrentDate()
   }
   
   override func didReceiveMemoryWarning() {
@@ -99,7 +109,7 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
     let dateFromString: Date = dateFormatter.date(from: chosenDayString)!
     dateFormatter.dateFormat = "yyyy-MM-dd"
-    let datePicking = dateFormatter.string(from: dateFromString)
+    datePicking = dateFormatter.string(from: dateFromString)
     print("====date \(datePicking)")
     
   }
@@ -266,6 +276,14 @@ extension CalendarViewController {
       isCurrentMonth = false
     }
   }
+  
+  // Init current date for datePicking
+  func initCurrentDate() {
+    let date = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy/MM/dd"
+    datePicking = formatter.string(from: date)
+  }
 }
 
 // MARK: UIScrollDelegate
@@ -296,5 +314,12 @@ extension CalendarViewController: UIScrollViewDelegate {
   
   func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
     (calendarView.contentController as! MonthContentViewController).scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
+  }
+}
+
+// MARK: IBAction
+extension CalendarViewController {
+  @IBAction func didTouchDoneButton(_ sender: Any) {
+    performSegue(withIdentifier: "unwindFromCalendarView", sender: self)
   }
 }

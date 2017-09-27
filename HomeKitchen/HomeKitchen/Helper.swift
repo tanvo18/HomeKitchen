@@ -12,7 +12,8 @@ class Helper {
   static var accessToken: String = ""
   static var kitchenId: Int = 0
   static var user: User = User()
-  // Variable for remembering order of a kitchen
- // static var status = ""
   static var orderInfo: OrderInfo = OrderInfo()
+  // Saving role 
+  // Chef has 2 roles: chef and customer
+  static var role: String = ""
 }

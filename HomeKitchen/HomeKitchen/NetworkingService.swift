@@ -113,4 +113,30 @@ class NetworkingService {
       }
     }
   }
+  
+  // Edit order
+  func editContactInfo(birthday: String, gender: Int, name: String, phoneNumber: String, contactInfo: ContactInfo, completion: @escaping (_ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "user"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let  parameters: Parameters = ["birthday": birthday,
+                                   "gender": gender,
+                                   "name": name,
+                                   "phone_number": phoneNumber,
+                                   "contact_information": [contactInfo.toJSON()]
+                                  ]
+    
+    Alamofire.request(url, method: .put,parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString
+      { response in
+        switch response.result {
+        case .success:
+          completion(nil)
+        case .failure(let error):
+          completion(error)
+        }
+    }
+  }
 }

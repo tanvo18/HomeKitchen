@@ -40,6 +40,10 @@ class SMNavigationController: LNSideMenuNavigationController {
     case 1:
       nViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
     case 2:
+      Helper.role = "customer"
+      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
+    case 3:
+      Helper.role = "chef"
       nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
     default:
       break

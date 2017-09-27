@@ -91,7 +91,13 @@ extension ListOrderViewController {
   }
   
   func didTouchButtonNotification(sender: UIButton) {
-    performSegue(withIdentifier: "showListSuggestion", sender: self)
+    if orderInfos[index].suggestions.isEmpty {
+      let title = "Message"
+      let message = "This Order doesn't have any suggestion"
+      self.alert(title: title, message: message)
+    } else {
+     performSegue(withIdentifier: "showListSuggestion", sender: self)
+    }
   }
 }
 

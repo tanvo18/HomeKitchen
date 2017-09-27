@@ -34,6 +34,7 @@
 		4D4466FC1F60DEA40022C91C /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4466FB1F60DEA40022C91C /* OrderViewController.swift */; };
 		4D4467001F60DF1E0022C91C /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */; };
 		4D4467011F60DF1E0022C91C /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */; };
+		4D4A73151F7AA9D6008A487C /* EditContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4A73141F7AA9D6008A487C /* EditContactViewController.swift */; };
 		4D62A24E1F7A13C500326E9B /* SuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62A24D1F7A13C500326E9B /* SuggestionViewController.swift */; };
 		4D6620E71F5C5A6200B96DC7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6620E61F5C5A6200B96DC7 /* User.swift */; };
 		4D6E96D61F693B45000DD7EE /* OrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E96D51F693B45000DD7EE /* OrderInfo.swift */; };
@@ -59,6 +60,7 @@
 		4DF43FFD1F5E3B7A00365F57 /* Kitchen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF43FFC1F5E3B7A00365F57 /* Kitchen.swift */; };
 		4DF43FFF1F5E3DC200365F57 /* ResultKitchen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF43FFE1F5E3DC200365F57 /* ResultKitchen.swift */; };
 		4DF440011F5E448E00365F57 /* KitchenDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF440001F5E448E00365F57 /* KitchenDataModel.swift */; };
+		4DF4A4AD1F7B573F00DC272D /* ResultKitchenOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF4A4AC1F7B573F00DC272D /* ResultKitchenOrder.swift */; };
 		4DF5896C1F78FE5A00CC8149 /* SuggestionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF5896B1F78FE5A00CC8149 /* SuggestionItem.swift */; };
 		4DF5896E1F7900F500CC8149 /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF5896D1F7900F500CC8149 /* Suggestion.swift */; };
 		4DF589721F790C2A00CC8149 /* ResultCustomerOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF589711F790C2A00CC8149 /* ResultCustomerOrder.swift */; };
@@ -99,6 +101,7 @@
 		4D4466FB1F60DEA40022C91C /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
+		4D4A73141F7AA9D6008A487C /* EditContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditContactViewController.swift; sourceTree = "<group>"; };
 		4D62A24D1F7A13C500326E9B /* SuggestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionViewController.swift; sourceTree = "<group>"; };
 		4D6620E61F5C5A6200B96DC7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4D6E96D51F693B45000DD7EE /* OrderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInfo.swift; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		4DF43FFC1F5E3B7A00365F57 /* Kitchen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kitchen.swift; sourceTree = "<group>"; };
 		4DF43FFE1F5E3DC200365F57 /* ResultKitchen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultKitchen.swift; sourceTree = "<group>"; };
 		4DF440001F5E448E00365F57 /* KitchenDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenDataModel.swift; sourceTree = "<group>"; };
+		4DF4A4AC1F7B573F00DC272D /* ResultKitchenOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultKitchenOrder.swift; sourceTree = "<group>"; };
 		4DF5896B1F78FE5A00CC8149 /* SuggestionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionItem.swift; sourceTree = "<group>"; };
 		4DF5896D1F7900F500CC8149 /* Suggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
 		4DF589711F790C2A00CC8149 /* ResultCustomerOrder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultCustomerOrder.swift; sourceTree = "<group>"; };
@@ -282,6 +286,14 @@
 			path = ListOrderCell;
 			sourceTree = "<group>";
 		};
+		4D4A73131F7AA9A1008A487C /* EditContactScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D4A73141F7AA9D6008A487C /* EditContactViewController.swift */,
+			);
+			name = EditContactScreen;
+			sourceTree = "<group>";
+		};
 		4D62A24A1F7A12B600326E9B /* CustomerSuggestionScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +357,7 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D4A73131F7AA9A1008A487C /* EditContactScreen */,
 				4D24855C1F7A5E4B0025F810 /* CalendarScreen */,
 				4D62A24A1F7A12B600326E9B /* CustomerSuggestionScreen */,
 				4DEBE0651F77A70A00A0305D /* OrderDetailScreen */,
@@ -378,6 +391,10 @@
 		4DDB7ED21F59487700A24730 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4DF4A4B11F7B57B400DC272D /* GetProduct */,
+				4DF4A4B01F7B57A800DC272D /* GetKitchen */,
+				4DF4A4AF1F7B57A000DC272D /* GetKitchenOrder */,
+				4DF4A4AE1F7B578D00DC272D /* GetCustomerOrder */,
 				4DF43FFA1F5E3B6B00365F57 /* Address.swift */,
 				4D7471DC1F604B23007C53E2 /* Ingredient.swift */,
 				4DF43FFC1F5E3B7A00365F57 /* Kitchen.swift */,
@@ -397,6 +414,7 @@
 				4DF5896D1F7900F500CC8149 /* Suggestion.swift */,
 				4DF589711F790C2A00CC8149 /* ResultCustomerOrder.swift */,
 				4DF589731F79101D00CC8149 /* CustomerOrderDataModel.swift */,
+				4DF4A4AC1F7B573F00DC272D /* ResultKitchenOrder.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -462,6 +480,34 @@
 				4DF43FF61F5E39CE00365F57 /* getrestaurants.json */,
 			);
 			path = "Json File";
+			sourceTree = "<group>";
+		};
+		4DF4A4AE1F7B578D00DC272D /* GetCustomerOrder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GetCustomerOrder;
+			sourceTree = "<group>";
+		};
+		4DF4A4AF1F7B57A000DC272D /* GetKitchenOrder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GetKitchenOrder;
+			sourceTree = "<group>";
+		};
+		4DF4A4B01F7B57A800DC272D /* GetKitchen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GetKitchen;
+			sourceTree = "<group>";
+		};
+		4DF4A4B11F7B57B400DC272D /* GetProduct */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GetProduct;
 			sourceTree = "<group>";
 		};
 		4DFAAEC81F5D45B900FE2EAE /* KitchenCell */ = {
@@ -628,6 +674,7 @@
 				4D18E21D1F750DA6007B83B6 /* UI.swift in Sources */,
 				4D24855A1F7A3F940025F810 /* SuggestionTableViewCell.swift in Sources */,
 				4DEBE06E1F78095A00A0305D /* OrderDetailTableViewCell.swift in Sources */,
+				4DF4A4AD1F7B573F00DC272D /* ResultKitchenOrder.swift in Sources */,
 				4D24855E1F7A5EE00025F810 /* CalendarViewController.swift in Sources */,
 				4DF43FFD1F5E3B7A00365F57 /* Kitchen.swift in Sources */,
 				4D237C091F775C3C007C1201 /* GetOrderTableViewCell.swift in Sources */,
@@ -650,6 +697,7 @@
 				4DF43FFB1F5E3B6B00365F57 /* Address.swift in Sources */,
 				4D3F6DAB1F76167700F95EB9 /* AddNewContactViewController.swift in Sources */,
 				4DFAAEC61F5D459500FE2EAE /* KitchenTableViewCell.swift in Sources */,
+				4D4A73151F7AA9D6008A487C /* EditContactViewController.swift in Sources */,
 				4D6620E71F5C5A6200B96DC7 /* User.swift in Sources */,
 				4D3BB8101F5FFDAF00D6686C /* Product.swift in Sources */,
 				4DFAAEC31F5D44B600FE2EAE /* KitchenViewController.swift in Sources */,

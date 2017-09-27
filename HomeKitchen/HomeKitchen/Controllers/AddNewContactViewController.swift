@@ -28,7 +28,7 @@ class AddNewContactViewController: UIViewController {
   
   @IBAction func didTouchButtonAdd(_ sender: Any) {
     if checkNotNil() {
-      performSegue(withIdentifier: "unwindToOrderInfo", sender: self)
+      performSegue(withIdentifier: "unwindFromAddContact", sender: self)
     }
   }
   

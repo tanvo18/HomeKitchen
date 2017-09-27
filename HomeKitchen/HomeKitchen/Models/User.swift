@@ -12,7 +12,7 @@ import ObjectMapper
 class User: Mappable {
 
   var username: String = ""
-  var birthday: Date = Date()
+  var birthday: String = ""
   var gender: Int = 1
   var phoneNumber: String = ""
   var role: String = ""
