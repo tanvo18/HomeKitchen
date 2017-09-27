@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-class ResultKitchenOrder {
+class ResultKitchenOrder: Mappable {
   
   var orderInfos: [OrderInfo] = []
   

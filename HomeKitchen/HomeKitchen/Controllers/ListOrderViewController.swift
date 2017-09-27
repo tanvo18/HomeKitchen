@@ -14,12 +14,14 @@ class ListOrderViewController: UIViewController {
   let reuseableCell = "Cell"
   var orderInfos: [OrderInfo] = [] {
     didSet {
+    
       tableView.reloadData()
     }
   }
   // Save index of table row
   var index: Int = 0
   let customerOrderModelDatasource = CustomerOrderDataModel()
+  let kitchenOrderModelDatasource = KitchenOrderDataModel()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,11 +32,14 @@ class ListOrderViewController: UIViewController {
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     // Declare customerOrderModelDatasource
     customerOrderModelDatasource.delegate = self
+    // Declare kitchenOrderModelDatasource
+    kitchenOrderModelDatasource.delegate = self
     // Add left bar button
     let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
     self.navigationItem.leftBarButtonItem  = menuButton
     // Set title for back button in navigation bar
     navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+   
   }
   
   override func didReceiveMemoryWarning() {
@@ -42,7 +47,11 @@ class ListOrderViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    customerOrderModelDatasource.requestCustomerOrder()
+    if Helper.role == "customer" {
+      customerOrderModelDatasource.requestCustomerOrder()
+    } else if Helper.role == "chef" {
+      kitchenOrderModelDatasource.requestKitchenOrder()
+    }
   }
 }
 
@@ -57,10 +66,14 @@ extension ListOrderViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! GetOrderTableViewCell
-    cell.configureWithItem(orderInfo: orderInfos[indexPath.row])
+    // Distinguish role
+    let role = Helper.role
+    cell.configureWithItem(orderInfo: orderInfos[indexPath.row], role: role)
     // Handle button on cell
     cell.buttonNotification.tag = indexPath.row
     cell.buttonNotification.addTarget(self, action: #selector(self.didTouchButtonNotification), for: .touchUpInside)
+    cell.buttonMakeSuggestion.tag = indexPath.row
+    cell.buttonMakeSuggestion.addTarget(self, action: #selector(self.didTouchButtonMakeSuggestion), for: .touchUpInside)
     return cell
   }
   
@@ -71,7 +84,7 @@ extension ListOrderViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 150
+    return 180
   }
 }
 
@@ -81,6 +94,17 @@ extension ListOrderViewController: CustomerOrderDataModelDelegate {
     orderInfos = data
   }
   func didFailUpdateWithError(error: String) {
+    print(error)
+  }
+}
+
+// MARK: KitchenOrderDataModel Delegate
+extension ListOrderViewController: KitchenOrderDataModelDelegate {
+  func didRecieveKitchenOrder(data: [OrderInfo]) {
+    orderInfos = data
+  }
+  
+  func didFailKitchenOrderWithError(error: String) {
     print(error)
   }
 }
@@ -99,6 +123,10 @@ extension ListOrderViewController {
      performSegue(withIdentifier: "showListSuggestion", sender: self)
     }
   }
+  
+  func didTouchButtonMakeSuggestion(sender: UIButton) {
+    performSegue(withIdentifier: "showMakeSuggestion", sender: self)
+  }
 }
 
 extension ListOrderViewController {
@@ -110,6 +138,10 @@ extension ListOrderViewController {
     } else if segue.identifier == "showListSuggestion" {
       if let destination = segue.destination as? SuggestionViewController {
         destination.suggestions = orderInfos[index].suggestions
+      }
+    } else if segue.identifier == "showMakeSuggestion" {
+      if let destination = segue.destination as? MakeSuggestionViewController {
+        destination.orderInfo = orderInfos[index]
       }
     }
   }

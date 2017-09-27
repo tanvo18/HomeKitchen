@@ -139,4 +139,29 @@ class NetworkingService {
         }
     }
   }
+  
+  // Using responseString instead of responseJSON
+  func sendSuggestion(orderId: Int,deliveryTime: String, deliveryDate: String, totalPrice: Int, products: [OrderItem], completion: @escaping (_ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "kitchen/suggestion"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let  parameters: Parameters = ["order_id": orderId,
+                                   "delivery_time": deliveryTime,
+                                   "delivery_date": deliveryDate,
+                                   "total_price": totalPrice,
+                                   "suggestion_items": products.toJSON()
+    ]
+    
+    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString { response in
+      switch response.result {
+      case .success:
+        completion(nil)
+      case .failure(let error):
+        completion(error)
+      }
+    }
+  }
 }

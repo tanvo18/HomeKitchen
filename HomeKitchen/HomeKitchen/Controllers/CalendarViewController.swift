@@ -36,7 +36,8 @@ class CalendarViewController: UIViewController {
   // Check for function prevent scroll to previous month
   var isCurrentMonth: Bool = true
   var savingCurrentMonth: String = ""
-  
+  // Identity source view from segue
+  var sourceViewController: String = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -320,6 +321,11 @@ extension CalendarViewController: UIScrollViewDelegate {
 // MARK: IBAction
 extension CalendarViewController {
   @IBAction func didTouchDoneButton(_ sender: Any) {
-    performSegue(withIdentifier: "unwindFromCalendarView", sender: self)
+    if sourceViewController == "OrderInfoViewController" {
+        performSegue(withIdentifier: "unwindFromCalendarView", sender: self)
+    } else if sourceViewController == "MakeSuggestionViewController" {
+       performSegue(withIdentifier: "unwindFromCalendar", sender: self)
+    }
+
   }
 }

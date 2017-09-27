@@ -202,7 +202,6 @@ extension OrderInfoViewController {
   @IBAction func didTouchButtonCheckout(_ sender: Any) {
     if checkNotNil() {
       if Helper.orderInfo.status == "pending" {
-        print("====chosenContactId \(chosenContact().toJSON())")
         NetworkingService.sharedInstance.sendOrder(contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", kitchenId: Helper.kitchenId, orderedItems: orderedItems) { [unowned self] (error) in
           if error != nil {
             print(error!)
@@ -276,6 +275,10 @@ extension OrderInfoViewController {
     if segue.identifier == "showEdit" {
       if let destination = segue.destination as? EditContactViewController {
         destination.contact = Helper.user.contactInformations[position]
+      }
+    } else if segue.identifier == "showCalendar" {
+      if let destination = segue.destination as? CalendarViewController {
+        destination.sourceViewController = "OrderInfoViewController"
       }
     }
   }

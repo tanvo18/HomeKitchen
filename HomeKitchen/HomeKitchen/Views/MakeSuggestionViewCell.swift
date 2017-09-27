@@ -1,0 +1,38 @@
+//
+//  MakeSuggestionViewCell.swift
+//  HomeKitchen
+//
+//  Created by Tan Vo on 9/27/17.
+//  Copyright © 2017 Tan Vo. All rights reserved.
+//
+
+import UIKit
+
+class MakeSuggestionViewCell: UITableViewCell {
+  
+  
+  @IBOutlet weak var nameLabel: UILabel!
+  
+  @IBOutlet weak var quantityLabel: UILabel!
+  
+  @IBOutlet weak var priceTextField: UITextField!
+  
+  @IBOutlet weak var buttonPlus: UIButton!
+  
+  @IBOutlet weak var buttonMinus: UIButton!
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+  }
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+  }
+  
+  func configureWithItem(orderItem: OrderItem) {
+    quantityLabel.text = "\(orderItem.quantity) X"
+    nameLabel.text = orderItem.product.name
+    priceTextField.text = "\(orderItem.product.price)"
+  }
+  
+}

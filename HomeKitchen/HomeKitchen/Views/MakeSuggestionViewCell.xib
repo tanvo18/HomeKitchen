@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="77" id="KGk-i7-Jjw" customClass="MakeSuggestionViewCell" customModule="HomeKitchen" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="76.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmv-az-hhc">
+                        <rect key="frame" x="8" y="8" width="118" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Dd6-qe-6uv"/>
+                            <constraint firstAttribute="width" constant="118" id="d8e-A7-Hlk"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LiU-Z7-8BH">
+                        <rect key="frame" x="8" y="37" width="63" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="63" id="33V-9d-IWu"/>
+                            <constraint firstAttribute="height" constant="21" id="eNx-nP-3sI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hwe-AI-GkD">
+                        <rect key="frame" x="79" y="32" width="132" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="0hd-H7-TnB"/>
+                            <constraint firstAttribute="width" constant="132" id="Dn6-Rh-7ki"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ck7-qm-PKo">
+                        <rect key="frame" x="239" y="37" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="6vZ-lb-cvh"/>
+                            <constraint firstAttribute="height" constant="20" id="eqW-oh-TLL"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="plus"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ru6-P5-e40">
+                        <rect key="frame" x="283" y="37" width="22" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="1dg-0J-Bgx"/>
+                            <constraint firstAttribute="height" constant="20" id="GAN-Iw-aX9"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="minus"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Hwe-AI-GkD" firstAttribute="leading" secondItem="LiU-Z7-8BH" secondAttribute="trailing" constant="8" id="7fL-I6-NvW"/>
+                    <constraint firstItem="cmv-az-hhc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="8ex-fx-40m"/>
+                    <constraint firstItem="LiU-Z7-8BH" firstAttribute="top" secondItem="cmv-az-hhc" secondAttribute="bottom" constant="8" id="9Oh-iz-Oh5"/>
+                    <constraint firstItem="Ck7-qm-PKo" firstAttribute="centerY" secondItem="Hwe-AI-GkD" secondAttribute="centerY" id="Baq-Ck-uBP"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Ru6-P5-e40" secondAttribute="trailing" constant="7" id="Jum-M1-vDF"/>
+                    <constraint firstItem="Ru6-P5-e40" firstAttribute="leading" secondItem="Ck7-qm-PKo" secondAttribute="trailing" constant="24" id="L7l-jg-B3F"/>
+                    <constraint firstItem="LiU-Z7-8BH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="M0g-me-jBG"/>
+                    <constraint firstItem="Ck7-qm-PKo" firstAttribute="leading" secondItem="Hwe-AI-GkD" secondAttribute="trailing" constant="28" id="Qda-KY-EmH"/>
+                    <constraint firstItem="Ru6-P5-e40" firstAttribute="centerY" secondItem="Ck7-qm-PKo" secondAttribute="centerY" id="Tcx-3p-6tF"/>
+                    <constraint firstItem="Hwe-AI-GkD" firstAttribute="centerY" secondItem="LiU-Z7-8BH" secondAttribute="centerY" id="ZY9-oq-s6N"/>
+                    <constraint firstItem="cmv-az-hhc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="w6d-4A-o9P"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="buttonMinus" destination="Ru6-P5-e40" id="HSc-a1-zWE"/>
+                <outlet property="buttonPlus" destination="Ck7-qm-PKo" id="5SQ-VH-i0c"/>
+                <outlet property="nameLabel" destination="cmv-az-hhc" id="Exo-ZT-A3J"/>
+                <outlet property="priceTextField" destination="Hwe-AI-GkD" id="tOs-zd-jBX"/>
+                <outlet property="quantityLabel" destination="LiU-Z7-8BH" id="35E-zD-NDB"/>
+            </connections>
+            <point key="canvasLocation" x="44" y="75.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="minus" width="22" height="22"/>
+        <image name="plus" width="20" height="20"/>
+    </resources>
+</document>

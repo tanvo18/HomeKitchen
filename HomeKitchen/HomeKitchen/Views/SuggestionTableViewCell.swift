@@ -27,7 +27,7 @@ class SuggestionTableViewCell: UITableViewCell {
   func configureWithItem(item: SuggestionItem) {
     productNameLabel.text = item.product.name
     quantityLabel.text = "\(item.quantity) X"
-    priceLabel.text = "\(item.price)"
+    priceLabel.text = "\(item.product.price)"
   }
   
 }

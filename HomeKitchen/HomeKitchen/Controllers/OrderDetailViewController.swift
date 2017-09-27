@@ -27,6 +27,7 @@ class OrderDetailViewController: UIViewController {
   
   @IBOutlet weak var addressLabel: UILabel!
   
+  @IBOutlet weak var informationLabel: UILabel!
   
   let reuseableCell = "Cell"
   
@@ -77,8 +78,15 @@ extension OrderDetailViewController {
     deliveryTimeLabel.text = orderInfo.deliveryTime
     deliveryDateLabel.text = orderInfo.deliveryDate
     statusLabel.text = orderInfo.status
-    nameLabel.text = orderInfo.kitchen.name
-    addressLabel.text = orderInfo.kitchen.address.address
+    if Helper.role == "customer" {
+      informationLabel.text = "kitchen's information"
+      nameLabel.text = orderInfo.kitchen.name
+      addressLabel.text = orderInfo.kitchen.address.address
+    } else if Helper.role == "chef" {
+      informationLabel.text = "customer's information"
+      nameLabel.text = orderInfo.contactInfo.name
+      addressLabel.text = orderInfo.contactInfo.address
+    }
   }
   
 }

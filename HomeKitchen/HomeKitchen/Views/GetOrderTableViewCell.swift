@@ -20,6 +20,8 @@ class GetOrderTableViewCell: UITableViewCell {
   
   @IBOutlet weak var deliveryTimeLabel: UILabel!
   
+  @IBOutlet weak var buttonMakeSuggestion: UIButton!
+
   override func awakeFromNib() {
     super.awakeFromNib()
   }
@@ -28,8 +30,13 @@ class GetOrderTableViewCell: UITableViewCell {
     super.setSelected(selected, animated: animated)
   }
   
-  func configureWithItem(orderInfo: OrderInfo) {
-    nameLabel.text = orderInfo.kitchen.name
+  func configureWithItem(orderInfo: OrderInfo, role: String) {
+    if role == "customer" {
+      nameLabel.text = orderInfo.kitchen.name
+      buttonMakeSuggestion.isHidden = true
+    } else if role == "chef" {
+      nameLabel.text = orderInfo.contactInfo.name
+    }
     statusLabel.text = orderInfo.status
     deliveryDateLabel.text = orderInfo.deliveryDate
     deliveryTimeLabel.text = orderInfo.deliveryTime
