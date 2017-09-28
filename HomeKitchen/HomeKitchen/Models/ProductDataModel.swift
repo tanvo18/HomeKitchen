@@ -21,56 +21,82 @@ class ProductDataModel {
   weak var delegate: ProductDataModelDelegate?
   
   func requestProduct() {
-    var products: [OrderItem] = []
-    var result: ResultOrderInfo?
-    
-    let headers: HTTPHeaders = [
-      "Authorization": Helper.accessToken,
-      "Accept": "application/json"
-    ]
-    let url = NetworkingService.baseURLString + "kitchen/products"
-    let parameters: Parameters = ["kitchenId" : Helper.kitchenId]
-    Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { response in
-      switch response.result {
-      case .success:
-        if let json = response.result.value as? [String: Any]{
-          result = Mapper<ResultOrderInfo>().map(JSON: json)
-          products = result!.orderInfo.products
-          print("====count: \(products.count)")
-          // Remember order info
-          Helper.orderInfo = result!.orderInfo
-          // Assign status
-          if Helper.orderInfo.id != 0 {
-            Helper.orderInfo.status = "in_cart"
-          } else {
-            Helper.orderInfo.status = "pending"
-          }
-          
-          self.delegate?.didRecieveProductUpdate(data: products)
-        }
-      case .failure(let error):
-        self.delegate?.didFailProductUpdateWithError(error: "\(error)")
-      }
-      
-    }
-    
-    //    do {
-    //      if let file = Bundle.main.url(forResource: "getorder", withExtension: "json") {
-    //        let data = try Data(contentsOf: file)
-    //        let json = try JSONSerialization.jsonObject(with: data, options: [])
-    //        if let object = json as? [String: Any] {
-    //          result = Mapper<ResultOrderInfo>().map(JSON: object)
-    //          products = result!.orderInfo.products
+    //    var products: [OrderItem] = []
+    //    var result: ResultOrderInfo?
     //
-    //        } else {
-    //          print("JSON is invalid")
+    //    let headers: HTTPHeaders = [
+    //      "Authorization": Helper.accessToken,
+    //      "Accept": "application/json"
+    //    ]
+    //    let url = NetworkingService.baseURLString + "kitchen/products"
+    //    let parameters: Parameters = ["kitchenId" : Helper.kitchenId]
+    //    Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { response in
+    //      switch response.result {
+    //      case .success:
+    //        if let json = response.result.value as? [String: Any]{
+    //          result = Mapper<ResultOrderInfo>().map(JSON: json)
+    //          products = result!.orderInfo.products
+    //          print("====count: \(products.count)")
+    //          // Remember order info
+    //          Helper.orderInfo = result!.orderInfo
+    //          // Assign status
+    //          if Helper.orderInfo.id != 0 {
+    //            Helper.orderInfo.status = "in_cart"
+    //          } else {
+    //            Helper.orderInfo.status = "pending"
+    //          }
+    //
+    //          self.delegate?.didRecieveProductUpdate(data: products)
     //        }
-    //      } else {
-    //        print("no file")
+    //      case .failure(let error):
+    //        self.delegate?.didFailProductUpdateWithError(error: "\(error)")
     //      }
-    //      delegate?.didRecieveProductUpdate(data: products)
-    //    } catch {
-    //      print(error.localizedDescription)
+    //
     //    }
+    
+    var products: [Product] = []
+    var cart: OrderInfo = OrderInfo()
+    var orderItems: [OrderItem] = []
+    
+    var result: ResultOrderInfo?
+    do {
+      if let file = Bundle.main.url(forResource: "havecart", withExtension: "json") {
+        let data = try Data(contentsOf: file)
+        let json = try JSONSerialization.jsonObject(with: data, options: [])
+        if let object = json as? [String: Any] {
+          result = Mapper<ResultOrderInfo>().map(JSON: object)
+          products = result!.kitchen.products
+          cart = result!.kitchen.cart
+          orderItems = cart.products
+          print("orderItems count:\(orderItems.count)")
+          // compare id to add remain product to order items
+          for product in products {
+            if !isMatchProductId(id: product.id, orderItems: orderItems) {
+              let orderItem = OrderItem(product: product)
+              orderItems.append(orderItem)
+            }
+          }
+          for item in orderItems {
+            print("====itemID: \(item.product.id)")
+          }
+          self.delegate?.didRecieveProductUpdate(data: orderItems)
+        } else {
+          print("JSON is invalid")
+        }
+      } else {
+        print("no file")
+      }
+    } catch {
+      print(error.localizedDescription)
+    }
+  }
+  
+  func isMatchProductId(id: Int,orderItems: [OrderItem]) -> Bool {
+    for item in orderItems {
+      if id == item.product.id{
+        return true
+      }
+    }
+    return false
   }
 }

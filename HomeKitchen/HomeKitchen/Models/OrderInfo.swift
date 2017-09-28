@@ -20,7 +20,7 @@ class OrderInfo: Mappable {
   var totalAmount: Int = 0
   var products: [OrderItem] = []
   var suggestions: [Suggestion] = []
-  var kitchen: Kitchen = Kitchen()
+  var kitchen: Kitchen?
   
   init() {}
   
@@ -38,7 +38,7 @@ class OrderInfo: Mappable {
     contactInfo           <- map["contact_information"]
     status                <- map["status"]
     totalAmount           <- map["total_amount"]
-    products              <- map["products"]
+    products              <- map["order_items"]
     suggestions           <- map["suggestions"]
     kitchen               <- map["kitchen"]
   }

@@ -12,14 +12,14 @@ import ObjectMapper
 // Get customer's order (customer's Cart) when click to restaurant's detail
 class ResultOrderInfo: Mappable {
   
-  var orderInfo: OrderInfo = OrderInfo()
+  var kitchen: Kitchen = Kitchen()
   
   required init?(map: Map) {
     
   }
   
   func mapping(map: Map) {
-    orderInfo <- map["order"]
+    kitchen <- map["kitchen"]
   }
 }
 

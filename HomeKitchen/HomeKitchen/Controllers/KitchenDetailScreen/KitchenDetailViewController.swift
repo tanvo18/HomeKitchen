@@ -20,6 +20,7 @@ class KitchenDetailViewController: UIViewController {
   @IBOutlet weak var timeLabel: UILabel!
   var products: [OrderItem] = []{
     didSet {
+      print("====product count: \(products.count)")
       tableView.reloadData()
     }
   }

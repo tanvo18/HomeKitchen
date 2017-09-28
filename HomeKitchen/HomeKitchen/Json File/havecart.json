@@ -1,0 +1,93 @@
+{
+    "kitchen": {
+        "cart": {
+            "id": 27,
+            "order_date": "27/09/2017",
+            "delivery_time": "11:00 AM",
+            "delivery_date": "2017-09-27",
+            "status": "in_cart",
+            "total_amount": 340000,
+            "order_items": [
+                    {
+                    "quantity": 2,
+                    "item": {
+                        "id": 5,
+                        "type": "Food",
+                        "name": "com Ga",
+                        "product_price": 20000,
+                        "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
+                        "recipe": {
+                            "id": 5,
+                            "direction": "blah Banh Xeo",
+                            "type": "Not Charge",
+                            "ingredients": []
+                        }
+                    },
+                    "order_item_price": 40000
+                },
+                {
+                    "quantity": 2,
+                    "item": {
+                            "id": 7,
+                            "type": "Com",
+                            "name": "Com Chay",
+                            "product_price": 30000,
+                        "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
+                        "recipe": {
+                            "id": 7,
+                            "direction": "blah com chay",
+                            "type": "Not Charge",
+                            "ingredients": []
+                        }
+                    },
+                    "order_item_price": 60000
+                }
+                            
+            ]
+        },
+        "products": [
+            {
+                "id": 5,
+                "type": "Food",
+                "name": "com Ga",
+                "product_price": 20000,
+                "order_amt": 11,
+                "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
+                "recipe": {
+                    "id": 5,
+                    "direction": "blah Banh Xeo",
+                    "type": "Not Charge",
+                    "ingredients": []
+                }
+            },
+            {
+                "id": 6,
+                "type": "Com",
+                "name": "Com Suon",
+                "product_price": 30000,
+                "order_amt": 6,
+                "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
+                "recipe": {
+                    "id": 6,
+                    "direction": "blah com suon",
+                    "type": "Not Charge",
+                    "ingredients": []
+                }
+            },
+            {
+                "id": 7,
+                "type": "Com",
+                "name": "Com Chay",
+                "product_price": 30000,
+                "order_amt": 8,
+                "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
+                "recipe": {
+                    "id": 7,
+                    "direction": "blah com chay",
+                    "type": "Not Charge",
+                    "ingredients": []
+                }
+            }
+        ]
+    }
+}

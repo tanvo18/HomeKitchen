@@ -1,0 +1,129 @@
+{
+    "kitchen": {
+        "products": [
+            {
+                "id": 2,
+                "type": "Com",
+                "name": "Com Suon",
+                "product_price": 30000,
+                "order_amt": 1,
+                "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
+                "recipe": {
+                    "id": 2,
+                    "direction": "blah com suon",
+                    "type": "Not Charge",
+                    "ingredients": []
+                }
+            },
+            {
+                "id": 13,
+                "type": "Do An",
+                "name": "Banh Cuon",
+                "product_price": 15000,
+                "order_amt": 0,
+                "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
+                "recipe": {
+                    "id": 10,
+                    "direction": "blah Banh Cuon",
+                    "type": "Not Charge",
+                    "ingredients": [
+                        {
+                            "id": 6,
+                            "detail": "1 Banh Cuon"
+                        },
+                        {
+                            "id": 7,
+                            "detail": "ABC"
+                        },
+                        {
+                            "id": 8,
+                            "detail": "XYZ"
+                        }
+                    ]
+                }
+            },
+            {
+                "id": 4,
+                "type": "Drink",
+                "name": "Tra sua",
+                "product_price": 15000,
+                "order_amt": 0,
+                "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
+                "recipe": {
+                    "id": 4,
+                    "direction": "blah tra sua",
+                    "type": "Not Charge",
+                    "ingredients": []
+                }
+            },
+            {
+                "id": 1,
+                "type": "Food",
+                "name": "Com Ga",
+                "product_price": 10000,
+                "order_amt": 0,
+                "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
+                "recipe": {
+                    "id": 1,
+                    "direction": "blah com ga",
+                    "type": "Not Charge",
+                    "ingredients": [
+                        {
+                            "id": 1,
+                            "detail": "1 con ga"
+                        },
+                        {
+                            "id": 2,
+                            "detail": "5g gao"
+                        },
+                        {
+                            "id": 3,
+                            "detail": "rau"
+                        }
+                    ]
+                }
+            },
+            {
+                "id": 3,
+                "type": "Com",
+                "name": "Com Chay",
+                "product_price": 30000,
+                "order_amt": 1,
+                "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
+                "recipe": {
+                    "id": 3,
+                    "direction": "blah com chay",
+                    "type": "Not Charge",
+                    "ingredients": []
+                }
+            },
+            {
+                "id": 14,
+                "type": "Do An",
+                "name": "Banh Canh",
+                "product_price": 10000,
+                "order_amt": 0,
+                "image_url": "https://s3.amazonaws.com/demouploadimage/sushi-min.jpg",
+                "recipe": {
+                    "id": 11,
+                    "direction": "blah Banh Canh",
+                    "type": "Not Charge",
+                    "ingredients": [
+                        {
+                            "id": 9,
+                            "detail": "2 Banh Canh"
+                        },
+                        {
+                            "id": 10,
+                            "detail": "DEF"
+                        },
+                        {
+                            "id": 11,
+                            "detail": "ABC"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

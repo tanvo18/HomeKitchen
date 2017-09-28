@@ -1463,8 +1463,8 @@
         <image name="wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PYR-hP-BMS"/>
-        <segue reference="B1h-dc-fmz"/>
         <segue reference="VfJ-pa-Xs3"/>
+        <segue reference="SiF-K6-Nzy"/>
+        <segue reference="PYR-hP-BMS"/>
     </inferredMetricsTieBreakers>
 </document>

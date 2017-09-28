@@ -22,6 +22,13 @@ class OrderItem: Mappable {
     self.init()
   }
   
+  convenience init(quantity: Int = 0, orderItemPrice: Int = 0, product: Product) {
+    self.init()
+    self.quantity = quantity
+    self.product = product
+    self.orderItemPrice = orderItemPrice
+  }
+  
   // Mappable
   func mapping(map: Map) {
     quantity        <- map["quantity"]
