@@ -32,7 +32,6 @@ class KitchenDataModel {
       switch response.result {
       case .success:
         if let json = response.result.value as? [String: Any]{
-          print("blablab")
           result = Mapper<ResultKitchen>().map(JSON: json)
           kitchens = result!.kitchens
           print("====\(kitchens[0].id)")

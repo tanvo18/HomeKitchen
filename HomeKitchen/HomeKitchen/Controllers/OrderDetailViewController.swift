@@ -57,6 +57,7 @@ extension OrderDetailViewController: UITableViewDelegate {
 extension OrderDetailViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
     return orderInfo.products.count
   }
   

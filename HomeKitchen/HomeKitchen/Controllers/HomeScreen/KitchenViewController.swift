@@ -55,7 +55,7 @@ class KitchenViewController: UIViewController {
     // MARK: enable sidemenu
     sideMenuManager?.sideMenuController()?.sideMenu?.disabled = false
     kitchenModelDatasource.requestKitchen()
- //   userModelDatasource.requestUserInfo()
+    userModelDatasource.requestUserInfo()
     
   }
 }

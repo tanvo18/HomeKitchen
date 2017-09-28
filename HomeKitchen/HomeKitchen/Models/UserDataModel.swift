@@ -28,9 +28,13 @@ class UserDataModel {
     Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/user", method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
       switch response.result {
       case .success:
+        print("====result User")
         if let json = response.result.value as? [String: Any]{
           result = Mapper<ResultUser>().map(JSON: json)
           user = result!.user
+          
+          print("====info \(user.contactInformations.count)")
+          
           self.delegate?.didRecieveUserUpdate(data: user)
         }
       case .failure(let error):

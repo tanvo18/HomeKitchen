@@ -39,7 +39,7 @@ class ListOrderViewController: UIViewController {
     self.navigationItem.leftBarButtonItem  = menuButton
     // Set title for back button in navigation bar
     navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-   
+    
   }
   
   override func didReceiveMemoryWarning() {

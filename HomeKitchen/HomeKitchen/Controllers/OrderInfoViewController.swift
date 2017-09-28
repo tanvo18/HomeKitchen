@@ -200,6 +200,7 @@ extension OrderInfoViewController {
 extension OrderInfoViewController {
   
   @IBAction func didTouchButtonCheckout(_ sender: Any) {
+    
     if checkNotNil() {
       if Helper.orderInfo.status == "pending" {
         NetworkingService.sharedInstance.sendOrder(contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", kitchenId: Helper.kitchenId, orderedItems: orderedItems) { [unowned self] (error) in
@@ -242,17 +243,17 @@ extension OrderInfoViewController {
   }
   
   @IBAction func unwindFromAddContact(segue:UIStoryboardSegue) {
-//    if segue.source is AddNewContactViewController {
-//      if let senderVC = segue.source as? AddNewContactViewController {
-//        let name = senderVC.nameTextField.text!
-//        let phoneNumber = senderVC.phoneTextField.text!
-//        let address = senderVC.addressTextField.text!
-//        let contact = ContactInfo(name: name, phoneNumber: phoneNumber, address: address)
-//        Helper.user.contactInformations.append(contact)
-//        // Reload tableview
-//        tableView.reloadData()
-//      }
-//    }
+    if segue.source is AddNewContactViewController {
+      if let senderVC = segue.source as? AddNewContactViewController {
+        let name = senderVC.nameTextField.text!
+        let phoneNumber = senderVC.phoneTextField.text!
+        let address = senderVC.addressTextField.text!
+        let contact = ContactInfo(name: name, phoneNumber: phoneNumber, address: address)
+        Helper.user.contactInformations.append(contact)
+        // Reload tableview
+        tableView.reloadData()
+      }
+    }
   }
   
   @IBAction func unwindFromCalendarView(segue:UIStoryboardSegue) {
