@@ -147,7 +147,7 @@ extension MakeSuggestionViewController {
     }
   }
   
-  @IBAction func unwindFromCalendar(segue:UIStoryboardSegue) {
+  @IBAction func unwindToMakeSuggestionController(segue:UIStoryboardSegue) {
     if segue.source is CalendarViewController {
       if let senderVC = segue.source as? CalendarViewController {
         deliveryDateLabel.text = senderVC.datePicking

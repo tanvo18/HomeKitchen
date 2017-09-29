@@ -15,7 +15,7 @@ class OrderInfo: Mappable {
   var username: String = ""
   var deliveryTime: String = ""
   var deliveryDate: String = ""
-  var contactInfo: ContactInfo = ContactInfo()
+  var contactInfo: ContactInfo?
   var status: String = ""
   var totalAmount: Int = 0
   var products: [OrderItem] = []

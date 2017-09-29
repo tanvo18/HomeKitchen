@@ -35,7 +35,7 @@ class GetOrderTableViewCell: UITableViewCell {
       nameLabel.text = orderInfo.kitchen.name
       buttonMakeSuggestion.isHidden = true
     } else if role == "chef" {
-      nameLabel.text = orderInfo.contactInfo.name
+      nameLabel.text = orderInfo.contactInfo?.name
     }
     statusLabel.text = orderInfo.status
     deliveryDateLabel.text = orderInfo.deliveryDate

@@ -59,7 +59,7 @@ class EditContactViewController: UIViewController {
           let alert = UIAlertController(title: "Notification", message: "Edit successfully.", preferredStyle: UIAlertControllerStyle.alert)
           alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
             // Go to OrderInfo Screen
-            self.performSegue(withIdentifier: "unwindFromEdit", sender: self)
+            self.performSegue(withIdentifier: "unwindToOrderInfoController", sender: self)
           }))
           self.present(alert, animated: true, completion: nil)
         }

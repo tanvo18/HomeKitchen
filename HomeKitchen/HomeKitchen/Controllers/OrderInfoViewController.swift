@@ -52,7 +52,9 @@ class OrderInfoViewController: UIViewController {
     tableView.register(UINib(nibName: "ContactInfoTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    
+    // Set current date and time
+    dateLabel.text = setCurrentDate()
+    timeTextField.text = setCurrentTime()
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -186,7 +188,7 @@ extension OrderInfoViewController {
     return chosenContact
   }
   
-  func chooseCurrentDate() -> String {
+  func setCurrentDate() -> String {
     let date = Date()
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
@@ -194,6 +196,13 @@ extension OrderInfoViewController {
     return result
   }
   
+  func setCurrentTime() -> String {
+    let date = Date()
+    let formatter = DateFormatter()
+    formatter.timeStyle = .short
+    let timeString = formatter.string(from: date)
+    return timeString
+  }
 }
 
 // MARK: IBAction
@@ -202,7 +211,7 @@ extension OrderInfoViewController {
   @IBAction func didTouchButtonCheckout(_ sender: Any) {
     if checkNotNil() {
       if Helper.orderInfo.status == "pending" {
-        NetworkingService.sharedInstance.sendOrder(contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", kitchenId: Helper.kitchenId, orderedItems: orderedItems) { [unowned self] (error) in
+        NetworkingService.sharedInstance.sendOrder(contact: chosenContact(), orderDate: setCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", kitchenId: Helper.kitchenId, orderedItems: orderedItems) { [unowned self] (error) in
           if error != nil {
             print(error!)
           } else {
@@ -217,7 +226,7 @@ extension OrderInfoViewController {
           
         }
       } else if Helper.orderInfo.status == "in_cart" {
-        NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: chooseCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", orderedItems: orderedItems) { [unowned self] (error) in
+        NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: setCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", orderedItems: orderedItems) { [unowned self] (error) in
           if error != nil {
             print(error!)
           } else {
@@ -241,8 +250,14 @@ extension OrderInfoViewController {
     self.performSegue(withIdentifier: "showAddContact", sender: self)
   }
   
-  @IBAction func unwindFromAddContact(segue:UIStoryboardSegue) {
-    if segue.source is AddNewContactViewController {
+  @IBAction func unwindToOrderInfoController(segue:UIStoryboardSegue) {
+    if segue.source is CalendarViewController {
+      if let senderVC = segue.source as? CalendarViewController {
+        dateLabel.text = senderVC.datePicking
+      }
+    } else if segue.source is EditContactViewController {
+      tableView.reloadData()
+    } else if segue.source is AddNewContactViewController {
       if let senderVC = segue.source as? AddNewContactViewController {
         let name = senderVC.nameTextField.text!
         let phoneNumber = senderVC.phoneTextField.text!
@@ -252,20 +267,6 @@ extension OrderInfoViewController {
         // Reload tableview
         tableView.reloadData()
       }
-    }
-  }
-  
-  @IBAction func unwindFromCalendarView(segue:UIStoryboardSegue) {
-    if segue.source is CalendarViewController {
-      if let senderVC = segue.source as? CalendarViewController {
-        dateLabel.text = senderVC.datePicking
-      }
-    }
-  }
-  
-  @IBAction func unwindFromEdit(segue:UIStoryboardSegue) {
-    if segue.source is EditContactViewController {
-        tableView.reloadData()
     }
   }
 }

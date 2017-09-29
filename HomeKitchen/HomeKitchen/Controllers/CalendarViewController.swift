@@ -322,9 +322,9 @@ extension CalendarViewController: UIScrollViewDelegate {
 extension CalendarViewController {
   @IBAction func didTouchDoneButton(_ sender: Any) {
     if sourceViewController == "OrderInfoViewController" {
-        performSegue(withIdentifier: "unwindFromCalendarView", sender: self)
+        performSegue(withIdentifier: "unwindToOrderInfoController", sender: self)
     } else if sourceViewController == "MakeSuggestionViewController" {
-       performSegue(withIdentifier: "unwindFromCalendar", sender: self)
+       performSegue(withIdentifier: "unwindToMakeSuggestionController", sender: self)
     }
 
   }

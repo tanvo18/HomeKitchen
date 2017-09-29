@@ -84,8 +84,8 @@ extension OrderDetailViewController {
       addressLabel.text = orderInfo.kitchen.address.address
     } else if Helper.role == "chef" {
       informationLabel.text = "customer's information"
-      nameLabel.text = orderInfo.contactInfo.name
-      addressLabel.text = orderInfo.contactInfo.address
+      nameLabel.text = orderInfo.contactInfo?.name
+      addressLabel.text = orderInfo.contactInfo?.address
     }
   }
   
