@@ -20,7 +20,7 @@ class OrderInfo: Mappable {
   var totalAmount: Int = 0
   var products: [OrderItem] = []
   var suggestions: [Suggestion] = []
-  var kitchen: Kitchen = Kitchen()
+  var kitchen: Kitchen?
   
   init() {}
   

@@ -32,7 +32,7 @@ class GetOrderTableViewCell: UITableViewCell {
   
   func configureWithItem(orderInfo: OrderInfo, role: String) {
     if role == "customer" {
-      nameLabel.text = orderInfo.kitchen.name
+      nameLabel.text = orderInfo.kitchen?.name
       buttonMakeSuggestion.isHidden = true
     } else if role == "chef" {
       nameLabel.text = orderInfo.contactInfo?.name

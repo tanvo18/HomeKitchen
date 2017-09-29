@@ -14,7 +14,7 @@ class SuggestionItem: Mappable {
   var id: Int = 0
   var quantity: Int = 0
   var price: Int = 0
-  var product: Product = Product()
+  var product: Product?
   
   init() {}
   
