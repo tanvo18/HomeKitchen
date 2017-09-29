@@ -35,18 +35,20 @@ class ProductDataModel {
       case .success:
         if let json = response.result.value as? [String: Any]{
           result = Mapper<ResultOrderInfo>().map(JSON: json)
-          products = result!.orderInfo.products
-          print("====count: \(products.count)")
-          // Remember order info
-          Helper.orderInfo = result!.orderInfo
-          // Assign status
-          if Helper.orderInfo.id != 0 {
-            Helper.orderInfo.status = "in_cart"
-          } else {
-            Helper.orderInfo.status = "pending"
+          if let result = result {
+            products = result.orderInfo.products
+            print("====count: \(products.count)")
+            // Remember order info
+            Helper.orderInfo = result.orderInfo
+            // Assign status
+            if Helper.orderInfo.id != 0 {
+              Helper.orderInfo.status = "in_cart"
+            } else {
+              Helper.orderInfo.status = "pending"
+            }
+            
+            self.delegate?.didRecieveProductUpdate(data: products)
           }
-          
-          self.delegate?.didRecieveProductUpdate(data: products)
         }
       case .failure(let error):
         self.delegate?.didFailProductUpdateWithError(error: "\(error)")

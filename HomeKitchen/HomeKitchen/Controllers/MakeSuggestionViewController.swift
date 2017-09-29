@@ -81,10 +81,10 @@ extension MakeSuggestionViewController {
   func textFieldDidChange(textField: UITextField) {
     index = textField.tag
     if !textField.text!.isEmpty {
-      // Assign price of product
-      orderInfo.products[index].product.price = Int(textField.text!)!
-      // Calculate price of all quantity of product again
-      orderInfo.products[index].orderItemPrice = orderInfo.products[index].product.price * orderInfo.products[index].quantity
+      if let productPrice = orderInfo.products[index].product?.price {
+        // Calculate price of all quantity of product again
+        orderInfo.products[index].orderItemPrice = productPrice * orderInfo.products[index].quantity
+      }
       calculateToTalPrice()
     }
   }
@@ -92,7 +92,7 @@ extension MakeSuggestionViewController {
   func calculateToTalPrice() {
     totalPrice = 0
     for item in orderInfo.products {
-      totalPrice += item.quantity * item.product.price
+      totalPrice += item.quantity * item.product!.price
     }
     totalLabel.text = "\(totalPrice)"
   }

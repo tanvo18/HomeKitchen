@@ -55,7 +55,9 @@ extension OrderViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! OrderTableViewCell
-    cell.configureWithItem(product: products[indexPath.row].product, quantity: products[indexPath.row].quantity)
+    if let product = products[indexPath.row].product {
+       cell.configureWithItem(product: product, quantity: products[indexPath.row].quantity)
+    }
     // Click button in cell
     cell.buttonPlus.tag = indexPath.row
     cell.buttonPlus.addTarget(self, action: #selector(self.didTouchButtonPlus), for: .touchUpInside)
@@ -92,7 +94,9 @@ extension OrderViewController {
 extension OrderViewController {
   // Increase price on checkout view
   func addPrice(position: Int) {
-    totalPrice += products[position].product.price
+    if let productPrice = products[position].product?.price {
+      totalPrice += productPrice
+    }
     productQuantityInCart += 1
     if productQuantityInCart <= 1 {
       totalPriceLabel.text = "\(productQuantityInCart) item - \(totalPrice) $"
@@ -104,7 +108,9 @@ extension OrderViewController {
   
   // Decrease price on checkout view
   func subtractPrice(position: Int) {
-    totalPrice -= products[position].product.price
+    if let productPrice = products[position].product?.price {
+      totalPrice -= productPrice
+    }
     productQuantityInCart -= 1
     if productQuantityInCart <= 1 {
       totalPriceLabel.text = "\(productQuantityInCart) item - \(totalPrice) $"
@@ -121,7 +127,9 @@ extension OrderViewController {
     var price = 0
     var quantity = 0
     for orderItem in products {
-      price += orderItem.product.price * orderItem.quantity
+      if let productPrice = orderItem.product?.price {
+        price += productPrice * orderItem.quantity
+      }
       quantity += orderItem.quantity
     }
     if quantity <= 1 {

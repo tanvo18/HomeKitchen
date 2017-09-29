@@ -25,8 +25,11 @@ class OrderDetailTableViewCell: UITableViewCell {
   }
   
   func configureWithItem(orderItem: OrderItem) {
+    guard let productName = orderItem.product?.name, let productPrice = orderItem.product?.price  else {
+      return
+    }
     quantityLabel.text = "\(orderItem.quantity) X"
-    nameProductLabel.text = orderItem.product.name
-    priceLabel.text = "\(orderItem.product.price)"
+    nameProductLabel.text = productName
+    priceLabel.text = "\(productPrice)"
   }
 }

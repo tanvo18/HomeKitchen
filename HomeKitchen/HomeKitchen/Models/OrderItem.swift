@@ -12,7 +12,7 @@ import ObjectMapper
 class OrderItem: Mappable {
   
   var quantity: Int = 0
-  var product: Product = Product()
+  var product: Product?
   // orderItemPrice is product price X quantity = price of OrderItem
   var orderItemPrice: Int = 0
   

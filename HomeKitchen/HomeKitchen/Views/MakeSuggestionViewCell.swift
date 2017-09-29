@@ -30,9 +30,12 @@ class MakeSuggestionViewCell: UITableViewCell {
   }
   
   func configureWithItem(orderItem: OrderItem) {
+    guard let productName =  orderItem.product?.name, let productPrice = orderItem.product?.price else {
+      return
+    }
     quantityLabel.text = "\(orderItem.quantity) X"
-    nameLabel.text = orderItem.product.name
-    priceTextField.text = "\(orderItem.product.price)"
+    nameLabel.text = productName
+    priceTextField.text = "\(productPrice)"
   }
   
 }

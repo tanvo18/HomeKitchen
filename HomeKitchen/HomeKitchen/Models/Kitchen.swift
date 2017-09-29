@@ -17,7 +17,7 @@ class Kitchen: Mappable {
   var name: String = ""
   var imageUrl: String = ""
   var point: Double = 0.0
-  var address: Address = Address()
+  var address: Address?
   
   init() {}
   

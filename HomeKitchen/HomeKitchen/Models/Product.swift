@@ -17,7 +17,7 @@ class Product: Mappable {
   var type: String = ""
   var imageUrl: String = ""
   var name: String = ""
-  var recipe: Recipe = Recipe()
+  var recipe: Recipe?
   
   init() {}
   

@@ -32,8 +32,10 @@ class CustomerOrderDataModel {
       case .success:
         if let json = response.result.value as? [String: Any]{
           result = Mapper<ResultCustomerOrder>().map(JSON: json)
-          customerOrders = result!.orderInfos
-          self.delegate?.didRecieveCustomerOrder(data: customerOrders)
+          if let result = result {
+            customerOrders = result.orderInfos
+            self.delegate?.didRecieveCustomerOrder(data: customerOrders)
+          }
         }
       case .failure(let error):
         self.delegate?.didFailUpdateWithError(error: "\(error)")

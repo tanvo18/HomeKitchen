@@ -81,7 +81,7 @@ extension OrderDetailViewController {
     if Helper.role == "customer" {
       informationLabel.text = "kitchen's information"
       nameLabel.text = orderInfo.kitchen.name
-      addressLabel.text = orderInfo.kitchen.address.address
+      addressLabel.text = orderInfo.kitchen.address?.address
     } else if Helper.role == "chef" {
       informationLabel.text = "customer's information"
       nameLabel.text = orderInfo.contactInfo?.name

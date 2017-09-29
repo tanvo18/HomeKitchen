@@ -30,8 +30,10 @@ class UserDataModel {
       case .success:
         if let json = response.result.value as? [String: Any]{
           result = Mapper<ResultUser>().map(JSON: json)
-          user = result!.user
-          self.delegate?.didRecieveUserUpdate(data: user)
+          if let result = result {
+            user = result.user
+            self.delegate?.didRecieveUserUpdate(data: user)
+          }
         }
       case .failure(let error):
         self.delegate?.didFailUserUpdateWithError(error: "\(error)")
