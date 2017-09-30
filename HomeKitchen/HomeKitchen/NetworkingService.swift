@@ -103,7 +103,7 @@ class NetworkingService {
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
-    Alamofire.request(url, method: .delete, encoding: JSONEncoding.default, headers: headers).responseJSON
+    Alamofire.request(url, method: .delete, encoding: JSONEncoding.default, headers: headers).responseString
       { response in
       switch response.result {
       case .success:

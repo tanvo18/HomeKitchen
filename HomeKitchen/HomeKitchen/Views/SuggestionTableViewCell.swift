@@ -14,7 +14,7 @@ class SuggestionTableViewCell: UITableViewCell {
   
   @IBOutlet weak var quantityLabel: UILabel!
   
-  @IBOutlet weak var priceLabel: UILabel!
+  @IBOutlet weak var itemPriceLabel: UILabel!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -25,12 +25,12 @@ class SuggestionTableViewCell: UITableViewCell {
   }
   
   func configureWithItem(item: SuggestionItem) {
-    guard let productName = item.product?.name, let productPrice = item.product?.price  else {
+    guard let productName = item.product?.name else {
       return
     }
     productNameLabel.text = productName
     quantityLabel.text = "\(item.quantity) X"
-    priceLabel.text = "\(productPrice)"
+    itemPriceLabel.text = "\(item.price)"
   }
   
 }

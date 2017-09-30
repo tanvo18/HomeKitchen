@@ -29,6 +29,8 @@ class OrderDetailViewController: UIViewController {
   
   @IBOutlet weak var informationLabel: UILabel!
   
+  @IBOutlet weak var makeSuggestionButton: UIButton!
+  
   let reuseableCell = "Cell"
   
   var orderInfo: OrderInfo = OrderInfo()
@@ -72,6 +74,12 @@ extension OrderDetailViewController: UITableViewDataSource {
 }
 
 extension OrderDetailViewController {
+  @IBAction func didTouchMakeSuggestionButton(_ sender: Any) {
+  performSegue(withIdentifier: "showMakeSuggestion", sender: self)
+  }
+}
+
+extension OrderDetailViewController {
   func parseDataForLabel() {
     idLabel.text = "\(orderInfo.id)"
     orderDateLabel.text = orderInfo.orderDate
@@ -82,6 +90,7 @@ extension OrderDetailViewController {
       informationLabel.text = "kitchen's information"
       nameLabel.text = orderInfo.kitchen?.name
       addressLabel.text = orderInfo.kitchen?.address?.address
+      makeSuggestionButton.isHidden = true
     } else if Helper.role == "chef" {
       informationLabel.text = "customer's information"
       nameLabel.text = orderInfo.contactInfo?.name
@@ -89,4 +98,14 @@ extension OrderDetailViewController {
     }
   }
   
+}
+
+extension OrderDetailViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showMakeSuggestion" {
+      if let destination = segue.destination as? MakeSuggestionViewController {
+        destination.orderInfo = orderInfo
+      }
+    }
+  }
 }

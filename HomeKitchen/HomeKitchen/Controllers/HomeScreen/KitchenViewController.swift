@@ -127,9 +127,7 @@ extension KitchenViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showKitchenDetail" {
       if let destination = segue.destination as? KitchenDetailViewController {
-        destination.imageUrl = kitchens[position].imageUrl
-        destination.point = kitchens[position].point
-        destination.time = "\(kitchens[position].open)-\(kitchens[position].close)"
+        destination.kitchen = kitchens[position]
       }
     }
   }

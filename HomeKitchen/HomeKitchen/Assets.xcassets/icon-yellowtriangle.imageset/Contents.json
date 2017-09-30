@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "icon-yellowtriangle.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "google@2x.png",
+      "filename" : "icon-yellowtriangle@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icon-yellowtriangle@3x.png",
       "scale" : "3x"
     }
   ],

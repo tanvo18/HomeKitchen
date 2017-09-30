@@ -16,8 +16,11 @@ class KitchenDetailViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var backgroundImage: UIImageView!
   @IBOutlet weak var pointLabel: UILabel!
+  @IBOutlet weak var addressLabel: UILabel!
   @IBOutlet weak var indicator: UIActivityIndicatorView!
   @IBOutlet weak var timeLabel: UILabel!
+  @IBOutlet weak var kitchenNameLabel: UILabel!
+  
   var products: [OrderItem] = []{
     didSet {
       tableView.reloadData()
@@ -28,9 +31,7 @@ class KitchenDetailViewController: UIViewController {
   
   let reuseableCell = "Cell"
   let productModelDatasource = ProductDataModel()
-  var imageUrl: String = ""
-  var point: Double = 0.0
-  var time: String = ""
+  var kitchen: Kitchen?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -46,9 +47,7 @@ class KitchenDetailViewController: UIViewController {
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     // Start indicator
     indicator.startAnimating()
-    downloadBackgroundImage()
-    pointLabel.text = "\(point)"
-    timeLabel.text = time
+    parseDataForLabel()
     // Request data through delagate
     productModelDatasource.requestProduct()
     // Set title for back button in navigation bar
@@ -160,8 +159,21 @@ extension KitchenDetailViewController: ProductDataModelDelegate {
 }
 
 extension KitchenDetailViewController {
+  
+  func parseDataForLabel() {
+    guard let kitchenName = kitchen?.name, let point = kitchen?.point, let openTime = kitchen?.open, let closeTime = kitchen?.close, let address = kitchen?.address?.address, let imageUrl = kitchen?.imageUrl else {
+      return
+    }
+    downloadBackgroundImage(imageUrl: imageUrl)
+  
+    pointLabel.text = "\(point)"
+    timeLabel.text = "\(openTime) - \(closeTime)"
+    addressLabel.text = address
+    kitchenNameLabel.text = kitchenName
+  }
+  
   // MARK: download image with url
-  func downloadBackgroundImage() {
+  func downloadBackgroundImage(imageUrl: String) {
     let url = URL(string: imageUrl)!
     ImageDownloader.default.downloadImage(with: url, options: [], progressBlock: nil) {
       (image, error, url, data) in

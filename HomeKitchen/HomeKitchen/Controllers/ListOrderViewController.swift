@@ -72,8 +72,6 @@ extension ListOrderViewController: UITableViewDataSource {
     // Handle button on cell
     cell.buttonNotification.tag = indexPath.row
     cell.buttonNotification.addTarget(self, action: #selector(self.didTouchButtonNotification), for: .touchUpInside)
-    cell.buttonMakeSuggestion.tag = indexPath.row
-    cell.buttonMakeSuggestion.addTarget(self, action: #selector(self.didTouchButtonMakeSuggestion), for: .touchUpInside)
     return cell
   }
   
@@ -123,10 +121,6 @@ extension ListOrderViewController {
      performSegue(withIdentifier: "showListSuggestion", sender: self)
     }
   }
-  
-  func didTouchButtonMakeSuggestion(sender: UIButton) {
-    performSegue(withIdentifier: "showMakeSuggestion", sender: self)
-  }
 }
 
 extension ListOrderViewController {
@@ -138,10 +132,6 @@ extension ListOrderViewController {
     } else if segue.identifier == "showListSuggestion" {
       if let destination = segue.destination as? SuggestionViewController {
         destination.suggestions = orderInfos[index].suggestions
-      }
-    } else if segue.identifier == "showMakeSuggestion" {
-      if let destination = segue.destination as? MakeSuggestionViewController {
-        destination.orderInfo = orderInfos[index]
       }
     }
   }

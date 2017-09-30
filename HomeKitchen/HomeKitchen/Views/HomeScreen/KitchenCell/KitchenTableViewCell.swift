@@ -45,17 +45,17 @@ class KitchenTableViewCell: UITableViewCell {
     timeLabel.text = "\(kitchen.open) to \(kitchen.close)"
     pointLabel.text = "\(kitchen.point)"
     switch kitchen.point {
-    case let point where point <= 1:
+    case let point where point <= Constant.verybadPoint:
       qualityLabel.text = "VERY BAD"
-    case let point where point <= 2:
+    case let point where point <= Constant.badPoint:
       qualityLabel.text = "BAD"
-    case let point where point <= 3:
+    case let point where point <= Constant.fairPoint:
       qualityLabel.text = "FAIR"
-    case let point where point <= 4:
+    case let point where point <= Constant.goodPoint:
       qualityLabel.text = "GOOD"
-    case let point where point < 5:
+    case let point where point < Constant.excellentPoint:
       qualityLabel.text = "VERY GOOD"
-    case let point where point == 5:
+    case let point where point == Constant.excellentPoint:
       qualityLabel.text = "EXCELLENT"
     default:
       break

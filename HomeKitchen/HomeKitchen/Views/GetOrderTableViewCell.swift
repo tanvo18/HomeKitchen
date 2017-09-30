@@ -14,14 +14,10 @@ class GetOrderTableViewCell: UITableViewCell {
   
   @IBOutlet weak var statusLabel: UILabel!
   
+  @IBOutlet weak var calendarLabel: UILabel!
+  
   @IBOutlet weak var buttonNotification: UIButton!
   
-  @IBOutlet weak var deliveryDateLabel: UILabel!
-  
-  @IBOutlet weak var deliveryTimeLabel: UILabel!
-  
-  @IBOutlet weak var buttonMakeSuggestion: UIButton!
-
   override func awakeFromNib() {
     super.awakeFromNib()
   }
@@ -31,15 +27,15 @@ class GetOrderTableViewCell: UITableViewCell {
   }
   
   func configureWithItem(orderInfo: OrderInfo, role: String) {
-    if role == "customer" {
-      nameLabel.text = orderInfo.kitchen?.name
-      buttonMakeSuggestion.isHidden = true
-    } else if role == "chef" {
-      nameLabel.text = orderInfo.contactInfo?.name
+    if orderInfo.status != "in_cart" {
+      if role == "customer" {
+        nameLabel.text = orderInfo.kitchen?.name
+      } else if role == "chef" {
+        nameLabel.text = orderInfo.contactInfo?.name
+      }
+      statusLabel.text = orderInfo.status
+      calendarLabel.text = orderInfo.orderDate
     }
-    statusLabel.text = orderInfo.status
-    deliveryDateLabel.text = orderInfo.deliveryDate
-    deliveryTimeLabel.text = orderInfo.deliveryTime
   }
   
 }

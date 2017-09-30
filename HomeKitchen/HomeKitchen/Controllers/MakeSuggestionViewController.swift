@@ -16,7 +16,7 @@ class MakeSuggestionViewController: UIViewController {
   var orderInfo: OrderInfo = OrderInfo()
   
   @IBOutlet weak var deliveryDateLabel: UILabel!
- 
+  
   @IBOutlet weak var totalLabel: UILabel!
   
   @IBOutlet weak var deliveryTimeTextField: UITextField!
@@ -39,15 +39,18 @@ class MakeSuggestionViewController: UIViewController {
     // Create datePicker for timeTextField
     createDatePicker()
     // Tapping dateLabel
-    let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapDateLabel))
+    let tapLable: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapDateLabel))
     deliveryDateLabel.isUserInteractionEnabled = true
-    deliveryDateLabel.addGestureRecognizer(tap)
+    deliveryDateLabel.addGestureRecognizer(tapLable)
+    
+    // Tab outside to close keyboard
+    let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+    view.addGestureRecognizer(tapOutside)
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
 }
 
 // MARK: Tableview Delegate
@@ -78,6 +81,7 @@ extension MakeSuggestionViewController: UITableViewDataSource {
 }
 
 extension MakeSuggestionViewController {
+  // Catching price textfield change number
   func textFieldDidChange(textField: UITextField) {
     index = textField.tag
     if !textField.text!.isEmpty {
@@ -126,7 +130,11 @@ extension MakeSuggestionViewController {
   func tapDateLabel(sender:UITapGestureRecognizer) {
     performSegue(withIdentifier: "showCalendarView", sender: self)
   }
-
+  
+  override func dismissKeyboard() {
+    view.endEditing(true)
+  }
+  
 }
 
 // MARK: IBAction
