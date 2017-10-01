@@ -69,6 +69,11 @@ extension MakeSuggestionViewController: UITableViewDataSource {
     // Handle textfield in row
     cell.priceTextField.tag = indexPath.row
     cell.priceTextField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+    // Handle button in cell
+    cell.buttonPlus.tag = indexPath.row
+    cell.buttonPlus.addTarget(self, action: #selector(self.didTouchButtonPlus), for: .touchUpInside)
+    cell.buttonMinus.tag = indexPath.row
+    cell.buttonMinus.addTarget(self, action: #selector(self.didTouchButtonMinus), for: .touchUpInside)
     return cell
   }
   
@@ -85,10 +90,9 @@ extension MakeSuggestionViewController {
   func textFieldDidChange(textField: UITextField) {
     index = textField.tag
     if !textField.text!.isEmpty {
-      if let productPrice = orderInfo.products[index].product?.price {
-        // Calculate price of all quantity of product again
-        orderInfo.products[index].orderItemPrice = productPrice * orderInfo.products[index].quantity
-      }
+      orderInfo.products[index].product?.price = Int(textField.text!)!
+      // Calculate price of all quantity of product again
+      orderInfo.products[index].orderItemPrice = orderInfo.products[index].product!.price * orderInfo.products[index].quantity
       calculateToTalPrice()
     }
   }
@@ -130,24 +134,42 @@ extension MakeSuggestionViewController {
   func tapDateLabel(sender:UITapGestureRecognizer) {
     performSegue(withIdentifier: "showCalendarView", sender: self)
   }
+  
+  // Increase quantity of product
+  func didTouchButtonPlus(sender: UIButton) {
+    index = sender.tag
+    orderInfo.products[index].quantity += 1
+    calculateToTalPrice()
+    tableView.reloadData()
+  }
+  
+  // Decrease quantity of product
+  func didTouchButtonMinus(sender: UIButton) {
+    index = sender.tag
+    if orderInfo.products[index].quantity > 1 {
+      orderInfo.products[index].quantity -= 1
+      calculateToTalPrice()
+    }
+    tableView.reloadData()
+  }
 }
 
 // MARK: IBAction
 extension MakeSuggestionViewController {
   @IBAction func didTouchSendButton(_ sender: Any) {
     print("====json \(orderInfo.products.toJSON())")
-    NetworkingService.sharedInstance.sendSuggestion(orderId: orderInfo.id, deliveryTime: deliveryTimeTextField.text!, deliveryDate: deliveryDateLabel.text!, totalPrice: totalPrice, products: orderInfo.products) {(error) in
-      if error != nil {
-        print(error!)
-      } else {
-        let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-          // Go to List order screen
-          self.performSegue(withIdentifier: "showListOrder", sender: self)
-        }))
-        self.present(alert, animated: true, completion: nil)
-      }
-    }
+        NetworkingService.sharedInstance.sendSuggestion(orderId: orderInfo.id, deliveryTime: deliveryTimeTextField.text!, deliveryDate: deliveryDateLabel.text!, totalPrice: totalPrice, products: orderInfo.products) {(error) in
+          if error != nil {
+            print(error!)
+          } else {
+            let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+              // Go to List order screen
+              self.performSegue(withIdentifier: "showListOrder", sender: self)
+            }))
+            self.present(alert, animated: true, completion: nil)
+          }
+        }
   }
   
   @IBAction func unwindToMakeSuggestionController(segue:UIStoryboardSegue) {

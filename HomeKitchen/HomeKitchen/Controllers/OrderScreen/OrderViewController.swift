@@ -58,7 +58,7 @@ extension OrderViewController: UITableViewDataSource {
     if let product = products[indexPath.row].product {
       cell.configureWithItem(product: product, quantity: products[indexPath.row].quantity)
     }
-    // Click button in cell
+    // Handle button in cell
     cell.buttonPlus.tag = indexPath.row
     cell.buttonPlus.addTarget(self, action: #selector(self.didTouchButtonPlus), for: .touchUpInside)
     cell.buttonMinus.tag = indexPath.row

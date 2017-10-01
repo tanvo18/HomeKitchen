@@ -667,12 +667,17 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPI-CJ-hzX">
-                                        <rect key="frame" x="12" y="665" width="351" height="40"/>
+                                        <rect key="frame" x="8" y="565" width="351" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Make Suggestion">
                                             <color key="titleColor" red="0.70196078431372544" green="0.6588235294117647" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="didTouchMakeSuggestionButton:" destination="uBJ-Re-6va" eventType="touchUpInside" id="ptG-lH-19F"/>
                                         </connections>
