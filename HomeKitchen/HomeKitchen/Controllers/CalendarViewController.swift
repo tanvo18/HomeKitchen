@@ -52,6 +52,8 @@ class CalendarViewController: UIViewController {
     calendarView.contentController.scrollView.delegate = self
     // Init current date for datePicking
     initCurrentDate()
+    // Setup navigation bar and add right item button
+    settingForNavigationBar()
   }
   
   override func didReceiveMemoryWarning() {
@@ -285,6 +287,30 @@ extension CalendarViewController {
     formatter.dateFormat = "yyyy/MM/dd"
     datePicking = formatter.string(from: date)
   }
+  
+  func settingForNavigationBar() {
+    // Set title for back button in navigation bar
+    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    navigationItem.title = "Calendar"
+    navigationController?.navigationBar.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
+    // Set right button
+    let rightButtonItem = UIBarButtonItem.init(
+      title: "Done",
+      style: .done,
+      target: self,
+      action: #selector(rightButtonAction(sender:))
+    )
+    self.navigationItem.rightBarButtonItem = rightButtonItem
+    self.navigationItem.rightBarButtonItem?.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
+  }
+  
+  func rightButtonAction(sender: UIBarButtonItem) {
+    if sourceViewController == "OrderInfoViewController" {
+      performSegue(withIdentifier: "unwindToOrderInfoController", sender: self)
+    } else if sourceViewController == "MakeSuggestionViewController" {
+      performSegue(withIdentifier: "unwindToMakeSuggestionController", sender: self)
+    }
+  }
 }
 
 // MARK: UIScrollDelegate
@@ -315,17 +341,5 @@ extension CalendarViewController: UIScrollViewDelegate {
   
   func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
     (calendarView.contentController as! MonthContentViewController).scrollViewDidEndDragging(scrollView, willDecelerate: decelerate)
-  }
-}
-
-// MARK: IBAction
-extension CalendarViewController {
-  @IBAction func didTouchDoneButton(_ sender: Any) {
-    if sourceViewController == "OrderInfoViewController" {
-        performSegue(withIdentifier: "unwindToOrderInfoController", sender: self)
-    } else if sourceViewController == "MakeSuggestionViewController" {
-       performSegue(withIdentifier: "unwindToMakeSuggestionController", sender: self)
-    }
-
   }
 }

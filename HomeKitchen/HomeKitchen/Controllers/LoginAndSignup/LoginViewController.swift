@@ -113,17 +113,14 @@ extension LoginViewController {
   
   // Back to Login screen
   @IBAction func unwindToLoginScreen(segue:UIStoryboardSegue) {
+    
   }
 }
 
 extension UIViewController {
   func hideKeyboardWhenTappedAround() {
-    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
     tap.cancelsTouchesInView = false
     view.addGestureRecognizer(tap)
-  }
-  
-  func dismissKeyboard() {
-    view.endEditing(true)
   }
 }

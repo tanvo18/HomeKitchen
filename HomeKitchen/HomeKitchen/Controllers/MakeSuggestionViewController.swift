@@ -44,7 +44,7 @@ class MakeSuggestionViewController: UIViewController {
     deliveryDateLabel.addGestureRecognizer(tapLable)
     
     // Tab outside to close keyboard
-    let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+    let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
     view.addGestureRecognizer(tapOutside)
   }
   
@@ -130,11 +130,6 @@ extension MakeSuggestionViewController {
   func tapDateLabel(sender:UITapGestureRecognizer) {
     performSegue(withIdentifier: "showCalendarView", sender: self)
   }
-  
-  override func dismissKeyboard() {
-    view.endEditing(true)
-  }
-  
 }
 
 // MARK: IBAction

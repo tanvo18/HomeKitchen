@@ -97,9 +97,9 @@ class KitchenDetailViewController: UIViewController {
           // Update with status in_cart
           NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: defaultContact, orderDate: currentDate, deliveryDate: Helper.orderInfo.deliveryDate, deliveryTime: Helper.orderInfo.deliveryTime, status: "in_cart", orderedItems: orderedItems) { (error) in
             if error != nil {
-               print(error!)
+              print(error!)
             }
-           
+            
           }
         } else {
           // Delete order if there are nothing in cart
@@ -165,7 +165,7 @@ extension KitchenDetailViewController {
       return
     }
     downloadBackgroundImage(imageUrl: imageUrl)
-  
+    
     pointLabel.text = "\(point)"
     timeLabel.text = "\(openTime) - \(closeTime)"
     addressLabel.text = address
@@ -205,6 +205,8 @@ extension KitchenDetailViewController {
   func settingForNavigationBar() {
     // Set title for back button in navigation bar
     navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    navigationController?.navigationBar.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
+    navigationItem.backBarButtonItem?.tintColor = UIColor(red: 170/255.0, green: 151/255.0, blue: 88/255.0, alpha: 1.0)
     // Set title for navigation bar
     navigationItem.title = "Kitchen Detail"
   }

@@ -20,19 +20,15 @@ class OrderInfoViewController: UIViewController {
   
   @IBOutlet weak var dateLabel: UILabel!
   
-  // TableView
-  
   @IBOutlet weak var tableView: UITableView!
   
   // For Calendar
-  
   @IBOutlet weak var monthLabel: UILabel!
+  
   let reuseableCell = "Cell"
   // Save index of tableview cell
   var position = 0
-  
   let datePicker = UIDatePicker()
-  
   // Items which customer ordered
   var orderedItems: [OrderItem] = []
   // Message for notification not nil required
@@ -55,6 +51,7 @@ class OrderInfoViewController: UIViewController {
     // Set current date and time
     dateLabel.text = setCurrentDate()
     timeTextField.text = setCurrentTime()
+    settingForNavigationBar()
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -124,6 +121,7 @@ extension OrderInfoViewController {
   }
 }
 
+// MARK: Function
 extension OrderInfoViewController {
   // Unhide calendar when tap date label
   func tapDateLabel(sender:UITapGestureRecognizer) {
@@ -202,6 +200,12 @@ extension OrderInfoViewController {
     formatter.timeStyle = .short
     let timeString = formatter.string(from: date)
     return timeString
+  }
+  
+  func settingForNavigationBar() {
+    // Set title for back button in navigation bar
+    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    navigationItem.title = "Order Information"
   }
 }
 

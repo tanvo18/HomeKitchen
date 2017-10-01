@@ -10,7 +10,6 @@ import UIKit
 
 class AddNewContactViewController: UIViewController {
   
-  
   @IBOutlet weak var nameTextField: UITextField!
   
   @IBOutlet weak var phoneTextField: UITextField!
@@ -19,19 +18,19 @@ class AddNewContactViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    settingForNavigationBar()
+    // Tab outside to close keyboard
+    let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+    view.addGestureRecognizer(tapOutside)
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
-  @IBAction func didTouchButtonAdd(_ sender: Any) {
-    if checkNotNil() {
-      performSegue(withIdentifier: "unwindToOrderInfoController", sender: self)
-    }
-  }
-  
+}
+
+// MARK: Function
+extension AddNewContactViewController {
   func checkNotNil() -> Bool {
     if  nameTextField.text!.isEmpty || phoneTextField.text!.isEmpty || addressTextField.text!.isEmpty {
       return false
@@ -40,4 +39,22 @@ class AddNewContactViewController: UIViewController {
     }
   }
   
+  func settingForNavigationBar() {
+    // Set title for back button in navigation bar
+    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    navigationItem.title = "Add New Contact"
+  }
+}
+
+// MARK: IBAction
+extension AddNewContactViewController {
+  @IBAction func didTouchButtonAdd(_ sender: Any) {
+    if checkNotNil() {
+      performSegue(withIdentifier: "unwindToOrderInfoController", sender: self)
+    } else {
+      let title = "Message"
+      let message = "All fields are required"
+      self.alert(title: title, message: message)
+    }
+  }
 }

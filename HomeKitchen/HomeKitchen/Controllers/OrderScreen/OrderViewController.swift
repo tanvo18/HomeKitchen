@@ -56,7 +56,7 @@ extension OrderViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! OrderTableViewCell
     if let product = products[indexPath.row].product {
-       cell.configureWithItem(product: product, quantity: products[indexPath.row].quantity)
+      cell.configureWithItem(product: product, quantity: products[indexPath.row].quantity)
     }
     // Click button in cell
     cell.buttonPlus.tag = indexPath.row
@@ -67,7 +67,7 @@ extension OrderViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 70
+    return 80
   }
 }
 
@@ -163,6 +163,7 @@ extension OrderViewController {
   func settingForNavigationBar() {
     // Set title for back button in navigation bar
     navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    navigationController?.navigationBar.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
     navigationItem.title = "Menu"
   }
 }
