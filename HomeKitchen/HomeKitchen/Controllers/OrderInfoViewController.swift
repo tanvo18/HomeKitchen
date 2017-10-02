@@ -214,7 +214,20 @@ extension OrderInfoViewController {
   
   @IBAction func didTouchButtonCheckout(_ sender: Any) {
     if checkNotNil() {
-      if Helper.orderInfo.status == "pending" {
+      if Helper.orderInfo.status == "in_cart" {
+        NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: setCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", orderedItems: orderedItems) { [unowned self] (error) in
+          if error != nil {
+            print(error!)
+          } else {
+            let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+              // Go to HomeScreen
+              self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+            }))
+            self.present(alert, animated: true, completion: nil)
+          }
+        }
+      } else {
         NetworkingService.sharedInstance.sendOrder(contact: chosenContact(), orderDate: setCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", kitchenId: Helper.kitchenId, orderedItems: orderedItems) { [unowned self] (error) in
           if error != nil {
             print(error!)
@@ -229,19 +242,7 @@ extension OrderInfoViewController {
           }
           
         }
-      } else if Helper.orderInfo.status == "in_cart" {
-        NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: setCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", orderedItems: orderedItems) { [unowned self] (error) in
-          if error != nil {
-            print(error!)
-          } else {
-            let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-              // Go to HomeScreen
-              self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-            }))
-            self.present(alert, animated: true, completion: nil)
-          }
-        }
+        
       }
     } else {
       let alert = UIAlertController(title: "Error", message: self.message, preferredStyle: UIAlertControllerStyle.alert)

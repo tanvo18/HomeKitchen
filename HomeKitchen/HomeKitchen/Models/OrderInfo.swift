@@ -38,7 +38,7 @@ class OrderInfo: Mappable {
     contactInfo           <- map["contact_information"]
     status                <- map["status"]
     totalAmount           <- map["total_amount"]
-    products              <- map["products"]
+    products              <- map["order_items"]
     suggestions           <- map["suggestions"]
     kitchen               <- map["kitchen"]
   }

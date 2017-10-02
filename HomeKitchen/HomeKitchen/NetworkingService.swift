@@ -54,7 +54,7 @@ class NetworkingService {
                                    "status" : status,
                                    "delivery_date" : deliveryDate,
                                    "kitchen" : ["id" : Helper.kitchenId],
-                                   "products" : orderedItems.toJSON()
+                                   "order_items" : orderedItems.toJSON()
     ]
     
     Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString { response in
@@ -82,7 +82,7 @@ class NetworkingService {
                                    "delivery_time" : deliveryTime,
                                    "status" : status,
                                    "delivery_date" : deliveryDate,
-                                   "products" : orderedItems.toJSON()
+                                   "order_items" : orderedItems.toJSON()
     ]
     
     Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString { response in

@@ -21,7 +21,10 @@ class ProductDataModel {
   weak var delegate: ProductDataModelDelegate?
   
   func requestProduct() {
-    var products: [OrderItem] = []
+    
+    var products: [Product] = []
+    var cart: OrderInfo? = OrderInfo()
+    var orderItems: [OrderItem] = []
     var result: ResultOrderInfo?
     
     let headers: HTTPHeaders = [
@@ -35,20 +38,37 @@ class ProductDataModel {
       case .success:
         if let json = response.result.value as? [String: Any]{
           result = Mapper<ResultOrderInfo>().map(JSON: json)
-          if let result = result {
-            products = result.orderInfo.products
-            print("====count: \(products.count)")
-            // Remember order info
-            Helper.orderInfo = result.orderInfo
-            // Assign status
-            if Helper.orderInfo.id != 0 {
-              Helper.orderInfo.status = "in_cart"
-            } else {
-              Helper.orderInfo.status = "pending"
+          guard let result = result else {
+            return
+          }
+          products = result.kitchen.products
+          
+          cart = result.kitchen.cart
+          if cart == nil {
+            print("====nil cart")
+            for product in products {
+              let orderItem = OrderItem(product: product)
+              orderItems.append(orderItem)
             }
             
-            self.delegate?.didRecieveProductUpdate(data: products)
+            Helper.orderInfo.status = "pending"
+          } else {
+            // Save cart
+            Helper.orderInfo = cart!
+            Helper.orderInfo.status = "in_cart"
+            
+            orderItems = (cart?.products)!
+            print("orderItems count:\(orderItems.count)")
+            // compare id to add remain product to order items
+            for product in products {
+              if !self.isMatchProductId(id: product.id, orderItems: orderItems) {
+                let orderItem = OrderItem(product: product)
+                orderItems.append(orderItem)
+              }
+            }
           }
+          
+          self.delegate?.didRecieveProductUpdate(data: orderItems)
         }
       case .failure(let error):
         self.delegate?.didFailProductUpdateWithError(error: "\(error)")
@@ -74,5 +94,14 @@ class ProductDataModel {
     //    } catch {
     //      print(error.localizedDescription)
     //    }
+  }
+  
+  func isMatchProductId(id: Int,orderItems: [OrderItem]) -> Bool {
+    for item in orderItems {
+      if id == item.product?.id{
+        return true
+      }
+    }
+    return false
   }
 }
