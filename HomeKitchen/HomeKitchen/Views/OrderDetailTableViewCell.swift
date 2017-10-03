@@ -16,6 +16,8 @@ class OrderDetailTableViewCell: UITableViewCell {
   
   @IBOutlet weak var priceLabel: UILabel!
   
+  @IBOutlet weak var orderItemPriceLabel: UILabel!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
   }
@@ -31,5 +33,6 @@ class OrderDetailTableViewCell: UITableViewCell {
     quantityLabel.text = "\(orderItem.quantity) X"
     nameProductLabel.text = productName
     priceLabel.text = "\(productPrice)"
+    orderItemPriceLabel.text = "\(orderItem.orderItemPrice)"
   }
 }

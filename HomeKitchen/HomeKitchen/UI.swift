@@ -16,14 +16,21 @@ extension UIViewController{
     self.present(view, animated: true, completion: nil)
   }
   
-  func dismissKeyboard() {
-    view.endEditing(true)
+  func alertError(message: String) {
+    let error = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+    let view = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
+    view.addAction(error)
+    self.present(view, animated: true, completion: nil)
   }
   
   func alertWithAction(message: String, action: UIAlertAction) {
     let alert = UIAlertController(title: "Notification", message: message, preferredStyle: UIAlertControllerStyle.alert)
     alert.addAction(action)
     self.present(alert, animated: true, completion: nil)
+  }
+  
+  func dismissKeyboard() {
+    view.endEditing(true)
   }
 }
 

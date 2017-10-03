@@ -71,15 +71,14 @@ extension EditContactViewController {
       NetworkingService.sharedInstance.editContactInfo(birthday: birthday, gender: gender, name: name, phoneNumber: phoneNumber, contactInfo: contact!) { [unowned self] (error) in
         if error != nil {
           print(error!)
+          self.alertError(message: "Cannot Edit")
         } else {
-          let alert = UIAlertController(title: "Notification", message: "Edit successfully.", preferredStyle: UIAlertControllerStyle.alert)
-          alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+          let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
             // Go to OrderInfo Screen
             self.performSegue(withIdentifier: "unwindToOrderInfoController", sender: self)
-          }))
-          self.present(alert, animated: true, completion: nil)
+          })
+          self.alertWithAction(message: "Edit Successfully", action: ok)
         }
-        
       }
       
     } else {

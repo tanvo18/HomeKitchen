@@ -218,13 +218,13 @@ extension OrderInfoViewController {
         NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: setCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", orderedItems: orderedItems) { [unowned self] (error) in
           if error != nil {
             print(error!)
+            self.alertError(message: "Cannot send order")
           } else {
-            let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-              // Go to HomeScreen
+            let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+              // // Go to HomeScreen
               self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-            }))
-            self.present(alert, animated: true, completion: nil)
+            })
+            self.alertWithAction(message: "Order Successfully", action: ok)
           }
         }
       } else {
@@ -232,17 +232,13 @@ extension OrderInfoViewController {
           if error != nil {
             print(error!)
           } else {
-            let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-              // Go to HomeScreen
+            let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+              // // Go to HomeScreen
               self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-            }))
-            self.present(alert, animated: true, completion: nil)
-            
+            })
+            self.alertWithAction(message: "Order Successfully", action: ok)
           }
-          
         }
-        
       }
     } else {
       let alert = UIAlertController(title: "Error", message: self.message, preferredStyle: UIAlertControllerStyle.alert)
