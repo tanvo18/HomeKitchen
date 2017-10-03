@@ -22,6 +22,13 @@ class SuggestionItem: Mappable {
     self.init()
   }
   
+  convenience init(quantity: Int, price: Int, product: Product) {
+    self.init()
+    self.quantity = quantity
+    self.price = price
+    self.product = product
+  }
+  
   // Mappable
   func mapping(map: Map) {
     id                    <- map["id"]

@@ -14,6 +14,7 @@ class MakeSuggestionViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   let reuseableCell = "Cell"
   var orderInfo: OrderInfo = OrderInfo()
+  var suggestionItems: [SuggestionItem] = []
   
   @IBOutlet weak var deliveryDateLabel: UILabel!
   
@@ -140,7 +141,7 @@ extension MakeSuggestionViewController {
     index = sender.tag
     orderInfo.products[index].quantity += 1
     calculateToTalPrice()
-    tableView.reloadData()
+    tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
   }
   
   // Decrease quantity of product
@@ -150,26 +151,38 @@ extension MakeSuggestionViewController {
       orderInfo.products[index].quantity -= 1
       calculateToTalPrice()
     }
-    tableView.reloadData()
+    tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+  }
+  
+  func addItemToSuggestionItems() {
+    for orderItem in orderInfo.products {
+      guard let product = orderItem.product else {
+        return
+      }
+      let item = SuggestionItem(quantity: orderItem.quantity, price: orderItem.orderItemPrice, product: product)
+      suggestionItems.append(item)
+    }
   }
 }
 
 // MARK: IBAction
 extension MakeSuggestionViewController {
   @IBAction func didTouchSendButton(_ sender: Any) {
-    print("====json \(orderInfo.products.toJSON())")
-        NetworkingService.sharedInstance.sendSuggestion(orderId: orderInfo.id, deliveryTime: deliveryTimeTextField.text!, deliveryDate: deliveryDateLabel.text!, totalPrice: totalPrice, products: orderInfo.products) {(error) in
-          if error != nil {
-            print(error!)
-          } else {
-            let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-              // Go to List order screen
-              self.performSegue(withIdentifier: "showListOrder", sender: self)
-            }))
-            self.present(alert, animated: true, completion: nil)
-          }
-        }
+   // print("====json \(orderInfo.products.toJSON())")
+    let total: Int = Int(totalLabel.text!)!
+    addItemToSuggestionItems()
+    NetworkingService.sharedInstance.sendSuggestion(orderId: orderInfo.id, deliveryTime: deliveryTimeTextField.text!, deliveryDate: deliveryDateLabel.text!, totalPrice: total, suggestionItems: suggestionItems) {(error) in
+      if error != nil {
+        print(error!)
+      } else {
+        let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+          // Go to List order screen
+       //   self.performSegue(withIdentifier: "showListOrder", sender: self)
+        }))
+        self.present(alert, animated: true, completion: nil)
+      }
+    }
   }
   
   @IBAction func unwindToMakeSuggestionController(segue:UIStoryboardSegue) {

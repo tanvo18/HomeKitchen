@@ -31,6 +31,8 @@ class OrderDetailViewController: UIViewController {
   
   @IBOutlet weak var makeSuggestionButton: UIButton!
   
+  @IBOutlet weak var totalLabel: UILabel!
+  
   let reuseableCell = "Cell"
   
   var orderInfo: OrderInfo = OrderInfo()
@@ -86,6 +88,7 @@ extension OrderDetailViewController {
     deliveryTimeLabel.text = orderInfo.deliveryTime
     deliveryDateLabel.text = orderInfo.deliveryDate
     statusLabel.text = orderInfo.status
+    totalLabel.text = "\(orderInfo.totalAmount)"
     if Helper.role == "customer" {
       informationLabel.text = "kitchen's information"
       nameLabel.text = orderInfo.kitchen?.name

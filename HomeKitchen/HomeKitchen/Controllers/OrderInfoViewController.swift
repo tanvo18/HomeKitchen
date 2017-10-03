@@ -261,7 +261,7 @@ extension OrderInfoViewController {
         dateLabel.text = senderVC.datePicking
       }
     } else if segue.source is EditContactViewController {
-      tableView.reloadData()
+      tableView.reloadRows(at: [IndexPath(row: position, section: 0)], with: .none)
     } else if segue.source is AddNewContactViewController {
       if let senderVC = segue.source as? AddNewContactViewController {
         let name = senderVC.nameTextField.text!

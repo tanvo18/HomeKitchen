@@ -33,6 +33,6 @@ class OrderItem: Mappable {
   func mapping(map: Map) {
     quantity        <- map["quantity"]
     product         <- map["item"]
-    orderItemPrice  <- map["price"]
+    orderItemPrice  <- map["order_item_price"]
   }
 }

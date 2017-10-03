@@ -117,6 +117,7 @@ class NetworkingService {
   // Edit order
   func editContactInfo(birthday: String, gender: Int, name: String, phoneNumber: String, contactInfo: ContactInfo, completion: @escaping (_ error: Error?) -> Void) {
     let url = NetworkingService.baseURLString + "user"
+    
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
@@ -141,7 +142,7 @@ class NetworkingService {
   }
   
   // Using responseString instead of responseJSON
-  func sendSuggestion(orderId: Int,deliveryTime: String, deliveryDate: String, totalPrice: Int, products: [OrderItem], completion: @escaping (_ error: Error?) -> Void) {
+  func sendSuggestion(orderId: Int,deliveryTime: String, deliveryDate: String, totalPrice: Int, suggestionItems: [SuggestionItem], completion: @escaping (_ error: Error?) -> Void) {
     let url = NetworkingService.baseURLString + "kitchen/suggestion"
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
@@ -152,16 +153,19 @@ class NetworkingService {
                                    "delivery_time": deliveryTime,
                                    "delivery_date": deliveryDate,
                                    "total_price": totalPrice,
-                                   "suggestion_items": products.toJSON()
+                                   "suggestion_items": suggestionItems.toJSON()
     ]
     
     Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString { response in
+      print("====result \(response.result)")
       switch response.result {
       case .success:
+        print("====response \(response)")
         completion(nil)
       case .failure(let error):
         completion(error)
       }
     }
+    
   }
 }

@@ -77,7 +77,7 @@ extension OrderViewController {
     position = sender.tag
     products[position].quantity += 1
     addPrice(position: position)
-    tableView.reloadData()
+    tableView.reloadRows(at: [IndexPath(row: position, section: 0)], with: .none)
   }
   
   // Decrease quantity of product
@@ -87,7 +87,7 @@ extension OrderViewController {
       products[position].quantity -= 1
       subtractPrice(position: position)
     }
-    tableView.reloadData()
+    tableView.reloadRows(at: [IndexPath(row: position, section: 0)], with: .none)
   }
 }
 
