@@ -168,19 +168,21 @@ extension MakeSuggestionViewController {
 // MARK: IBAction
 extension MakeSuggestionViewController {
   @IBAction func didTouchSendButton(_ sender: Any) {
-   // print("====json \(orderInfo.products.toJSON())")
+    // print("====json \(orderInfo.products.toJSON())")
     let total: Int = Int(totalLabel.text!)!
     addItemToSuggestionItems()
     NetworkingService.sharedInstance.sendSuggestion(orderId: orderInfo.id, deliveryTime: deliveryTimeTextField.text!, deliveryDate: deliveryDateLabel.text!, totalPrice: total, suggestionItems: suggestionItems) {(error) in
       if error != nil {
         print(error!)
+        let title = "Error"
+        let message = "Cannot Send"
+        self.alert(title: title, message: message)
       } else {
-        let alert = UIAlertController(title: "Notification", message: "Order successfully.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+        let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
           // Go to List order screen
-       //   self.performSegue(withIdentifier: "showListOrder", sender: self)
-        }))
-        self.present(alert, animated: true, completion: nil)
+          self.performSegue(withIdentifier: "showListOrder", sender: self)
+        })
+        self.alertWithAction(message: "Send Successfully", action: ok)
       }
     }
   }

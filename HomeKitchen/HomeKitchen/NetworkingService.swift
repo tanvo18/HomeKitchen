@@ -26,7 +26,7 @@ class NetworkingService {
                                   "password" : password,
                                   "token" : facebookToken]
     let url = NetworkingService.baseURLString + "login"
-    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
+    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate(statusCode: 200..<300).responseString { response in
       switch response.result {
       case .success:
         if let authorizationToken = response.response?.allHeaderFields["Authorization"] as? String {
@@ -57,7 +57,7 @@ class NetworkingService {
                                    "order_items" : orderedItems.toJSON()
     ]
     
-    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString { response in
+    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
       switch response.result {
       case .success:
         completion(nil)
@@ -85,7 +85,7 @@ class NetworkingService {
                                    "order_items" : orderedItems.toJSON()
     ]
     
-    Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString { response in
+    Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
       switch response.result {
       case .success:
         completion(nil)
@@ -103,7 +103,7 @@ class NetworkingService {
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
-    Alamofire.request(url, method: .delete, encoding: JSONEncoding.default, headers: headers).responseString
+    Alamofire.request(url, method: .delete, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString
       { response in
       switch response.result {
       case .success:
@@ -130,7 +130,7 @@ class NetworkingService {
                                    "contact_information": [contactInfo.toJSON()]
                                   ]
     
-    Alamofire.request(url, method: .put,parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString
+    Alamofire.request(url, method: .put,parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString
       { response in
         switch response.result {
         case .success:
@@ -149,18 +149,16 @@ class NetworkingService {
       "Accept": "application/json"
     ]
     
-    let  parameters: Parameters = ["order_id": orderId,
+    let  parameters: Parameters = [ "order_id": orderId,
                                    "delivery_time": deliveryTime,
                                    "delivery_date": deliveryDate,
                                    "total_price": totalPrice,
                                    "suggestion_items": suggestionItems.toJSON()
     ]
     
-    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseString { response in
-      print("====result \(response.result)")
+    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
       switch response.result {
       case .success:
-        print("====response \(response)")
         completion(nil)
       case .failure(let error):
         completion(error)
