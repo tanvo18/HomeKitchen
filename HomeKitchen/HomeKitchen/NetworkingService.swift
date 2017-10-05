@@ -42,7 +42,7 @@ class NetworkingService {
   // Send order to server
   func sendOrder(contact: ContactInfo, orderDate: String, deliveryDate: String, deliveryTime: String, status: String,
                  kitchenId: Int, orderedItems: [OrderItem], completion: @escaping (_ error: Error?) -> Void) {
-    let url = NetworkingService.baseURLString + "order"
+    let url = NetworkingService.baseURLString + "orders"
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
@@ -70,7 +70,7 @@ class NetworkingService {
   // Using responseString instead of responseJSON
   // Update order to server when order is not a new order
   func updateOrder(id: Int,contact: ContactInfo, orderDate: String, deliveryDate: String, deliveryTime: String, status: String, orderedItems: [OrderItem], completion: @escaping (_ error: Error?) -> Void) {
-    let url = NetworkingService.baseURLString + "order"
+    let url = NetworkingService.baseURLString + "orders"
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
@@ -115,13 +115,15 @@ class NetworkingService {
   }
   
   // Edit order
-  func editContactInfo(birthday: String, gender: Int, name: String, phoneNumber: String, contactInfo: ContactInfo, completion: @escaping (_ error: Error?) -> Void) {
-    let url = NetworkingService.baseURLString + "user"
+  func editContactInfo(birthday: String, gender: Int, name: String, phoneNumber: String, contactInfo: ContactInfo, completion: @escaping (_ message: String?, _ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "users"
     
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
+    
+    print("contact \(contactInfo.toJSON())")
     
     let  parameters: Parameters = ["birthday": birthday,
                                    "gender": gender,
@@ -134,16 +136,18 @@ class NetworkingService {
       { response in
         switch response.result {
         case .success:
-          completion(nil)
+          if let message = response.result.value {
+            completion(message,nil)
+          }
         case .failure(let error):
-          completion(error)
+          completion(nil,error)
         }
     }
   }
   
   // Using responseString instead of responseJSON
   func sendSuggestion(orderId: Int,deliveryTime: String, deliveryDate: String, totalPrice: Int, suggestionItems: [SuggestionItem], completion: @escaping (_ error: Error?) -> Void) {
-    let url = NetworkingService.baseURLString + "kitchen/suggestion"
+    let url = NetworkingService.baseURLString + "users/suggestions"
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
       "Accept": "application/json"

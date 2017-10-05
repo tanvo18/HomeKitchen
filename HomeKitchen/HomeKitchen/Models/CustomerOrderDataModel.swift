@@ -26,7 +26,7 @@ class CustomerOrderDataModel {
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
-    let url = NetworkingService.baseURLString + "order"
+    let url = NetworkingService.baseURLString + "users/orders"
     Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
       switch response.result {
       case .success:

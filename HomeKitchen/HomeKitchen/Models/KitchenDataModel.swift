@@ -27,7 +27,7 @@ class KitchenDataModel {
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
-    let url = NetworkingService.baseURLString + "kitchen/list"
+    let url = NetworkingService.baseURLString + "kitchens/all"
     Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
       switch response.result {
       case .success:

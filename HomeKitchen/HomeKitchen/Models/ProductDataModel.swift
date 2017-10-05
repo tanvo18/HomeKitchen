@@ -31,9 +31,9 @@ class ProductDataModel {
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
-    let url = NetworkingService.baseURLString + "kitchen/products"
-    let parameters: Parameters = ["kitchenId" : Helper.kitchenId]
-    Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseJSON { response in
+    let kitchenId = Helper.kitchenId
+    let url = NetworkingService.baseURLString + "kitchens/\(kitchenId)/products"
+    Alamofire.request(url, method: .get, encoding: URLEncoding.default, headers: headers).responseJSON { response in
       switch response.result {
       case .success:
         if let json = response.result.value as? [String: Any]{
@@ -42,7 +42,6 @@ class ProductDataModel {
             return
           }
           products = result.kitchen.products
-          
           cart = result.kitchen.cart
           if cart == nil {
             print("====nil cart")
