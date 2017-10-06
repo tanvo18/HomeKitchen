@@ -26,14 +26,15 @@ class GetOrderTableViewCell: UITableViewCell {
     super.setSelected(selected, animated: animated)
   }
   
-  func configureWithItem(orderInfo: OrderInfo, role: String) {
+  func configureWithItem(orderInfo: OrderInfo, role: String, status: String) {
     if orderInfo.status != "in_cart" {
       if role == "customer" {
         nameLabel.text = orderInfo.kitchen?.name
+        statusLabel.text = orderInfo.status
       } else if role == "chef" {
         nameLabel.text = orderInfo.contactInfo?.name
+        statusLabel.text = status
       }
-      statusLabel.text = orderInfo.status
       calendarLabel.text = orderInfo.orderDate
     }
   }

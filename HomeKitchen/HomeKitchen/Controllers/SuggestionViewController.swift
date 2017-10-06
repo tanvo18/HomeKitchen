@@ -16,6 +16,10 @@ class SuggestionViewController: UIViewController {
   
   @IBOutlet weak var deliveryDateLabel: UILabel!
   
+  @IBOutlet weak var acceptedButton: UIButton!
+  
+  @IBOutlet weak var declinedButton: UIButton!
+  
   let reuseableCell = "Cell"
   var suggestions: [Suggestion] = []
   var suggestion: Suggestion = Suggestion()
@@ -33,6 +37,12 @@ class SuggestionViewController: UIViewController {
     tableView.register(UINib(nibName: "SuggestionTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
+    
+    // Hide button if user is chef
+    if Helper.role == "chef" {
+      acceptedButton.isHidden = true
+      declinedButton.isHidden = true
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -60,3 +70,29 @@ extension SuggestionViewController: UITableViewDataSource {
     return 70
   }
 }
+
+// MARK: IBAction
+extension SuggestionViewController {
+  @IBAction func didTouchAcceptedButton(_ sender: Any) {
+    let id = suggestion.id
+    let isAccepted = true
+    NetworkingService.sharedInstance.responseSuggestion(suggestionId: id, isAccepted: isAccepted) {
+      (message,error) in
+      if error != nil {
+        print(error!)
+        self.alertError(message: "Request cannot be done")
+      } else {
+        let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+          // Go to List order screen
+          self.performSegue(withIdentifier: "showListOrder", sender: self)
+        })
+        self.alertWithAction(message: "Accept Successfully", action: ok)
+      }
+    }
+  }
+  
+  @IBAction func didTouchDeclinedButton(_ sender: Any) {
+  }
+}
+
+

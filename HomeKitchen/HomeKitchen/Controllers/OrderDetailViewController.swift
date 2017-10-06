@@ -33,6 +33,10 @@ class OrderDetailViewController: UIViewController {
   
   @IBOutlet weak var totalLabel: UILabel!
   
+  @IBOutlet weak var acceptedButton: UIButton!
+  
+  @IBOutlet weak var declinedButton: UIButton!
+  
   let reuseableCell = "Cell"
   
   var orderInfo: OrderInfo = OrderInfo()
@@ -75,6 +79,7 @@ extension OrderDetailViewController: UITableViewDataSource {
   }
 }
 
+// MARK: IBAction
 extension OrderDetailViewController {
   @IBAction func didTouchMakeSuggestionButton(_ sender: Any) {
   performSegue(withIdentifier: "showMakeSuggestion", sender: self)
@@ -94,6 +99,8 @@ extension OrderDetailViewController {
       nameLabel.text = orderInfo.kitchen?.name
       addressLabel.text = orderInfo.kitchen?.address?.address
       makeSuggestionButton.isHidden = true
+      acceptedButton.isHidden = true
+      declinedButton.isHidden = true
     } else if Helper.role == "chef" {
       informationLabel.text = "customer's information"
       nameLabel.text = orderInfo.contactInfo?.name

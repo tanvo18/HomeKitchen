@@ -38,11 +38,9 @@ class SMNavigationController: LNSideMenuNavigationController {
     case 0:
       nViewController = storyboard?.instantiateViewController(withIdentifier: "RestaurantViewController")
     case 1:
-      nViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
-    case 2:
       Helper.role = "customer"
       nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
-    case 3:
+    case 2:
       Helper.role = "chef"
       nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
     default:

@@ -22,6 +22,8 @@ class ListOrderViewController: UIViewController {
   var index: Int = 0
   let customerOrderModelDatasource = CustomerOrderDataModel()
   let kitchenOrderModelDatasource = KitchenOrderDataModel()
+  // Status for request list order by chef
+  var status = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,7 +52,8 @@ class ListOrderViewController: UIViewController {
     if Helper.role == "customer" {
       customerOrderModelDatasource.requestCustomerOrder()
     } else if Helper.role == "chef" {
-      kitchenOrderModelDatasource.requestKitchenOrder()
+      status = "pending"
+      kitchenOrderModelDatasource.requestKitchenOrder(status: status)
     }
   }
 }
@@ -68,7 +71,7 @@ extension ListOrderViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! GetOrderTableViewCell
     // Distinguish role
     let role = Helper.role
-    cell.configureWithItem(orderInfo: orderInfos[indexPath.row], role: role)
+    cell.configureWithItem(orderInfo: orderInfos[indexPath.row], role: role, status: status)
     // Handle button on cell
     cell.buttonNotification.tag = indexPath.row
     cell.buttonNotification.addTarget(self, action: #selector(self.didTouchButtonNotification), for: .touchUpInside)

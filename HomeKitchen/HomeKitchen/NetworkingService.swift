@@ -98,7 +98,7 @@ class NetworkingService {
   
   // Delete order
   func deleteOrder(id: Int,completion: @escaping (_ error: Error?) -> Void) {
-    let url = NetworkingService.baseURLString + "order" + "/" + "\(id)"
+    let url = NetworkingService.baseURLString + "orders" + "/" + "\(id)"
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
@@ -168,6 +168,31 @@ class NetworkingService {
         completion(error)
       }
     }
+  }
+  
+  func responseSuggestion(suggestionId: Int, isAccepted: Bool, completion: @escaping(_ message: String?, _ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "users/suggestions"
     
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let  parameters: Parameters = [ "isAccepted" : isAccepted,
+                                    "suggestionId" : suggestionId
+    ]
+    
+    Alamofire.request(url, method: .put, parameters: parameters, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        if let message = response.result.value {
+          completion(message,nil)
+        } else {
+          completion(nil, nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
   }
 }

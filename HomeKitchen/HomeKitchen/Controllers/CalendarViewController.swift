@@ -41,6 +41,7 @@ class CalendarViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+
     // Set current date for Calendar
     if let currentCalendar = currentCalendar {
       monthLabel.text = CVDate(date: Date(), calendar: currentCalendar).globalDescription
@@ -114,7 +115,6 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     dateFormatter.dateFormat = "yyyy-MM-dd"
     datePicking = dateFormatter.string(from: dateFromString)
     print("====date \(datePicking)")
-    
   }
   
   func presentedDateUpdated(_ date: CVDate) {
@@ -228,7 +228,6 @@ extension CalendarViewController {
     components.month! += offset
     
     let resultDate = currentCalendar.date(from: components)!
-    
     self.calendarView.toggleViewWithDate(resultDate)
   }
   
@@ -286,6 +285,7 @@ extension CalendarViewController {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy/MM/dd"
     datePicking = formatter.string(from: date)
+    
   }
   
   func settingForNavigationBar() {

@@ -18,7 +18,7 @@ protocol KitchenOrderDataModelDelegate: class {
 class KitchenOrderDataModel {
   weak var delegate: KitchenOrderDataModelDelegate?
   
-  func requestKitchenOrder() {
+  func requestKitchenOrder(status: String) {
     var kitchenOrders: [OrderInfo] = []
     var result: ResultKitchenOrder?
     
@@ -26,8 +26,11 @@ class KitchenOrderDataModel {
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
+    
+    let  parameters: Parameters = ["status" : status]
+    
     let url = NetworkingService.baseURLString + "kitchens/orders"
-    Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+    Alamofire.request(url, method: .get,parameters: parameters, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseJSON { response in
       switch response.result {
       case .success:
         if let json = response.result.value as? [String: Any]{

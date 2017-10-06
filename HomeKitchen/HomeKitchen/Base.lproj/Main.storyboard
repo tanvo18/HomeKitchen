@@ -409,7 +409,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BgX-qA-Yc6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KLR-er-G9K">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JB4-dC-nLq">
@@ -541,7 +541,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sl0-q4-WTR">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Sl0-q4-WTR">
                                         <rect key="frame" x="0.0" y="344" width="375" height="138"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -738,7 +738,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
+                        <outlet property="acceptedButton" destination="7Ap-UR-rhN" id="ZbB-gd-7e0"/>
                         <outlet property="addressLabel" destination="pFj-bL-vyZ" id="maT-JY-kRB"/>
+                        <outlet property="declinedButton" destination="fag-5j-VW2" id="Ot3-z2-kj1"/>
                         <outlet property="deliveryDateLabel" destination="PF0-YS-VOt" id="CAk-47-KN8"/>
                         <outlet property="deliveryTimeLabel" destination="gk4-wi-YF9" id="Yak-yw-r6k"/>
                         <outlet property="idLabel" destination="WXJ-Kr-l51" id="9QI-oE-LId"/>
@@ -813,6 +815,9 @@
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTouchAcceptedButton:" destination="lTl-mZ-aZG" eventType="touchUpInside" id="YJ0-8w-VEo"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NN0-Hm-0js">
                                 <rect key="frame" x="210" y="535" width="149" height="30"/>
@@ -826,14 +831,20 @@
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTouchDeclinedButton:" destination="lTl-mZ-aZG" eventType="touchUpInside" id="uAy-Qi-t2n"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="acceptedButton" destination="QuX-L4-gR4" id="xWR-7b-RPW"/>
+                        <outlet property="declinedButton" destination="NN0-Hm-0js" id="lYQ-TS-x2b"/>
                         <outlet property="deliveryDateLabel" destination="1pc-Cm-a3C" id="wNh-oe-EbD"/>
                         <outlet property="deliveryTimeLabel" destination="Ybm-Ga-nip" id="g3S-HT-ekD"/>
                         <outlet property="tableView" destination="nGF-SJ-pco" id="vGI-9n-bNt"/>
+                        <segue destination="mi3-E6-qgR" kind="show" identifier="showListOrder" id="gQ6-1e-KpS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gfo-2z-Qez" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1506,8 +1517,8 @@
         <image name="wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PYR-hP-BMS"/>
-        <segue reference="B1h-dc-fmz"/>
         <segue reference="VfJ-pa-Xs3"/>
+        <segue reference="gQ6-1e-KpS"/>
+        <segue reference="B1h-dc-fmz"/>
     </inferredMetricsTieBreakers>
 </document>
