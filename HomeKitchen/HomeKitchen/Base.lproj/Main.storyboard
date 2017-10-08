@@ -494,7 +494,7 @@
         <!--List Order View Controller-->
         <scene sceneID="ENx-cJ-sUl">
             <objects>
-                <viewController storyboardIdentifier="ListOrderViewController" id="mi3-E6-qgR" customClass="ListOrderViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListOrderViewController" automaticallyAdjustsScrollViewInsets="NO" id="mi3-E6-qgR" customClass="ListOrderViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="90W-63-men"/>
                         <viewControllerLayoutGuide type="bottom" id="5uD-AD-8Dc"/>
@@ -504,17 +504,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LYT-2P-xLb">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="103" width="375" height="564"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PQm-Gc-NgB">
+                                <rect key="frame" x="16" y="65" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="statusTextField" destination="PQm-Gc-NgB" id="xeN-QZ-aoN"/>
                         <outlet property="tableView" destination="LYT-2P-xLb" id="sSK-4T-PBI"/>
                         <segue destination="uBJ-Re-6va" kind="show" identifier="showOrderDetail" id="ce5-x1-gMt"/>
                         <segue destination="lTl-mZ-aZG" kind="show" identifier="showListSuggestion" id="J9K-gQ-3Kf"/>
@@ -522,7 +530,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akC-Ip-upR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3120.8000000000002" y="-1348.8755622188908"/>
+            <point key="canvasLocation" x="3120.8000000000002" y="-1349.7751124437782"/>
         </scene>
         <!--Order Detail View Controller-->
         <scene sceneID="Q4p-Do-cuz">

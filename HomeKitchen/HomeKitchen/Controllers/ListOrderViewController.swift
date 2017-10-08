@@ -11,6 +11,8 @@ import UIKit
 class ListOrderViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
+  
+  @IBOutlet weak var statusTextField: UITextField!
   let reuseableCell = "Cell"
   var orderInfos: [OrderInfo] = [] {
     didSet {
@@ -23,7 +25,9 @@ class ListOrderViewController: UIViewController {
   let customerOrderModelDatasource = CustomerOrderDataModel()
   let kitchenOrderModelDatasource = KitchenOrderDataModel()
   // Status for request list order by chef
-  var status = ""
+  var listStatus: [String] = ["pending","accepted","denied"]
+  // Default status
+  var selectedStatus: String = "pending"
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -46,7 +50,10 @@ class ListOrderViewController: UIViewController {
       title = "My Order"
     }
     self.settingForNavigationBar(title: title)
-   
+    createStatusPicker()
+    createToolbar()
+    // Set default content for textfield
+    statusTextField.text = selectedStatus
   }
   
   override func didReceiveMemoryWarning() {
@@ -57,8 +64,8 @@ class ListOrderViewController: UIViewController {
     if Helper.role == "customer" {
       customerOrderModelDatasource.requestCustomerOrder()
     } else if Helper.role == "chef" {
-      status = "pending"
-      kitchenOrderModelDatasource.requestKitchenOrder(status: status)
+      selectedStatus = "pending"
+      kitchenOrderModelDatasource.requestKitchenOrder(status: selectedStatus)
     }
   }
 }
@@ -76,7 +83,7 @@ extension ListOrderViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! GetOrderTableViewCell
     // Distinguish role
     let role = Helper.role
-    cell.configureWithItem(orderInfo: orderInfos[indexPath.row], role: role, status: status)
+    cell.configureWithItem(orderInfo: orderInfos[indexPath.row], role: role, status: selectedStatus)
     // Handle button on cell
     cell.buttonNotification.tag = indexPath.row
     cell.buttonNotification.addTarget(self, action: #selector(self.didTouchButtonNotification), for: .touchUpInside)
@@ -115,6 +122,26 @@ extension ListOrderViewController: KitchenOrderDataModelDelegate {
   }
 }
 
+extension ListOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return listStatus.count
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return listStatus[row]
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    selectedStatus = listStatus[row]
+    statusTextField.text = selectedStatus
+  }
+}
+
+// MARK: Function
 extension ListOrderViewController {
   func didTouchMenuButton(sender: UIButton) {
     sideMenuManager?.toggleSideMenuView()
@@ -130,6 +157,29 @@ extension ListOrderViewController {
      performSegue(withIdentifier: "showListSuggestion", sender: self)
     }
   }
+  
+  func createStatusPicker() {
+    let statusPicker = UIPickerView()
+    statusPicker.delegate = self
+    statusTextField.inputView = statusPicker
+  }
+  
+  // Toolbar for statusPicker
+  func createToolbar() {
+    // Create a toolbar
+    let toolbar = UIToolbar()
+    toolbar.sizeToFit()
+    // Add a done button on this toolbar
+    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
+    toolbar.setItems([doneButton], animated: true)
+    statusTextField.inputAccessoryView = toolbar
+  }
+  
+  // Click done button on toolbar of statusPicker
+  func doneClicked() {
+    self.dismissKeyboard()
+    kitchenOrderModelDatasource.requestKitchenOrder(status: selectedStatus)
+  }
 }
 
 extension ListOrderViewController {
@@ -140,7 +190,7 @@ extension ListOrderViewController {
         /*
          follow status which chef choose to show list: pending, accepted ...
          */
-        destination.chefOrderStatus = status
+        destination.chefOrderStatus = selectedStatus
       }
     } else if segue.identifier == "showListSuggestion" {
       if let destination = segue.destination as? SuggestionViewController {
