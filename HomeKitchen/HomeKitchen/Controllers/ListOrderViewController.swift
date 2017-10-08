@@ -39,8 +39,13 @@ class ListOrderViewController: UIViewController {
     // Add left bar button
     let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
     self.navigationItem.leftBarButtonItem  = menuButton
-    // Set title for back button in navigation bar
-    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    var title = ""
+    if Helper.role == "chef" {
+      title = "Kitchen's Order"
+    } else if Helper.role == "customer" {
+      title = "My Order"
+    }
+    self.settingForNavigationBar(title: title)
    
   }
   
@@ -132,6 +137,10 @@ extension ListOrderViewController {
     if segue.identifier == "showOrderDetail" {
       if let destination = segue.destination as? OrderDetailViewController {
         destination.orderInfo = orderInfos[index]
+        /*
+         follow status which chef choose to show list: pending, accepted ...
+         */
+        destination.chefOrderStatus = status
       }
     } else if segue.identifier == "showListSuggestion" {
       if let destination = segue.destination as? SuggestionViewController {

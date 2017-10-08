@@ -22,7 +22,7 @@ class EditContactViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     initDataTextField()
-    settingForNavigationBar()
+    self.settingForNavigationBar(title: "Edit Contact")
     // Tab outside to close keyboard
     let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
     view.addGestureRecognizer(tapOutside)
@@ -47,13 +47,6 @@ extension EditContactViewController {
       return true
     }
   }
-  
-  func settingForNavigationBar() {
-    // Set title for back button in navigation bar
-    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-    navigationItem.title = "Edit Contanct"
-  }
-  
 }
 
 // MARK: IBAction

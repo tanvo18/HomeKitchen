@@ -51,7 +51,7 @@ class OrderInfoViewController: UIViewController {
     // Set current date and time
     dateLabel.text = setCurrentDate()
     timeTextField.text = setCurrentTime()
-    settingForNavigationBar()
+    self.settingForNavigationBar(title: "Order Information")
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -200,12 +200,6 @@ extension OrderInfoViewController {
     formatter.timeStyle = .short
     let timeString = formatter.string(from: date)
     return timeString
-  }
-  
-  func settingForNavigationBar() {
-    // Set title for back button in navigation bar
-    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-    navigationItem.title = "Order Information"
   }
 }
 

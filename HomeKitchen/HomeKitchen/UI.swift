@@ -6,6 +6,7 @@
 //  Copyright © 2017 Tan Vo. All rights reserved.
 //
 import UIKit
+import LNSideMenu
 
 extension UIViewController{
   
@@ -31,6 +32,13 @@ extension UIViewController{
   
   func dismissKeyboard() {
     view.endEditing(true)
+  }
+  
+  func settingForNavigationBar(title: String) {
+    // Set title for back button in navigation bar
+    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+    navigationController?.navigationBar.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
+    navigationItem.title = title
   }
 }
 

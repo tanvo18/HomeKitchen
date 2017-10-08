@@ -241,7 +241,6 @@
                                             <constraint firstAttribute="trailing" secondItem="yH8-q5-lWx" secondAttribute="trailing" constant="86" id="3ri-gU-FsB"/>
                                             <constraint firstItem="5Wx-sF-6bq" firstAttribute="leading" secondItem="TAx-j8-H2U" secondAttribute="leading" id="3sy-XX-HK1"/>
                                             <constraint firstItem="YJl-T7-DVZ" firstAttribute="top" secondItem="cNz-H1-55F" secondAttribute="bottom" constant="4" id="4RU-hv-oAd"/>
-                                            <constraint firstItem="qRZ-ox-EwV" firstAttribute="centerX" secondItem="2Yf-mN-GzZ" secondAttribute="centerX" constant="-1" id="4rJ-AH-jWw"/>
                                             <constraint firstItem="mNE-6G-CDa" firstAttribute="top" secondItem="7i1-MP-KEN" secondAttribute="bottom" constant="78" id="6Ki-mN-Gv3"/>
                                             <constraint firstItem="HUk-hu-o3f" firstAttribute="leading" secondItem="TAx-j8-H2U" secondAttribute="leading" constant="8" id="71E-zo-Zgo"/>
                                             <constraint firstItem="yH8-q5-lWx" firstAttribute="top" secondItem="YJl-T7-DVZ" secondAttribute="bottom" constant="4" id="D1n-ae-b6V"/>
@@ -678,6 +677,9 @@
                                                 <integer key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTouchAcceptedButton:" destination="uBJ-Re-6va" eventType="touchUpInside" id="ejR-TY-8fS"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPI-CJ-hzX">
                                         <rect key="frame" x="11" y="597" width="351" height="40"/>
@@ -707,6 +709,9 @@
                                                 <integer key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTouchDeclinedButton:" destination="uBJ-Re-6va" eventType="touchUpInside" id="3jf-dw-oYY"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pym-Fu-kqS">
                                         <rect key="frame" x="0.0" y="490" width="375" height="50"/>
@@ -752,6 +757,7 @@
                         <outlet property="tableView" destination="Sl0-q4-WTR" id="iZf-vq-gGO"/>
                         <outlet property="totalLabel" destination="Djb-CF-dyS" id="R68-Cd-eHh"/>
                         <segue destination="lK7-uK-bf3" kind="show" identifier="showMakeSuggestion" id="mIv-fa-BXm"/>
+                        <segue destination="mi3-E6-qgR" kind="show" identifier="showListOrder" id="dZ9-ny-SC3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9uD-7p-Pjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1517,8 +1523,8 @@
         <image name="wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VfJ-pa-Xs3"/>
-        <segue reference="gQ6-1e-KpS"/>
+        <segue reference="dZ9-ny-SC3"/>
         <segue reference="B1h-dc-fmz"/>
+        <segue reference="VfJ-pa-Xs3"/>
     </inferredMetricsTieBreakers>
 </document>

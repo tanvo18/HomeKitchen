@@ -18,7 +18,7 @@ class AddNewContactViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    settingForNavigationBar()
+    self.settingForNavigationBar(title: "Add new contact")
     // Tab outside to close keyboard
     let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
     view.addGestureRecognizer(tapOutside)
@@ -37,12 +37,6 @@ extension AddNewContactViewController {
     } else {
       return true
     }
-  }
-  
-  func settingForNavigationBar() {
-    // Set title for back button in navigation bar
-    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-    navigationItem.title = "Add New Contact"
   }
 }
 

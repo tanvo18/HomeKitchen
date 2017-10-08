@@ -43,10 +43,11 @@ class MakeSuggestionViewController: UIViewController {
     let tapLable: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.tapDateLabel))
     deliveryDateLabel.isUserInteractionEnabled = true
     deliveryDateLabel.addGestureRecognizer(tapLable)
-    
     // Tab outside to close keyboard
     let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
     view.addGestureRecognizer(tapOutside)
+    // setting navigationbar
+    self.settingForNavigationBar(title: "Make Suggestion")
   }
   
   override func didReceiveMemoryWarning() {

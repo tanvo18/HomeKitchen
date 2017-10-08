@@ -44,7 +44,7 @@ class KitchenViewController: UIViewController {
     myIndicator.startAnimating()
     view.addSubview(myIndicator)
     // Adjust navigation bar
-    settingForNavigationBar()
+    self.settingForNavigationBar(title: "Home")
     // Add left bar button
     let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
     self.navigationItem.leftBarButtonItem  = menuButton
@@ -117,13 +117,6 @@ extension KitchenViewController: UserDataModelDelegate {
   
   func didFailUserUpdateWithError(error: String) {
     print(error)
-  }
-  
-  func settingForNavigationBar() {
-    // Set title for back button in navigation bar
-    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-    navigationController?.navigationBar.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
-    navigationItem.title = "Home"
   }
 }
 

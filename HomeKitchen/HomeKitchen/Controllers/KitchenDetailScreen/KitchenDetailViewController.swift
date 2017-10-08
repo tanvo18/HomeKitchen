@@ -51,7 +51,7 @@ class KitchenDetailViewController: UIViewController {
     // Request data through delagate
     productModelDatasource.requestProduct()
     // Set title for back button in navigation bar
-    settingForNavigationBar()
+    self.settingForNavigationBar(title: "Kitchen Detail")
   }
   
   override func didReceiveMemoryWarning() {
@@ -200,15 +200,6 @@ extension KitchenDetailViewController {
     formatter.dateFormat = "yyyy-MM-dd"
     let result = formatter.string(from: date)
     return result
-  }
-  
-  func settingForNavigationBar() {
-    // Set title for back button in navigation bar
-    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-    navigationController?.navigationBar.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
-    navigationItem.backBarButtonItem?.tintColor = UIColor(red: 170/255.0, green: 151/255.0, blue: 88/255.0, alpha: 1.0)
-    // Set title for navigation bar
-    navigationItem.title = "Kitchen Detail"
   }
 }
 

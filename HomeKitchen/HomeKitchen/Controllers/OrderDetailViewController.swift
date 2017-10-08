@@ -40,6 +40,11 @@ class OrderDetailViewController: UIViewController {
   let reuseableCell = "Cell"
   
   var orderInfo: OrderInfo = OrderInfo()
+  var orderId: Int = 0
+  var isAccepted: Bool = true
+  
+  // Status for order of role chef
+  var chefOrderStatus = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,6 +53,7 @@ class OrderDetailViewController: UIViewController {
     tableView.register(UINib(nibName: "OrderDetailTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
+    self.settingForNavigationBar(title: "Order's detail")
   }
   
   override func didReceiveMemoryWarning() {
@@ -57,6 +63,7 @@ class OrderDetailViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     parseDataForLabel()
   }
+  
 }
 
 extension OrderDetailViewController: UITableViewDelegate {
@@ -84,6 +91,42 @@ extension OrderDetailViewController {
   @IBAction func didTouchMakeSuggestionButton(_ sender: Any) {
   performSegue(withIdentifier: "showMakeSuggestion", sender: self)
   }
+  
+  @IBAction func didTouchAcceptedButton(_ sender: Any) {
+    orderId = orderInfo.id
+    isAccepted = true
+    NetworkingService.sharedInstance.responseOrder(orderId: orderId, isAccepted: isAccepted) {
+      (message,error) in
+      if error != nil {
+        print(error!)
+        self.alertError(message: "Request cannot be done")
+      } else {
+        let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+          // Go to List order screen
+          self.performSegue(withIdentifier: "showListOrder", sender: self)
+        })
+        self.alertWithAction(message: "Accept Successfully", action: ok)
+      }
+    }
+  }
+  
+  @IBAction func didTouchDeclinedButton(_ sender: Any) {
+    orderId = orderInfo.id
+    isAccepted = false
+    NetworkingService.sharedInstance.responseOrder(orderId: orderId, isAccepted: isAccepted) {
+      (message,error) in
+      if error != nil {
+        print(error!)
+        self.alertError(message: "Request cannot be done")
+      } else {
+        let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+          // Go to List order screen
+          self.performSegue(withIdentifier: "showListOrder", sender: self)
+        })
+        self.alertWithAction(message: "Decline Successfully", action: ok)
+      }
+    }
+  }
 }
 
 extension OrderDetailViewController {
@@ -92,10 +135,10 @@ extension OrderDetailViewController {
     orderDateLabel.text = orderInfo.orderDate
     deliveryTimeLabel.text = orderInfo.deliveryTime
     deliveryDateLabel.text = orderInfo.deliveryDate
-    statusLabel.text = orderInfo.status
     totalLabel.text = "\(orderInfo.totalAmount)"
     if Helper.role == "customer" {
       informationLabel.text = "kitchen's information"
+      statusLabel.text = orderInfo.status
       nameLabel.text = orderInfo.kitchen?.name
       addressLabel.text = orderInfo.kitchen?.address?.address
       makeSuggestionButton.isHidden = true
@@ -103,6 +146,7 @@ extension OrderDetailViewController {
       declinedButton.isHidden = true
     } else if Helper.role == "chef" {
       informationLabel.text = "customer's information"
+      statusLabel.text = chefOrderStatus
       nameLabel.text = orderInfo.contactInfo?.name
       addressLabel.text = orderInfo.contactInfo?.address
     }

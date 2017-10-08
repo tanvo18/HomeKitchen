@@ -23,6 +23,8 @@ class SuggestionViewController: UIViewController {
   let reuseableCell = "Cell"
   var suggestions: [Suggestion] = []
   var suggestion: Suggestion = Suggestion()
+  var suggestionId: Int = 0
+  var isAccepted: Bool = true
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,6 +45,7 @@ class SuggestionViewController: UIViewController {
       acceptedButton.isHidden = true
       declinedButton.isHidden = true
     }
+    self.settingForNavigationBar(title: "Suggestion")
   }
   
   override func didReceiveMemoryWarning() {
@@ -74,9 +77,9 @@ extension SuggestionViewController: UITableViewDataSource {
 // MARK: IBAction
 extension SuggestionViewController {
   @IBAction func didTouchAcceptedButton(_ sender: Any) {
-    let id = suggestion.id
-    let isAccepted = true
-    NetworkingService.sharedInstance.responseSuggestion(suggestionId: id, isAccepted: isAccepted) {
+    suggestionId = suggestion.id
+    isAccepted = true
+    NetworkingService.sharedInstance.responseSuggestion(suggestionId: suggestionId, isAccepted: isAccepted) {
       (message,error) in
       if error != nil {
         print(error!)
@@ -92,6 +95,21 @@ extension SuggestionViewController {
   }
   
   @IBAction func didTouchDeclinedButton(_ sender: Any) {
+    suggestionId = suggestion.id
+    isAccepted = false
+    NetworkingService.sharedInstance.responseSuggestion(suggestionId: suggestionId, isAccepted: isAccepted) {
+      (message,error) in
+      if error != nil {
+        print(error!)
+        self.alertError(message: "Request cannot be done")
+      } else {
+        let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+          // Go to List order screen
+          self.performSegue(withIdentifier: "showListOrder", sender: self)
+        })
+        self.alertWithAction(message: "Decline Successfully", action: ok)
+      }
+    }
   }
 }
 

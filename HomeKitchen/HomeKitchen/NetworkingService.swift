@@ -170,6 +170,9 @@ class NetworkingService {
     }
   }
   
+  /* 
+   This function use for customer response accept or decline suggestion in order
+   */
   func responseSuggestion(suggestionId: Int, isAccepted: Bool, completion: @escaping(_ message: String?, _ error: Error?) -> Void) {
     let url = NetworkingService.baseURLString + "users/suggestions"
     
@@ -180,6 +183,35 @@ class NetworkingService {
     
     let  parameters: Parameters = [ "isAccepted" : isAccepted,
                                     "suggestionId" : suggestionId
+    ]
+    
+    Alamofire.request(url, method: .put, parameters: parameters, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        if let message = response.result.value {
+          completion(message,nil)
+        } else {
+          completion(nil, nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
+  
+  /* 
+   This function use for chef response kitchen's order
+   */
+  func responseOrder(orderId: Int, isAccepted: Bool, completion: @escaping(_ message: String?, _ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "kitchens/orders"
+    
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let  parameters: Parameters = [ "isAccepted" : isAccepted,
+                                    "orderId" : orderId
     ]
     
     Alamofire.request(url, method: .put, parameters: parameters, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
