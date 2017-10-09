@@ -22,6 +22,11 @@
 		4D24855A1F7A3F940025F810 /* SuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2485581F7A3F940025F810 /* SuggestionTableViewCell.swift */; };
 		4D24855B1F7A3F940025F810 /* SuggestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D2485591F7A3F940025F810 /* SuggestionTableViewCell.xib */; };
 		4D24855E1F7A5EE00025F810 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D24855D1F7A5EE00025F810 /* CalendarViewController.swift */; };
+		4D2AAAC51F8A6B1200F281A4 /* CreateKitchenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2AAAC41F8A6B1200F281A4 /* CreateKitchenViewController.swift */; };
+		4D2AAACB1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2AAAC91F8A6EAD00F281A4 /* CreateKitchenTableViewCell.swift */; };
+		4D2AAACC1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D2AAACA1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.xib */; };
+		4D2AAAD11F8A8E7900F281A4 /* CustomTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2AAACF1F8A8E7900F281A4 /* CustomTimeTableViewCell.swift */; };
+		4D2AAAD21F8A8E7900F281A4 /* CustomTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D2AAAD01F8A8E7900F281A4 /* CustomTimeTableViewCell.xib */; };
 		4D2F0BCC1F711AC70017B8E7 /* ContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2F0BCB1F711AC70017B8E7 /* ContactInfo.swift */; };
 		4D2F0BCE1F711F550017B8E7 /* ResultUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2F0BCD1F711F550017B8E7 /* ResultUser.swift */; };
 		4D3118A01F6C10CD00ACA713 /* OrderInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31189F1F6C10CD00ACA713 /* OrderInfoViewController.swift */; };
@@ -32,6 +37,9 @@
 		4D3E1C8A1F7FEE2B0037E4A2 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3E1C891F7FEE2B0037E4A2 /* Constant.swift */; };
 		4D3F6DAB1F76167700F95EB9 /* AddNewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3F6DAA1F76167700F95EB9 /* AddNewContactViewController.swift */; };
 		4D4086581F5F9558004697CE /* KitchenDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4086571F5F9558004697CE /* KitchenDetailViewController.swift */; };
+		4D438D921F8B6E4200AF5233 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D438D911F8B6E4200AF5233 /* LocationViewController.swift */; };
+		4D438D961F8B6ECA00AF5233 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D438D941F8B6ECA00AF5233 /* LocationTableViewCell.swift */; };
+		4D438D971F8B6ECA00AF5233 /* LocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D438D951F8B6ECA00AF5233 /* LocationTableViewCell.xib */; };
 		4D4466FC1F60DEA40022C91C /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4466FB1F60DEA40022C91C /* OrderViewController.swift */; };
 		4D4467001F60DF1E0022C91C /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */; };
 		4D4467011F60DF1E0022C91C /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */; };
@@ -94,6 +102,11 @@
 		4D2485581F7A3F940025F810 /* SuggestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionTableViewCell.swift; sourceTree = "<group>"; };
 		4D2485591F7A3F940025F810 /* SuggestionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestionTableViewCell.xib; sourceTree = "<group>"; };
 		4D24855D1F7A5EE00025F810 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		4D2AAAC41F8A6B1200F281A4 /* CreateKitchenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateKitchenViewController.swift; sourceTree = "<group>"; };
+		4D2AAAC91F8A6EAD00F281A4 /* CreateKitchenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateKitchenTableViewCell.swift; sourceTree = "<group>"; };
+		4D2AAACA1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateKitchenTableViewCell.xib; sourceTree = "<group>"; };
+		4D2AAACF1F8A8E7900F281A4 /* CustomTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableViewCell.swift; sourceTree = "<group>"; };
+		4D2AAAD01F8A8E7900F281A4 /* CustomTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTimeTableViewCell.xib; sourceTree = "<group>"; };
 		4D2F0BCB1F711AC70017B8E7 /* ContactInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfo.swift; sourceTree = "<group>"; };
 		4D2F0BCD1F711F550017B8E7 /* ResultUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultUser.swift; sourceTree = "<group>"; };
 		4D31189F1F6C10CD00ACA713 /* OrderInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInfoViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +117,9 @@
 		4D3E1C891F7FEE2B0037E4A2 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4D3F6DAA1F76167700F95EB9 /* AddNewContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewContactViewController.swift; sourceTree = "<group>"; };
 		4D4086571F5F9558004697CE /* KitchenDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenDetailViewController.swift; sourceTree = "<group>"; };
+		4D438D911F8B6E4200AF5233 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		4D438D941F8B6ECA00AF5233 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		4D438D951F8B6ECA00AF5233 /* LocationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationTableViewCell.xib; sourceTree = "<group>"; };
 		4D4466FB1F60DEA40022C91C /* OrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
@@ -246,6 +262,41 @@
 			name = CalendarScreen;
 			sourceTree = "<group>";
 		};
+		4D2AAAC31F8A6AB700F281A4 /* CreateKitchenScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D2AAAC41F8A6B1200F281A4 /* CreateKitchenViewController.swift */,
+			);
+			name = CreateKitchenScreen;
+			sourceTree = "<group>";
+		};
+		4D2AAAC61F8A6E6C00F281A4 /* CreateKitchenScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D2AAACE1F8A8E4E00F281A4 /* CustomTimeCell */,
+				4D2AAACD1F8A8E3000F281A4 /* CreateKitchenCell */,
+			);
+			name = CreateKitchenScreen;
+			sourceTree = "<group>";
+		};
+		4D2AAACD1F8A8E3000F281A4 /* CreateKitchenCell */ = {
+			isa = PBXGroup;
+			children = (
+				4D2AAAC91F8A6EAD00F281A4 /* CreateKitchenTableViewCell.swift */,
+				4D2AAACA1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.xib */,
+			);
+			name = CreateKitchenCell;
+			sourceTree = "<group>";
+		};
+		4D2AAACE1F8A8E4E00F281A4 /* CustomTimeCell */ = {
+			isa = PBXGroup;
+			children = (
+				4D2AAACF1F8A8E7900F281A4 /* CustomTimeTableViewCell.swift */,
+				4D2AAAD01F8A8E7900F281A4 /* CustomTimeTableViewCell.xib */,
+			);
+			name = CustomTimeCell;
+			sourceTree = "<group>";
+		};
 		4D31189E1F6C10B600ACA713 /* OrderInfoScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +328,23 @@
 				4D4086571F5F9558004697CE /* KitchenDetailViewController.swift */,
 			);
 			path = KitchenDetailScreen;
+			sourceTree = "<group>";
+		};
+		4D438D901F8B6E1600AF5233 /* LocationScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D438D911F8B6E4200AF5233 /* LocationViewController.swift */,
+			);
+			name = LocationScreen;
+			sourceTree = "<group>";
+		};
+		4D438D931F8B6EB500AF5233 /* LocationScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D438D941F8B6ECA00AF5233 /* LocationTableViewCell.swift */,
+				4D438D951F8B6ECA00AF5233 /* LocationTableViewCell.xib */,
+			);
+			name = LocationScreen;
 			sourceTree = "<group>";
 		};
 		4D4466FA1F60DE5A0022C91C /* OrderScreen */ = {
@@ -367,6 +435,8 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D438D901F8B6E1600AF5233 /* LocationScreen */,
+				4D2AAAC31F8A6AB700F281A4 /* CreateKitchenScreen */,
 				4DEF2DC01F7BA31000C534FC /* MakeSuggestionScreen */,
 				4D4A73131F7AA9A1008A487C /* EditContactScreen */,
 				4D24855C1F7A5E4B0025F810 /* CalendarScreen */,
@@ -387,6 +457,8 @@
 		4DDB7ED11F59486C00A24730 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4D438D931F8B6EB500AF5233 /* LocationScreen */,
+				4D2AAAC61F8A6E6C00F281A4 /* CreateKitchenScreen */,
 				4DEF2DC31F7BA45300C534FC /* MakeSuggestionScreen */,
 				4D2485571F7A3F710025F810 /* CustomerSuggestionScreen */,
 				4DEBE06A1F78092800A0305D /* OrderDetailScreen */,
@@ -638,6 +710,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D2AAACC1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.xib in Resources */,
+				4D438D971F8B6ECA00AF5233 /* LocationTableViewCell.xib in Resources */,
 				4DEF2DC71F7BA47100C534FC /* MakeSuggestionViewCell.xib in Resources */,
 				4D86C0471F7251AC00C3D555 /* ContactInfoTableViewCell.xib in Resources */,
 				4D3BB80C1F5FF52B00D6686C /* TopOrderTableViewCell.xib in Resources */,
@@ -646,6 +720,7 @@
 				4D4467011F60DF1E0022C91C /* OrderTableViewCell.xib in Resources */,
 				4D1587F91F59639100B1FFB4 /* Main.storyboard in Resources */,
 				4D24855B1F7A3F940025F810 /* SuggestionTableViewCell.xib in Resources */,
+				4D2AAAD21F8A8E7900F281A4 /* CustomTimeTableViewCell.xib in Resources */,
 				4DACF0B91F55C9A00043ED79 /* LaunchScreen.storyboard in Resources */,
 				4D1588051F59663C00B1FFB4 /* MenuTableViewCell.xib in Resources */,
 				4DACF0B61F55C9A00043ED79 /* Assets.xcassets in Resources */,
@@ -710,12 +785,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D2AAAD11F8A8E7900F281A4 /* CustomTimeTableViewCell.swift in Sources */,
 				4DF4A4B41F7B58D400DC272D /* KitchenOrderDataModel.swift in Sources */,
 				4DEDD3371F5BF90100D24E79 /* LoginViewController.swift in Sources */,
 				4D18E21D1F750DA6007B83B6 /* UI.swift in Sources */,
 				4D24855A1F7A3F940025F810 /* SuggestionTableViewCell.swift in Sources */,
 				4DEBE06E1F78095A00A0305D /* OrderDetailTableViewCell.swift in Sources */,
 				4DF4A4AD1F7B573F00DC272D /* ResultKitchenOrder.swift in Sources */,
+				4D438D921F8B6E4200AF5233 /* LocationViewController.swift in Sources */,
 				4D24855E1F7A5EE00025F810 /* CalendarViewController.swift in Sources */,
 				4DF43FFD1F5E3B7A00365F57 /* Kitchen.swift in Sources */,
 				4D237C091F775C3C007C1201 /* GetOrderTableViewCell.swift in Sources */,
@@ -733,6 +810,7 @@
 				4DF5896C1F78FE5A00CC8149 /* SuggestionItem.swift in Sources */,
 				4D06C9531F766EF300ED4E95 /* SegueFromRight.swift in Sources */,
 				4D86C0461F7251AC00C3D555 /* ContactInfoTableViewCell.swift in Sources */,
+				4D2AAAC51F8A6B1200F281A4 /* CreateKitchenViewController.swift in Sources */,
 				4D4086581F5F9558004697CE /* KitchenDetailViewController.swift in Sources */,
 				4D3BB8121F60035100D6686C /* Recipe.swift in Sources */,
 				4D1588001F59657500B1FFB4 /* LeftMenuTableViewController.swift in Sources */,
@@ -758,7 +836,9 @@
 				4D2F0BCE1F711F550017B8E7 /* ResultUser.swift in Sources */,
 				4D1587FE1F59651900B1FFB4 /* SMNavigationController.swift in Sources */,
 				4D4466FC1F60DEA40022C91C /* OrderViewController.swift in Sources */,
+				4D438D961F8B6ECA00AF5233 /* LocationTableViewCell.swift in Sources */,
 				4DEF2DC61F7BA47100C534FC /* MakeSuggestionViewCell.swift in Sources */,
+				4D2AAACB1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.swift in Sources */,
 				4D2F0BCC1F711AC70017B8E7 /* ContactInfo.swift in Sources */,
 				4D1588041F59663C00B1FFB4 /* MenuTableViewCell.swift in Sources */,
 				4DF43FFF1F5E3DC200365F57 /* ResultKitchen.swift in Sources */,

@@ -14,5 +14,4 @@ class Constant {
   static let fairPoint = 3.0
   static let goodPoint = 4.0
   static let excellentPoint = 5.0
-  
 }

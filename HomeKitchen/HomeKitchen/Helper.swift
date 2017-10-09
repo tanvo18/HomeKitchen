@@ -16,4 +16,5 @@ class Helper {
   // Saving role 
   // Chef has 2 roles: chef and customer
   static var role: String = ""
+  static var districtLocations: [String] = ["Hải Châu","Hoà Vang","Cẩm Lệ","Liên Chiểu","Ngũ Hành Sơn","Sơn Trà","Thanh Khê","Hoàng Sa"]
 }

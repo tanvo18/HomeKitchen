@@ -48,6 +48,7 @@ class ListOrderViewController: UIViewController {
       title = "Kitchen's Order"
     } else if Helper.role == "customer" {
       title = "My Order"
+      statusTextField.isHidden = true
     }
     self.settingForNavigationBar(title: title)
     createStatusPicker()
