@@ -172,7 +172,7 @@ extension MakeSuggestionViewController {
     // print("====json \(orderInfo.products.toJSON())")
     let total: Int = Int(totalLabel.text!)!
     addItemToSuggestionItems()
-    NetworkingService.sharedInstance.sendSuggestion(orderId: orderInfo.id, deliveryTime: deliveryTimeTextField.text!, deliveryDate: deliveryDateLabel.text!, totalPrice: total, suggestionItems: suggestionItems) {(error) in
+    NetworkingService.sharedInstance.sendSuggestion(orderId: orderInfo.id, deliveryTime: deliveryTimeTextField.text!, deliveryDate: deliveryDateLabel.text!, totalPrice: total, suggestionItems: suggestionItems) {[unowned self] (error) in
       if error != nil {
         print(error!)
         self.alertError(message: "Cannot Send")

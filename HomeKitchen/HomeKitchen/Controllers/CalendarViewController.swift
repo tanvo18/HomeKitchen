@@ -54,7 +54,8 @@ class CalendarViewController: UIViewController {
     // Init current date for datePicking
     initCurrentDate()
     // Setup navigation bar and add right item button
-    settingForNavigationBar()
+    self.settingForNavigationBar(title: "Calendar")
+    settingRightButtonItem()
   }
   
   override func didReceiveMemoryWarning() {
@@ -288,12 +289,7 @@ extension CalendarViewController {
     
   }
   
-  func settingForNavigationBar() {
-    // Set title for back button in navigation bar
-    navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-    navigationItem.title = "Calendar"
-    navigationController?.navigationBar.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
-    // Set right button
+  func settingRightButtonItem() {
     let rightButtonItem = UIBarButtonItem.init(
       title: "Done",
       style: .done,

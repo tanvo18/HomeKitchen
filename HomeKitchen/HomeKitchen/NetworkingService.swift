@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import ObjectMapper
 
 class NetworkingService {
   
@@ -105,12 +106,12 @@ class NetworkingService {
     ]
     Alamofire.request(url, method: .delete, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString
       { response in
-      switch response.result {
-      case .success:
-        completion(nil)
-      case .failure(let error):
-        completion(error)
-      }
+        switch response.result {
+        case .success:
+          completion(nil)
+        case .failure(let error):
+          completion(error)
+        }
     }
   }
   
@@ -130,7 +131,7 @@ class NetworkingService {
                                    "name": name,
                                    "phone_number": phoneNumber,
                                    "contact_information": [contactInfo.toJSON()]
-                                  ]
+    ]
     
     Alamofire.request(url, method: .put,parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString
       { response in
@@ -154,10 +155,10 @@ class NetworkingService {
     ]
     
     let  parameters: Parameters = [ "order_id": orderId,
-                                   "delivery_time": deliveryTime,
-                                   "delivery_date": deliveryDate,
-                                   "total_price": totalPrice,
-                                   "suggestion_items": suggestionItems.toJSON()
+                                    "delivery_time": deliveryTime,
+                                    "delivery_date": deliveryDate,
+                                    "total_price": totalPrice,
+                                    "suggestion_items": suggestionItems.toJSON()
     ]
     
     Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
@@ -170,7 +171,7 @@ class NetworkingService {
     }
   }
   
-  /* 
+  /*
    This function use for customer response accept or decline suggestion in order
    */
   func responseSuggestion(suggestionId: Int, isAccepted: Bool, completion: @escaping(_ message: String?, _ error: Error?) -> Void) {
@@ -199,7 +200,7 @@ class NetworkingService {
     }
   }
   
-  /* 
+  /*
    This function use for chef response kitchen's order
    */
   func responseOrder(orderId: Int, isAccepted: Bool, completion: @escaping(_ message: String?, _ error: Error?) -> Void) {
@@ -218,6 +219,38 @@ class NetworkingService {
       switch response.result {
       case .success:
         if let message = response.result.value {
+          completion(message,nil)
+        } else {
+          completion(nil, nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
+  
+  // Create kitchen, we have to use responseString to get header
+  func createKitchen(openingTime: String, closingTime: String, kitchenName: String, imageUrl: String, type: String, createdDate: String, address: Address, completion: @escaping(_ message: String?,_ error: Error?) -> Void ) {
+    
+    let url = NetworkingService.baseURLString + "kitchens"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let parameters: Parameters = ["open" : openingTime,
+                                  "close" : closingTime,
+                                  "name" : kitchenName,
+                                  "image_url" : imageUrl,
+                                  "type" : type,
+                                  "created_date" : createdDate,
+                                  "address" : address.toJSON()
+    ]
+    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        if let message = response.result.value {
+          print("====message \(message)")
           completion(message,nil)
         } else {
           completion(nil, nil)

@@ -10,16 +10,26 @@ import UIKit
 
 class CreateKitchenViewController: UIViewController {
   
+  // MARK: IBOutlet
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var districtLabel: UILabel!
+  @IBOutlet weak var cityLabel: UILabel!
+  @IBOutlet weak var countryLabel: UILabel!
+  // MARK: UITextField
+  var openingTimeTextField: UITextField = UITextField()
+  var closingTimeTextField: UITextField = UITextField()
+  var kitchenNameTF: UITextField = UITextField()
+  var typeTF: UITextField = UITextField()
+  var streetAddressTF: UITextField = UITextField()
+  var phoneNumberTF: UITextField = UITextField()
+  
   let reuseableCreateCell = "CreateCell"
   let reuseableTimeCell = "TimeCell"
   let data = [["Kitchen's name", "Bussiness type", "Street address","Phone number"],["Opening time"]]
   let headerTitles = ["Required information", "More information"]
   let sectionOnePlaceHolder = ["Kitchen's name", "Bussiness type", "Street address","Phone number"]
+  
   let datePicker = UIDatePicker()
-  var openingTextField: UITextField = UITextField()
-  var closingTextField: UITextField = UITextField()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,6 +45,9 @@ class CreateKitchenViewController: UIViewController {
     let tap = UITapGestureRecognizer(target: self, action: #selector(tapDistrictLabel))
     districtLabel.isUserInteractionEnabled = true
     districtLabel.addGestureRecognizer(tap)
+    // Navigation bar
+    self.settingForNavigationBar(title: "Create Kitchen")
+    settingRightButtonItem()
   }
   
   override func didReceiveMemoryWarning() {
@@ -60,16 +73,23 @@ extension CreateKitchenViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.section == 1 && indexPath.row == 0 {
       let timeCell = tableView.dequeueReusableCell(withIdentifier: reuseableTimeCell) as! CustomTimeTableViewCell
-      openingTextField = timeCell.openingTextField
-      closingTextField = timeCell.closingTextField
-      createPickerForOpeningTF(timeTextField: openingTextField)
-      createPickerForClosingTF(timeTextField: closingTextField)
+      openingTimeTextField = timeCell.openingTextField
+      closingTimeTextField = timeCell.closingTextField
+      createPickerForOpeningTF(timeTextField: openingTimeTextField)
+      createPickerForClosingTF(timeTextField: closingTimeTextField)
       return timeCell
     } else {
       let createKitchenCell = tableView.dequeueReusableCell(withIdentifier: reuseableCreateCell) as! CreateKitchenTableViewCell
-      // Set number type for phone number textfield
-      if indexPath.row == 3 {
+      if indexPath.row == 0 {
+        kitchenNameTF = createKitchenCell.textFieldCell
+      } else if indexPath.row == 1 {
+        typeTF = createKitchenCell.textFieldCell
+      } else if indexPath.row == 2 {
+        streetAddressTF = createKitchenCell.textFieldCell
+      } else if indexPath.row == 3 {
+         // Set number type for phone number textfield
         createKitchenCell.textFieldCell.keyboardType = .numberPad
+        phoneNumberTF = createKitchenCell.textFieldCell
       }
       createKitchenCell.configureWithItem(title: sectionOnePlaceHolder[indexPath.row])
       return createKitchenCell
@@ -104,7 +124,7 @@ extension CreateKitchenViewController {
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .none
     dateFormatter.timeStyle = .short
-    openingTextField.text = dateFormatter.string(from: datePicker.date)
+    openingTimeTextField.text = dateFormatter.string(from: datePicker.date)
     self.view.endEditing(true)
   }
   
@@ -126,12 +146,68 @@ extension CreateKitchenViewController {
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .none
     dateFormatter.timeStyle = .short
-    closingTextField.text = dateFormatter.string(from: datePicker.date)
+    closingTimeTextField.text = dateFormatter.string(from: datePicker.date)
     self.view.endEditing(true)
   }
   
   func tapDistrictLabel(sender:UITapGestureRecognizer) {
     performSegue(withIdentifier: "showLocation", sender: self)
+  }
+  
+  func settingRightButtonItem() {
+    let rightButtonItem = UIBarButtonItem.init(
+      title: "Done",
+      style: .done,
+      target: self,
+      action: #selector(rightButtonAction(sender:))
+    )
+    self.navigationItem.rightBarButtonItem = rightButtonItem
+    self.navigationItem.rightBarButtonItem?.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
+  }
+  
+  func rightButtonAction(sender: UIBarButtonItem) {
+    if checkNotNil() {
+      let today = setCurrentDate()
+      let defaultImageUrl = Helper.defaultImageUrl
+      let address = Address(city: cityLabel.text!, district: districtLabel.text!, address: streetAddressTF.text!, phoneNumber: phoneNumberTF.text!)
+      guard let openingTime = openingTimeTextField.text,let closingTime = closingTimeTextField.text, let kitchenName = kitchenNameTF.text, let type = typeTF.text else {
+        return
+      }
+      
+      NetworkingService.sharedInstance.createKitchen(openingTime: openingTime , closingTime: closingTime, kitchenName: kitchenName, imageUrl: defaultImageUrl, type: type, createdDate: today, address: address) {
+        [unowned self] (message,error) in
+        if error != nil {
+          print(error!)
+          self.alertError(message: "Cannot create kitchen")
+        } else {
+          let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+            // Go to Home Screen
+            self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+          })
+          self.alertWithAction(message: "Create Successfully", action: ok)
+        }
+      }
+    } else {
+      self.alert(title: "Error", message: "All fields are required")
+    }
+  }
+  
+  func setCurrentDate() -> String {
+    let date = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    let result = formatter.string(from: date)
+    return result
+  }
+  
+  func checkNotNil() -> Bool {
+    if  kitchenNameTF.text!.isEmpty || typeTF.text!.isEmpty || streetAddressTF.text!.isEmpty || phoneNumberTF.text!.isEmpty{
+      return false
+    } else if districtLabel.text! == "Select District" {
+      return false
+    } else {
+      return true
+    }
   }
 }
 

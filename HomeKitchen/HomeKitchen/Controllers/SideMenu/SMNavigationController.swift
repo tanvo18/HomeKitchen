@@ -7,6 +7,8 @@
 //
 
 import LNSideMenu
+import FacebookLogin
+import FacebookCore
 
 class SMNavigationController: LNSideMenuNavigationController {
   
@@ -43,6 +45,12 @@ class SMNavigationController: LNSideMenuNavigationController {
     case 2:
       Helper.role = "chef"
       nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
+    case 3:
+      Helper.role = "chef"
+      nViewController = storyboard?.instantiateViewController(withIdentifier: "CreateKitchenViewController")
+    case 4:
+      let loginManager = LoginManager()
+      loginManager.logOut()
     default:
       break
     }

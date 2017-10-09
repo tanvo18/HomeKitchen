@@ -310,7 +310,7 @@
         <!--Create Kitchen View Controller-->
         <scene sceneID="EDi-nC-WCi">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="41D-Sl-zSQ" customClass="CreateKitchenViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateKitchenViewController" automaticallyAdjustsScrollViewInsets="NO" id="41D-Sl-zSQ" customClass="CreateKitchenViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vzx-dP-myT"/>
                         <viewControllerLayoutGuide type="bottom" id="Ma6-Vh-Gii"/>
@@ -359,14 +359,17 @@
                         <color key="backgroundColor" red="0.87684406725888331" green="0.87684406725888331" blue="0.87684406725888331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="cityLabel" destination="gCZ-rk-fQg" id="pXp-1G-Wxs"/>
+                        <outlet property="countryLabel" destination="HqM-FL-Pyt" id="g7l-Mm-EYw"/>
                         <outlet property="districtLabel" destination="82o-dT-LgK" id="z3V-VM-EeT"/>
                         <outlet property="tableView" destination="Dqm-TC-pVu" id="mMr-UB-Wm6"/>
                         <segue destination="A0C-oV-XE3" kind="show" identifier="showLocation" id="JDc-Ee-M58"/>
+                        <segue destination="OKg-xq-bB5" kind="show" identifier="showHomeScreen" id="DPN-uG-uoY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xKZ-qo-F0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1313" y="468"/>
+            <point key="canvasLocation" x="1265" y="466"/>
         </scene>
         <!--Location View Controller-->
         <scene sceneID="0tt-mH-kty">

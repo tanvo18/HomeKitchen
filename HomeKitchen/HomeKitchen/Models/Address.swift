@@ -22,11 +22,19 @@ class Address: Mappable {
     self.init()
   }
   
+  convenience init(city: String, district: String, address: String, phoneNumber: String) {
+    self.init()
+    self.city = city
+    self.district = district
+    self.address = address
+    self.phoneNumber = phoneNumber
+  }
+  
   // Mappable
   func mapping(map: Map) {
     city            <- map["city"]
     district        <- map["district"]
     address         <- map["address"]
-    phoneNumber     <- map["phoneNumber"]
+    phoneNumber     <- map["phonenumber"]
   }
 }
