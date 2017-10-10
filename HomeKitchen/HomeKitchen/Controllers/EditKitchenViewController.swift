@@ -9,6 +9,9 @@
 import UIKit
 import ObjectMapper
 import Kingfisher
+import AWSCore
+import AWSS3
+import Photos
 
 class EditKitchenViewController: UIViewController {
   
@@ -18,6 +21,7 @@ class EditKitchenViewController: UIViewController {
   @IBOutlet weak var cityLabel: UILabel!
   @IBOutlet weak var countryLabel: UILabel!
   @IBOutlet weak var kitchenCoverImageView: UIImageView!
+  var myActivityIndicator: UIActivityIndicatorView!
   
   // MARK: UITextField
   var openingTimeTextField: UITextField = UITextField()
@@ -32,7 +36,12 @@ class EditKitchenViewController: UIViewController {
       print("====kitchen \(kitchen!.id)")
       parseKitchenInfoData()
       tableView.reloadData()
-      downloadImage(imageUrl: kitchen!.imageUrl)
+      if isFirstTime {
+        downloadImage(imageUrl: kitchen!.imageUrl)
+        isFirstTime = false
+        imageUrl = kitchen!.imageUrl
+        myActivityIndicator.stopAnimating()
+      }
     }
   }
   let reuseableCreateCell = "CreateCell"
@@ -41,8 +50,10 @@ class EditKitchenViewController: UIViewController {
   let headerTitles = ["Required information", "More information"]
   let sectionOnePlaceHolder = ["Kitchen's name", "Bussiness type", "Street address","Phone number"]
   let datePicker = UIDatePicker()
-  
-  
+  var selectedImageUrl: NSURL!
+  // Check the first time go to EditKitchen Controller to set image
+  var isFirstTime: Bool = true
+  var imageUrl: String = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -59,7 +70,7 @@ class EditKitchenViewController: UIViewController {
     districtLabel.isUserInteractionEnabled = true
     districtLabel.addGestureRecognizer(tap)
     // Tapping kitchenCoverImageView
-    let tapImage = UITapGestureRecognizer(target: self, action: #selector(tapKitchenImageView))
+    let tapImage = UITapGestureRecognizer(target: self, action: #selector(displayImagePicker))
     kitchenCoverImageView.isUserInteractionEnabled = true
     kitchenCoverImageView.addGestureRecognizer(tapImage)
     // Navigation bar
@@ -67,6 +78,10 @@ class EditKitchenViewController: UIViewController {
     settingRightButtonItem()
     // Set image default when start controller
     kitchenCoverImageView.image = UIImage(named: "photoalbum")
+    // Setup indicator
+    setUpActivityIndicator()
+    // Start indicator for download image
+    myActivityIndicator.startAnimating()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -129,7 +144,7 @@ extension EditKitchenViewController: UITableViewDataSource {
 
 
 // MARK: Function
-extension EditKitchenViewController {
+extension EditKitchenViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
   func createPickerForOpeningTF(timeTextField: UITextField) {
     // Format the display of datepicker
     datePicker.datePickerMode = .time
@@ -178,10 +193,6 @@ extension EditKitchenViewController {
     performSegue(withIdentifier: "showLocation", sender: self)
   }
   
-  func tapKitchenImageView(sender:UITapGestureRecognizer) {
-    
-  }
-  
   func settingRightButtonItem() {
     let rightButtonItem = UIBarButtonItem.init(
       title: "Done",
@@ -194,14 +205,26 @@ extension EditKitchenViewController {
   }
   
   func rightButtonAction(sender: UIBarButtonItem) {
-//    if checkNotNil() {
-//      let today = setCurrentDate()
-//      let defaultImageUrl = Helper.defaultImageUrl
-//      let address = Address(city: cityLabel.text!, district: districtLabel.text!, address: streetAddressTF.text!, phoneNumber: phoneNumberTF.text!)
-//      guard let openingTime = openingTimeTextField.text,let closingTime = closingTimeTextField.text, let kitchenName = kitchenNameTF.text, let type = typeTF.text else {
-//        return
-//      }
-//    }
+    if checkNotNil() {
+      let imageUrl = self.imageUrl
+      let address = Address(city: cityLabel.text!, district: districtLabel.text!, address: streetAddressTF.text!, phoneNumber: phoneNumberTF.text!)
+      guard let id = kitchen?.id, let openingTime = openingTimeTextField.text,let closingTime = closingTimeTextField.text, let kitchenName = kitchenNameTF.text, let type = typeTF.text else {
+        return
+      }
+      NetworkingService.sharedInstance.editKitchen(id: id, openingTime: openingTime, closingTime: closingTime, kitchenName: kitchenName, imageUrl: imageUrl, type: type, address: address) {
+        [unowned self] (message,error) in
+        if error != nil {
+          print(error!)
+          self.alertError(message: "Cannot Edit")
+        } else {
+          let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+            // Go to Home Screen
+            self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+          })
+          self.alertWithAction(message: "Edit Successfully", action: ok)
+        }
+      }
+    }
   }
   
   func setCurrentDate() -> String {
@@ -243,13 +266,153 @@ extension EditKitchenViewController {
     phoneNumberTF.text = kitchen?.address?.phoneNumber
   }
   
-  // MARK: download image with url
+  func setUpActivityIndicator()
+  {
+    //Create Activity Indicator
+    myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    
+    // Position Activity Indicator in the center of the main view
+    myActivityIndicator.center = view.center
+    
+    // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+    myActivityIndicator.hidesWhenStopped = true
+    
+    myActivityIndicator.backgroundColor = .white
+    
+    view.addSubview(myActivityIndicator)
+  }
+  
+  // Download image with url
   func downloadImage(imageUrl: String) {
     let url = URL(string: imageUrl)!
     ImageDownloader.default.downloadImage(with: url, options: [], progressBlock: nil) {
       (image, error, url, data) in
       self.kitchenCoverImageView.image = image
     }
+  }
+  
+  // Show image picker
+  func displayImagePicker(sender:UITapGestureRecognizer) {
+    let myPickerController = UIImagePickerController()
+    myPickerController.delegate = self;
+    myPickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+    self.present(myPickerController, animated: true, completion: nil)
+  }
+  
+  func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
+  {
+    selectedImageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+    
+    kitchenCoverImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+    kitchenCoverImageView.backgroundColor = UIColor.clear
+    kitchenCoverImageView.contentMode = UIViewContentMode.scaleAspectFit
+    self.dismiss(animated: true, completion: nil)
+  }
+}
+
+// MARK: Generate image and interact with AWS S3
+extension EditKitchenViewController {
+  func generateImageUrl(fileName: String) -> NSURL
+  {
+    let fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory().appending(fileName))
+    let data = UIImageJPEGRepresentation(kitchenCoverImageView.image!, 0.6)
+    do {
+      try  data!.write(to: fileURL as URL)
+    }
+    catch {
+      
+    }
+    return fileURL
+  }
+  
+  func remoteImageWithUrl(fileName: String)
+  {
+    let fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory().appending(fileName))
+    do {
+      try FileManager.default.removeItem(at: fileURL as URL)
+    } catch
+    {
+      print(error)
+    }
+  }
+  
+  func startUploadingImage()
+  {
+    var localFileName:String?
+    
+    if let imageToUploadUrl = selectedImageUrl
+    {
+      let phResult = PHAsset.fetchAssets(withALAssetURLs: [imageToUploadUrl as URL], options: nil)
+      // localFileName = phResult.firstObject?.value(forKey: "filename") as! String
+      localFileName = PHAssetResource.assetResources(for: phResult.firstObject!).first!.originalFilename
+      print("=====\(localFileName!)")
+    }
+    
+    if localFileName == nil
+    {
+      return
+    }
+    
+    myActivityIndicator.startAnimating()
+    
+    // Configure AWS Cognito Credentials
+    let myIdentityPoolId = "us-east-1:5c8b88b8-655b-4862-8d8b-9c242f0fd810"
+    
+    let credentialsProvider:AWSCognitoCredentialsProvider = AWSCognitoCredentialsProvider(regionType:AWSRegionType.USEast1, identityPoolId: myIdentityPoolId)
+    
+    let configuration = AWSServiceConfiguration(region:AWSRegionType.USEast1, credentialsProvider:credentialsProvider)
+    
+    AWSServiceManager.default().defaultServiceConfiguration = configuration
+    
+    // Set up AWS Transfer Manager Request
+    let S3BucketName = "demouploadimage"
+    
+    // Add kitchenId to remoteName to assure this image is belong to kitchen and this image is unique
+    let remoteName = localFileName! + "-" + "\(kitchen!.id)"
+    
+    let uploadRequest = AWSS3TransferManagerUploadRequest()
+    uploadRequest?.body = generateImageUrl(fileName: remoteName) as URL
+    uploadRequest?.key = remoteName
+    uploadRequest?.bucket = S3BucketName
+    uploadRequest?.contentType = "image/jpeg"
+    
+    
+    let transferManager = AWSS3TransferManager.default()
+    
+    // Perform file upload
+    transferManager.upload(uploadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: {  (task:AWSTask<AnyObject>) -> Any? in
+      
+      DispatchQueue.main.async() {
+        self.myActivityIndicator.stopAnimating()
+      }
+      
+      if let error = task.error {
+        print("Upload failed with error: (\(error.localizedDescription))")
+      }
+      
+      if task.result != nil {
+        
+        let s3URL = URL(string: "https://s3.amazonaws.com/\(S3BucketName)/\(uploadRequest!.key!)")!
+        print("Uploaded to:\n\(s3URL)")
+        
+        // Remove locally stored file
+        self.remoteImageWithUrl(fileName: uploadRequest!.key!)
+        
+        DispatchQueue.main.async() {
+          // Saving url of image
+          self.imageUrl = "\(s3URL)"
+          let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+            
+          })
+          self.alertWithAction(message: "Update Successfully", action: ok)
+        }
+      }
+      else {
+        print("Unexpected empty result.")
+      }
+      return nil
+    })
+    
   }
 }
 
@@ -261,6 +424,10 @@ extension EditKitchenViewController {
         districtLabel.text = senderVC.selectedLocation
       }
     }
+  }
+  
+  @IBAction func didTouchEditButton(_ sender: Any) {
+    startUploadingImage()
   }
 }
 

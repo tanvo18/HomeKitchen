@@ -261,6 +261,38 @@ class NetworkingService {
     }
   }
   
+  // Using responseString
+  func editKitchen(id: Int, openingTime: String, closingTime: String, kitchenName: String, imageUrl: String, type: String, address: Address, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
+    
+    let url = NetworkingService.baseURLString + "kitchens"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let parameters: Parameters = ["id" : id,
+                                  "open" : openingTime,
+                                  "close" : closingTime,
+                                  "name" : kitchenName,
+                                  "image_url" : imageUrl,
+                                  "type" : type,
+                                  "address" : address.toJSON()
+    ]
+    Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        if let message = response.result.value {
+          print("====message \(message)")
+          completion(message,nil)
+        } else {
+          completion(nil, nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
+  
   // Get kitchen information
   // Using responseJSON
   func getKitchenInfo(completion: @escaping(_ kitchen: Kitchen?,_ error: Error?) -> Void) {
