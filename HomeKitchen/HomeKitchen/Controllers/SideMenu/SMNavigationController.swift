@@ -49,6 +49,9 @@ class SMNavigationController: LNSideMenuNavigationController {
       Helper.role = "chef"
       nViewController = storyboard?.instantiateViewController(withIdentifier: "CreateKitchenViewController")
     case 4:
+      Helper.role = "chef"
+      nViewController = storyboard?.instantiateViewController(withIdentifier: "EditKitchenViewController")
+    case 5:
       let loginManager = LoginManager()
       loginManager.logOut()
     default:

@@ -1,17 +1,15 @@
 //
-//  ResultOrderInfo.swift
+//  ResultKitchenInfo.swift
 //  HomeKitchen
 //
-//  Created by Tan Vo on 9/24/17.
+//  Created by Tan Vo on 10/10/17.
 //  Copyright © 2017 Tan Vo. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
 
-// Get customer's order (customer's Cart) when click to restaurant's detail
-class ResultOrderInfo: Mappable {
-  
+class ResultKitchenInfo: Mappable {
   var kitchen: Kitchen?
   
   required init?(map: Map) {
@@ -22,4 +20,3 @@ class ResultOrderInfo: Mappable {
     kitchen <- map["kitchen"]
   }
 }
-

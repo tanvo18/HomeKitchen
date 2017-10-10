@@ -28,7 +28,7 @@ class KitchenDataModel {
       "Accept": "application/json"
     ]
     let url = NetworkingService.baseURLString + "kitchens/all"
-    Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+    Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseJSON { response in
       switch response.result {
       case .success:
         if let json = response.result.value as? [String: Any]{

@@ -230,7 +230,7 @@ class NetworkingService {
   }
   
   // Create kitchen, we have to use responseString to get header
-  func createKitchen(openingTime: String, closingTime: String, kitchenName: String, imageUrl: String, type: String, createdDate: String, address: Address, completion: @escaping(_ message: String?,_ error: Error?) -> Void ) {
+  func createKitchen(openingTime: String, closingTime: String, kitchenName: String, imageUrl: String, type: String, createdDate: String, address: Address, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
     
     let url = NetworkingService.baseURLString + "kitchens"
     let headers: HTTPHeaders = [
@@ -260,4 +260,33 @@ class NetworkingService {
       }
     }
   }
+  
+  // Get kitchen information
+  // Using responseJSON
+  func getKitchenInfo(completion: @escaping(_ kitchen: Kitchen?,_ error: Error?) -> Void) {
+    var kitchen: Kitchen?
+    var result: ResultKitchenInfo?
+    
+    let url = NetworkingService.baseURLString + "kitchens"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseJSON { response in
+      switch response.result {
+      case .success:
+        if let json = response.result.value as? [String: Any] {
+          result = Mapper<ResultKitchenInfo>().map(JSON: json)
+          if let result = result {
+            kitchen = result.kitchen
+            completion(kitchen,nil)
+          }
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
+  
 }

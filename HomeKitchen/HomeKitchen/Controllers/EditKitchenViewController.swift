@@ -1,20 +1,24 @@
 //
-//  CreateKitchenViewController.swift
+//  EditKitchenViewController.swift
 //  HomeKitchen
 //
-//  Created by Tan Vo on 10/8/17.
+//  Created by Tan Vo on 10/10/17.
 //  Copyright © 2017 Tan Vo. All rights reserved.
 //
 
 import UIKit
+import ObjectMapper
+import Kingfisher
 
-class CreateKitchenViewController: UIViewController {
+class EditKitchenViewController: UIViewController {
   
   // MARK: IBOutlet
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var districtLabel: UILabel!
   @IBOutlet weak var cityLabel: UILabel!
   @IBOutlet weak var countryLabel: UILabel!
+  @IBOutlet weak var kitchenCoverImageView: UIImageView!
+  
   // MARK: UITextField
   var openingTimeTextField: UITextField = UITextField()
   var closingTimeTextField: UITextField = UITextField()
@@ -23,13 +27,22 @@ class CreateKitchenViewController: UIViewController {
   var streetAddressTF: UITextField = UITextField()
   var phoneNumberTF: UITextField = UITextField()
   
+  var kitchen: Kitchen? {
+    didSet {
+      print("====kitchen \(kitchen!.id)")
+      parseKitchenInfoData()
+      tableView.reloadData()
+      downloadImage(imageUrl: kitchen!.imageUrl)
+    }
+  }
   let reuseableCreateCell = "CreateCell"
   let reuseableTimeCell = "TimeCell"
   let data = [["Kitchen's name", "Bussiness type", "Street address","Phone number"],["Opening time"]]
   let headerTitles = ["Required information", "More information"]
   let sectionOnePlaceHolder = ["Kitchen's name", "Bussiness type", "Street address","Phone number"]
-  
   let datePicker = UIDatePicker()
+  
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -45,9 +58,19 @@ class CreateKitchenViewController: UIViewController {
     let tap = UITapGestureRecognizer(target: self, action: #selector(tapDistrictLabel))
     districtLabel.isUserInteractionEnabled = true
     districtLabel.addGestureRecognizer(tap)
+    // Tapping kitchenCoverImageView
+    let tapImage = UITapGestureRecognizer(target: self, action: #selector(tapKitchenImageView))
+    kitchenCoverImageView.isUserInteractionEnabled = true
+    kitchenCoverImageView.addGestureRecognizer(tapImage)
     // Navigation bar
-    self.settingForNavigationBar(title: "Create Kitchen")
+    self.settingForNavigationBar(title: "Edit Kitchen")
     settingRightButtonItem()
+    // Set image default when start controller
+    kitchenCoverImageView.image = UIImage(named: "photoalbum")
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    requestKitchenInfo()
   }
   
   override func didReceiveMemoryWarning() {
@@ -56,12 +79,12 @@ class CreateKitchenViewController: UIViewController {
 }
 
 // MARK: tableView Delegate
-extension CreateKitchenViewController: UITableViewDelegate {
+extension EditKitchenViewController: UITableViewDelegate {
   
 }
 
 // MARK: tableView Datasource
-extension CreateKitchenViewController: UITableViewDataSource {
+extension EditKitchenViewController: UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
     return data.count
   }
@@ -87,7 +110,7 @@ extension CreateKitchenViewController: UITableViewDataSource {
       } else if indexPath.row == 2 {
         streetAddressTF = createKitchenCell.textFieldCell
       } else if indexPath.row == 3 {
-         // Set number type for phone number textfield
+        // Set number type for phone number textfield
         createKitchenCell.textFieldCell.keyboardType = .numberPad
         phoneNumberTF = createKitchenCell.textFieldCell
       }
@@ -104,8 +127,9 @@ extension CreateKitchenViewController: UITableViewDataSource {
   }
 }
 
+
 // MARK: Function
-extension CreateKitchenViewController {
+extension EditKitchenViewController {
   func createPickerForOpeningTF(timeTextField: UITextField) {
     // Format the display of datepicker
     datePicker.datePickerMode = .time
@@ -154,6 +178,10 @@ extension CreateKitchenViewController {
     performSegue(withIdentifier: "showLocation", sender: self)
   }
   
+  func tapKitchenImageView(sender:UITapGestureRecognizer) {
+    
+  }
+  
   func settingRightButtonItem() {
     let rightButtonItem = UIBarButtonItem.init(
       title: "Done",
@@ -166,30 +194,14 @@ extension CreateKitchenViewController {
   }
   
   func rightButtonAction(sender: UIBarButtonItem) {
-    if checkNotNil() {
-      let today = setCurrentDate()
-      let defaultImageUrl = Helper.defaultImageUrl
-      let address = Address(city: cityLabel.text!, district: districtLabel.text!, address: streetAddressTF.text!, phoneNumber: phoneNumberTF.text!)
-      guard let openingTime = openingTimeTextField.text,let closingTime = closingTimeTextField.text, let kitchenName = kitchenNameTF.text, let type = typeTF.text else {
-        return
-      }
-      
-      NetworkingService.sharedInstance.createKitchen(openingTime: openingTime , closingTime: closingTime, kitchenName: kitchenName, imageUrl: defaultImageUrl, type: type, createdDate: today, address: address) {
-        [unowned self] (message,error) in
-        if error != nil {
-          print(error!)
-          self.alertError(message: "Cannot create kitchen")
-        } else {
-          let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-            // Go to Home Screen
-            self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-          })
-          self.alertWithAction(message: "Create Successfully", action: ok)
-        }
-      }
-    } else {
-      self.alert(title: "Error", message: "All fields are required")
-    }
+//    if checkNotNil() {
+//      let today = setCurrentDate()
+//      let defaultImageUrl = Helper.defaultImageUrl
+//      let address = Address(city: cityLabel.text!, district: districtLabel.text!, address: streetAddressTF.text!, phoneNumber: phoneNumberTF.text!)
+//      guard let openingTime = openingTimeTextField.text,let closingTime = closingTimeTextField.text, let kitchenName = kitchenNameTF.text, let type = typeTF.text else {
+//        return
+//      }
+//    }
   }
   
   func setCurrentDate() -> String {
@@ -209,11 +221,41 @@ extension CreateKitchenViewController {
       return true
     }
   }
+  
+  func requestKitchenInfo() {
+    NetworkingService.sharedInstance.getKitchenInfo() {
+      [unowned self] (kitchen,error) in
+      if error != nil {
+        print(error!)
+      } else {
+        self.kitchen = kitchen
+      }
+    }
+  }
+  
+  func parseKitchenInfoData() {
+    districtLabel.text = kitchen?.address?.district
+    openingTimeTextField.text = kitchen?.open
+    closingTimeTextField.text = kitchen?.close
+    kitchenNameTF.text = kitchen?.name
+    typeTF.text = kitchen?.type
+    streetAddressTF.text = kitchen?.address?.address
+    phoneNumberTF.text = kitchen?.address?.phoneNumber
+  }
+  
+  // MARK: download image with url
+  func downloadImage(imageUrl: String) {
+    let url = URL(string: imageUrl)!
+    ImageDownloader.default.downloadImage(with: url, options: [], progressBlock: nil) {
+      (image, error, url, data) in
+      self.kitchenCoverImageView.image = image
+    }
+  }
 }
 
 // MARK: IBAction
-extension CreateKitchenViewController {
-  @IBAction func unwindToCreateKitchenController(segue:UIStoryboardSegue) {
+extension EditKitchenViewController {
+  @IBAction func unwindToEditKitchenController(segue:UIStoryboardSegue) {
     if segue.source is LocationViewController {
       if let senderVC = segue.source as? LocationViewController {
         districtLabel.text = senderVC.selectedLocation
@@ -222,13 +264,15 @@ extension CreateKitchenViewController {
   }
 }
 
-extension CreateKitchenViewController {
+extension EditKitchenViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showLocation" {
       if let destination = segue.destination as? LocationViewController {
         destination.locations = Helper.districtLocations
-        destination.viewcontroller = "CreateKitchenViewController"
+        destination.viewcontroller = "EditKitchenViewController"
       }
     }
   }
 }
+
+

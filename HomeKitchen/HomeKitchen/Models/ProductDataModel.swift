@@ -33,7 +33,7 @@ class ProductDataModel {
     ]
     let kitchenId = Helper.kitchenId
     let url = NetworkingService.baseURLString + "kitchens/\(kitchenId)/products"
-    Alamofire.request(url, method: .get, encoding: URLEncoding.default, headers: headers).responseJSON { response in
+    Alamofire.request(url, method: .get, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseJSON { response in
       switch response.result {
       case .success:
         if let json = response.result.value as? [String: Any]{
@@ -41,8 +41,8 @@ class ProductDataModel {
           guard let result = result else {
             return
           }
-          products = result.kitchen.products
-          cart = result.kitchen.cart
+          products = result.kitchen!.products
+          cart = result.kitchen?.cart
           if cart == nil {
             print("====nil cart")
             for product in products {

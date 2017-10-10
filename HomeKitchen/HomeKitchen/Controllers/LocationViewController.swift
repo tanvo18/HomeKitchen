@@ -14,6 +14,8 @@ class LocationViewController: UIViewController {
   let reuseable = "Cell"
   var selectedLocation = ""
   var locations: [String] = []
+  // Recognize viewcontroller
+  var viewcontroller = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,7 +50,11 @@ extension LocationViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     selectedLocation = locations[indexPath.row]
-    performSegue(withIdentifier: "unwindToCreateKitchenController", sender: self)
+    if viewcontroller == "CreateKitchenViewController" {
+      performSegue(withIdentifier: "unwindToCreateKitchenController", sender: self)
+    } else if viewcontroller == "EditKitchenViewController" {
+      performSegue(withIdentifier: "unwindToEditKitchenController", sender: self)
+    }
   }
 }
 
