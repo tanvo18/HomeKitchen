@@ -50,7 +50,7 @@ class EditKitchenViewController: UIViewController {
   let headerTitles = ["Required information", "More information"]
   let sectionOnePlaceHolder = ["Kitchen's name", "Bussiness type", "Street address","Phone number"]
   let datePicker = UIDatePicker()
-  var selectedImageUrl: NSURL!
+  var selectedImageUrl: URL!
   // Check the first time go to EditKitchen Controller to set image
   var isFirstTime: Bool = true
   var imageUrl: String = ""
@@ -115,9 +115,13 @@ extension EditKitchenViewController: UITableViewDataSource {
       closingTimeTextField = timeCell.closingTextField
       createPickerForOpeningTF(timeTextField: openingTimeTextField)
       createPickerForClosingTF(timeTextField: closingTimeTextField)
+      // Set image for imageViewCell section 2
+      timeCell.imageViewCell.image = UIImage(named: Helper.createKitchenCellSection2[indexPath.row])
       return timeCell
     } else {
       let createKitchenCell = tableView.dequeueReusableCell(withIdentifier: reuseableCreateCell) as! CreateKitchenTableViewCell
+      // Set image for imageViewCell section 1
+      createKitchenCell.imageViewCell.image = UIImage(named: Helper.createKitchenCellSection1[indexPath.row])
       if indexPath.row == 0 {
         kitchenNameTF = createKitchenCell.textFieldCell
       } else if indexPath.row == 1 {
@@ -301,7 +305,7 @@ extension EditKitchenViewController: UIImagePickerControllerDelegate, UINavigati
   
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
   {
-    selectedImageUrl = info[UIImagePickerControllerReferenceURL] as! NSURL
+    selectedImageUrl = info[UIImagePickerControllerReferenceURL] as! URL
     
     kitchenCoverImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
     kitchenCoverImageView.backgroundColor = UIColor.clear
@@ -312,9 +316,9 @@ extension EditKitchenViewController: UIImagePickerControllerDelegate, UINavigati
 
 // MARK: Generate image and interact with AWS S3
 extension EditKitchenViewController {
-  func generateImageUrl(fileName: String) -> NSURL
+  func generateImageUrl(fileName: String) -> URL
   {
-    let fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory().appending(fileName))
+    let fileURL = URL(fileURLWithPath: NSTemporaryDirectory().appending(fileName))
     let data = UIImageJPEGRepresentation(kitchenCoverImageView.image!, 0.6)
     do {
       try  data!.write(to: fileURL as URL)
@@ -327,7 +331,7 @@ extension EditKitchenViewController {
   
   func remoteImageWithUrl(fileName: String)
   {
-    let fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory().appending(fileName))
+    let fileURL = URL(fileURLWithPath: NSTemporaryDirectory().appending(fileName))
     do {
       try FileManager.default.removeItem(at: fileURL as URL)
     } catch
@@ -375,7 +379,6 @@ extension EditKitchenViewController {
     uploadRequest?.key = remoteName
     uploadRequest?.bucket = S3BucketName
     uploadRequest?.contentType = "image/jpeg"
-    
     
     let transferManager = AWSS3TransferManager.default()
     

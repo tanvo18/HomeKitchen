@@ -18,4 +18,8 @@ class Helper {
   static var role: String = ""
   static var districtLocations: [String] = ["Hải Châu","Hoà Vang","Cẩm Lệ","Liên Chiểu","Ngũ Hành Sơn","Sơn Trà","Thanh Khê","Hoàng Sa"]
   static let defaultImageUrl = "https://s3.amazonaws.com/demouploadimage/photoalbum.png"
+  // Image for section 1 CreateKitchenViewCell
+  static let createKitchenCellSection1 = ["home-line","type-line","location-line","phone-line"]
+  // Image for section 2 CreateKitchenViewCell
+  static let createKitchenCellSection2 = ["clock-line"]
 }

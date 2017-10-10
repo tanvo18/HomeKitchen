@@ -77,9 +77,13 @@ extension CreateKitchenViewController: UITableViewDataSource {
       closingTimeTextField = timeCell.closingTextField
       createPickerForOpeningTF(timeTextField: openingTimeTextField)
       createPickerForClosingTF(timeTextField: closingTimeTextField)
+      // Set image for imageViewCell section 2
+      timeCell.imageViewCell.image = UIImage(named: Helper.createKitchenCellSection2[indexPath.row])
       return timeCell
     } else {
       let createKitchenCell = tableView.dequeueReusableCell(withIdentifier: reuseableCreateCell) as! CreateKitchenTableViewCell
+      // Set image for imageViewCell section 1
+      createKitchenCell.imageViewCell.image = UIImage(named: Helper.createKitchenCellSection1[indexPath.row])
       if indexPath.row == 0 {
         kitchenNameTF = createKitchenCell.textFieldCell
       } else if indexPath.row == 1 {
