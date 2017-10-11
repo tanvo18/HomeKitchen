@@ -40,5 +40,6 @@ extension UIViewController{
     navigationController?.navigationBar.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
     navigationItem.title = title
   }
+
 }
 

@@ -229,7 +229,7 @@ class NetworkingService {
     }
   }
   
-  // Create kitchen, we have to use responseString to get header
+  // Create kitchen
   func createKitchen(openingTime: String, closingTime: String, kitchenName: String, imageUrl: String, type: String, createdDate: String, address: Address, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
     
     let url = NetworkingService.baseURLString + "kitchens"
@@ -321,4 +321,33 @@ class NetworkingService {
     }
   }
   
+  // Create product for kitchen
+  func createProduct(productName: String, productPrice: String, type: String, imageUrl: String, status: String, recipe: Recipe, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "kitchens/products"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let parameters: Parameters = ["product_price" : productPrice,
+                                  "name" : productName,
+                                  "type" : type,
+                                  "image_url" : imageUrl,
+                                  "status" : status,
+                                  "recipe" : recipe.toJSON()
+    ]
+    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        if let message = response.result.value {
+          print("====message \(message)")
+          completion(message,nil)
+        } else {
+          completion(nil, nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
 }

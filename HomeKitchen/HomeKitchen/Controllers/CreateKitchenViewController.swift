@@ -16,12 +16,12 @@ class CreateKitchenViewController: UIViewController {
   @IBOutlet weak var cityLabel: UILabel!
   @IBOutlet weak var countryLabel: UILabel!
   // MARK: UITextField
-  var openingTimeTextField: UITextField = UITextField()
-  var closingTimeTextField: UITextField = UITextField()
-  var kitchenNameTF: UITextField = UITextField()
-  var typeTF: UITextField = UITextField()
-  var streetAddressTF: UITextField = UITextField()
-  var phoneNumberTF: UITextField = UITextField()
+  var openingTimeTextField: UITextField!
+  var closingTimeTextField: UITextField!
+  var kitchenNameTF: UITextField!
+  var typeTF: UITextField!
+  var streetAddressTF: UITextField!
+  var phoneNumberTF: UITextField!
   
   let reuseableCreateCell = "CreateCell"
   let reuseableTimeCell = "TimeCell"

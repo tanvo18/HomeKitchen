@@ -24,12 +24,12 @@ class EditKitchenViewController: UIViewController {
   var myActivityIndicator: UIActivityIndicatorView!
   
   // MARK: UITextField
-  var openingTimeTextField: UITextField = UITextField()
-  var closingTimeTextField: UITextField = UITextField()
-  var kitchenNameTF: UITextField = UITextField()
-  var typeTF: UITextField = UITextField()
-  var streetAddressTF: UITextField = UITextField()
-  var phoneNumberTF: UITextField = UITextField()
+  var openingTimeTextField: UITextField!
+  var closingTimeTextField: UITextField!
+  var kitchenNameTF: UITextField!
+  var typeTF: UITextField!
+  var streetAddressTF: UITextField!
+  var phoneNumberTF: UITextField!
   
   var kitchen: Kitchen? {
     didSet {
@@ -44,6 +44,7 @@ class EditKitchenViewController: UIViewController {
       }
     }
   }
+  
   let reuseableCreateCell = "CreateCell"
   let reuseableTimeCell = "TimeCell"
   let data = [["Kitchen's name", "Bussiness type", "Street address","Phone number"],["Opening time"]]
@@ -53,6 +54,7 @@ class EditKitchenViewController: UIViewController {
   var selectedImageUrl: URL!
   // Check the first time go to EditKitchen Controller to set image
   var isFirstTime: Bool = true
+  // Param for post to server
   var imageUrl: String = ""
   
   override func viewDidLoad() {
@@ -146,9 +148,8 @@ extension EditKitchenViewController: UITableViewDataSource {
   }
 }
 
-
 // MARK: Function
-extension EditKitchenViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+extension EditKitchenViewController {
   func createPickerForOpeningTF(timeTextField: UITextField) {
     // Format the display of datepicker
     datePicker.datePickerMode = .time
@@ -294,7 +295,10 @@ extension EditKitchenViewController: UIImagePickerControllerDelegate, UINavigati
       self.kitchenCoverImageView.image = image
     }
   }
-  
+}
+
+// MARK: Function of UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension EditKitchenViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
   // Show image picker
   func displayImagePicker(sender:UITapGestureRecognizer) {
     let myPickerController = UIImagePickerController()
@@ -432,6 +436,10 @@ extension EditKitchenViewController {
   @IBAction func didTouchEditButton(_ sender: Any) {
     startUploadingImage()
   }
+  
+  @IBAction func didTouchMenuButton(_ sender: Any) {
+    performSegue(withIdentifier: "showProducts", sender: self)
+  }
 }
 
 extension EditKitchenViewController {
@@ -440,6 +448,12 @@ extension EditKitchenViewController {
       if let destination = segue.destination as? LocationViewController {
         destination.locations = Helper.districtLocations
         destination.viewcontroller = "EditKitchenViewController"
+      }
+    } else if segue.identifier == "showProducts" {
+      if let destination = segue.destination as? ProductsViewController {
+        if let products = kitchen?.products {
+          destination.products = products
+        }
       }
     }
   }

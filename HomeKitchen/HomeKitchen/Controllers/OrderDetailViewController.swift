@@ -137,7 +137,7 @@ extension OrderDetailViewController {
     deliveryDateLabel.text = orderInfo.deliveryDate
     totalLabel.text = "\(orderInfo.totalAmount)"
     if Helper.role == "customer" {
-      informationLabel.text = "kitchen's information"
+      informationLabel.text = "thông tin nhà hàng"
       statusLabel.text = orderInfo.status
       nameLabel.text = orderInfo.kitchen?.name
       addressLabel.text = orderInfo.kitchen?.address?.address
@@ -145,7 +145,7 @@ extension OrderDetailViewController {
       acceptedButton.isHidden = true
       declinedButton.isHidden = true
     } else if Helper.role == "chef" {
-      informationLabel.text = "customer's information"
+      informationLabel.text = "thông tin khách hàng"
       statusLabel.text = chefOrderStatus
       nameLabel.text = orderInfo.contactInfo?.name
       addressLabel.text = orderInfo.contactInfo?.address

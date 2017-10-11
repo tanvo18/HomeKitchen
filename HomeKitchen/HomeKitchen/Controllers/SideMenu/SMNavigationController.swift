@@ -54,6 +54,7 @@ class SMNavigationController: LNSideMenuNavigationController {
     case 5:
       let loginManager = LoginManager()
       loginManager.logOut()
+      nViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
     default:
       break
     }

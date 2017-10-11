@@ -50,6 +50,10 @@
 		4D6E96D61F693B45000DD7EE /* OrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E96D51F693B45000DD7EE /* OrderInfo.swift */; };
 		4D7471DD1F604B23007C53E2 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7471DC1F604B23007C53E2 /* Ingredient.swift */; };
 		4D7471E11F604CB0007C53E2 /* ProductDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7471E01F604CB0007C53E2 /* ProductDataModel.swift */; };
+		4D8198B91F8DB409003FA2A7 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8198B81F8DB409003FA2A7 /* ProductsViewController.swift */; };
+		4D8198BD1F8DB47E003FA2A7 /* ProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8198BB1F8DB47E003FA2A7 /* ProductsTableViewCell.swift */; };
+		4D8198BE1F8DB47E003FA2A7 /* ProductsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D8198BC1F8DB47E003FA2A7 /* ProductsTableViewCell.xib */; };
+		4D8198C11F8DC7BE003FA2A7 /* CreateProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8198C01F8DC7BE003FA2A7 /* CreateProductViewController.swift */; };
 		4D86C0411F72504B00C3D555 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D86C0401F72504B00C3D555 /* Helper.swift */; };
 		4D86C0461F7251AC00C3D555 /* ContactInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D86C0441F7251AC00C3D555 /* ContactInfoTableViewCell.swift */; };
 		4D86C0471F7251AC00C3D555 /* ContactInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D86C0451F7251AC00C3D555 /* ContactInfoTableViewCell.xib */; };
@@ -132,6 +136,10 @@
 		4D6E96D51F693B45000DD7EE /* OrderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInfo.swift; sourceTree = "<group>"; };
 		4D7471DC1F604B23007C53E2 /* Ingredient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		4D7471E01F604CB0007C53E2 /* ProductDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDataModel.swift; sourceTree = "<group>"; };
+		4D8198B81F8DB409003FA2A7 /* ProductsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
+		4D8198BB1F8DB47E003FA2A7 /* ProductsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsTableViewCell.swift; sourceTree = "<group>"; };
+		4D8198BC1F8DB47E003FA2A7 /* ProductsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductsTableViewCell.xib; sourceTree = "<group>"; };
+		4D8198C01F8DC7BE003FA2A7 /* CreateProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProductViewController.swift; sourceTree = "<group>"; };
 		4D86C0401F72504B00C3D555 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		4D86C0441F7251AC00C3D555 /* ContactInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfoTableViewCell.swift; sourceTree = "<group>"; };
 		4D86C0451F7251AC00C3D555 /* ContactInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactInfoTableViewCell.xib; sourceTree = "<group>"; };
@@ -392,6 +400,31 @@
 			name = CustomerSuggestionScreen;
 			sourceTree = "<group>";
 		};
+		4D8198B71F8DB39C003FA2A7 /* ListProductScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D8198B81F8DB409003FA2A7 /* ProductsViewController.swift */,
+			);
+			name = ListProductScreen;
+			sourceTree = "<group>";
+		};
+		4D8198BA1F8DB457003FA2A7 /* ListProductScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D8198BB1F8DB47E003FA2A7 /* ProductsTableViewCell.swift */,
+				4D8198BC1F8DB47E003FA2A7 /* ProductsTableViewCell.xib */,
+			);
+			name = ListProductScreen;
+			sourceTree = "<group>";
+		};
+		4D8198BF1F8DC7A3003FA2A7 /* CreateProductScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D8198C01F8DC7BE003FA2A7 /* CreateProductViewController.swift */,
+			);
+			name = CreateProductScreen;
+			sourceTree = "<group>";
+		};
 		4D86C0421F72515F00C3D555 /* OrderInfoScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +488,8 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D8198BF1F8DC7A3003FA2A7 /* CreateProductScreen */,
+				4D8198B71F8DB39C003FA2A7 /* ListProductScreen */,
 				4D97B9901F8C5DD700682A99 /* EditKitchenScreen */,
 				4D438D901F8B6E1600AF5233 /* LocationScreen */,
 				4D2AAAC31F8A6AB700F281A4 /* CreateKitchenScreen */,
@@ -478,6 +513,7 @@
 		4DDB7ED11F59486C00A24730 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4D8198BA1F8DB457003FA2A7 /* ListProductScreen */,
 				4D438D931F8B6EB500AF5233 /* LocationScreen */,
 				4D2AAAC61F8A6E6C00F281A4 /* CreateKitchenScreen */,
 				4DEF2DC31F7BA45300C534FC /* MakeSuggestionScreen */,
@@ -733,6 +769,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D2AAACC1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.xib in Resources */,
+				4D8198BE1F8DB47E003FA2A7 /* ProductsTableViewCell.xib in Resources */,
 				4D438D971F8B6ECA00AF5233 /* LocationTableViewCell.xib in Resources */,
 				4DEF2DC71F7BA47100C534FC /* MakeSuggestionViewCell.xib in Resources */,
 				4D86C0471F7251AC00C3D555 /* ContactInfoTableViewCell.xib in Resources */,
@@ -811,6 +848,7 @@
 				4DF4A4B41F7B58D400DC272D /* KitchenOrderDataModel.swift in Sources */,
 				4DEDD3371F5BF90100D24E79 /* LoginViewController.swift in Sources */,
 				4D18E21D1F750DA6007B83B6 /* UI.swift in Sources */,
+				4D8198C11F8DC7BE003FA2A7 /* CreateProductViewController.swift in Sources */,
 				4D24855A1F7A3F940025F810 /* SuggestionTableViewCell.swift in Sources */,
 				4D97B9921F8C5DFA00682A99 /* EditKitchenViewController.swift in Sources */,
 				4DEBE06E1F78095A00A0305D /* OrderDetailTableViewCell.swift in Sources */,
@@ -834,6 +872,7 @@
 				4D06C9531F766EF300ED4E95 /* SegueFromRight.swift in Sources */,
 				4D86C0461F7251AC00C3D555 /* ContactInfoTableViewCell.swift in Sources */,
 				4D2AAAC51F8A6B1200F281A4 /* CreateKitchenViewController.swift in Sources */,
+				4D8198BD1F8DB47E003FA2A7 /* ProductsTableViewCell.swift in Sources */,
 				4D4086581F5F9558004697CE /* KitchenDetailViewController.swift in Sources */,
 				4D3BB8121F60035100D6686C /* Recipe.swift in Sources */,
 				4D1588001F59657500B1FFB4 /* LeftMenuTableViewController.swift in Sources */,
@@ -861,6 +900,7 @@
 				4D1587FE1F59651900B1FFB4 /* SMNavigationController.swift in Sources */,
 				4D4466FC1F60DEA40022C91C /* OrderViewController.swift in Sources */,
 				4D438D961F8B6ECA00AF5233 /* LocationTableViewCell.swift in Sources */,
+				4D8198B91F8DB409003FA2A7 /* ProductsViewController.swift in Sources */,
 				4DEF2DC61F7BA47100C534FC /* MakeSuggestionViewCell.swift in Sources */,
 				4D2AAACB1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.swift in Sources */,
 				4D2F0BCC1F711AC70017B8E7 /* ContactInfo.swift in Sources */,
