@@ -153,7 +153,7 @@ extension EditProductViewController {
   
   func rightButtonAction(sender: UIBarButtonItem) {
     if checkNotNil() {
-      startUploadingImage()
+      postProductToServer()
     } else {
       self.alertError(message: "All fields are required")
     }
@@ -208,6 +208,9 @@ extension EditProductViewController: UIImagePickerControllerDelegate, UINavigati
     foodImageView.backgroundColor = UIColor.clear
     foodImageView.contentMode = UIViewContentMode.scaleAspectFit
     self.dismiss(animated: true, completion: nil)
+    
+    // upload image and post product to server on upload image function
+    startUploadingImage()
   }
   
 }

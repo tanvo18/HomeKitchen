@@ -228,7 +228,7 @@ extension CreateProductViewController {
     
     if localFileName == nil
     {
-     
+      alertError(message: "You have to choose image")
       return
     }
     

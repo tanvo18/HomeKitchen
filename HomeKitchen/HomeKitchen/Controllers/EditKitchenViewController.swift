@@ -212,26 +212,33 @@ extension EditKitchenViewController {
   
   func rightButtonAction(sender: UIBarButtonItem) {
     if checkNotNil() {
-      let imageUrl = self.imageUrl
-      let address = Address(city: cityLabel.text!, district: districtLabel.text!, address: streetAddressTF.text!, phoneNumber: phoneNumberTF.text!)
-      guard let id = kitchen?.id, let openingTime = openingTimeTextField.text,let closingTime = closingTimeTextField.text, let kitchenName = kitchenNameTF.text, let type = typeTF.text else {
-        return
-      }
-      NetworkingService.sharedInstance.editKitchen(id: id, openingTime: openingTime, closingTime: closingTime, kitchenName: kitchenName, imageUrl: imageUrl, type: type, address: address) {
-        [unowned self] (message,error) in
-        if error != nil {
-          print(error!)
-          self.alertError(message: "Cannot Edit")
-        } else {
-          let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-            // Go to Home Screen
-            self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-          })
-          self.alertWithAction(message: "Edit Successfully", action: ok)
-        }
+      postKitchenToServer()
+    } else {
+      self.alertError(message: "All fields are required")
+    }
+  }
+  
+  func postKitchenToServer() {
+    let imageUrl = self.imageUrl
+    let address = Address(city: cityLabel.text!, district: districtLabel.text!, address: streetAddressTF.text!, phoneNumber: phoneNumberTF.text!)
+    guard let id = kitchen?.id, let openingTime = openingTimeTextField.text,let closingTime = closingTimeTextField.text, let kitchenName = kitchenNameTF.text, let type = typeTF.text else {
+      return
+    }
+    NetworkingService.sharedInstance.editKitchen(id: id, openingTime: openingTime, closingTime: closingTime, kitchenName: kitchenName, imageUrl: imageUrl, type: type, address: address) {
+      [unowned self] (message,error) in
+      if error != nil {
+        print(error!)
+        self.alertError(message: "Cannot Edit")
+      } else {
+        let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+          // Go to Home Screen
+          self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+        })
+        self.alertWithAction(message: "Edit Successfully", action: ok)
       }
     }
   }
+  
   
   func setCurrentDate() -> String {
     let date = Date()
@@ -316,6 +323,9 @@ extension EditKitchenViewController: UIImagePickerControllerDelegate, UINavigati
     kitchenCoverImageView.backgroundColor = UIColor.clear
     kitchenCoverImageView.contentMode = UIViewContentMode.scaleAspectFit
     self.dismiss(animated: true, completion: nil)
+    
+    // upload image and post kitchen in method upload after picking image
+    startUploadingImage()
   }
 }
 
@@ -409,10 +419,8 @@ extension EditKitchenViewController {
         DispatchQueue.main.async() {
           // Saving url of image
           self.imageUrl = "\(s3URL)"
-          let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-            
-          })
-          self.alertWithAction(message: "Update Successfully", action: ok)
+          // Post kitchen
+          self.postKitchenToServer()
         }
       }
       else {
@@ -432,10 +440,6 @@ extension EditKitchenViewController {
         districtLabel.text = senderVC.selectedLocation
       }
     }
-  }
-  
-  @IBAction func didTouchEditButton(_ sender: Any) {
-    startUploadingImage()
   }
   
   @IBAction func didTouchMenuButton(_ sender: Any) {
