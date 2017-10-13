@@ -33,7 +33,6 @@ class EditKitchenViewController: UIViewController {
   
   var kitchen: Kitchen? {
     didSet {
-      print("====kitchen \(kitchen!.id)")
       parseKitchenInfoData()
       tableView.reloadData()
       if isFirstTime {
@@ -87,6 +86,8 @@ class EditKitchenViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    // MARK: enable sidemenu
+    sideMenuManager?.sideMenuController()?.sideMenu?.disabled = false
     requestKitchenInfo()
   }
   
@@ -376,7 +377,7 @@ extension EditKitchenViewController {
     let S3BucketName = "demouploadimage"
     
     // Add kitchenId to remoteName to assure this image is belong to kitchen and this image is unique
-    let remoteName = localFileName! + "-" + "\(kitchen!.id)"
+    let remoteName = "\(kitchen!.id)" + "-" + localFileName!
     
     let uploadRequest = AWSS3TransferManagerUploadRequest()
     uploadRequest?.body = generateImageUrl(fileName: remoteName) as URL

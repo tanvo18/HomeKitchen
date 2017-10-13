@@ -30,6 +30,14 @@ extension UIViewController{
     self.present(alert, animated: true, completion: nil)
   }
   
+  func alertConfirmation(message: String, action: UIAlertAction) {
+    let alert = UIAlertController(title: "Notification", message: message, preferredStyle: UIAlertControllerStyle.alert)
+    let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+    alert.addAction(action)
+    alert.addAction(cancelAction)
+    self.present(alert, animated: true, completion: nil)
+  }
+  
   func dismissKeyboard() {
     view.endEditing(true)
   }

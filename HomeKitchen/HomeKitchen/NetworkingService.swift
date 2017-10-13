@@ -380,4 +380,27 @@ class NetworkingService {
       }
     }
   }
+  
+  // Delete product for Kitchen
+  func deleteProduct(productId: Int, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "kitchens/products/\(productId)"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    Alamofire.request(url, method: .delete, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        if let message = response.result.value {
+          print("====message \(message)")
+          completion(message,nil)
+        } else {
+          completion(nil, nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
 }

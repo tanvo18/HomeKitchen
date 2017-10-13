@@ -153,7 +153,7 @@ extension EditProductViewController {
   
   func rightButtonAction(sender: UIBarButtonItem) {
     if checkNotNil() {
-      postProductToServer()
+      startUploadingImage()
     } else {
       self.alertError(message: "All fields are required")
     }
@@ -208,8 +208,6 @@ extension EditProductViewController: UIImagePickerControllerDelegate, UINavigati
     foodImageView.backgroundColor = UIColor.clear
     foodImageView.contentMode = UIViewContentMode.scaleAspectFit
     self.dismiss(animated: true, completion: nil)
-    // upload image when finish choose image
-    startUploadingImage()
   }
   
 }
@@ -272,7 +270,8 @@ extension EditProductViewController {
     let S3BucketName = "demouploadimage"
     
     // Follow product id to update this image
-    let remoteName = localFileName! + "-" + "\(product.id)"
+    let remoteName = "\(product.id)" + "-" + localFileName!
+//    let remoteName = localFileName!"
     
     let uploadRequest = AWSS3TransferManagerUploadRequest()
     uploadRequest?.body = generateImageUrl(fileName: remoteName) as URL
@@ -304,8 +303,8 @@ extension EditProductViewController {
         DispatchQueue.main.async() {
           // Saving url of image
           self.imageUrl = "\(s3URL)"
-          
-          self.alert(title: "Notification", message: "Successful")
+          // Post product
+          self.postProductToServer()
         }
       }
       else {

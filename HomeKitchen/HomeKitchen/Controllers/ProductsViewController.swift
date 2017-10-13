@@ -23,6 +23,8 @@ class ProductsViewController: UIViewController {
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     settingRightButtonItem()
     self.settingForNavigationBar(title: "Kitchen's Products")
+    // MARK: Disable sidemenu
+    sideMenuManager?.sideMenuController()?.sideMenu?.disabled = true
   }
   
   override func didReceiveMemoryWarning() {
@@ -53,13 +55,32 @@ extension ProductsViewController: UITableViewDataSource {
     performSegue(withIdentifier: "showEditProduct", sender: self)
     
   }
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+        NetworkingService.sharedInstance.deleteProduct(productId: self.products[indexPath.row].id) {
+          [unowned self] (message,error) in
+          if error != nil {
+            print(error!)
+            self.alertError(message: "cannot delete")
+          } else {
+            self.products.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+          }
+        }
+      })
+      self.alertConfirmation(message: "Are you sure", action: ok)
+    }
+  }
 }
 
 // MARK: Function
 extension ProductsViewController {
   func settingRightButtonItem() {
+    // Set nil for title if UIBarButton have an image to avoid bug button move down when alert message appears
     let rightButtonItem = UIBarButtonItem.init(
-      title: "",
+      title: nil,
       style: .done,
       target: self,
       action: #selector(rightButtonAction(sender:))

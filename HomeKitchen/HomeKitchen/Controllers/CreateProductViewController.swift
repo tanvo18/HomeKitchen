@@ -248,7 +248,7 @@ extension CreateProductViewController {
     
     // Create UUID for image
     let uuid = UUID().uuidString
-    let remoteName = localFileName! + "-" + "\(uuid)"
+    let remoteName = "\(uuid)" + "-" + localFileName!
     
     let uploadRequest = AWSS3TransferManagerUploadRequest()
     uploadRequest?.body = generateImageUrl(fileName: remoteName) as URL
