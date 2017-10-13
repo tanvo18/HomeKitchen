@@ -322,7 +322,7 @@ class NetworkingService {
   }
   
   // Create product for kitchen
-  func createProduct(productName: String, productPrice: String, type: String, imageUrl: String, status: String, recipe: Recipe, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
+  func createProduct(productName: String, productPrice: String, type: String, imageUrl: String, status: String, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
     let url = NetworkingService.baseURLString + "kitchens/products"
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
@@ -333,10 +333,40 @@ class NetworkingService {
                                   "name" : productName,
                                   "type" : type,
                                   "image_url" : imageUrl,
-                                  "status" : status,
-                                  "recipe" : recipe.toJSON()
-    ]
+                                  "status" : status
+                                  ]
     Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        if let message = response.result.value {
+          print("====message \(message)")
+          completion(message,nil)
+        } else {
+          completion(nil, nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
+  
+  // Edit product for Kitchen
+  func editProduct(id: Int, productName: String, productPrice: String, type: String, imageUrl: String, status: String, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "kitchens/products"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let parameters: Parameters = ["id" : id,
+                                  "product_price" : productPrice,
+                                  "name" : productName,
+                                  "type" : type,
+                                  "image_url" : imageUrl,
+                                  "status" : status
+                                  ]
+    
+    Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
       switch response.result {
       case .success:
         if let message = response.result.value {

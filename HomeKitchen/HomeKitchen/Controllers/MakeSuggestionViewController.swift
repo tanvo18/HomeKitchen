@@ -71,11 +71,6 @@ extension MakeSuggestionViewController: UITableViewDataSource {
     // Handle textfield in row
     cell.priceTextField.tag = indexPath.row
     cell.priceTextField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
-    // Handle button in cell
-    cell.buttonPlus.tag = indexPath.row
-    cell.buttonPlus.addTarget(self, action: #selector(self.didTouchButtonPlus), for: .touchUpInside)
-    cell.buttonMinus.tag = indexPath.row
-    cell.buttonMinus.addTarget(self, action: #selector(self.didTouchButtonMinus), for: .touchUpInside)
     return cell
   }
   
@@ -137,24 +132,6 @@ extension MakeSuggestionViewController {
     performSegue(withIdentifier: "showCalendarView", sender: self)
   }
   
-  // Increase quantity of product
-  func didTouchButtonPlus(sender: UIButton) {
-    index = sender.tag
-    orderInfo.products[index].quantity += 1
-    calculateToTalPrice()
-    tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-  }
-  
-  // Decrease quantity of product
-  func didTouchButtonMinus(sender: UIButton) {
-    index = sender.tag
-    if orderInfo.products[index].quantity > 1 {
-      orderInfo.products[index].quantity -= 1
-      calculateToTalPrice()
-    }
-    tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-  }
-  
   func addItemToSuggestionItems() {
     for orderItem in orderInfo.products {
       guard let product = orderItem.product else {
@@ -169,7 +146,6 @@ extension MakeSuggestionViewController {
 // MARK: IBAction
 extension MakeSuggestionViewController {
   @IBAction func didTouchSendButton(_ sender: Any) {
-    // print("====json \(orderInfo.products.toJSON())")
     let total: Int = Int(totalLabel.text!)!
     addItemToSuggestionItems()
     NetworkingService.sharedInstance.sendSuggestion(orderId: orderInfo.id, deliveryTime: deliveryTimeTextField.text!, deliveryDate: deliveryDateLabel.text!, totalPrice: total, suggestionItems: suggestionItems) {[unowned self] (error) in

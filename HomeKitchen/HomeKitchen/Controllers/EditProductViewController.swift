@@ -1,5 +1,5 @@
 //
-//  CreateProductViewController.swift
+//  EditProductViewController.swift
 //  HomeKitchen
 //
 //  Created by Tan Vo on 10/11/17.
@@ -10,9 +10,9 @@ import UIKit
 import AWSCore
 import AWSS3
 import Photos
+import Kingfisher
 
-class CreateProductViewController: UIViewController {
-  
+class EditProductViewController: UIViewController {
   // MARK: IBOutlet
   @IBOutlet weak var foodImageView: UIImageView!
   @IBOutlet weak var nameTextField: UITextField!
@@ -26,6 +26,7 @@ class CreateProductViewController: UIViewController {
   var myActivityIndicator: UIActivityIndicatorView!
   // Param for post to server
   var imageUrl: String = ""
+  var product: Product!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -47,18 +48,20 @@ class CreateProductViewController: UIViewController {
     setUpActivityIndicator()
     // Set default value for statusTextField
     statusTextField.text = "public"
+    // Init information when start viewcontroller
+    parseProductInformation()
     // Set number pad for price textfield
     priceTextField.keyboardType = .numberPad
+    
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
 }
 
 // MARK: Picker Delegate and Datasource
-extension CreateProductViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension EditProductViewController: UIPickerViewDelegate, UIPickerViewDataSource {
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
@@ -78,7 +81,7 @@ extension CreateProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
 }
 
 // MARK: Function
-extension CreateProductViewController {
+extension EditProductViewController {
   func setUpActivityIndicator()
   {
     //Create Activity Indicator
@@ -94,7 +97,26 @@ extension CreateProductViewController {
     
     view.addSubview(myActivityIndicator)
   }
-
+  
+  // Give product information for textfield and imageview
+  func parseProductInformation() {
+    nameTextField.text = product.name
+    priceTextField.text = "\(product.price)"
+    typeTextField.text = product.type
+    statusTextField.text = product.status
+    downloadProductImage(imageUrl: product.imageUrl)
+    // Set default for imageURL in case customer only change information, not change image
+    self.imageUrl = product.imageUrl
+  }
+  
+  // MARK: download image with url
+  func downloadProductImage(imageUrl: String) {
+    let url = URL(string: imageUrl)!
+    ImageDownloader.default.downloadImage(with: url, options: [], progressBlock: nil) {
+      (image, error, url, data) in
+      self.foodImageView.image = image
+    }
+  }
   
   func createStatusPicker() {
     let statusPicker = UIPickerView()
@@ -120,7 +142,7 @@ extension CreateProductViewController {
   
   func settingRightButtonItem() {
     let rightButtonItem = UIBarButtonItem.init(
-      title: "Add",
+      title: "Edit",
       style: .done,
       target: self,
       action: #selector(rightButtonAction(sender:))
@@ -131,7 +153,7 @@ extension CreateProductViewController {
   
   func rightButtonAction(sender: UIBarButtonItem) {
     if checkNotNil() {
-      startUploadingImage()
+      postProductToServer()
     } else {
       self.alertError(message: "All fields are required")
     }
@@ -142,18 +164,19 @@ extension CreateProductViewController {
     guard let productName = nameTextField.text, let productPrice = priceTextField.text, let type = typeTextField.text, let status = statusTextField.text else {
       return
     }
-    NetworkingService.sharedInstance.createProduct(productName: productName, productPrice: productPrice, type: type, imageUrl: self.imageUrl, status: status) {
+    let productId = self.product.id
+    NetworkingService.sharedInstance.editProduct(id: productId, productName: productName, productPrice: productPrice, type: type, imageUrl: self.imageUrl, status: status) {
       [unowned self] (message,error) in
       if error != nil {
         print(error!)
-        self.alertError(message: "cannot create product")
+        self.alertError(message: "Cannot edit product")
         self.myActivityIndicator.stopAnimating()
       } else {
         self.myActivityIndicator.stopAnimating()
         let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
           self.performSegue(withIdentifier: "unwindToEditKitchenController", sender: self)
         })
-        self.alertWithAction(message: "Create Successfully", action: ok)
+        self.alertWithAction(message: "Edit Successfully", action: ok)
       }
     }
   }
@@ -168,7 +191,7 @@ extension CreateProductViewController {
 }
 
 // MARK: Function of UIImagePickerControllerDelegate, UINavigationControllerDelegate
-extension CreateProductViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+extension EditProductViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
   // Show image picker
   func displayImagePicker(sender:UITapGestureRecognizer) {
     let myPickerController = UIImagePickerController()
@@ -185,12 +208,14 @@ extension CreateProductViewController: UIImagePickerControllerDelegate, UINaviga
     foodImageView.backgroundColor = UIColor.clear
     foodImageView.contentMode = UIViewContentMode.scaleAspectFit
     self.dismiss(animated: true, completion: nil)
+    // upload image when finish choose image
+    startUploadingImage()
   }
-
+  
 }
 
 // MARK: Generate image and interact with AWS S3
-extension CreateProductViewController {
+extension EditProductViewController {
   func generateImageUrl(fileName: String) -> URL
   {
     let fileURL = URL(fileURLWithPath: NSTemporaryDirectory().appending(fileName))
@@ -228,7 +253,7 @@ extension CreateProductViewController {
     
     if localFileName == nil
     {
-     
+      
       return
     }
     
@@ -246,9 +271,8 @@ extension CreateProductViewController {
     // Set up AWS Transfer Manager Request
     let S3BucketName = "demouploadimage"
     
-    // Create UUID for image
-    let uuid = UUID().uuidString
-    let remoteName = localFileName! + "-" + "\(uuid)"
+    // Follow product id to update this image
+    let remoteName = localFileName! + "-" + "\(product.id)"
     
     let uploadRequest = AWSS3TransferManagerUploadRequest()
     uploadRequest?.body = generateImageUrl(fileName: remoteName) as URL
@@ -281,8 +305,7 @@ extension CreateProductViewController {
           // Saving url of image
           self.imageUrl = "\(s3URL)"
           
-          // Post product to server
-          self.postProductToServer()
+          self.alert(title: "Notification", message: "Successful")
         }
       }
       else {
@@ -293,3 +316,4 @@ extension CreateProductViewController {
     
   }
 }
+

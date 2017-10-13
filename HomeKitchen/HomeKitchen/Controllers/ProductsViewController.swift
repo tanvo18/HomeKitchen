@@ -13,6 +13,7 @@ class ProductsViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   let reuseable = "Cell"
   var products: [Product] = []
+  var index: Int = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -47,7 +48,10 @@ extension ProductsViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-   
+    self.index = indexPath.row
+    // Go to edit product screen
+    performSegue(withIdentifier: "showEditProduct", sender: self)
+    
   }
 }
 
@@ -67,6 +71,16 @@ extension ProductsViewController {
   
   func rightButtonAction(sender: UIBarButtonItem) {
     performSegue(withIdentifier: "showCreateProduct", sender: self)
+  }
+}
+
+extension ProductsViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showEditProduct" {
+      if let destination = segue.destination as? EditProductViewController {
+        destination.product = products[index]
+      }
+    }
   }
 }
 

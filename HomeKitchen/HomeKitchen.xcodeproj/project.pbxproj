@@ -28,6 +28,7 @@
 		4D2AAACC1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D2AAACA1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.xib */; };
 		4D2AAAD11F8A8E7900F281A4 /* CustomTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2AAACF1F8A8E7900F281A4 /* CustomTimeTableViewCell.swift */; };
 		4D2AAAD21F8A8E7900F281A4 /* CustomTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D2AAAD01F8A8E7900F281A4 /* CustomTimeTableViewCell.xib */; };
+		4D2BB7971F8E1AA0002045EB /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2BB7961F8E1AA0002045EB /* EditProductViewController.swift */; };
 		4D2F0BCC1F711AC70017B8E7 /* ContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2F0BCB1F711AC70017B8E7 /* ContactInfo.swift */; };
 		4D2F0BCE1F711F550017B8E7 /* ResultUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2F0BCD1F711F550017B8E7 /* ResultUser.swift */; };
 		4D3118A01F6C10CD00ACA713 /* OrderInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D31189F1F6C10CD00ACA713 /* OrderInfoViewController.swift */; };
@@ -114,6 +115,7 @@
 		4D2AAACA1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateKitchenTableViewCell.xib; sourceTree = "<group>"; };
 		4D2AAACF1F8A8E7900F281A4 /* CustomTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeTableViewCell.swift; sourceTree = "<group>"; };
 		4D2AAAD01F8A8E7900F281A4 /* CustomTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTimeTableViewCell.xib; sourceTree = "<group>"; };
+		4D2BB7961F8E1AA0002045EB /* EditProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		4D2F0BCB1F711AC70017B8E7 /* ContactInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactInfo.swift; sourceTree = "<group>"; };
 		4D2F0BCD1F711F550017B8E7 /* ResultUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultUser.swift; sourceTree = "<group>"; };
 		4D31189F1F6C10CD00ACA713 /* OrderInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInfoViewController.swift; sourceTree = "<group>"; };
@@ -317,6 +319,14 @@
 			name = CustomTimeCell;
 			sourceTree = "<group>";
 		};
+		4D2BB7951F8E1A85002045EB /* EditProductScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D2BB7961F8E1AA0002045EB /* EditProductViewController.swift */,
+			);
+			name = EditProductScreen;
+			sourceTree = "<group>";
+		};
 		4D31189E1F6C10B600ACA713 /* OrderInfoScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +498,7 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D2BB7951F8E1A85002045EB /* EditProductScreen */,
 				4D8198BF1F8DC7A3003FA2A7 /* CreateProductScreen */,
 				4D8198B71F8DB39C003FA2A7 /* ListProductScreen */,
 				4D97B9901F8C5DD700682A99 /* EditKitchenScreen */,
@@ -858,6 +869,7 @@
 				4DF43FFD1F5E3B7A00365F57 /* Kitchen.swift in Sources */,
 				4D237C091F775C3C007C1201 /* GetOrderTableViewCell.swift in Sources */,
 				4D237C021F775B71007C1201 /* ListOrderViewController.swift in Sources */,
+				4D2BB7971F8E1AA0002045EB /* EditProductViewController.swift in Sources */,
 				4D7471DD1F604B23007C53E2 /* Ingredient.swift in Sources */,
 				4D3118A01F6C10CD00ACA713 /* OrderInfoViewController.swift in Sources */,
 				4DEDD33D1F5C075500D24E79 /* SignupViewController.swift in Sources */,

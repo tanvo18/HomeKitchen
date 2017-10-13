@@ -457,16 +457,17 @@
                     <connections>
                         <outlet property="tableView" destination="8Gf-VQ-kDi" id="Qmh-8o-BdX"/>
                         <segue destination="xu4-mT-tiF" kind="show" identifier="showCreateProduct" id="yQ7-W1-HHE"/>
+                        <segue destination="Jgr-uj-STq" kind="show" identifier="showEditProduct" id="Vq2-XO-Wrl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lkg-I0-kM8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="384.80000000000001" y="1308.3958020989505"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Product View Controller-->
         <scene sceneID="OfR-tR-CLt">
             <objects>
-                <viewController id="Jgr-uj-STq" sceneMemberID="viewController">
+                <viewController id="Jgr-uj-STq" customClass="EditProductViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6p8-hJ-SSn"/>
                         <viewControllerLayoutGuide type="bottom" id="ND5-gW-yIK"/>
@@ -474,12 +475,55 @@
                     <view key="view" contentMode="scaleToFill" id="7Pc-8t-bjW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gJw-bz-uEk">
+                                <rect key="frame" x="162" y="104" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BeI-tv-iuo">
+                                <rect key="frame" x="16" y="209" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rPX-Kt-gRw">
+                                <rect key="frame" x="16" y="271" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BRX-8f-d6z">
+                                <rect key="frame" x="16" y="338" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Status" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="occ-cb-XsN">
+                                <rect key="frame" x="16" y="402" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="foodImageView" destination="gJw-bz-uEk" id="ws2-2z-cxk"/>
+                        <outlet property="nameTextField" destination="BeI-tv-iuo" id="TsX-WK-b5u"/>
+                        <outlet property="priceTextField" destination="rPX-Kt-gRw" id="hBh-ss-EnM"/>
+                        <outlet property="statusTextField" destination="occ-cb-XsN" id="UML-HQ-iyW"/>
+                        <outlet property="typeTextField" destination="BRX-8f-d6z" id="fwh-P7-T2W"/>
+                        <segue destination="s3R-hq-NJr" kind="unwind" identifier="unwindToEditKitchenController" unwindAction="unwindToEditKitchenControllerWithSegue:" id="gFi-wj-MJa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A5K-s1-dTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="s3R-hq-NJr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1158" y="1308"/>
+            <point key="canvasLocation" x="1157.5999999999999" y="1307.4962518740631"/>
         </scene>
         <!--Create Product View Controller-->
         <scene sceneID="ldO-b7-cFo">
@@ -494,28 +538,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WIJ-Qa-uz9">
-                                <rect key="frame" x="51" y="179" width="273" height="30"/>
+                                <rect key="frame" x="16" y="179" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dCH-fb-Ah2">
-                                <rect key="frame" x="51" y="245" width="273" height="30"/>
+                                <rect key="frame" x="16" y="245" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EoW-Dn-m4j">
-                                <rect key="frame" x="51" y="312" width="273" height="30"/>
+                                <rect key="frame" x="16" y="312" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Status" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ccb-RV-TNw">
-                                <rect key="frame" x="51" y="383" width="273" height="30"/>
+                                <rect key="frame" x="16" y="383" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -540,7 +584,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQE-DV-XuY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="3Hw-6N-Pgg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="386" y="2112"/>
+            <point key="canvasLocation" x="384.80000000000001" y="2111.6941529235382"/>
         </scene>
         <!--Create Kitchen View Controller-->
         <scene sceneID="EDi-nC-WCi">
@@ -650,11 +694,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xZ1-hg-mI4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="604"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="560"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IHH-Da-2Dn">
-                                <rect key="frame" x="0.0" y="604" width="375" height="63"/>
+                                <rect key="frame" x="0.0" y="560" width="375" height="63"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvh-tX-MzO">
                                         <rect key="frame" x="8" y="21" width="163" height="21"/>
@@ -739,7 +783,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BgX-qA-Yc6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KLR-er-G9K">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JB4-dC-nLq">
@@ -1862,9 +1906,9 @@
         <image name="wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="W6m-Ez-T8T"/>
         <segue reference="HoI-MX-zAi"/>
-        <segue reference="reK-M9-1VN"/>
-        <segue reference="SiF-K6-Nzy"/>
+        <segue reference="VfJ-pa-Xs3"/>
+        <segue reference="PYR-hP-BMS"/>
+        <segue reference="B1h-dc-fmz"/>
     </inferredMetricsTieBreakers>
 </document>

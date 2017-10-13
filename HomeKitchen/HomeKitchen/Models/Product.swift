@@ -18,6 +18,7 @@ class Product: Mappable {
   var imageUrl: String = ""
   var name: String = ""
   var recipe: Recipe?
+  var status: String = ""
   
   init() {}
   
@@ -34,5 +35,6 @@ class Product: Mappable {
     imageUrl                 <- map["image_url"]
     name                     <- map["name"]
     recipe                   <- map["recipe"]
+    status                   <- map["status"]
   }
 }

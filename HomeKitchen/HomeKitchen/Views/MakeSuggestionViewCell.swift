@@ -17,10 +17,6 @@ class MakeSuggestionViewCell: UITableViewCell {
   
   @IBOutlet weak var priceTextField: UITextField!
   
-  @IBOutlet weak var buttonPlus: UIButton!
-  
-  @IBOutlet weak var buttonMinus: UIButton!
-  
   override func awakeFromNib() {
     super.awakeFromNib()
   }
