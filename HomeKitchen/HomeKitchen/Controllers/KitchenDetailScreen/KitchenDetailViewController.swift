@@ -208,6 +208,10 @@ extension KitchenDetailViewController {
   @IBAction func didTouchDeliveryButton(_ sender: Any) {
     performSegue(withIdentifier: "showOrderScreen", sender: self)
   }
+  
+  @IBAction func didTouchPostRequestButton(_ sender: Any) {
+    performSegue(withIdentifier: "showPostRequest", sender: self)
+  }
 }
 
 extension KitchenDetailViewController {

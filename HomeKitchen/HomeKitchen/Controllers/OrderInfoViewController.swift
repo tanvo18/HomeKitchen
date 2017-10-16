@@ -10,7 +10,9 @@ import UIKit
 import CVCalendar
 import Alamofire
 import ObjectMapper
-
+import AWSCore
+import AWSS3
+import Photos
 
 class OrderInfoViewController: UIViewController {
   
@@ -29,10 +31,21 @@ class OrderInfoViewController: UIViewController {
   // Save index of tableview cell
   var position = 0
   let datePicker = UIDatePicker()
+  var myActivityIndicator: UIActivityIndicatorView!
   // Items which customer ordered
   var orderedItems: [OrderItem] = []
   // Message for notification not nil required
   var message: String = ""
+  // Post request
+  var post: Post!
+  // Distinguish Source ViewController
+  var sourceViewController = ""
+  // Index 
+  var index: Int = 0
+  // Count image uploaded
+  var countImage: Int = 0
+  // message of textview from post
+  var textViewMessage: String?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,6 +65,8 @@ class OrderInfoViewController: UIViewController {
     dateLabel.text = setCurrentDate()
     timeTextField.text = setCurrentTime()
     self.settingForNavigationBar(title: "Order Information")
+    // Setup indicator
+    setUpActivityIndicator()
   }
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -201,6 +216,68 @@ extension OrderInfoViewController {
     let timeString = formatter.string(from: date)
     return timeString
   }
+  
+  func setUpActivityIndicator()
+  {
+    //Create Activity Indicator
+    myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    
+    // Position Activity Indicator in the center of the main view
+    myActivityIndicator.center = view.center
+    
+    // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+    myActivityIndicator.hidesWhenStopped = true
+    
+    myActivityIndicator.backgroundColor = .white
+    
+    view.addSubview(myActivityIndicator)
+  }
+
+  
+  func sendOrderToServer() {
+    if Helper.orderInfo.status == "in_cart" {
+      NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: setCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", orderedItems: orderedItems) { [unowned self] (error) in
+        if error != nil {
+          print(error!)
+          self.alertError(message: "Cannot send order")
+        } else {
+          let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+            // // Go to HomeScreen
+            self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+          })
+          self.alertWithAction(message: "Order Successfully", action: ok)
+        }
+      }
+    } else {
+      NetworkingService.sharedInstance.sendOrder(contact: chosenContact(), orderDate: setCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", kitchenId: Helper.kitchenId, orderedItems: orderedItems) { [unowned self] (error) in
+        if error != nil {
+          print(error!)
+        } else {
+          let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+            // // Go to HomeScreen
+            self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+          })
+          self.alertWithAction(message: "Order Successfully", action: ok)
+        }
+      }
+    }
+  }
+  
+  func sendPostRequestToServer() {
+    NetworkingService.sharedInstance.sendPostRequest(requestDate: setCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, message: textViewMessage!, kitchenId: Helper.kitchenId, contactInfo: chosenContact(), postItems: self.post.postItems) {
+      [unowned self] (message, error) in
+      if error != nil {
+        print(error!)
+        self.alertError(message: "Cannot send")
+      } else {
+        self.myActivityIndicator.stopAnimating()
+        let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+          self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+        })
+        self.alertWithAction(message: "Create Successfully", action: ok)
+      }
+    }
+  }
 }
 
 // MARK: IBAction
@@ -208,30 +285,12 @@ extension OrderInfoViewController {
   
   @IBAction func didTouchButtonCheckout(_ sender: Any) {
     if checkNotNil() {
-      if Helper.orderInfo.status == "in_cart" {
-        NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: setCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", orderedItems: orderedItems) { [unowned self] (error) in
-          if error != nil {
-            print(error!)
-            self.alertError(message: "Cannot send order")
-          } else {
-            let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-              // // Go to HomeScreen
-              self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-            })
-            self.alertWithAction(message: "Order Successfully", action: ok)
-          }
-        }
-      } else {
-        NetworkingService.sharedInstance.sendOrder(contact: chosenContact(), orderDate: setCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", kitchenId: Helper.kitchenId, orderedItems: orderedItems) { [unowned self] (error) in
-          if error != nil {
-            print(error!)
-          } else {
-            let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-              // // Go to HomeScreen
-              self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-            })
-            self.alertWithAction(message: "Order Successfully", action: ok)
-          }
+      if sourceViewController == "OrderViewController" {
+        sendOrderToServer()
+      } else if sourceViewController == "PostRequestViewController" {
+        // upload all image in array to AWS
+        for (index,item) in post.postItems.enumerated() {
+          startUploadingImage(imageUrlFromPicker: item.selectedImageUrl, imageData: item.data, index: index)
         }
       }
     } else {
@@ -263,6 +322,113 @@ extension OrderInfoViewController {
         tableView.reloadData()
       }
     }
+  }
+}
+
+// MARK: Generate image and interact with AWS S3
+extension OrderInfoViewController {
+  func generateImageUrl(fileName: String, imageData: Data?) -> URL
+  {
+    let fileURL = URL(fileURLWithPath: NSTemporaryDirectory().appending(fileName))
+    let data = imageData
+    do {
+      try  data!.write(to: fileURL as URL)
+    }
+    catch {
+      
+    }
+    return fileURL
+  }
+  
+  func remoteImageWithUrl(fileName: String)
+  {
+    let fileURL = URL(fileURLWithPath: NSTemporaryDirectory().appending(fileName))
+    do {
+      try FileManager.default.removeItem(at: fileURL as URL)
+    } catch
+    {
+      print(error)
+    }
+  }
+  
+  func startUploadingImage(imageUrlFromPicker: URL!, imageData: Data?, index: Int)
+  {
+    var localFileName:String?
+    
+    if let imageToUploadUrl = imageUrlFromPicker
+    {
+      let phResult = PHAsset.fetchAssets(withALAssetURLs: [imageToUploadUrl as URL], options: nil)
+      localFileName = PHAssetResource.assetResources(for: phResult.firstObject!).first!.originalFilename
+      print("=====\(localFileName!)")
+    }
+    
+    if localFileName == nil
+    {
+      alertError(message: "You have to choose image")
+      return
+    }
+    
+    myActivityIndicator.startAnimating()
+    
+    // Configure AWS Cognito Credentials
+    let myIdentityPoolId = "us-east-1:5c8b88b8-655b-4862-8d8b-9c242f0fd810"
+    
+    let credentialsProvider:AWSCognitoCredentialsProvider = AWSCognitoCredentialsProvider(regionType:AWSRegionType.USEast1, identityPoolId: myIdentityPoolId)
+    
+    let configuration = AWSServiceConfiguration(region:AWSRegionType.USEast1, credentialsProvider:credentialsProvider)
+    
+    AWSServiceManager.default().defaultServiceConfiguration = configuration
+    
+    // Set up AWS Transfer Manager Request
+    let S3BucketName = "demouploadimage"
+    
+    // Create UUID for image
+    let uuid = UUID().uuidString
+    let remoteName = "\(uuid)" + "-post" + "-" + localFileName!
+    
+    let uploadRequest = AWSS3TransferManagerUploadRequest()
+    uploadRequest?.body = generateImageUrl(fileName: remoteName, imageData :imageData) as URL
+    uploadRequest?.key = remoteName
+    uploadRequest?.bucket = S3BucketName
+    uploadRequest?.contentType = "image/jpeg"
+    
+    let transferManager = AWSS3TransferManager.default()
+    
+    // Perform file upload
+    transferManager.upload(uploadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: {  (task:AWSTask<AnyObject>) -> Any? in
+      
+      DispatchQueue.main.async() {
+     //   self.myActivityIndicator.stopAnimating()
+      }
+      
+      if let error = task.error {
+        print("Upload failed with error: (\(error.localizedDescription))")
+      }
+      
+      if task.result != nil {
+        
+        let s3URL = URL(string: "https://s3.amazonaws.com/\(S3BucketName)/\(uploadRequest!.key!)")!
+        print("Uploaded to:\n\(s3URL)")
+        
+        // Remove locally stored file
+        self.remoteImageWithUrl(fileName: uploadRequest!.key!)
+        
+        DispatchQueue.main.async() {
+          // Saving url of image after upload
+          self.post.postItems[index].imageUrl = "\(s3URL)"
+          self.countImage += 1
+          if self.countImage == self.post.postItems.count {
+            self.sendPostRequestToServer()
+          }
+        
+        }
+      }
+      else {
+        print("Unexpected empty result.")
+      }
+      return nil
+    })
+    
   }
 }
 

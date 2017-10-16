@@ -403,4 +403,35 @@ class NetworkingService {
       }
     }
   }
+  
+  // Create product for kitchen
+  func sendPostRequest(requestDate:String, deliveryDate: String, deliveryTime: String, message: String, kitchenId: Int, contactInfo: ContactInfo, postItems: [PostItem], completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "users/posts"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let parameters: Parameters = ["req_date" : requestDate,
+                                  "delivery_time" : deliveryTime,
+                                  "delivery_date" : deliveryDate,
+                                  "message" : message,
+                                  "kitchen_id" : kitchenId,
+                                  "contact_information" : contactInfo.toJSON(),
+                                  "post_items" : postItems.toJSON()
+    ]
+    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        if let message = response.result.value {
+          print("====message \(message)")
+          completion(message,nil)
+        } else {
+          completion(nil, nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
 }

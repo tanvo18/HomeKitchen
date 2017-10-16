@@ -197,6 +197,7 @@ extension OrderViewController {
     if segue.identifier == "showOrderInfo" {
       if let destination = segue.destination as? OrderInfoViewController {
         destination.orderedItems = orderedItems
+        destination.sourceViewController = "OrderViewController"
       }
     }
   }

@@ -16,6 +16,9 @@
 		4D1588051F59663C00B1FFB4 /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D1588031F59663C00B1FFB4 /* MenuTableViewCell.xib */; };
 		4D18E2191F750243007B83B6 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D18E2181F750243007B83B6 /* NetworkingService.swift */; };
 		4D18E21D1F750DA6007B83B6 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D18E21C1F750DA6007B83B6 /* UI.swift */; };
+		4D203BC41F90B5A300A8F267 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D203BC31F90B5A300A8F267 /* Post.swift */; };
+		4D203BC61F90B5D900A8F267 /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D203BC51F90B5D900A8F267 /* PostItem.swift */; };
+		4D203BC91F90B8EB00A8F267 /* PostRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D203BC81F90B8EB00A8F267 /* PostRequestViewController.swift */; };
 		4D21D61D1F8C6B8E00E71A29 /* ResultKitchenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D21D61C1F8C6B8E00E71A29 /* ResultKitchenInfo.swift */; };
 		4D237C021F775B71007C1201 /* ListOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D237C011F775B71007C1201 /* ListOrderViewController.swift */; };
 		4D237C091F775C3C007C1201 /* GetOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D237C071F775C3C007C1201 /* GetOrderTableViewCell.swift */; };
@@ -46,6 +49,8 @@
 		4D4467001F60DF1E0022C91C /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */; };
 		4D4467011F60DF1E0022C91C /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */; };
 		4D4A73151F7AA9D6008A487C /* EditContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4A73141F7AA9D6008A487C /* EditContactViewController.swift */; };
+		4D51E9611F93683500299AFC /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D51E95F1F93683500299AFC /* PostTableViewCell.swift */; };
+		4D51E9621F93683500299AFC /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D51E9601F93683500299AFC /* PostTableViewCell.xib */; };
 		4D62A24E1F7A13C500326E9B /* SuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D62A24D1F7A13C500326E9B /* SuggestionViewController.swift */; };
 		4D6620E71F5C5A6200B96DC7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6620E61F5C5A6200B96DC7 /* User.swift */; };
 		4D6E96D61F693B45000DD7EE /* OrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6E96D51F693B45000DD7EE /* OrderInfo.swift */; };
@@ -103,6 +108,9 @@
 		4D1588031F59663C00B1FFB4 /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		4D18E2181F750243007B83B6 /* NetworkingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		4D18E21C1F750DA6007B83B6 /* UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		4D203BC31F90B5A300A8F267 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		4D203BC51F90B5D900A8F267 /* PostItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
+		4D203BC81F90B8EB00A8F267 /* PostRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRequestViewController.swift; sourceTree = "<group>"; };
 		4D21D61C1F8C6B8E00E71A29 /* ResultKitchenInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultKitchenInfo.swift; sourceTree = "<group>"; };
 		4D237C011F775B71007C1201 /* ListOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOrderViewController.swift; sourceTree = "<group>"; };
 		4D237C071F775C3C007C1201 /* GetOrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetOrderTableViewCell.swift; sourceTree = "<group>"; };
@@ -133,6 +141,8 @@
 		4D4466FE1F60DF1E0022C91C /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
 		4D4A73141F7AA9D6008A487C /* EditContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditContactViewController.swift; sourceTree = "<group>"; };
+		4D51E95F1F93683500299AFC /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		4D51E9601F93683500299AFC /* PostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		4D62A24D1F7A13C500326E9B /* SuggestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionViewController.swift; sourceTree = "<group>"; };
 		4D6620E61F5C5A6200B96DC7 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4D6E96D51F693B45000DD7EE /* OrderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInfo.swift; sourceTree = "<group>"; };
@@ -232,6 +242,14 @@
 				4D1588031F59663C00B1FFB4 /* MenuTableViewCell.xib */,
 			);
 			path = MenuCell;
+			sourceTree = "<group>";
+		};
+		4D203BC71F90B8C700A8F267 /* PostRequestScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D203BC81F90B8EB00A8F267 /* PostRequestViewController.swift */,
+			);
+			name = PostRequestScreen;
 			sourceTree = "<group>";
 		};
 		4D21D61B1F8C6AD200E71A29 /* GetKitchenInfo */ = {
@@ -402,6 +420,15 @@
 			name = EditContactScreen;
 			sourceTree = "<group>";
 		};
+		4D51E95C1F9367ED00299AFC /* PostRequestScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D51E95F1F93683500299AFC /* PostTableViewCell.swift */,
+				4D51E9601F93683500299AFC /* PostTableViewCell.xib */,
+			);
+			name = PostRequestScreen;
+			sourceTree = "<group>";
+		};
 		4D62A24A1F7A12B600326E9B /* CustomerSuggestionScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,6 +525,7 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D203BC71F90B8C700A8F267 /* PostRequestScreen */,
 				4D2BB7951F8E1A85002045EB /* EditProductScreen */,
 				4D8198BF1F8DC7A3003FA2A7 /* CreateProductScreen */,
 				4D8198B71F8DB39C003FA2A7 /* ListProductScreen */,
@@ -524,6 +552,7 @@
 		4DDB7ED11F59486C00A24730 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4D51E95C1F9367ED00299AFC /* PostRequestScreen */,
 				4D8198BA1F8DB457003FA2A7 /* ListProductScreen */,
 				4D438D931F8B6EB500AF5233 /* LocationScreen */,
 				4D2AAAC61F8A6E6C00F281A4 /* CreateKitchenScreen */,
@@ -560,6 +589,8 @@
 				4D2F0BCB1F711AC70017B8E7 /* ContactInfo.swift */,
 				4DF5896B1F78FE5A00CC8149 /* SuggestionItem.swift */,
 				4DF5896D1F7900F500CC8149 /* Suggestion.swift */,
+				4D203BC31F90B5A300A8F267 /* Post.swift */,
+				4D203BC51F90B5D900A8F267 /* PostItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -789,6 +820,7 @@
 				4DF43FF71F5E39CE00365F57 /* getrestaurants.json in Resources */,
 				4D4467011F60DF1E0022C91C /* OrderTableViewCell.xib in Resources */,
 				4D1587F91F59639100B1FFB4 /* Main.storyboard in Resources */,
+				4D51E9621F93683500299AFC /* PostTableViewCell.xib in Resources */,
 				4D24855B1F7A3F940025F810 /* SuggestionTableViewCell.xib in Resources */,
 				4D2AAAD21F8A8E7900F281A4 /* CustomTimeTableViewCell.xib in Resources */,
 				4DACF0B91F55C9A00043ED79 /* LaunchScreen.storyboard in Resources */,
@@ -863,9 +895,11 @@
 				4D24855A1F7A3F940025F810 /* SuggestionTableViewCell.swift in Sources */,
 				4D97B9921F8C5DFA00682A99 /* EditKitchenViewController.swift in Sources */,
 				4DEBE06E1F78095A00A0305D /* OrderDetailTableViewCell.swift in Sources */,
+				4D203BC91F90B8EB00A8F267 /* PostRequestViewController.swift in Sources */,
 				4DF4A4AD1F7B573F00DC272D /* ResultKitchenOrder.swift in Sources */,
 				4D438D921F8B6E4200AF5233 /* LocationViewController.swift in Sources */,
 				4D24855E1F7A5EE00025F810 /* CalendarViewController.swift in Sources */,
+				4D203BC41F90B5A300A8F267 /* Post.swift in Sources */,
 				4DF43FFD1F5E3B7A00365F57 /* Kitchen.swift in Sources */,
 				4D237C091F775C3C007C1201 /* GetOrderTableViewCell.swift in Sources */,
 				4D237C021F775B71007C1201 /* ListOrderViewController.swift in Sources */,
@@ -888,6 +922,7 @@
 				4D4086581F5F9558004697CE /* KitchenDetailViewController.swift in Sources */,
 				4D3BB8121F60035100D6686C /* Recipe.swift in Sources */,
 				4D1588001F59657500B1FFB4 /* LeftMenuTableViewController.swift in Sources */,
+				4D51E9611F93683500299AFC /* PostTableViewCell.swift in Sources */,
 				4DF43FFB1F5E3B6B00365F57 /* Address.swift in Sources */,
 				4D3F6DAB1F76167700F95EB9 /* AddNewContactViewController.swift in Sources */,
 				4DFAAEC61F5D459500FE2EAE /* KitchenTableViewCell.swift in Sources */,
@@ -916,6 +951,7 @@
 				4DEF2DC61F7BA47100C534FC /* MakeSuggestionViewCell.swift in Sources */,
 				4D2AAACB1F8A6EAD00F281A4 /* CreateKitchenTableViewCell.swift in Sources */,
 				4D2F0BCC1F711AC70017B8E7 /* ContactInfo.swift in Sources */,
+				4D203BC61F90B5D900A8F267 /* PostItem.swift in Sources */,
 				4D1588041F59663C00B1FFB4 /* MenuTableViewCell.swift in Sources */,
 				4DF43FFF1F5E3DC200365F57 /* ResultKitchen.swift in Sources */,
 			);
