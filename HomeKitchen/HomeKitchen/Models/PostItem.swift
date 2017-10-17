@@ -19,6 +19,7 @@ class PostItem: Mappable {
   var selectedImageUrl: URL!
   // Data of image
   var data: Data?
+  var price: Int = 0
   
   init() {}
   

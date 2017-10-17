@@ -186,9 +186,10 @@ class NetworkingService {
                                     "suggestionId" : suggestionId
     ]
     
-    Alamofire.request(url, method: .put, parameters: parameters, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+    Alamofire.request(url, method: .put, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseString { response in
       switch response.result {
       case .success:
+        print("====message \(response.result.value!)")
         if let message = response.result.value {
           completion(message,nil)
         } else {
@@ -211,13 +212,15 @@ class NetworkingService {
       "Accept": "application/json"
     ]
     
-    let  parameters: Parameters = [ "isAccepted" : isAccepted,
-                                    "orderId" : orderId
+    let  parameters: Parameters = ["orderId" : orderId,
+                                   "isAccepted" : isAccepted
+                                    
     ]
     
-    Alamofire.request(url, method: .put, parameters: parameters, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+    Alamofire.request(url, method: .put, parameters: parameters, encoding: URLEncoding.default, headers: headers).responseString { response in
       switch response.result {
       case .success:
+        print("====message \(response.result.value!)")
         if let message = response.result.value {
           completion(message,nil)
         } else {

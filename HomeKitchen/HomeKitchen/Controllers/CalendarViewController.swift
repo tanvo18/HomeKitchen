@@ -65,9 +65,9 @@ class CalendarViewController: UIViewController {
   override func awakeFromNib() {
     // Vietnam Timezone UTC +07
     // timeZoneBias for UTC +07 is minute
-    let timeZoneBias = 420 // (UTC+07:00)
+//    let timeZoneBias = 420 // (UTC+07:00)
     currentCalendar = Calendar.init(identifier: .gregorian)
-    if let timeZone = TimeZone.init(secondsFromGMT: -timeZoneBias * 60) {
+    if let timeZone = TimeZone.init(secondsFromGMT: TimeZone.current.secondsFromGMT()) {
       currentCalendar?.timeZone = timeZone
     }
   }
