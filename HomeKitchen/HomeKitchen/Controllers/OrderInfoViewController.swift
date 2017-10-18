@@ -268,6 +268,7 @@ extension OrderInfoViewController {
       [unowned self] (message, error) in
       if error != nil {
         print(error!)
+        self.myActivityIndicator.stopAnimating()
         self.alertError(message: "Cannot send")
       } else {
         self.myActivityIndicator.stopAnimating()

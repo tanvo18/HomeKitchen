@@ -11,6 +11,7 @@ import ObjectMapper
 
 class PostItem: Mappable {
   
+  var id: Int = 0
   var productName: String = ""
   // This url for post to server
   var imageUrl: String = ""
@@ -29,6 +30,7 @@ class PostItem: Mappable {
   
   // Mappable
   func mapping(map: Map) {
+    id               <- map["id"]
     productName      <- map["product_name"]
     imageUrl         <- map["image_url"]
     quantity         <- map["quantity"]

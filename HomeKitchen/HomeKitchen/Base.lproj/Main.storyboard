@@ -781,11 +781,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xZ1-hg-mI4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="560"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="604"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IHH-Da-2Dn">
-                                <rect key="frame" x="0.0" y="560" width="375" height="63"/>
+                                <rect key="frame" x="0.0" y="604" width="375" height="63"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvh-tX-MzO">
                                         <rect key="frame" x="8" y="21" width="163" height="21"/>
@@ -884,11 +884,102 @@
                     <connections>
                         <outlet property="tableView" destination="058-0N-W0r" id="m0E-S8-m2e"/>
                         <segue destination="SWr-ca-7xI" kind="show" identifier="showPostDetail" id="QLw-0T-dsD"/>
+                        <segue destination="O3a-f5-l3w" kind="show" identifier="showAnswer" action="showDetailViewController:sender:" id="2Ud-sg-uoi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZv-kl-4bN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2116" y="-2387.8560719640182"/>
+        </scene>
+        <!--Answer View Controller-->
+        <scene sceneID="9Dj-bv-4Ec">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="O3a-f5-l3w" customClass="AnswerViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TpV-HM-S6K"/>
+                        <viewControllerLayoutGuide type="bottom" id="fs3-hC-uIZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TuF-wc-wc2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIO-qw-CaO">
+                                <rect key="frame" x="192" y="116" width="167" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thời gian giao hàng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWd-Gq-Gja">
+                                <rect key="frame" x="16" y="116" width="151" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuU-vm-UEE">
+                                <rect key="frame" x="192" y="177" width="167" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ngày giao hàng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="srw-2h-Ju3">
+                                <rect key="frame" x="16" y="176" width="120" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="av5-Qh-sWj">
+                                <rect key="frame" x="0.0" y="221" width="375" height="259"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="726-mX-ecD">
+                                <rect key="frame" x="16" y="516" width="149" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Đồng ý">
+                                    <color key="titleColor" red="0.74117647060000003" green="0.73725490199999999" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTouchAcceptedButton:" destination="lTl-mZ-aZG" eventType="touchUpInside" id="SEu-HI-PsL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTU-h5-5WM">
+                                <rect key="frame" x="210" y="516" width="149" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Từ chối">
+                                    <color key="titleColor" red="0.74117647060000003" green="0.73725490199999999" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTouchDeclinedButton:" destination="lTl-mZ-aZG" eventType="touchUpInside" id="NPn-2C-PHk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="acceptedButton" destination="726-mX-ecD" id="RZb-r8-gWC"/>
+                        <outlet property="declinedButton" destination="bTU-h5-5WM" id="XyO-dK-sQR"/>
+                        <outlet property="tableView" destination="av5-Qh-sWj" id="k4x-gQ-XT4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RkJ-Oh-hYx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1968.8" y="-3918.8905547226391"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="bYq-OH-qsh">
@@ -1056,6 +1147,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="didTouchDeclinedButton:" destination="SWr-ca-7xI" eventType="touchUpInside" id="cb4-9P-vp9"/>
                                     <action selector="didTouchDeclinedButton:" destination="uBJ-Re-6va" eventType="touchUpInside" id="gRt-R7-czA"/>
                                 </connections>
                             </button>
@@ -1075,11 +1167,12 @@
                         <outlet property="statusLabel" destination="h4X-gR-YJO" id="q4V-WP-CJF"/>
                         <outlet property="tableView" destination="U4E-kS-tPQ" id="Cub-lL-pgc"/>
                         <segue destination="RWe-MB-zBp" kind="show" identifier="showCreateAnswer" id="5aa-Gk-Pny"/>
+                        <segue destination="ROF-h6-tIT" kind="show" identifier="showListPost" id="jg8-0O-AHV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ub-3t-SOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2116" y="-3087.7061469265368"/>
+            <point key="canvasLocation" x="1993" y="-3226"/>
         </scene>
         <!--Create Answer View Controller-->
         <scene sceneID="ddu-DD-3ei">
@@ -1112,6 +1205,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="didTouchSendButton:" destination="RWe-MB-zBp" eventType="touchUpInside" id="Si4-Py-QGz"/>
                                     <action selector="didTouchSendButton:" destination="lK7-uK-bf3" eventType="touchUpInside" id="j8B-wV-YyA"/>
                                 </connections>
                             </button>
@@ -1161,8 +1255,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="deliveryDateLabel" destination="Cbk-Ko-cM3" id="xHH-Iz-TfJ"/>
+                        <outlet property="deliveryTimeTextField" destination="HLK-Hd-J8p" id="2fI-xv-bOm"/>
                         <outlet property="tableView" destination="nJr-ov-fqt" id="5DB-WL-Dtu"/>
                         <outlet property="totalLabel" destination="u1v-z8-3Rj" id="5e0-4s-m4q"/>
+                        <segue destination="gRu-AF-cqc" kind="show" identifier="showCalendarView" id="ycJ-Fd-3Hc"/>
+                        <segue destination="ROF-h6-tIT" kind="show" identifier="showListPost" id="vGt-wr-cye"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="maK-mK-gNk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1178,7 +1276,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BgX-qA-Yc6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KLR-er-G9K">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JB4-dC-nLq">
@@ -1748,7 +1846,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z22-D1-mHH" customClass="CVCalendarMenuView" customModule="CVCalendar">
-                                <rect key="frame" x="0.0" y="111" width="375" height="33"/>
+                                <rect key="frame" x="0.0" y="141" width="375" height="33"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="mGY-4k-OFd"/>
@@ -1758,13 +1856,13 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Month" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0F5-DT-hrj">
-                                <rect key="frame" x="0.0" y="50" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xN6-rQ-kRV" customClass="CVCalendarView" customModule="CVCalendar">
-                                <rect key="frame" x="0.0" y="152" width="375" height="300"/>
+                                <rect key="frame" x="0.0" y="182" width="375" height="300"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="Hff-Qa-74A"/>
@@ -1782,7 +1880,7 @@
                             <constraint firstItem="z22-D1-mHH" firstAttribute="leading" secondItem="uRC-vF-KeP" secondAttribute="leading" id="H8g-XD-VVf"/>
                             <constraint firstItem="xN6-rQ-kRV" firstAttribute="leading" secondItem="uRC-vF-KeP" secondAttribute="leading" id="KG6-1A-0jr"/>
                             <constraint firstAttribute="trailing" secondItem="xN6-rQ-kRV" secondAttribute="trailing" id="Ou6-YS-NWy"/>
-                            <constraint firstItem="0F5-DT-hrj" firstAttribute="top" secondItem="631-tn-7cF" secondAttribute="bottom" constant="30" id="ieA-Ox-X1b"/>
+                            <constraint firstItem="0F5-DT-hrj" firstAttribute="top" secondItem="631-tn-7cF" secondAttribute="bottom" constant="60" id="ieA-Ox-X1b"/>
                             <constraint firstItem="0F5-DT-hrj" firstAttribute="leading" secondItem="uRC-vF-KeP" secondAttribute="leading" id="j5q-2u-ZyY"/>
                             <constraint firstItem="xN6-rQ-kRV" firstAttribute="top" secondItem="z22-D1-mHH" secondAttribute="bottom" constant="8" id="wn5-nh-LjI"/>
                             <constraint firstAttribute="trailing" secondItem="0F5-DT-hrj" secondAttribute="trailing" id="yKs-vc-Xgu"/>
@@ -1794,6 +1892,7 @@
                         <outlet property="monthLabel" destination="0F5-DT-hrj" id="Llp-sx-Svd"/>
                         <segue destination="qiN-A3-P2C" kind="unwind" identifier="unwindToOrderInfoController" unwindAction="unwindToOrderInfoControllerWithSegue:" id="VfG-ll-tHi"/>
                         <segue destination="qiN-A3-P2C" kind="unwind" identifier="unwindToMakeSuggestionController" unwindAction="unwindToMakeSuggestionControllerWithSegue:" id="zFo-jD-LUg"/>
+                        <segue destination="qiN-A3-P2C" kind="unwind" identifier="unwindToCreateAnswerViewController" unwindAction="unwindToCreateAnswerViewControllerWithSegue:" id="wpQ-6P-FBn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vKI-Ul-EMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2301,10 +2400,11 @@
         <image name="wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HoI-MX-zAi"/>
-        <segue reference="VfJ-pa-Xs3"/>
+        <segue reference="gQ6-1e-KpS"/>
+        <segue reference="DPN-uG-uoY"/>
+        <segue reference="JDc-Ee-M58"/>
+        <segue reference="SEn-in-l5v"/>
         <segue reference="WcN-74-H6N"/>
-        <segue reference="PYR-hP-BMS"/>
-        <segue reference="B1h-dc-fmz"/>
+        <segue reference="SiF-K6-Nzy"/>
     </inferredMetricsTieBreakers>
 </document>

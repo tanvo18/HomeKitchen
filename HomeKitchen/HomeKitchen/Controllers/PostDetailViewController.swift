@@ -91,6 +91,21 @@ extension PostDetailViewController {
   @IBAction func didTouchAnswerButton(_ sender: Any) {
     performSegue(withIdentifier: "showCreateAnswer", sender: self)
   }
+  
+  @IBAction func didTouchDeclinedButton(_ sender: Any) {
+    NetworkingService.sharedInstance.declinePost(postId: post.id) {
+      [unowned self] (message,error) in
+      if error != nil {
+        print(error!)
+        self.alertError(message: "Cannot decline")
+      } else {
+        let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+          self.performSegue(withIdentifier: "showListPost", sender: self)
+        })
+        self.alertWithAction(message: "Decline Successfully", action: ok)
+      }
+    }
+  }
 }
 
 extension PostDetailViewController {
@@ -98,9 +113,9 @@ extension PostDetailViewController {
     if segue.identifier == "showCreateAnswer" {
       if let destination = segue.destination as? CreateAnswerViewController {
         destination.postItems = post.postItems
-        destination.deliveryDate = post.deliveryDate
-        destination.deliveryTime = post.deliveryTime
-        destination.id = post.id
+        destination.deliveryDateOfPost = post.deliveryDate
+        destination.deliveryTimeOfPost = post.deliveryTime
+        destination.postId = post.id
       }
     }
   }

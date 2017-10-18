@@ -223,6 +223,59 @@ class NetworkingService {
     }
   }
   
+  /*
+   This function use for chef send Answer
+   */
+  func sendAnswer(postId: Int, deliveryDate: String, deliveryTime: String, answerDetails: [AnswerDetail], completion: @escaping (_ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "kitchens/answers"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let  parameters: Parameters = [ "post_id" : postId,
+                                    "delivery_date" : deliveryDate,
+                                    "delivery_time" : deliveryTime,
+                                    "answer_details" : answerDetails.toJSON()
+    ]
+    print("====param \(parameters.description)")
+    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        print("====message \(response.result.value!)")
+        completion(nil)
+      case .failure(let error):
+        completion(error)
+      }
+    }
+  }
+  
+  /*
+   This function use for chef decline post request
+   */
+  func declinePost(postId: Int, completion: @escaping(_ message: String?, _ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "kitchens/post/\(postId)"
+    
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    Alamofire.request(url, method: .put, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        print("====message \(response.result.value!)")
+        if let message = response.result.value {
+          completion(message,nil)
+        } else {
+          completion(nil, nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
+  
   // Create kitchen
   func createKitchen(openingTime: String, closingTime: String, kitchenName: String, imageUrl: String, type: String, createdDate: String, address: Address, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
     
@@ -410,7 +463,7 @@ class NetworkingService {
                                   "delivery_time" : deliveryTime,
                                   "delivery_date" : deliveryDate,
                                   "message" : message,
-                                  "kitchen_id" : kitchenId,
+                                  "kitchen" : ["id" : kitchenId],
                                   "contact_information" : contactInfo.toJSON(),
                                   "post_items" : postItems.toJSON()
     ]

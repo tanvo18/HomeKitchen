@@ -72,6 +72,9 @@ extension ListPostViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! ListPostTableViewCell
     cell.configureWithItem(post: posts[indexPath.row], role: Helper.role)
+    // Handle button on cell
+    cell.notificationButton.tag = indexPath.row
+    cell.notificationButton.addTarget(self, action: #selector(self.didTouchNotificationButton), for: .touchUpInside)
     return cell
   }
   
@@ -81,11 +84,30 @@ extension ListPostViewController: UITableViewDataSource {
   }
 }
 
+// MARK: Function
+extension ListPostViewController {
+  func didTouchNotificationButton(sender: UIButton) {
+    index = sender.tag
+    if posts[index].answers.isEmpty {
+      let title = "Message"
+      let message = "This Order doesn't have any suggestion"
+      self.alert(title: title, message: message)
+    } else {
+      performSegue(withIdentifier: "showAnswer", sender: self)
+    }
+    
+  }
+}
+
 extension ListPostViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showPostDetail" {
       if let destination = segue.destination as? PostDetailViewController {
         destination.post = posts[index]
+      }
+    } else if segue.identifier == "showAnswer" {
+      if let destination = segue.destination as? AnswerViewController {
+        destination.answers = posts[index].answers
       }
     }
   }

@@ -11,8 +11,11 @@ import ObjectMapper
 
 class Answer: Mappable {
   
-  var postItemId: Int = 0
-  var itemPrice: Int = 0
+  var deliveryTime: String = ""
+  var deliveryDate: String = ""
+  var totalPrice: Int = 0
+  var status: String = ""
+  var answerDetails: [AnswerDetail] = []
   
   init() {}
   
@@ -20,16 +23,13 @@ class Answer: Mappable {
     self.init()
   }
   
-  convenience init(postItemId: Int, itemPrice: Int) {
-    self.init()
-    self.postItemId = postItemId
-    self.itemPrice = itemPrice
-  }
-  
   // Mappable
   func mapping(map: Map) {
-    postItemId            <- map["post_item_id"]
-    itemPrice             <- map["price_item"]
+    deliveryTime             <- map["delivery_time"]
+    deliveryDate             <- map["delivery_date"]
+    totalPrice               <- map["total_price"]
+    status                   <- map["status"]
+    answerDetails            <- map["answer_details"]
   }
 
 }

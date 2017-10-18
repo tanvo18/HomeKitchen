@@ -15,6 +15,10 @@
 		4D09DF2B1F95ED450014E158 /* CreateAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D09DF2A1F95ED450014E158 /* CreateAnswerViewController.swift */; };
 		4D09DF2F1F95EDB40014E158 /* CreateAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D09DF2D1F95EDB40014E158 /* CreateAnswerTableViewCell.swift */; };
 		4D09DF301F95EDB40014E158 /* CreateAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D09DF2E1F95EDB40014E158 /* CreateAnswerTableViewCell.xib */; };
+		4D0BBDCC1F96622400BDA6AC /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0BBDCB1F96622400BDA6AC /* AnswerViewController.swift */; };
+		4D0BBDD01F96643900BDA6AC /* AnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0BBDCE1F96643900BDA6AC /* AnswerTableViewCell.swift */; };
+		4D0BBDD11F96643900BDA6AC /* AnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D0BBDCF1F96643900BDA6AC /* AnswerTableViewCell.xib */; };
+		4D0BBDD31F966D5900BDA6AC /* AnswerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0BBDD21F966D5900BDA6AC /* AnswerDetail.swift */; };
 		4D1587F91F59639100B1FFB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D1587F71F59639100B1FFB4 /* Main.storyboard */; };
 		4D1587FE1F59651900B1FFB4 /* SMNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1587FD1F59651900B1FFB4 /* SMNavigationController.swift */; };
 		4D1588001F59657500B1FFB4 /* LeftMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1587FF1F59657500B1FFB4 /* LeftMenuTableViewController.swift */; };
@@ -119,6 +123,10 @@
 		4D09DF2A1F95ED450014E158 /* CreateAnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAnswerViewController.swift; sourceTree = "<group>"; };
 		4D09DF2D1F95EDB40014E158 /* CreateAnswerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAnswerTableViewCell.swift; sourceTree = "<group>"; };
 		4D09DF2E1F95EDB40014E158 /* CreateAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAnswerTableViewCell.xib; sourceTree = "<group>"; };
+		4D0BBDCB1F96622400BDA6AC /* AnswerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
+		4D0BBDCE1F96643900BDA6AC /* AnswerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerTableViewCell.swift; sourceTree = "<group>"; };
+		4D0BBDCF1F96643900BDA6AC /* AnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnswerTableViewCell.xib; sourceTree = "<group>"; };
+		4D0BBDD21F966D5900BDA6AC /* AnswerDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerDetail.swift; sourceTree = "<group>"; };
 		4D1587F81F59639100B1FFB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4D1587FD1F59651900B1FFB4 /* SMNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMNavigationController.swift; sourceTree = "<group>"; };
 		4D1587FF1F59657500B1FFB4 /* LeftMenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuTableViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +282,23 @@
 				4D09DF2E1F95EDB40014E158 /* CreateAnswerTableViewCell.xib */,
 			);
 			name = CreateAnswerScreen;
+			sourceTree = "<group>";
+		};
+		4D0BBDCA1F9661B200BDA6AC /* AnswerScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D0BBDCB1F96622400BDA6AC /* AnswerViewController.swift */,
+			);
+			name = AnswerScreen;
+			sourceTree = "<group>";
+		};
+		4D0BBDCD1F96642500BDA6AC /* AnswerScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4D0BBDCE1F96643900BDA6AC /* AnswerTableViewCell.swift */,
+				4D0BBDCF1F96643900BDA6AC /* AnswerTableViewCell.xib */,
+			);
+			name = AnswerScreen;
 			sourceTree = "<group>";
 		};
 		4D1587FC1F5964F400B1FFB4 /* SideMenu */ = {
@@ -609,6 +634,7 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4D0BBDCA1F9661B200BDA6AC /* AnswerScreen */,
 				4D09DF241F95E8800014E158 /* CreateAnswerPostRequestScreen */,
 				4DC4FB941F95BF3C005A94A3 /* PostDetailScreen */,
 				4DC4FB871F95AA11005A94A3 /* GetListPostScreen */,
@@ -639,6 +665,7 @@
 		4DDB7ED11F59486C00A24730 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4D0BBDCD1F96642500BDA6AC /* AnswerScreen */,
 				4D09DF2C1F95ED970014E158 /* CreateAnswerScreen */,
 				4D09DF1D1F95E1F20014E158 /* PostDetailScreen */,
 				4DC4FB8A1F95ABC0005A94A3 /* GetListPostScreen */,
@@ -683,6 +710,7 @@
 				4D203BC31F90B5A300A8F267 /* Post.swift */,
 				4D203BC51F90B5D900A8F267 /* PostItem.swift */,
 				4D09DF251F95EB750014E158 /* Answer.swift */,
+				4D0BBDD21F966D5900BDA6AC /* AnswerDetail.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -921,6 +949,7 @@
 				4D1588051F59663C00B1FFB4 /* MenuTableViewCell.xib in Resources */,
 				4DACF0B61F55C9A00043ED79 /* Assets.xcassets in Resources */,
 				4D237C0A1F775C3C007C1201 /* GetOrderTableViewCell.xib in Resources */,
+				4D0BBDD11F96643900BDA6AC /* AnswerTableViewCell.xib in Resources */,
 				4DE6EC2D1F68EC1000A1A4DE /* getorder.json in Resources */,
 				4DEBE06F1F78095A00A0305D /* OrderDetailTableViewCell.xib in Resources */,
 				4DC4FB8E1F95ABF7005A94A3 /* ListPostTableViewCell.xib in Resources */,
@@ -983,6 +1012,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DC4FB8D1F95ABF7005A94A3 /* ListPostTableViewCell.swift in Sources */,
+				4D0BBDD01F96643900BDA6AC /* AnswerTableViewCell.swift in Sources */,
 				4D2AAAD11F8A8E7900F281A4 /* CustomTimeTableViewCell.swift in Sources */,
 				4DF4A4B41F7B58D400DC272D /* KitchenOrderDataModel.swift in Sources */,
 				4DEDD3371F5BF90100D24E79 /* LoginViewController.swift in Sources */,
@@ -993,6 +1023,7 @@
 				4DC4FB931F95B504005A94A3 /* PostDataModel.swift in Sources */,
 				4D8198C11F8DC7BE003FA2A7 /* CreateProductViewController.swift in Sources */,
 				4D24855A1F7A3F940025F810 /* SuggestionTableViewCell.swift in Sources */,
+				4D0BBDD31F966D5900BDA6AC /* AnswerDetail.swift in Sources */,
 				4D97B9921F8C5DFA00682A99 /* EditKitchenViewController.swift in Sources */,
 				4DEBE06E1F78095A00A0305D /* OrderDetailTableViewCell.swift in Sources */,
 				4D203BC91F90B8EB00A8F267 /* PostRequestViewController.swift in Sources */,
@@ -1025,6 +1056,7 @@
 				4D51E9611F93683500299AFC /* PostTableViewCell.swift in Sources */,
 				4DF43FFB1F5E3B6B00365F57 /* Address.swift in Sources */,
 				4D3F6DAB1F76167700F95EB9 /* AddNewContactViewController.swift in Sources */,
+				4D0BBDCC1F96622400BDA6AC /* AnswerViewController.swift in Sources */,
 				4DFAAEC61F5D459500FE2EAE /* KitchenTableViewCell.swift in Sources */,
 				4D4A73151F7AA9D6008A487C /* EditContactViewController.swift in Sources */,
 				4D6620E71F5C5A6200B96DC7 /* User.swift in Sources */,
