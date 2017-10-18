@@ -11,6 +11,7 @@ import ObjectMapper
 
 class Answer: Mappable {
   
+  var id: Int = 0
   var deliveryTime: String = ""
   var deliveryDate: String = ""
   var totalPrice: Int = 0
@@ -25,6 +26,7 @@ class Answer: Mappable {
   
   // Mappable
   func mapping(map: Map) {
+    id                       <- map["id"]
     deliveryTime             <- map["delivery_time"]
     deliveryDate             <- map["delivery_date"]
     totalPrice               <- map["total_price"]

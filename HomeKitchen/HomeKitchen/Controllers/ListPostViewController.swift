@@ -107,7 +107,7 @@ extension ListPostViewController {
       }
     } else if segue.identifier == "showAnswer" {
       if let destination = segue.destination as? AnswerViewController {
-        destination.answers = posts[index].answers
+        destination.post = posts[index]
       }
     }
   }

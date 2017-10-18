@@ -746,7 +746,7 @@
                         <viewControllerLayoutGuide type="bottom" id="JhA-1k-DjZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xaQ-by-eUF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IHr-5o-eDE">
@@ -781,11 +781,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xZ1-hg-mI4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="604"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="560"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IHH-Da-2Dn">
-                                <rect key="frame" x="0.0" y="604" width="375" height="63"/>
+                                <rect key="frame" x="0.0" y="560" width="375" height="63"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvh-tX-MzO">
                                         <rect key="frame" x="8" y="21" width="163" height="21"/>
@@ -884,7 +884,7 @@
                     <connections>
                         <outlet property="tableView" destination="058-0N-W0r" id="m0E-S8-m2e"/>
                         <segue destination="SWr-ca-7xI" kind="show" identifier="showPostDetail" id="QLw-0T-dsD"/>
-                        <segue destination="O3a-f5-l3w" kind="show" identifier="showAnswer" action="showDetailViewController:sender:" id="2Ud-sg-uoi"/>
+                        <segue destination="O3a-f5-l3w" kind="show" identifier="showAnswer" id="5rI-P7-CL9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZv-kl-4bN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -949,6 +949,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="didTouchAcceptedButton:" destination="O3a-f5-l3w" eventType="touchUpInside" id="DJF-X1-Omj"/>
                                     <action selector="didTouchAcceptedButton:" destination="lTl-mZ-aZG" eventType="touchUpInside" id="SEu-HI-PsL"/>
                                 </connections>
                             </button>
@@ -965,6 +966,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="didTouchDeclinedButton:" destination="O3a-f5-l3w" eventType="touchUpInside" id="4PE-Se-dwy"/>
                                     <action selector="didTouchDeclinedButton:" destination="lTl-mZ-aZG" eventType="touchUpInside" id="NPn-2C-PHk"/>
                                 </connections>
                             </button>
@@ -973,13 +975,16 @@
                     </view>
                     <connections>
                         <outlet property="acceptedButton" destination="726-mX-ecD" id="RZb-r8-gWC"/>
+                        <outlet property="dateLabel" destination="GuU-vm-UEE" id="I9S-aG-EQT"/>
                         <outlet property="declinedButton" destination="bTU-h5-5WM" id="XyO-dK-sQR"/>
                         <outlet property="tableView" destination="av5-Qh-sWj" id="k4x-gQ-XT4"/>
+                        <outlet property="timeLabel" destination="WIO-qw-CaO" id="SMP-vw-8N9"/>
+                        <segue destination="ROF-h6-tIT" kind="show" identifier="showListPost" id="MbU-I9-PZR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RkJ-Oh-hYx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1968.8" y="-3918.8905547226391"/>
+            <point key="canvasLocation" x="1993" y="-3919"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="bYq-OH-qsh">
@@ -1276,7 +1281,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BgX-qA-Yc6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KLR-er-G9K">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JB4-dC-nLq">
@@ -2400,11 +2405,11 @@
         <image name="wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gQ6-1e-KpS"/>
-        <segue reference="DPN-uG-uoY"/>
-        <segue reference="JDc-Ee-M58"/>
-        <segue reference="SEn-in-l5v"/>
+        <segue reference="MbU-I9-PZR"/>
+        <segue reference="VfJ-pa-Xs3"/>
         <segue reference="WcN-74-H6N"/>
         <segue reference="SiF-K6-Nzy"/>
+        <segue reference="reK-M9-1VN"/>
+        <segue reference="JDc-Ee-M58"/>
     </inferredMetricsTieBreakers>
 </document>

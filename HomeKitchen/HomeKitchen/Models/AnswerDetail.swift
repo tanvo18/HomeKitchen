@@ -11,8 +11,12 @@ import ObjectMapper
 
 class AnswerDetail: Mappable {
   
+  // retrive info from json
   var postItemId: Int = 0
   var itemPrice: Int = 0
+  // provide by matching to postItem
+  var productName: String = ""
+  var quantity: Int = 0
   
   init() {}
   

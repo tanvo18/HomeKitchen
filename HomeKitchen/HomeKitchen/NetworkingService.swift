@@ -276,6 +276,33 @@ class NetworkingService {
     }
   }
   
+  /*
+   This function use for customer responses answer
+   */
+  func responseAnswer(answerId: Int, isAccepted: Bool, acceptedDate: String, completion: @escaping(_ message: String?, _ error: Error?) -> Void) {
+    
+    let url = NetworkingService.baseURLString + "users/answers?isAccepted=\(isAccepted)&answerId=\(answerId)&accepted_date=\(acceptedDate)"
+    
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    Alamofire.request(url, method: .put, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        print("====message \(response.result.value!)")
+        if let message = response.result.value {
+          completion(message,nil)
+        } else {
+          completion(nil, nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
+  
   // Create kitchen
   func createKitchen(openingTime: String, closingTime: String, kitchenName: String, imageUrl: String, type: String, createdDate: String, address: Address, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
     
@@ -308,6 +335,7 @@ class NetworkingService {
     }
   }
   
+  // Edit kitchen
   // Using responseString
   func editKitchen(id: Int, openingTime: String, closingTime: String, kitchenName: String, imageUrl: String, type: String, address: Address, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
     

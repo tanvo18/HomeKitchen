@@ -21,6 +21,11 @@ class AnswerTableViewCell: UITableViewCell {
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
   }
-
+  
+  func configureWithItem(answerDetail: AnswerDetail) {
+    itemNameLabel.text = answerDetail.productName
+    quantityLabel.text = "\(answerDetail.quantity) X"
+    priceLabel.text = "\(answerDetail.itemPrice)"
+  }
   
 }
