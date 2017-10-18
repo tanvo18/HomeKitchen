@@ -254,7 +254,7 @@ class NetworkingService {
    This function use for chef decline post request
    */
   func declinePost(postId: Int, completion: @escaping(_ message: String?, _ error: Error?) -> Void) {
-    let url = NetworkingService.baseURLString + "kitchens/post/\(postId)"
+    let url = NetworkingService.baseURLString + "kitchens/posts/\(postId)"
     
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
