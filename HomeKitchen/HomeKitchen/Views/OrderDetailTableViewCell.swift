@@ -14,8 +14,6 @@ class OrderDetailTableViewCell: UITableViewCell {
   
   @IBOutlet weak var nameProductLabel: UILabel!
   
-  @IBOutlet weak var priceLabel: UILabel!
-  
   @IBOutlet weak var orderItemPriceLabel: UILabel!
   
   override func awakeFromNib() {
@@ -27,12 +25,11 @@ class OrderDetailTableViewCell: UITableViewCell {
   }
   
   func configureWithItem(orderItem: OrderItem) {
-    guard let productName = orderItem.product?.name, let productPrice = orderItem.product?.price  else {
+    guard let productName = orderItem.product?.name else {
       return
     }
     quantityLabel.text = "\(orderItem.quantity) X"
     nameProductLabel.text = productName
-    priceLabel.text = "\(productPrice)"
     orderItemPriceLabel.text = "\(orderItem.orderItemPrice)"
   }
 }

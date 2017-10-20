@@ -1,36 +1,30 @@
 //
-//  AnswerViewController.swift
+//  AnswerDetailViewController.swift
 //  HomeKitchen
 //
-//  Created by Tan Vo on 10/17/17.
+//  Created by Tan Vo on 10/20/17.
 //  Copyright © 2017 Tan Vo. All rights reserved.
 //
 
 import UIKit
 
-class AnswerViewController: UIViewController {
+class AnswerDetailViewController: UIViewController {
   
   // MARK: IBOutlet
-  @IBOutlet weak var acceptedButton: UIButton!
-  @IBOutlet weak var declinedButton: UIButton!
-  @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var dateLabel: UILabel!
+  @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var acceptedButton: UIButton!
+  @IBOutlet weak var declinedButton: UIButton!
   
-  var post: Post!
   var answer: Answer!
   var postItem: [PostItem] = []
+  var deliveryTime: String = ""
+  var deliveryDate: String = ""
   let reuseableCell = "Cell"
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Get first element in answers
-    answer = post.answers[0]
-    // Get postItem from post
-    postItem = post.postItems
-    // get date and time
-    timeLabel.text = post.deliveryTime
-    dateLabel.text = post.deliveryDate
     // Hide buttons with chef
     if Helper.role == "chef" {
       acceptedButton.isHidden = true
@@ -45,20 +39,20 @@ class AnswerViewController: UIViewController {
     self.settingForNavigationBar(title: "Answer Screen")
     // Matching
     matchingAnswerDetailWithPostItem()
-    
   }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
+  
 }
 
 // MARK: tableView Delegate
-extension AnswerViewController: UITableViewDelegate {
+extension AnswerDetailViewController: UITableViewDelegate {
 }
 
 // MARK: tableView Datasource
-extension AnswerViewController: UITableViewDataSource {
+extension AnswerDetailViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return answer.answerDetails.count
@@ -73,7 +67,7 @@ extension AnswerViewController: UITableViewDataSource {
 }
 
 // MARK: Function
-extension AnswerViewController {
+extension AnswerDetailViewController {
   func matchingAnswerDetailWithPostItem() {
     for detail in answer.answerDetails {
       for item in postItem {
@@ -95,7 +89,7 @@ extension AnswerViewController {
 }
 
 // MARK: IBAction
-extension AnswerViewController {
+extension AnswerDetailViewController {
   @IBAction func didTouchAcceptedButton(_ sender: Any) {
     NetworkingService.sharedInstance.responseAnswer(answerId: answer.id, isAccepted: true, acceptedDate: setCurrentDate()) {
       [unowned self] (message,error) in
@@ -126,5 +120,4 @@ extension AnswerViewController {
     }
   }
 }
-
 

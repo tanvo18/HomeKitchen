@@ -884,17 +884,46 @@
                     <connections>
                         <outlet property="tableView" destination="058-0N-W0r" id="m0E-S8-m2e"/>
                         <segue destination="SWr-ca-7xI" kind="show" identifier="showPostDetail" id="QLw-0T-dsD"/>
-                        <segue destination="O3a-f5-l3w" kind="show" identifier="showAnswer" id="5rI-P7-CL9"/>
+                        <segue destination="NbA-9p-jxZ" kind="show" identifier="showListAnswer" id="ggn-F6-xrv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZv-kl-4bN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2116" y="-2387.8560719640182"/>
+            <point key="canvasLocation" x="1993" y="-2382"/>
         </scene>
-        <!--Answer View Controller-->
+        <!--Answers View Controller-->
+        <scene sceneID="t48-wf-TNd">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="NbA-9p-jxZ" customClass="AnswersViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UdI-X4-KGE"/>
+                        <viewControllerLayoutGuide type="bottom" id="yJQ-0b-xj3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xbW-UX-1DX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FKn-6s-94s">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="FKn-6s-94s" id="G7u-IK-nfy"/>
+                        <segue destination="O3a-f5-l3w" kind="show" identifier="showAnswerDetail" id="FJj-vN-cpJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CM1-ly-mcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1992.8" y="-4003.4482758620693"/>
+        </scene>
+        <!--Answer Detail View Controller-->
         <scene sceneID="9Dj-bv-4Ec">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="O3a-f5-l3w" customClass="AnswerViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="O3a-f5-l3w" customClass="AnswerDetailViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TpV-HM-S6K"/>
                         <viewControllerLayoutGuide type="bottom" id="fs3-hC-uIZ"/>
@@ -974,17 +1003,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="acceptedButton" destination="726-mX-ecD" id="RZb-r8-gWC"/>
-                        <outlet property="dateLabel" destination="GuU-vm-UEE" id="I9S-aG-EQT"/>
-                        <outlet property="declinedButton" destination="bTU-h5-5WM" id="XyO-dK-sQR"/>
-                        <outlet property="tableView" destination="av5-Qh-sWj" id="k4x-gQ-XT4"/>
-                        <outlet property="timeLabel" destination="WIO-qw-CaO" id="SMP-vw-8N9"/>
+                        <outlet property="acceptedButton" destination="726-mX-ecD" id="VNq-7E-xck"/>
+                        <outlet property="dateLabel" destination="GuU-vm-UEE" id="e07-cm-L2F"/>
+                        <outlet property="declinedButton" destination="bTU-h5-5WM" id="UAX-7D-0sf"/>
+                        <outlet property="tableView" destination="av5-Qh-sWj" id="Z4J-HQ-cM8"/>
+                        <outlet property="timeLabel" destination="WIO-qw-CaO" id="2hl-l3-79a"/>
                         <segue destination="ROF-h6-tIT" kind="show" identifier="showListPost" id="MbU-I9-PZR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RkJ-Oh-hYx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1993" y="-3919"/>
+            <point key="canvasLocation" x="2988" y="-4003"/>
         </scene>
         <!--Post Detail View Controller-->
         <scene sceneID="bYq-OH-qsh">
@@ -1177,7 +1206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ub-3t-SOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1993" y="-3226"/>
+            <point key="canvasLocation" x="996" y="-3226"/>
         </scene>
         <!--Create Answer View Controller-->
         <scene sceneID="ddu-DD-3ei">
@@ -1270,7 +1299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="maK-mK-gNk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2972" y="-3088.6056971514245"/>
+            <point key="canvasLocation" x="2988" y="-3226"/>
         </scene>
         <!--Make Suggestion View Controller-->
         <scene sceneID="GHr-O8-5m8">
@@ -1362,7 +1391,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M6x-dG-cA9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3072.8000000000002" y="-2133.7331334332835"/>
+            <point key="canvasLocation" x="3121" y="-2239"/>
         </scene>
         <!--List Order View Controller-->
         <scene sceneID="ENx-cJ-sUl">
@@ -1398,7 +1427,7 @@
                         <outlet property="statusTextField" destination="PQm-Gc-NgB" id="xeN-QZ-aoN"/>
                         <outlet property="tableView" destination="LYT-2P-xLb" id="sSK-4T-PBI"/>
                         <segue destination="uBJ-Re-6va" kind="show" identifier="showOrderDetail" id="ce5-x1-gMt"/>
-                        <segue destination="lTl-mZ-aZG" kind="show" identifier="showListSuggestion" id="J9K-gQ-3Kf"/>
+                        <segue destination="JRO-hX-n9d" kind="show" identifier="showListSuggestion" id="v3M-vP-mRe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akC-Ip-upR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1645,10 +1674,39 @@
             </objects>
             <point key="canvasLocation" x="4724" y="-1290.8545727136432"/>
         </scene>
-        <!--Suggestion View Controller-->
+        <!--Suggestions View Controller-->
+        <scene sceneID="DNa-BU-WhG">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="JRO-hX-n9d" customClass="SuggestionsViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BZ7-PM-kFB"/>
+                        <viewControllerLayoutGuide type="bottom" id="4tM-Cw-aay"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YxM-7Q-xyR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O9g-8N-IYh">
+                                <rect key="frame" x="0.0" y="60" width="375" height="607"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="O9g-8N-IYh" id="6mF-uO-rXS"/>
+                        <segue destination="lTl-mZ-aZG" kind="show" identifier="showSuggestionDetail" id="wUl-EV-jIu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jbD-pf-nzE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4724" y="-2135"/>
+        </scene>
+        <!--Suggestion Detail View Controller-->
         <scene sceneID="YQE-w6-vMc">
             <objects>
-                <viewController id="lTl-mZ-aZG" customClass="SuggestionViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lTl-mZ-aZG" customClass="SuggestionDetailViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PdT-lK-uGO"/>
                         <viewControllerLayoutGuide type="bottom" id="s9c-9D-S6J"/>
@@ -1726,17 +1784,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="acceptedButton" destination="QuX-L4-gR4" id="xWR-7b-RPW"/>
-                        <outlet property="declinedButton" destination="NN0-Hm-0js" id="lYQ-TS-x2b"/>
-                        <outlet property="deliveryDateLabel" destination="1pc-Cm-a3C" id="wNh-oe-EbD"/>
-                        <outlet property="deliveryTimeLabel" destination="Ybm-Ga-nip" id="g3S-HT-ekD"/>
-                        <outlet property="tableView" destination="nGF-SJ-pco" id="vGI-9n-bNt"/>
+                        <outlet property="acceptedButton" destination="QuX-L4-gR4" id="v7G-dy-AIa"/>
+                        <outlet property="declinedButton" destination="NN0-Hm-0js" id="JE0-fk-dkp"/>
+                        <outlet property="deliveryDateLabel" destination="1pc-Cm-a3C" id="NzP-Cv-8f4"/>
+                        <outlet property="deliveryTimeLabel" destination="Ybm-Ga-nip" id="Xtm-1s-UC0"/>
+                        <outlet property="tableView" destination="nGF-SJ-pco" id="Evc-4p-gx6"/>
                         <segue destination="mi3-E6-qgR" kind="show" identifier="showListOrder" id="gQ6-1e-KpS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gfo-2z-Qez" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4724" y="-2133"/>
+            <point key="canvasLocation" x="5943" y="-2135"/>
         </scene>
         <!--Order Info View Controller-->
         <scene sceneID="dn6-xo-Ckw">
@@ -2405,7 +2463,7 @@
         <image name="wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MbU-I9-PZR"/>
+        <segue reference="SEn-in-l5v"/>
         <segue reference="VfJ-pa-Xs3"/>
         <segue reference="WcN-74-H6N"/>
         <segue reference="SiF-K6-Nzy"/>

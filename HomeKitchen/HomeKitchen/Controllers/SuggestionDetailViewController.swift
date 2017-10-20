@@ -1,39 +1,31 @@
 //
-//  SuggestionViewController.swift
+//  SuggestionDetailViewController.swift
 //  HomeKitchen
 //
-//  Created by Tan Vo on 9/26/17.
+//  Created by Tan Vo on 10/20/17.
 //  Copyright © 2017 Tan Vo. All rights reserved.
 //
 
 import UIKit
 
-class SuggestionViewController: UIViewController {
+class SuggestionDetailViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
-  
   @IBOutlet weak var deliveryTimeLabel: UILabel!
-  
   @IBOutlet weak var deliveryDateLabel: UILabel!
-  
   @IBOutlet weak var acceptedButton: UIButton!
-  
   @IBOutlet weak var declinedButton: UIButton!
   
   let reuseableCell = "Cell"
-  var suggestions: [Suggestion] = []
   var suggestion: Suggestion = Suggestion()
   var suggestionId: Int = 0
   var isAccepted: Bool = true
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    if !suggestions.isEmpty {
-      suggestion = suggestions[0]
-      // Setup for label
-      deliveryTimeLabel.text = suggestion.deliveryTime
-      deliveryDateLabel.text = suggestion.deliveryDate
-    }
+    // Setup for label
+    deliveryTimeLabel.text = suggestion.deliveryTime
+    deliveryDateLabel.text = suggestion.deliveryDate
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UINib(nibName: "SuggestionTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
@@ -54,10 +46,10 @@ class SuggestionViewController: UIViewController {
   
 }
 
-extension SuggestionViewController: UITableViewDelegate {
+extension SuggestionDetailViewController: UITableViewDelegate {
 }
 
-extension SuggestionViewController: UITableViewDataSource {
+extension SuggestionDetailViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return suggestion.suggestItems.count
@@ -75,7 +67,7 @@ extension SuggestionViewController: UITableViewDataSource {
 }
 
 // MARK: IBAction
-extension SuggestionViewController {
+extension SuggestionDetailViewController {
   @IBAction func didTouchAcceptedButton(_ sender: Any) {
     suggestionId = suggestion.id
     isAccepted = true
@@ -112,5 +104,3 @@ extension SuggestionViewController {
     }
   }
 }
-
-

@@ -196,7 +196,7 @@ extension ListOrderViewController {
         destination.chefOrderStatus = selectedStatus
       }
     } else if segue.identifier == "showListSuggestion" {
-      if let destination = segue.destination as? SuggestionViewController {
+      if let destination = segue.destination as? SuggestionsViewController {
         destination.suggestions = orderInfos[index].suggestions
       }
     }

@@ -93,7 +93,7 @@ extension ListPostViewController {
       let message = "This Order doesn't have any suggestion"
       self.alert(title: title, message: message)
     } else {
-      performSegue(withIdentifier: "showAnswer", sender: self)
+      performSegue(withIdentifier: "showListAnswer", sender: self)
     }
     
   }
@@ -105,8 +105,8 @@ extension ListPostViewController {
       if let destination = segue.destination as? PostDetailViewController {
         destination.post = posts[index]
       }
-    } else if segue.identifier == "showAnswer" {
-      if let destination = segue.destination as? AnswerViewController {
+    } else if segue.identifier == "showListAnswer" {
+      if let destination = segue.destination as? AnswersViewController {
         destination.post = posts[index]
       }
     }
