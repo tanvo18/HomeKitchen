@@ -36,9 +36,11 @@ class AnswerDetailViewController: UIViewController {
     tableView.register(UINib(nibName: "AnswerTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    self.settingForNavigationBar(title: "Answer Screen")
+    self.settingForNavigationBar(title: "Answer Detail Screen")
     // Matching
     matchingAnswerDetailWithPostItem()
+    timeLabel.text = deliveryTime
+    dateLabel.text = deliveryDate
   }
   
   override func didReceiveMemoryWarning() {

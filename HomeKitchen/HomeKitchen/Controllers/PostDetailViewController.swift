@@ -22,6 +22,7 @@ class PostDetailViewController: UIViewController {
   @IBOutlet weak var informationLabel: UILabel!
   @IBOutlet weak var answerButton: UIButton!
   @IBOutlet weak var declinedButton: UIButton!
+  @IBOutlet weak var messageTextView: UITextView!
   
   let reuseableCell = "Cell"
   var post: Post = Post()
@@ -70,6 +71,7 @@ extension PostDetailViewController {
     requestDateLabel.text = post.requestDate
     deliveryTimeLabel.text = post.deliveryTime
     deliveryDateLabel.text = post.deliveryDate
+    messageTextView.text = "message: " + post.message
     if Helper.role == "customer" {
       informationLabel.text = "thông tin nhà hàng"
       statusLabel.text = post.status
