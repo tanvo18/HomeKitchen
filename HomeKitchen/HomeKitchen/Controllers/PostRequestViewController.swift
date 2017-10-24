@@ -189,6 +189,10 @@ extension PostRequestViewController {
       if isValidProduct() {
         // Take message from textView
         message = textViewMessage.text
+        
+        print("====message: \(message)")
+        
+        
         performSegue(withIdentifier: "showOrderInfo", sender: self)
       } else {
         self.alertError(message: "Not valid product")

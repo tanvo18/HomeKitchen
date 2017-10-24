@@ -33,9 +33,10 @@ class EditKitchenViewController: UIViewController {
   
   var kitchen: Kitchen? {
     didSet {
-      parseKitchenInfoData()
-      tableView.reloadData()
+      // avoid reset data in the second time
       if isFirstTime {
+        parseKitchenInfoData()
+        tableView.reloadData()
         downloadImage(imageUrl: kitchen!.imageUrl)
         isFirstTime = false
         imageUrl = kitchen!.imageUrl

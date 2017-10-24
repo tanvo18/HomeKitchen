@@ -33,37 +33,88 @@ class SMNavigationController: LNSideMenuNavigationController {
     sideMenu?.underNavigationBar = true
   }
   
-  fileprivate func setContentVC(_ index: Int) {
+  fileprivate func setContentVC(_ index: Int, _ sectionIndex: Int) {
     print("Did select item at index: \(index)")
+    print("section: \(sectionIndex)")
     var nViewController: UIViewController? = nil
-    switch index {
+    switch sectionIndex {
     case 0:
-      nViewController = storyboard?.instantiateViewController(withIdentifier: "RestaurantViewController")
+      switch index {
+      case 0:
+        nViewController = storyboard?.instantiateViewController(withIdentifier: "RestaurantViewController")
+      default:
+        break
+      }
     case 1:
-      Helper.role = "customer"
-      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
+      switch index {
+      case 0:
+        break
+      case 1:
+        Helper.role = "customer"
+        nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
+      case 2:
+        Helper.role = "customer"
+        nViewController = storyboard?.instantiateViewController(withIdentifier: "ListPostViewController")
+      default:
+        break
+      }
     case 2:
-      Helper.role = "chef"
-      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
+      switch index {
+      case 0:
+        Helper.role = "chef"
+        nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
+      case 1:
+        Helper.role = "chef"
+        nViewController = storyboard?.instantiateViewController(withIdentifier: "ListPostViewController")
+      case 2:
+        Helper.role = "chef"
+        nViewController = storyboard?.instantiateViewController(withIdentifier: "EditKitchenViewController")
+      default:
+        break
+      }
     case 3:
-      Helper.role = "chef"
-      nViewController = storyboard?.instantiateViewController(withIdentifier: "CreateKitchenViewController")
-    case 4:
-      Helper.role = "chef"
-      nViewController = storyboard?.instantiateViewController(withIdentifier: "EditKitchenViewController")
-    case 5:
-      Helper.role = "chef"
-      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListPostViewController")
-    case 6:
-      Helper.role = "customer"
-      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListPostViewController")
-    case 7:
-      let loginManager = LoginManager()
-      loginManager.logOut()
-      nViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+      switch index {
+      case 0:
+        let loginManager = LoginManager()
+        loginManager.logOut()
+        nViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+      default:
+        break
+      }
     default:
       break
     }
+    
+    
+//    switch index {
+//    case 0:
+//      nViewController = storyboard?.instantiateViewController(withIdentifier: "RestaurantViewController")
+//    case 1:
+//      Helper.role = "customer"
+//      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
+//    case 2:
+//      Helper.role = "chef"
+//      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
+//    case 3:
+//      Helper.role = "chef"
+//      nViewController = storyboard?.instantiateViewController(withIdentifier: "CreateKitchenViewController")
+//    case 4:
+//      Helper.role = "chef"
+//      nViewController = storyboard?.instantiateViewController(withIdentifier: "EditKitchenViewController")
+//    case 5:
+//      Helper.role = "chef"
+//      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListPostViewController")
+//    case 6:
+//      Helper.role = "customer"
+//      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListPostViewController")
+//    case 7:
+//      let loginManager = LoginManager()
+//      loginManager.logOut()
+//      nViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+//      
+//    default:
+//      break
+//    }
     if let viewController = nViewController {
       self.setContentViewController(viewController)
     }
@@ -92,14 +143,15 @@ extension SMNavigationController: LNSideMenuDelegate {
   }
   
   func didSelectItemAtIndex(_ index: Int) {
-    setContentVC(index)
+    //   setContentVC(index)
   }
 }
 
 extension SMNavigationController: LeftMenuDelegate {
-  func didSelectItemAtIndex(index idx: Int) {
+  func didSelectItemAtIndex(index idx: Int, sectionIndex: Int) {
     sideMenu?.toggleMenu() { [unowned self] _ in
-      self.setContentVC(idx)
+      print("====itemIndex")
+      self.setContentVC(idx,sectionIndex)
     }
   }
 }

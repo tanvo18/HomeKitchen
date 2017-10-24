@@ -59,8 +59,8 @@ class KitchenViewController: UIViewController {
     sideMenuManager?.sideMenuController()?.sideMenu?.disabled = false
     kitchenModelDatasource.requestKitchen()
     userModelDatasource.requestUserInfo()
-    
   }
+  
 }
 
 // MARK: Tableview Delegate

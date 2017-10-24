@@ -13,6 +13,7 @@ class Helper {
   static var kitchenId: Int = 0
   static var user: User = User()
   static var orderInfo: OrderInfo = OrderInfo()
+  static var nameInSlideMenu: String = ""
   // Saving role 
   // Chef has 2 roles: chef and customer
   static var role: String = ""
