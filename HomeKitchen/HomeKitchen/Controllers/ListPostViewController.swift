@@ -43,17 +43,33 @@ class ListPostViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    // Get list post
-    postDataModel.getKitchenPosts() {
-      [unowned self] (kitchenPosts,error) in
-      if error != nil {
-        print(error!)
-      } else {
-        if let kitchenPosts = kitchenPosts {
-          self.posts = kitchenPosts
+    if Helper.role == "chef" {
+      // Get list post
+      postDataModel.getKitchenPosts() {
+        [unowned self] (kitchenPosts,error) in
+        if error != nil {
+          print(error!)
+        } else {
+          if let kitchenPosts = kitchenPosts {
+            self.posts = kitchenPosts
+          }
+        }
+      }
+    } else if Helper.role == "customer" {
+      // Get list post
+      postDataModel.getCustomerPosts() {
+        [unowned self] (kitchenPosts,error) in
+        if error != nil {
+          print(error!)
+        } else {
+          if let kitchenPosts = kitchenPosts {
+            self.posts = kitchenPosts
+          }
         }
       }
     }
+    
+    
   }
   
 }

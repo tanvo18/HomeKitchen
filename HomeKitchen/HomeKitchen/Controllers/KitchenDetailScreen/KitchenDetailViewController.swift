@@ -170,6 +170,9 @@ extension KitchenDetailViewController {
     timeLabel.text = "\(openTime) - \(closeTime)"
     addressLabel.text = address
     kitchenNameLabel.text = kitchenName
+    if point < 0 {
+      pointLabel.isHidden = true
+    }
   }
   
   // MARK: download image with url
