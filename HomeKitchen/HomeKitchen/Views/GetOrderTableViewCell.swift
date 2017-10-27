@@ -18,6 +18,8 @@ class GetOrderTableViewCell: UITableViewCell {
   
   @IBOutlet weak var buttonNotification: UIButton!
   
+  @IBOutlet weak var statusImageView: UIImageView!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
   }
@@ -36,6 +38,13 @@ class GetOrderTableViewCell: UITableViewCell {
         statusLabel.text = status
       }
       calendarLabel.text = orderInfo.orderDate
+    }
+    if orderInfo.status == "accepted" {
+      statusImageView.image = UIImage(named: "checkmark-green")
+    } else if orderInfo.status == "denied"{
+      statusImageView.image = UIImage(named: "icon-redtriangle")
+    } else {
+      statusImageView.image = UIImage(named: "icon-yellowtriangle")
     }
   }
   

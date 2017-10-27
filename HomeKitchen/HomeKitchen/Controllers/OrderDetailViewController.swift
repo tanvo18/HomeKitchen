@@ -21,11 +21,11 @@ class OrderDetailViewController: UIViewController {
   
   @IBOutlet weak var deliveryDateLabel: UILabel!
   
-  @IBOutlet weak var statusLabel: UILabel!
-  
   @IBOutlet weak var nameLabel: UILabel!
   
   @IBOutlet weak var addressLabel: UILabel!
+  
+  @IBOutlet weak var phoneNumberLabel: UILabel!
   
   @IBOutlet weak var informationLabel: UILabel!
   
@@ -36,6 +36,7 @@ class OrderDetailViewController: UIViewController {
   @IBOutlet weak var acceptedButton: UIButton!
   
   @IBOutlet weak var declinedButton: UIButton!
+  
   
   let reuseableCell = "Cell"
   
@@ -82,7 +83,7 @@ extension OrderDetailViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 70
+    return 40
   }
 }
 
@@ -95,7 +96,7 @@ extension OrderDetailViewController {
   @IBAction func didTouchAcceptedButton(_ sender: Any) {
     orderId = orderInfo.id
     isAccepted = true
-    NetworkingService.sharedInstance.responseOrder(orderId: orderId, isAccepted: isAccepted) {
+    NetworkingService.sharedInstance.responseOrder(orderId: orderId, status: "accepted") {
       (message,error) in
       if error != nil {
         print(error!)
@@ -113,7 +114,7 @@ extension OrderDetailViewController {
   @IBAction func didTouchDeclinedButton(_ sender: Any) {
     orderId = orderInfo.id
     isAccepted = false
-    NetworkingService.sharedInstance.responseOrder(orderId: orderId, isAccepted: isAccepted) {
+    NetworkingService.sharedInstance.responseOrder(orderId: orderId, status: "denied") {
       (message,error) in
       if error != nil {
         print(error!)
@@ -137,18 +138,24 @@ extension OrderDetailViewController {
     deliveryDateLabel.text = orderInfo.deliveryDate
     totalLabel.text = "\(orderInfo.totalAmount)"
     if Helper.role == "customer" {
-      informationLabel.text = "thông tin nhà hàng"
-      statusLabel.text = orderInfo.status
+      informationLabel.text = "Thông tin nhà hàng"
       nameLabel.text = orderInfo.kitchen?.name
       addressLabel.text = orderInfo.kitchen?.address?.address
+      phoneNumberLabel.text = orderInfo.kitchen?.address?.phoneNumber
       makeSuggestionButton.isHidden = true
       acceptedButton.isHidden = true
       declinedButton.isHidden = true
     } else if Helper.role == "chef" {
-      informationLabel.text = "thông tin khách hàng"
-      statusLabel.text = chefOrderStatus
+      informationLabel.text = "Thông tin khách hàng"
       nameLabel.text = orderInfo.contactInfo?.name
       addressLabel.text = orderInfo.contactInfo?.address
+      phoneNumberLabel.text = orderInfo.contactInfo?.phoneNumber
+      // Hide all buttons if status != pending and != negotiating
+      if chefOrderStatus != "negotiating" || chefOrderStatus != "pending" {
+        makeSuggestionButton.isHidden = true
+        acceptedButton.isHidden = true
+        declinedButton.isHidden = true
+      }
     }
   }
   

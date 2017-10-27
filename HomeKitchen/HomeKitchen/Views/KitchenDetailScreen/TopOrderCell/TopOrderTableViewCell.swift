@@ -30,7 +30,10 @@ class TopOrderTableViewCell: UITableViewCell {
   
   // MARK: configure view cell
   func configureWithItem(product: Product) {
-
+    nameLabel.text = product.name
+    typeLabel.text = product.type
+    priceLabel.text = "\(product.price)"
+    downloadProductImage(imageUrl: product.imageUrl)
   }
   
   // MARK: download image with url

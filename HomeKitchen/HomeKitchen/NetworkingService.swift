@@ -200,8 +200,8 @@ class NetworkingService {
   /*
    This function use for chef response kitchen's order
    */
-  func responseOrder(orderId: Int, isAccepted: Bool, completion: @escaping(_ message: String?, _ error: Error?) -> Void) {
-     let url = NetworkingService.baseURLString + "kitchens/orders?orderId=\(orderId)&isAccepted=\(isAccepted)"
+  func responseOrder(orderId: Int, status: String, completion: @escaping(_ message: String?, _ error: Error?) -> Void) {
+     let url = NetworkingService.baseURLString + "kitchens/orders?orderId=\(orderId)&status=\(status)"
     
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
@@ -209,6 +209,7 @@ class NetworkingService {
     ]
     
     Alamofire.request(url, method: .put, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      
       switch response.result {
       case .success:
         print("====message \(response.result.value!)")

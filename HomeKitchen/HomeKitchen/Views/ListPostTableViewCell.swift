@@ -14,6 +14,7 @@ class ListPostTableViewCell: UITableViewCell {
   @IBOutlet weak var statusLabel: UILabel!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var notificationButton: UIButton!
+  @IBOutlet weak var statusImageView: UIImageView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -32,5 +33,12 @@ class ListPostTableViewCell: UITableViewCell {
       statusLabel.text = post.status
     }
     timeLabel.text = post.requestDate
+    if post.status == "accepted" {
+      statusImageView.image = UIImage(named: "checkmark-green")
+    } else if post.status == "denied"{
+      statusImageView.image = UIImage(named: "icon-redtriangle")
+    } else {
+      statusImageView.image = UIImage(named: "icon-yellowtriangle")
+    }
   }
 }

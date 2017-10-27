@@ -25,7 +25,7 @@ class ListOrderViewController: UIViewController {
   let customerOrderModelDatasource = CustomerOrderDataModel()
   let kitchenOrderModelDatasource = KitchenOrderDataModel()
   // Status for request list order by chef
-  var listStatus: [String] = ["pending","accepted","denied"]
+  var listStatus: [String] = ["pending","accepted","negotiating","denied"]
   // Default status
   var selectedStatus: String = "pending"
   
@@ -55,19 +55,17 @@ class ListOrderViewController: UIViewController {
     createToolbar()
     // Set default content for textfield
     statusTextField.text = selectedStatus
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
+    // Request Data
     if Helper.role == "customer" {
       customerOrderModelDatasource.requestCustomerOrder()
     } else if Helper.role == "chef" {
       selectedStatus = "pending"
       kitchenOrderModelDatasource.requestKitchenOrder(status: selectedStatus)
     }
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
   }
 }
 
@@ -100,7 +98,7 @@ extension ListOrderViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 75
+    return 100
   }
 }
 

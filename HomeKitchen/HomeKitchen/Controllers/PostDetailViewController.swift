@@ -16,13 +16,13 @@ class PostDetailViewController: UIViewController {
   @IBOutlet weak var requestDateLabel: UILabel!
   @IBOutlet weak var deliveryDateLabel: UILabel!
   @IBOutlet weak var deliveryTimeLabel: UILabel!
-  @IBOutlet weak var statusLabel: UILabel!
   @IBOutlet weak var addressLabel: UILabel!
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var informationLabel: UILabel!
   @IBOutlet weak var answerButton: UIButton!
   @IBOutlet weak var declinedButton: UIButton!
   @IBOutlet weak var messageTextView: UITextView!
+  @IBOutlet weak var phoneNumberLabel: UILabel!
   
   let reuseableCell = "Cell"
   var post: Post = Post()
@@ -71,19 +71,20 @@ extension PostDetailViewController {
     requestDateLabel.text = post.requestDate
     deliveryTimeLabel.text = post.deliveryTime
     deliveryDateLabel.text = post.deliveryDate
-    messageTextView.text = "message: " + post.message
+    messageTextView.text = "Message: " + post.message
+    messageTextView.font = UIFont.boldSystemFont(ofSize: 16.0)
     if Helper.role == "customer" {
-      informationLabel.text = "thông tin nhà hàng"
-      statusLabel.text = post.status
+      informationLabel.text = "Thông tin nhà hàng"
       nameLabel.text = post.kitchen?.name
       addressLabel.text = post.kitchen?.address?.address
+      phoneNumberLabel.text = post.kitchen?.address?.phoneNumber
       answerButton.isHidden = true
       declinedButton.isHidden = true
     } else if Helper.role == "chef" {
-      informationLabel.text = "thông tin khách hàng"
-      statusLabel.text = post.status
+      informationLabel.text = "Thông tin khách hàng"
       nameLabel.text = post.contactInfo?.name
       addressLabel.text = post.contactInfo?.address
+      phoneNumberLabel.text = post.contactInfo?.phoneNumber
     }
   }
 }

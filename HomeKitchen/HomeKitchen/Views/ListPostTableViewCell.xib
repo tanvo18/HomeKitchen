@@ -61,6 +61,7 @@
             <connections>
                 <outlet property="nameLabel" destination="U8a-pE-PNP" id="abV-FI-8r4"/>
                 <outlet property="notificationButton" destination="orT-PA-yed" id="mpU-CX-Edg"/>
+                <outlet property="statusImageView" destination="Tvc-FO-mju" id="Dan-T7-0BU"/>
                 <outlet property="statusLabel" destination="zc9-0V-eKP" id="zET-ZZ-uFj"/>
                 <outlet property="timeLabel" destination="USb-zX-INQ" id="iW9-5l-rn8"/>
             </connections>

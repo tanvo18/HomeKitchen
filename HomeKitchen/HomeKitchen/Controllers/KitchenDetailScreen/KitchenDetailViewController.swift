@@ -20,6 +20,9 @@ class KitchenDetailViewController: UIViewController {
   @IBOutlet weak var indicator: UIActivityIndicatorView!
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var kitchenNameLabel: UILabel!
+  // Foot View Outlet
+  @IBOutlet weak var phoneLabel: UILabel!
+  @IBOutlet weak var typeLabel: UILabel!
   
   var products: [OrderItem] = []{
     didSet {
@@ -52,6 +55,7 @@ class KitchenDetailViewController: UIViewController {
     productModelDatasource.requestProduct()
     // Set title for back button in navigation bar
     self.settingForNavigationBar(title: "Kitchen Detail")
+    
   }
   
   override func didReceiveMemoryWarning() {
@@ -138,7 +142,6 @@ extension KitchenDetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! TopOrderTableViewCell
     cell.backgroundColor = .gray
-    //  cell.configureWithItem(product: products[indexPath.row])
     return cell
   }
   
@@ -173,6 +176,9 @@ extension KitchenDetailViewController {
     if point < 0 {
       pointLabel.isHidden = true
     }
+    // Foot view
+    phoneLabel.text = kitchen?.address?.phoneNumber
+    typeLabel.text = kitchen?.type
   }
   
   // MARK: download image with url
