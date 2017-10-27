@@ -151,7 +151,7 @@ extension OrderDetailViewController {
       addressLabel.text = orderInfo.contactInfo?.address
       phoneNumberLabel.text = orderInfo.contactInfo?.phoneNumber
       // Hide all buttons if status != pending and != negotiating
-      if chefOrderStatus != "negotiating" || chefOrderStatus != "pending" {
+      if chefOrderStatus == "accepted" || chefOrderStatus == "denied" {
         makeSuggestionButton.isHidden = true
         acceptedButton.isHidden = true
         declinedButton.isHidden = true

@@ -16,7 +16,8 @@ class AnswerDetailViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var acceptedButton: UIButton!
   @IBOutlet weak var declinedButton: UIButton!
-  
+  @IBOutlet weak var totalPriceLabel: UILabel!
+
   var answer: Answer!
   var postItem: [PostItem] = []
   var deliveryTime: String = ""
@@ -41,6 +42,7 @@ class AnswerDetailViewController: UIViewController {
     matchingAnswerDetailWithPostItem()
     timeLabel.text = deliveryTime
     dateLabel.text = deliveryDate
+    totalPriceLabel.text = "\(answer.totalPrice)"
   }
   
   override func didReceiveMemoryWarning() {

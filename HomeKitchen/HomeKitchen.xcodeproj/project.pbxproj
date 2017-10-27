@@ -273,8 +273,7 @@
 		4D09DF1D1F95E1F20014E158 /* PostDetailScreen */ = {
 			isa = PBXGroup;
 			children = (
-				4D09DF201F95E2860014E158 /* PostDetailTableViewCell.swift */,
-				4D09DF211F95E2860014E158 /* PostDetailTableViewCell.xib */,
+				4D44FCCB1FA2E02C00FC8D4A /* PostDetailCell */,
 			);
 			name = PostDetailScreen;
 			sourceTree = "<group>";
@@ -497,6 +496,15 @@
 				4D4466FF1F60DF1E0022C91C /* OrderTableViewCell.xib */,
 			);
 			path = ListOrderCell;
+			sourceTree = "<group>";
+		};
+		4D44FCCB1FA2E02C00FC8D4A /* PostDetailCell */ = {
+			isa = PBXGroup;
+			children = (
+				4D09DF201F95E2860014E158 /* PostDetailTableViewCell.swift */,
+				4D09DF211F95E2860014E158 /* PostDetailTableViewCell.xib */,
+			);
+			name = PostDetailCell;
 			sourceTree = "<group>";
 		};
 		4D4A73131F7AA9A1008A487C /* EditContactScreen */ = {

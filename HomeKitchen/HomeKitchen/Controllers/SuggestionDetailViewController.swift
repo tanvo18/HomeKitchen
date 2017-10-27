@@ -10,11 +10,13 @@ import UIKit
 
 class SuggestionDetailViewController: UIViewController {
   
+  // MARK: IBOutlet
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var deliveryTimeLabel: UILabel!
   @IBOutlet weak var deliveryDateLabel: UILabel!
   @IBOutlet weak var acceptedButton: UIButton!
   @IBOutlet weak var declinedButton: UIButton!
+  @IBOutlet weak var totalPriceLabel: UILabel!
   
   let reuseableCell = "Cell"
   var suggestion: Suggestion = Suggestion()
@@ -26,6 +28,7 @@ class SuggestionDetailViewController: UIViewController {
     // Setup for label
     deliveryTimeLabel.text = suggestion.deliveryTime
     deliveryDateLabel.text = suggestion.deliveryDate
+    totalPriceLabel.text = "\(suggestion.totalPrice)"
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UINib(nibName: "SuggestionTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)

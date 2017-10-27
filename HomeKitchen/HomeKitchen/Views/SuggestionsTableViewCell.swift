@@ -10,7 +10,10 @@ import UIKit
 
 class SuggestionsTableViewCell: UITableViewCell {
   
-  @IBOutlet weak var idLabel: UILabel!
+  @IBOutlet weak var deliveryDateLabel: UILabel!
+  @IBOutlet weak var deliveryTimeLabel: UILabel!
+  @IBOutlet weak var statusLabel: UILabel!
+  @IBOutlet weak var statusImageView: UIImageView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -21,6 +24,15 @@ class SuggestionsTableViewCell: UITableViewCell {
   }
   
   func configureWithItem(suggestion: Suggestion) {
-    idLabel.text = "\(suggestion.id)"
+    deliveryDateLabel.text = suggestion.deliveryDate
+    deliveryTimeLabel.text = suggestion.deliveryTime
+    statusLabel.text = suggestion.status
+    if suggestion.status == "accepted" {
+      statusImageView.image = UIImage(named: "checkmark-green")
+    } else if suggestion.status == "denied"{
+      statusImageView.image = UIImage(named: "icon-redtriangle")
+    } else {
+      statusImageView.image = UIImage(named: "icon-yellowtriangle")
+    }
   }
 }

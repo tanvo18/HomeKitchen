@@ -185,7 +185,6 @@ class NetworkingService {
     Alamofire.request(url, method: .put, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
       switch response.result {
       case .success:
-        print("====message \(response.result.value!)")
         if let message = response.result.value {
           completion(message,nil)
         } else {

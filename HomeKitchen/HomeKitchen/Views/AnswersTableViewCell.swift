@@ -10,20 +10,29 @@ import UIKit
 
 class AnswersTableViewCell: UITableViewCell {
   
-  @IBOutlet weak var idLabel: UILabel!
+  @IBOutlet weak var deliveryDateLabel: UILabel!
+  @IBOutlet weak var deliveryTimeLabel: UILabel!
+  @IBOutlet weak var statusLabel: UILabel!
+  @IBOutlet weak var statusImageView: UIImageView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    // Initialization code
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
     super.setSelected(selected, animated: animated)
-    
-    // Configure the view for the selected state
   }
   
   func configureWithItem(answer: Answer) {
-    idLabel.text = "\(answer.id)"
+    deliveryDateLabel.text = answer.deliveryDate
+    deliveryTimeLabel.text = answer.deliveryTime
+    statusLabel.text = answer.status
+    if answer.status == "accepted" {
+      statusImageView.image = UIImage(named: "checkmark-green")
+    } else if answer.status == "denied"{
+      statusImageView.image = UIImage(named: "icon-redtriangle")
+    } else {
+      statusImageView.image = UIImage(named: "icon-yellowtriangle")
+    }
   }
 }

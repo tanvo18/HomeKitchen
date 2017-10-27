@@ -69,6 +69,9 @@ class SMNavigationController: LNSideMenuNavigationController {
       case 2:
         Helper.role = "chef"
         nViewController = storyboard?.instantiateViewController(withIdentifier: "EditKitchenViewController")
+      case 3:
+        Helper.role = "chef"
+        nViewController = storyboard?.instantiateViewController(withIdentifier: "CreateKitchenViewController")
       default:
         break
       }

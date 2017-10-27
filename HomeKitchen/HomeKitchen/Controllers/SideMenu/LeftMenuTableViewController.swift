@@ -23,7 +23,7 @@ class LeftMenuTableViewController: UIViewController {
   let kCellIdentifier = "menuCell"
   // Header for table section
   let headerTitles = ["MAIN", "USER","KITCHEN","QUIT"]
-  let data = [["Home"],["My Information","My Order","My Post"],["Kitchen's Order","Kitchen's Post","My Kitchen"],["Logout"]]
+  let data = [["Home"],["My Information","My Order","My Post"],["Kitchen's Order","Kitchen's Post","My Kitchen","Create Kitchen"],["Logout"]]
   
   weak var delegate: LeftMenuDelegate?
   
