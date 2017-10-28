@@ -66,6 +66,14 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCo-V2-9Ko">
+                        <rect key="frame" x="39" y="33" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.98431372549019602" green="0.0078431372549019607" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="orT-PA-yed" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="URP-sT-gXd"/>
@@ -78,6 +86,7 @@
             <connections>
                 <outlet property="nameLabel" destination="U8a-pE-PNP" id="abV-FI-8r4"/>
                 <outlet property="notificationButton" destination="orT-PA-yed" id="mpU-CX-Edg"/>
+                <outlet property="notificationLabel" destination="yCo-V2-9Ko" id="Owo-9b-DoU"/>
                 <outlet property="statusImageView" destination="Tvc-FO-mju" id="Dan-T7-0BU"/>
                 <outlet property="statusLabel" destination="zc9-0V-eKP" id="zET-ZZ-uFj"/>
                 <outlet property="timeLabel" destination="USb-zX-INQ" id="iW9-5l-rn8"/>

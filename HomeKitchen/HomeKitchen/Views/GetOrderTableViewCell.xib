@@ -64,6 +64,14 @@
                             <constraint firstAttribute="height" constant="1" id="Vy4-OY-XOS"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9PG-7e-PYc">
+                        <rect key="frame" x="38" y="25" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.98431372549019602" green="0.0078431372549019607" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="qcr-Vi-UjZ" secondAttribute="trailing" id="DGp-be-YjO"/>
@@ -75,6 +83,7 @@
                 <outlet property="buttonNotification" destination="QuD-zJ-uaf" id="5QC-RE-9Vh"/>
                 <outlet property="calendarLabel" destination="xYy-s7-TXd" id="n9K-Gg-s4s"/>
                 <outlet property="nameLabel" destination="1z3-gn-HV2" id="W3d-aj-c73"/>
+                <outlet property="notificationLabel" destination="9PG-7e-PYc" id="viF-Hm-oMu"/>
                 <outlet property="statusImageView" destination="Ne1-eF-2zO" id="w4q-HJ-X3T"/>
                 <outlet property="statusLabel" destination="gPY-TD-PzO" id="0NU-r6-Bxs"/>
             </connections>

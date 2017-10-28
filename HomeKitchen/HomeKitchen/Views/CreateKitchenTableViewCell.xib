@@ -29,7 +29,19 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCD-RV-uFu">
+                        <rect key="frame" x="8" y="42.5" width="304" height="1"/>
+                        <color key="backgroundColor" red="0.76862745098039209" green="0.76470588235294112" blue="0.76470588235294112" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Ng5-ZK-aIx"/>
+                        </constraints>
+                    </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="wCD-RV-uFu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="3uL-D9-eTe"/>
+                    <constraint firstAttribute="bottom" secondItem="wCD-RV-uFu" secondAttribute="bottom" id="VwU-hf-mVs"/>
+                    <constraint firstAttribute="trailing" secondItem="wCD-RV-uFu" secondAttribute="trailing" constant="8" id="YCk-mI-1ZE"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="imageViewCell" destination="1CL-ya-mlP" id="IQB-6e-nUI"/>

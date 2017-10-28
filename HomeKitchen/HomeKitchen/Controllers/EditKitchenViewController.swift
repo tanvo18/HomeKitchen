@@ -30,7 +30,7 @@ class EditKitchenViewController: UIViewController {
   var typeTF: UITextField!
   var streetAddressTF: UITextField!
   var phoneNumberTF: UITextField!
-  
+  var isReadyForEdit: Bool = false
   var kitchen: Kitchen? {
     didSet {
       // avoid reset data in the second time
@@ -48,7 +48,7 @@ class EditKitchenViewController: UIViewController {
   let reuseableCreateCell = "CreateCell"
   let reuseableTimeCell = "TimeCell"
   let data = [["Kitchen's name", "Bussiness type", "Street address","Phone number"],["Opening time"]]
-  let headerTitles = ["Required information", "More information"]
+  let headerTitles = ["Thông tin bắt buộc", "Thông tin thêm"]
   let sectionOnePlaceHolder = ["Kitchen's name", "Bussiness type", "Street address","Phone number"]
   let datePicker = UIDatePicker()
   var selectedImageUrl: URL!
@@ -56,6 +56,8 @@ class EditKitchenViewController: UIViewController {
   var isFirstTime: Bool = true
   // Param for post to server
   var imageUrl: String = ""
+  // Right button in navigation bar
+  var rightButtonItem: UIBarButtonItem = UIBarButtonItem()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -76,7 +78,7 @@ class EditKitchenViewController: UIViewController {
     kitchenCoverImageView.isUserInteractionEnabled = true
     kitchenCoverImageView.addGestureRecognizer(tapImage)
     // Navigation bar
-    self.settingForNavigationBar(title: "Edit Kitchen")
+    self.settingForNavigationBar(title: "Thông tin bếp ăn")
     settingRightButtonItem()
     // Set image default when start controller
     kitchenCoverImageView.image = UIImage(named: "photoalbum")
@@ -121,6 +123,14 @@ extension EditKitchenViewController: UITableViewDataSource {
       createPickerForClosingTF(timeTextField: closingTimeTextField)
       // Set image for imageViewCell section 2
       timeCell.imageViewCell.image = UIImage(named: Helper.createKitchenCellSection2[indexPath.row])
+      // Disable textField when not ready for edit
+      if isReadyForEdit {
+        timeCell.backgroundColor = .white
+        timeCell.isUserInteractionEnabled = true
+      } else {
+        timeCell.backgroundColor = .gray
+        timeCell.isUserInteractionEnabled = false
+      }
       return timeCell
     } else {
       let createKitchenCell = tableView.dequeueReusableCell(withIdentifier: reuseableCreateCell) as! CreateKitchenTableViewCell
@@ -138,6 +148,15 @@ extension EditKitchenViewController: UITableViewDataSource {
         phoneNumberTF = createKitchenCell.textFieldCell
       }
       createKitchenCell.configureWithItem(title: sectionOnePlaceHolder[indexPath.row])
+      // Disable textField when not ready for edit
+      if isReadyForEdit {
+        createKitchenCell.backgroundColor = .white
+        createKitchenCell.isUserInteractionEnabled = true
+      } else {
+        createKitchenCell.backgroundColor = .gray
+        createKitchenCell.isUserInteractionEnabled = false
+      }
+      
       return createKitchenCell
     }
   }
@@ -201,19 +220,24 @@ extension EditKitchenViewController {
   }
   
   func settingRightButtonItem() {
-    let rightButtonItem = UIBarButtonItem.init(
-      title: "Done",
+    self.rightButtonItem = UIBarButtonItem.init(
+      title: "Sửa",
       style: .done,
       target: self,
       action: #selector(rightButtonAction(sender:))
     )
     self.navigationItem.rightBarButtonItem = rightButtonItem
-    self.navigationItem.rightBarButtonItem?.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
   }
   
   func rightButtonAction(sender: UIBarButtonItem) {
     if checkNotNil() {
-      postKitchenToServer()
+      if isReadyForEdit {
+        postKitchenToServer()
+      } else {
+        self.rightButtonItem.title = "Xong"
+        isReadyForEdit = true
+        tableView.reloadData()
+      }
     } else {
       self.alertError(message: "All fields are required")
     }

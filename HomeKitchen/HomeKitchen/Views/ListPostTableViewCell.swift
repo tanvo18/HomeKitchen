@@ -15,6 +15,9 @@ class ListPostTableViewCell: UITableViewCell {
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var notificationButton: UIButton!
   @IBOutlet weak var statusImageView: UIImageView!
+  @IBOutlet weak var notificationLabel: UILabel!
+  
+  var newMessage = 0
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -39,6 +42,22 @@ class ListPostTableViewCell: UITableViewCell {
       statusImageView.image = UIImage(named: "icon-redtriangle")
     } else {
       statusImageView.image = UIImage(named: "icon-yellowtriangle")
+    }
+    // Round label
+    notificationLabel.layer.masksToBounds = true
+    notificationLabel.layer.cornerRadius = notificationLabel.frame.size.width / 2
+    // Set number for notiLabel
+    self.newMessage = 0
+    for answer in post.answers {
+      if answer.status == "pending" {
+        self.newMessage += 1
+      }
+    }
+    notificationLabel.text = "\(newMessage)"
+    if self.newMessage == 0 {
+      notificationLabel.isHidden = true
+    } else {
+      notificationLabel.isHidden = false
     }
   }
 }

@@ -10,15 +10,15 @@ import UIKit
 
 class GetOrderTableViewCell: UITableViewCell {
   
+  // MARK: IBOutlet
   @IBOutlet weak var nameLabel: UILabel!
-  
   @IBOutlet weak var statusLabel: UILabel!
-  
   @IBOutlet weak var calendarLabel: UILabel!
-  
   @IBOutlet weak var buttonNotification: UIButton!
-  
   @IBOutlet weak var statusImageView: UIImageView!
+  @IBOutlet weak var notificationLabel: UILabel!
+  
+  var newMessage = 0
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -46,6 +46,22 @@ class GetOrderTableViewCell: UITableViewCell {
     } else {
       statusImageView.image = UIImage(named: "icon-yellowtriangle")
     }
+    
+    // Round label
+    notificationLabel.layer.masksToBounds = true
+    notificationLabel.layer.cornerRadius = notificationLabel.frame.size.width / 2
+    // Set number for notiLabel
+    self.newMessage = 0
+    for suggestion in orderInfo.suggestions {
+      if suggestion.status == "pending" {
+        self.newMessage += 1
+      }
+    }
+    notificationLabel.text = "\(newMessage)"
+    if self.newMessage == 0 {
+      notificationLabel.isHidden = true
+    } else {
+      notificationLabel.isHidden = false
+    }
   }
-  
 }
