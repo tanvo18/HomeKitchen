@@ -41,7 +41,7 @@ class KitchenViewController: UIViewController {
     myIndicator.startAnimating()
     view.addSubview(myIndicator)
     // Adjust navigation bar
-    self.settingForNavigationBar(title: "Home")
+    self.settingForNavigationBar(title: "Trang chủ")
     // Add left bar button
     let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
     self.navigationItem.leftBarButtonItem  = menuButton

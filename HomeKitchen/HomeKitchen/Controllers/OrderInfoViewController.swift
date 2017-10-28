@@ -112,7 +112,8 @@ extension OrderInfoViewController {
   func createDatePicker() {
     // Format the display of datepicker
     datePicker.datePickerMode = .time
-    
+    // using Great Britain for 24 hour system
+    datePicker.locale = Locale(identifier: "en_GB")
     timeTextField.inputView = datePicker
     
     // Create a toolbar
@@ -130,8 +131,15 @@ extension OrderInfoViewController {
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .none
     dateFormatter.timeStyle = .short
+    // Change 12 hour system to 24 hour system
+    let dateAsString = dateFormatter.string(from: datePicker.date)
+    dateFormatter.dateFormat = "h:mm a"
+    let date = dateFormatter.date(from: dateAsString)
     
-    timeTextField.text = dateFormatter.string(from: datePicker.date)
+    dateFormatter.dateFormat = "HH:mm"
+    let date24 = dateFormatter.string(from: date!)
+    
+    timeTextField.text = date24
     self.view.endEditing(true)
   }
 }
@@ -211,9 +219,15 @@ extension OrderInfoViewController {
   
   func setCurrentTime() -> String {
     let date = Date()
-    let formatter = DateFormatter()
-    formatter.timeStyle = .short
-    let timeString = formatter.string(from: date)
+    let dateFormatter = DateFormatter()
+    dateFormatter.timeStyle = .short
+    // Change 12 hour system to 24 hour system
+    let dateAsString = dateFormatter.string(from: date)
+    dateFormatter.dateFormat = "h:mm a"
+    let dateAsDate = dateFormatter.date(from: dateAsString)
+    
+    dateFormatter.dateFormat = "HH:mm"
+    let timeString = dateFormatter.string(from: dateAsDate!)
     return timeString
   }
   

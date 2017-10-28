@@ -42,21 +42,21 @@ class KitchenTableViewCell: UITableViewCell {
     }
     kitchenNameLabel.text = kitchen.name
     addressLabel.text = "\(address) \(district) \(city)"
-    timeLabel.text = "\(kitchen.open) to \(kitchen.close)"
+    timeLabel.text = "\(kitchen.open) đến \(kitchen.close)"
     pointLabel.text = "\(kitchen.point)"
     switch kitchen.point {
     case let point where point <= Constant.verybadPoint:
-      qualityLabel.text = "VERY BAD"
+      qualityLabel.text = "RÂT TỆ"
     case let point where point <= Constant.badPoint:
-      qualityLabel.text = "BAD"
+      qualityLabel.text = "TỆ"
     case let point where point <= Constant.fairPoint:
-      qualityLabel.text = "FAIR"
+      qualityLabel.text = "TRUNG BÌNH"
     case let point where point <= Constant.goodPoint:
-      qualityLabel.text = "GOOD"
+      qualityLabel.text = "TỐT"
     case let point where point < Constant.excellentPoint:
-      qualityLabel.text = "VERY GOOD"
+      qualityLabel.text = "RẤT TỐT"
     case let point where point == Constant.excellentPoint:
-      qualityLabel.text = "EXCELLENT"
+      qualityLabel.text = "TUYỆT VỜI"
     default:
       break
     }

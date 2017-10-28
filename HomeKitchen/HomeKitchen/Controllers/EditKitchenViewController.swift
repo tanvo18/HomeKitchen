@@ -174,6 +174,8 @@ extension EditKitchenViewController {
   func createPickerForOpeningTF(timeTextField: UITextField) {
     // Format the display of datepicker
     datePicker.datePickerMode = .time
+    // using Great Britain for 24 hour system
+    datePicker.locale = Locale(identifier: "en_GB")
     timeTextField.inputView = datePicker
     // Create a toolbar
     let toolbar = UIToolbar()
@@ -189,13 +191,22 @@ extension EditKitchenViewController {
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .none
     dateFormatter.timeStyle = .short
-    openingTimeTextField.text = dateFormatter.string(from: datePicker.date)
+    // Change 12 hour system to 24 hour system
+    let dateAsString = dateFormatter.string(from: datePicker.date)
+    dateFormatter.dateFormat = "h:mm a"
+    let date = dateFormatter.date(from: dateAsString)
+    
+    dateFormatter.dateFormat = "HH:mm"
+    let date24 = dateFormatter.string(from: date!)
+    openingTimeTextField.text = date24
     self.view.endEditing(true)
   }
   
   func createPickerForClosingTF(timeTextField: UITextField) {
     // Format the display of datepicker
     datePicker.datePickerMode = .time
+    // using Great Britain for 24 hour system
+    datePicker.locale = Locale(identifier: "en_GB")
     timeTextField.inputView = datePicker
     // Create a toolbar
     let toolbar = UIToolbar()
@@ -211,7 +222,14 @@ extension EditKitchenViewController {
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .none
     dateFormatter.timeStyle = .short
-    closingTimeTextField.text = dateFormatter.string(from: datePicker.date)
+    // Change 12 hour system to 24 hour system
+    let dateAsString = dateFormatter.string(from: datePicker.date)
+    dateFormatter.dateFormat = "h:mm a"
+    let date = dateFormatter.date(from: dateAsString)
+    
+    dateFormatter.dateFormat = "HH:mm"
+    let date24 = dateFormatter.string(from: date!)
+    closingTimeTextField.text = date24
     self.view.endEditing(true)
   }
   

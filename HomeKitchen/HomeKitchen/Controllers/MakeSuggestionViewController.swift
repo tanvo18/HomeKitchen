@@ -105,9 +105,10 @@ extension MakeSuggestionViewController {
   func createDatePicker() {
     // Format the display of datepicker
     datePicker.datePickerMode = .time
+    // using Great Britain for 24 hour system
+    datePicker.locale = Locale(identifier: "en_GB")
     
     deliveryTimeTextField.inputView = datePicker
-    
     // Create a toolbar
     let toolbar = UIToolbar()
     toolbar.sizeToFit()
@@ -123,8 +124,13 @@ extension MakeSuggestionViewController {
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .none
     dateFormatter.timeStyle = .short
-    
-    deliveryTimeTextField.text = dateFormatter.string(from: datePicker.date)
+    // Change 12 hour system to 24 hour system
+    let dateAsString = dateFormatter.string(from: datePicker.date)
+    dateFormatter.dateFormat = "h:mm a"
+    let date = dateFormatter.date(from: dateAsString)
+    dateFormatter.dateFormat = "HH:mm"
+    let date24 = dateFormatter.string(from: date!)
+    deliveryTimeTextField.text = date24
     self.view.endEditing(true)
   }
   
