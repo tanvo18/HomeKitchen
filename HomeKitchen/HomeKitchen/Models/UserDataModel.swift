@@ -10,14 +10,9 @@ import Foundation
 import ObjectMapper
 import Alamofire
 
-protocol UserDataModelDelegate: class {
-  func didRecieveUserUpdate(data: User)
-  func didFailUserUpdateWithError(error: String)
-}
-
 class UserDataModel {
-  weak var delegate: UserDataModelDelegate?
-  func requestUserInfo() {
+  
+  func getUserInfo(completion: @escaping (_ data: User, _ error: Error?) -> Void) {
     var user: User = User()
     var result: ResultUser?
     
@@ -33,13 +28,12 @@ class UserDataModel {
           result = Mapper<ResultUser>().map(JSON: json)
           if let result = result {
             user = result.user
-            self.delegate?.didRecieveUserUpdate(data: user)
+            completion(user,nil)
           }
         }
       case .failure(let error):
-        self.delegate?.didFailUserUpdateWithError(error: "\(error)")
+        completion(user,error)
       }
-      
     }
   }
 }

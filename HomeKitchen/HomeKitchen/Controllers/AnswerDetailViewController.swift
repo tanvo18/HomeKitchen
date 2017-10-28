@@ -17,13 +17,13 @@ class AnswerDetailViewController: UIViewController {
   @IBOutlet weak var acceptedButton: UIButton!
   @IBOutlet weak var declinedButton: UIButton!
   @IBOutlet weak var totalPriceLabel: UILabel!
-
+  
   var answer: Answer!
   var postItem: [PostItem] = []
   var deliveryTime: String = ""
   var deliveryDate: String = ""
   let reuseableCell = "Cell"
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Hide buttons with chef
@@ -43,6 +43,11 @@ class AnswerDetailViewController: UIViewController {
     timeLabel.text = deliveryTime
     dateLabel.text = deliveryDate
     totalPriceLabel.text = "\(answer.totalPrice)"
+    // Hide button accept and decline if status != pending
+    if answer.status != "pending" {
+      acceptedButton.isHidden = true
+      declinedButton.isHidden = true
+    }
   }
   
   override func didReceiveMemoryWarning() {

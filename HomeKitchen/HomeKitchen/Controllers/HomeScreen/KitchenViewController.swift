@@ -21,7 +21,6 @@ class KitchenViewController: UIViewController {
     }
   }
   let kitchenModelDatasource = KitchenDataModel()
-  let userModelDatasource = UserDataModel()
   let reuseableCell = "Cell"
   // Indicator
   let myIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
@@ -34,8 +33,6 @@ class KitchenViewController: UIViewController {
     tableView.register(UINib(nibName: "KitchenTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Declare KitchenDataModelDelegate
     kitchenModelDatasource.delegate = self
-    // Declare UserDataModelDelegate
-    userModelDatasource.delegate = self
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     
@@ -58,7 +55,6 @@ class KitchenViewController: UIViewController {
     // MARK: enable sidemenu
     sideMenuManager?.sideMenuController()?.sideMenu?.disabled = false
     kitchenModelDatasource.requestKitchen()
-    userModelDatasource.requestUserInfo()
   }
   
 }
@@ -105,18 +101,6 @@ extension KitchenViewController: KitchenDataModelDelegate {
   }
   func didFailKitchenUpdateWithError(error: String) {
     print("error \(error)")
-  }
-}
-
-// MARK: UserDataModel Delegate
-extension KitchenViewController: UserDataModelDelegate {
-  func didRecieveUserUpdate(data: User) {
-    // Save user info to global user
-    Helper.user = data
-  }
-  
-  func didFailUserUpdateWithError(error: String) {
-    print(error)
   }
 }
 

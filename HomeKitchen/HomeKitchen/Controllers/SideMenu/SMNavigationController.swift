@@ -88,36 +88,6 @@ class SMNavigationController: LNSideMenuNavigationController {
       break
     }
     
-    
-//    switch index {
-//    case 0:
-//      nViewController = storyboard?.instantiateViewController(withIdentifier: "RestaurantViewController")
-//    case 1:
-//      Helper.role = "customer"
-//      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
-//    case 2:
-//      Helper.role = "chef"
-//      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")
-//    case 3:
-//      Helper.role = "chef"
-//      nViewController = storyboard?.instantiateViewController(withIdentifier: "CreateKitchenViewController")
-//    case 4:
-//      Helper.role = "chef"
-//      nViewController = storyboard?.instantiateViewController(withIdentifier: "EditKitchenViewController")
-//    case 5:
-//      Helper.role = "chef"
-//      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListPostViewController")
-//    case 6:
-//      Helper.role = "customer"
-//      nViewController = storyboard?.instantiateViewController(withIdentifier: "ListPostViewController")
-//    case 7:
-//      let loginManager = LoginManager()
-//      loginManager.logOut()
-//      nViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
-//      
-//    default:
-//      break
-//    }
     if let viewController = nViewController {
       self.setContentViewController(viewController)
     }

@@ -41,6 +41,12 @@ class SuggestionDetailViewController: UIViewController {
       declinedButton.isHidden = true
     }
     self.settingForNavigationBar(title: "Suggestion")
+    
+    // Hide button if status of suggestion != pending
+    if suggestion.status != "pending" {
+      acceptedButton.isHidden = true
+      declinedButton.isHidden = true
+    }
   }
   
   override func didReceiveMemoryWarning() {

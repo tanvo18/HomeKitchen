@@ -17,7 +17,7 @@ class LeftMenuTableViewController: UIViewController {
   
   // MARK: IBOutlets
   @IBOutlet weak var menuTableView: UITableView!
-  @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var userNameLabel: UILabel!
   
   // MARK: Properties
   let kCellIdentifier = "menuCell"
@@ -36,7 +36,8 @@ class LeftMenuTableViewController: UIViewController {
     // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     let nib = UINib(nibName: "MenuTableViewCell", bundle: nil)
     menuTableView.register(nib, forCellReuseIdentifier: kCellIdentifier)
-    
+    // Set title for slide menu
+    userNameLabel.text = "Chào mừng " + Helper.user.name
   }
   
   override func didReceiveMemoryWarning() {

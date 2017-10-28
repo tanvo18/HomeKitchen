@@ -2434,7 +2434,7 @@
                     </view>
                     <connections>
                         <outlet property="menuTableView" destination="oT7-fj-0u5" id="unb-tS-eDd"/>
-                        <outlet property="nameLabel" destination="Lk8-Rn-r0J" id="cyb-B4-zaE"/>
+                        <outlet property="userNameLabel" destination="Lk8-Rn-r0J" id="PUH-Zm-uEU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U2p-SO-Nt5" userLabel="First Responder" sceneMemberID="firstResponder"/>

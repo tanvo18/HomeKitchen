@@ -17,10 +17,15 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var usernameTextfield: UITextField!
   @IBOutlet weak var passwordTextfield: UITextField!
   
+  let userModelDatasource = UserDataModel()
+  var myActivityIndicator: UIActivityIndicatorView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTextfield()
     self.hideKeyboardWhenTappedAround()
+    // Setup indicator
+    setUpActivityIndicator()
   }
   
   override func didReceiveMemoryWarning() {
@@ -28,6 +33,7 @@ class LoginViewController: UIViewController {
   }
 }
 
+// MARK: Function
 extension LoginViewController {
   // Setting padding for UITextField
   func setupTextfield() {
@@ -52,27 +58,16 @@ extension LoginViewController {
     }
   }
   
-  // Post Json to get Authorization, we have to use responseString to get header
-  func getAuthorizationFromServer(username: String, password: String, facebookToken: String) {
-    let parameters: Parameters = ["username" : username,
-                                  "password" : password,
-                                  "token" : facebookToken]
-    Alamofire.request("http://ec2-34-201-3-13.compute-1.amazonaws.com:8081/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseString { response in
-      switch response.result {
-      case .success:
-        if let authorizationToken = response.response?.allHeaderFields["Authorization"] as? String {
-          // Save accessToken to global variable
-          Helper.accessToken = authorizationToken
-          print("==authorization \(Helper.accessToken)")
-          // Go to HomeScreen after get authorization
-          self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-        }
-      case .failure(let error):
-        print(error)
-      }
-    }
+  func setUpActivityIndicator()
+  {
+    //Create Activity Indicator
+    myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    // Position Activity Indicator in the center of the main view
+    myActivityIndicator.center = view.center
+    // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+    myActivityIndicator.hidesWhenStopped = true
+    view.addSubview(myActivityIndicator)
   }
-  
 }
 
 // MARK: IBAction
@@ -87,6 +82,7 @@ extension LoginViewController {
       case .cancelled:
         print("user cancelled the login")
       case .success(_ , _, let userInfo):
+        self.myActivityIndicator.startAnimating()
         self.getUserInfo { info, error in
           if let info = info, let _ = info["name"] as? String, let email = info["email"] as? String, let id = info["id"] as? String{
             print("====facebookId: \(id)")
@@ -97,7 +93,20 @@ extension LoginViewController {
                 // Save access token
                 Helper.accessToken = accessToken!
                 print("accessToken: \(Helper.accessToken)")
-                self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+                // Save user information
+                self.userModelDatasource.getUserInfo() {
+                  [unowned self] (user,error) in
+                  if error != nil {
+                    print(error!)
+                    self.alertError(message: "Cannot get user's information")
+                  } else {
+                    // Save user info
+                    Helper.user = user
+                    print("====nameOfUser \(user.name)")
+                    self.myActivityIndicator.stopAnimating()
+                    self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+                  }
+                }
               }
             }
           }
