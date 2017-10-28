@@ -26,8 +26,8 @@ class CreateKitchenViewController: UIViewController {
   let reuseableCreateCell = "CreateCell"
   let reuseableTimeCell = "TimeCell"
   let data = [["Kitchen's name", "Bussiness type", "Street address","Phone number"],["Opening time"]]
-  let headerTitles = ["Required information", "More information"]
-  let sectionOnePlaceHolder = ["Kitchen's name", "Bussiness type", "Street address","Phone number"]
+  let headerTitles = ["Thông tin bắt buộc", "Thông tin thêm"]
+  let sectionOnePlaceHolder = ["Tên bếp", "Kiểu bếp", "Địa chỉ","Số điện thoại"]
   
   let datePicker = UIDatePicker()
   
@@ -46,7 +46,7 @@ class CreateKitchenViewController: UIViewController {
     districtLabel.isUserInteractionEnabled = true
     districtLabel.addGestureRecognizer(tap)
     // Navigation bar
-    self.settingForNavigationBar(title: "Create Kitchen")
+    self.settingForNavigationBar(title: "Tạo bếp")
     settingRightButtonItem()
   }
   
@@ -178,7 +178,7 @@ extension CreateKitchenViewController {
   
   func settingRightButtonItem() {
     let rightButtonItem = UIBarButtonItem.init(
-      title: "Done",
+      title: "Gửi",
       style: .done,
       target: self,
       action: #selector(rightButtonAction(sender:))

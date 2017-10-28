@@ -18,7 +18,6 @@ class AddNewContactViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.settingForNavigationBar(title: "Add new contact")
     // Tab outside to close keyboard
     let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
     view.addGestureRecognizer(tapOutside)

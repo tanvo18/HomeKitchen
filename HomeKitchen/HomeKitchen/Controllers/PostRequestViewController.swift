@@ -35,7 +35,7 @@ class PostRequestViewController: UIViewController {
     tableView.register(UINib(nibName: "PostTableViewCell", bundle: nil), forCellReuseIdentifier: reuseable)
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     settingRightButtonItem()
-    self.settingForNavigationBar(title: "Post Request")
+    self.settingForNavigationBar(title: "Đặt theo yêu cầu")
     // MARK: Disable sidemenu
     sideMenuManager?.sideMenuController()?.sideMenu?.disabled = true
     // Tab outside to close keyboard

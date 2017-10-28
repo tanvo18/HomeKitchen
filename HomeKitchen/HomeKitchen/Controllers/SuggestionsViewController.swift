@@ -22,7 +22,7 @@ class SuggestionsViewController: UIViewController {
     tableView.register(UINib(nibName: "SuggestionsTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    self.settingForNavigationBar(title: "List Suggestion")
+    self.settingForNavigationBar(title: "Danh sách đề nghị")
   }
   
   override func didReceiveMemoryWarning() {

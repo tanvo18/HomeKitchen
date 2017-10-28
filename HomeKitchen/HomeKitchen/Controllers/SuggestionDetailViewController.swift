@@ -40,7 +40,7 @@ class SuggestionDetailViewController: UIViewController {
       acceptedButton.isHidden = true
       declinedButton.isHidden = true
     }
-    self.settingForNavigationBar(title: "Suggestion")
+    self.settingForNavigationBar(title: "Chi tiết đề nghị")
     
     // Hide button if status of suggestion != pending
     if suggestion.status != "pending" {

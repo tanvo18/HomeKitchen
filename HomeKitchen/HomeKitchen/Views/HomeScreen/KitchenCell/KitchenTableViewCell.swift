@@ -37,11 +37,11 @@ class KitchenTableViewCell: UITableViewCell {
   
   // MARK: configure view cell
   func configureWithItem(kitchen: Kitchen) {
-    guard let address = kitchen.address?.address, let district = kitchen.address?.district, let city = kitchen.address?.city else {
+    guard let address = kitchen.address?.address, let city = kitchen.address?.city else {
       return
     }
     kitchenNameLabel.text = kitchen.name
-    addressLabel.text = "\(address) \(district) \(city)"
+    addressLabel.text = "\(address), \(city)"
     timeLabel.text = "\(kitchen.open) đến \(kitchen.close)"
     pointLabel.text = "\(kitchen.point)"
     switch kitchen.point {

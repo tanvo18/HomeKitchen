@@ -31,9 +31,9 @@ class ListPostViewController: UIViewController {
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     var title = ""
     if Helper.role == "chef" {
-      title = "Kitchen's Post"
+      title = "Danh sách yêu cầu"
     } else if Helper.role == "customer" {
-      title = "My Post"
+      title = "Yêu cầu của tôi"
     }
     self.settingForNavigationBar(title: title)
   }

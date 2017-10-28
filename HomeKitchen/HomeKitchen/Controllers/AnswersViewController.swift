@@ -23,7 +23,7 @@ class AnswersViewController: UIViewController {
     tableView.register(UINib(nibName: "AnswersTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    self.settingForNavigationBar(title: "List Answer")
+    self.settingForNavigationBar(title: "Danh sách trả lời yêu cầu")
   }
   
   override func didReceiveMemoryWarning() {

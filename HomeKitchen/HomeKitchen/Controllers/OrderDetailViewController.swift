@@ -54,7 +54,7 @@ class OrderDetailViewController: UIViewController {
     tableView.register(UINib(nibName: "OrderDetailTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    self.settingForNavigationBar(title: "Order's detail")
+    self.settingForNavigationBar(title: "Chi tiết đơn hàng")
   }
   
   override func didReceiveMemoryWarning() {

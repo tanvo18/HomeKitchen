@@ -64,6 +64,7 @@ extension LoginViewController {
     myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
     // Position Activity Indicator in the center of the main view
     myActivityIndicator.center = view.center
+    myActivityIndicator.color = .white
     // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
     myActivityIndicator.hidesWhenStopped = true
     view.addSubview(myActivityIndicator)

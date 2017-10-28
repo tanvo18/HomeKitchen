@@ -54,7 +54,7 @@ class KitchenDetailViewController: UIViewController {
     // Request data through delagate
     productModelDatasource.requestProduct()
     // Set title for back button in navigation bar
-    self.settingForNavigationBar(title: "Kitchen Detail")
+    self.settingForNavigationBar(title: "Thông tin bếp")
     
   }
   

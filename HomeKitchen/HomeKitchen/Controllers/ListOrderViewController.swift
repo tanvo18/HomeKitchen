@@ -45,9 +45,9 @@ class ListOrderViewController: UIViewController {
     self.navigationItem.leftBarButtonItem  = menuButton
     var title = ""
     if Helper.role == "chef" {
-      title = "Kitchen's Order"
+      title = "Đơn hàng của bếp"
     } else if Helper.role == "customer" {
-      title = "My Order"
+      title = "Đơn hàng của tôi"
       statusTextField.isHidden = true
     }
     self.settingForNavigationBar(title: title)

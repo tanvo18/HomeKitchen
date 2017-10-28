@@ -37,7 +37,7 @@ class AnswerDetailViewController: UIViewController {
     tableView.register(UINib(nibName: "AnswerTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    self.settingForNavigationBar(title: "Answer Detail Screen")
+    self.settingForNavigationBar(title: "Chi tiết yêu cầu")
     // Matching
     matchingAnswerDetailWithPostItem()
     timeLabel.text = deliveryTime

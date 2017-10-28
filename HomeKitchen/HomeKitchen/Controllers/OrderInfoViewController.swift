@@ -64,7 +64,7 @@ class OrderInfoViewController: UIViewController {
     // Set current date and time
     dateLabel.text = setCurrentDate()
     timeTextField.text = setCurrentTime()
-    self.settingForNavigationBar(title: "Order Information")
+    self.settingForNavigationBar(title: "Thông tin đơn hàng")
     // Setup indicator
     setUpActivityIndicator()
   }

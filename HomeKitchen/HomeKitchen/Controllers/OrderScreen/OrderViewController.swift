@@ -31,7 +31,7 @@ class OrderViewController: UIViewController {
     tableView.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    self.settingForNavigationBar(title: "Menu")
+    self.settingForNavigationBar(title: "Thực đơn")
   }
   
   override func didReceiveMemoryWarning() {

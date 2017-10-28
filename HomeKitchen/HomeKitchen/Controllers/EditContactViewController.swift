@@ -22,7 +22,6 @@ class EditContactViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     initDataTextField()
-    self.settingForNavigationBar(title: "Edit Contact")
     // Tab outside to close keyboard
     let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
     view.addGestureRecognizer(tapOutside)

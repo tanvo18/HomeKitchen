@@ -49,7 +49,7 @@ class EditKitchenViewController: UIViewController {
   let reuseableTimeCell = "TimeCell"
   let data = [["Kitchen's name", "Bussiness type", "Street address","Phone number"],["Opening time"]]
   let headerTitles = ["Thông tin bắt buộc", "Thông tin thêm"]
-  let sectionOnePlaceHolder = ["Kitchen's name", "Bussiness type", "Street address","Phone number"]
+  let sectionOnePlaceHolder = ["Tên bếp", "Kiểu bếp", "Địa chỉ","Số điện thoại"]
   let datePicker = UIDatePicker()
   var selectedImageUrl: URL!
   // Check the first time go to EditKitchen Controller to set image

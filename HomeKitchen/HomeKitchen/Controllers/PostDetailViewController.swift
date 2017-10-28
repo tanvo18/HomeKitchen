@@ -34,7 +34,7 @@ class PostDetailViewController: UIViewController {
     tableView.register(UINib(nibName: "PostDetailTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    self.settingForNavigationBar(title: "Post Detail")
+    self.settingForNavigationBar(title: "Chi tiết yêu cầu")
   }
   
   override func didReceiveMemoryWarning() {
@@ -71,7 +71,7 @@ extension PostDetailViewController {
     requestDateLabel.text = post.requestDate
     deliveryTimeLabel.text = post.deliveryTime
     deliveryDateLabel.text = post.deliveryDate
-    messageTextView.text = "Message: " + post.message
+    messageTextView.text = "Ghi chú: " + post.message
     messageTextView.font = UIFont.boldSystemFont(ofSize: 16.0)
     if Helper.role == "customer" {
       informationLabel.text = "Thông tin nhà hàng"
