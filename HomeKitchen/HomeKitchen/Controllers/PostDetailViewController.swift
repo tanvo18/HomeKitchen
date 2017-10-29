@@ -85,6 +85,11 @@ extension PostDetailViewController {
       nameLabel.text = post.contactInfo?.name
       addressLabel.text = post.contactInfo?.address
       phoneNumberLabel.text = post.contactInfo?.phoneNumber
+      // Hide button if status is accepted or denied
+      if post.status == "accepted" || post.status == "denied" {
+        answerButton.isHidden = true
+        declinedButton.isHidden = true
+      }
     }
   }
 }
@@ -100,12 +105,12 @@ extension PostDetailViewController {
       [unowned self] (message,error) in
       if error != nil {
         print(error!)
-        self.alertError(message: "Cannot decline")
+        self.alertError(message: "Gửi thất bại")
       } else {
         let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
           self.performSegue(withIdentifier: "showListPost", sender: self)
         })
-        self.alertWithAction(message: "Decline Successfully", action: ok)
+        self.alertWithAction(message: "Thành công", action: ok)
       }
     }
   }

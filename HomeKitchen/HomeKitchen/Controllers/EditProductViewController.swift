@@ -155,7 +155,7 @@ extension EditProductViewController {
     if checkNotNil() {
       postProductToServer()
     } else {
-      self.alertError(message: "All fields are required")
+      self.alertError(message: "Yêu cầu nhập tất cả các trường")
     }
   }
   
@@ -169,14 +169,14 @@ extension EditProductViewController {
       [unowned self] (message,error) in
       if error != nil {
         print(error!)
-        self.alertError(message: "Cannot edit product")
+        self.alertError(message: "Gửi thất bại")
         self.myActivityIndicator.stopAnimating()
       } else {
         self.myActivityIndicator.stopAnimating()
         let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
           self.performSegue(withIdentifier: "unwindToEditKitchenController", sender: self)
         })
-        self.alertWithAction(message: "Edit Successfully", action: ok)
+        self.alertWithAction(message: "Thành công", action: ok)
       }
     }
   }

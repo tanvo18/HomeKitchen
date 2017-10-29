@@ -160,13 +160,13 @@ extension CreateAnswerViewController {
     NetworkingService.sharedInstance.sendAnswer(postId: postId, deliveryDate: deliveryDate, deliveryTime: deliveryTime, answerDetails: answerDetails) {
       [unowned self] (error) in
       if error != nil {
-        self.alertError(message: "Cannot send answer")
+        self.alertError(message: "Gửi thất bại")
         print(error!)
       } else {
         let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
           self.performSegue(withIdentifier: "showListPost", sender: self)
         })
-        self.alertWithAction(message: "Create Successfully", action: ok)
+        self.alertWithAction(message: "Thành công", action: ok)
       }
     }
   }

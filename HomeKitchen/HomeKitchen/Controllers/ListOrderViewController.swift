@@ -16,7 +16,7 @@ class ListOrderViewController: UIViewController {
   let reuseableCell = "Cell"
   var orderInfos: [OrderInfo] = [] {
     didSet {
-    
+      
       tableView.reloadData()
     }
   }
@@ -25,9 +25,9 @@ class ListOrderViewController: UIViewController {
   let customerOrderModelDatasource = CustomerOrderDataModel()
   let kitchenOrderModelDatasource = KitchenOrderDataModel()
   // Status for request list order by chef
-  var listStatus: [String] = ["pending","accepted","negotiating","denied"]
+  var listStatus: [String] = ["Đang chờ duyệt","Đã chấp nhận","Thương lượng","Từ chối"]
   // Default status
-  var selectedStatus: String = "pending"
+  var selectedStatus: String = "Đang chờ duyệt"
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -59,6 +59,7 @@ class ListOrderViewController: UIViewController {
     if Helper.role == "customer" {
       customerOrderModelDatasource.requestCustomerOrder()
     } else if Helper.role == "chef" {
+      // Change to english status
       selectedStatus = "pending"
       kitchenOrderModelDatasource.requestKitchenOrder(status: selectedStatus)
     }
@@ -75,7 +76,7 @@ extension ListOrderViewController: UITableViewDelegate {
 
 // MARK: tableView Datasource
 extension ListOrderViewController: UITableViewDataSource {
-
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return orderInfos.count
   }
@@ -151,11 +152,11 @@ extension ListOrderViewController {
   func didTouchButtonNotification(sender: UIButton) {
     index = sender.tag
     if orderInfos[index].suggestions.isEmpty {
-      let title = "Message"
-      let message = "This Order doesn't have any suggestion"
+      let title = "Thông báo"
+      let message = "Không có đề nghị nào"
       self.alert(title: title, message: message)
     } else {
-     performSegue(withIdentifier: "showListSuggestion", sender: self)
+      performSegue(withIdentifier: "showListSuggestion", sender: self)
     }
   }
   
@@ -179,6 +180,19 @@ extension ListOrderViewController {
   // Click done button on toolbar of statusPicker
   func doneClicked() {
     self.dismissKeyboard()
+    // Change to English for selectedStatus
+    switch selectedStatus {
+    case "Đang chờ duyệt":
+      selectedStatus = "pending"
+    case "Đã chấp nhận":
+      selectedStatus = "accepted"
+    case "Thương lượng":
+      selectedStatus = "negotiating"
+    case "Từ chối":
+      selectedStatus = "denied"
+    default :
+      break
+    }
     kitchenOrderModelDatasource.requestKitchenOrder(status: selectedStatus)
   }
 }
@@ -188,6 +202,19 @@ extension ListOrderViewController {
     if segue.identifier == "showOrderDetail" {
       if let destination = segue.destination as? OrderDetailViewController {
         destination.orderInfo = orderInfos[index]
+        // Change to English for selectedStatus
+        switch selectedStatus {
+        case "Đang chờ duyệt":
+          selectedStatus = "pending"
+        case "Đã chấp nhận":
+          selectedStatus = "accepted"
+        case "Thương lượng":
+          selectedStatus = "negotiating"
+        case "Từ chối":
+          selectedStatus = "denied"
+        default :
+          break
+        }
         /*
          follow status which chef choose to show list: pending, accepted ...
          */

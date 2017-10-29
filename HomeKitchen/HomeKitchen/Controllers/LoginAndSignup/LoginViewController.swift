@@ -99,7 +99,7 @@ extension LoginViewController {
                   [unowned self] (user,error) in
                   if error != nil {
                     print(error!)
-                    self.alertError(message: "Cannot get user's information")
+                    self.alertError(message: "Không thể nhận được thông tin người dùng")
                   } else {
                     // Save user info
                     Helper.user = user

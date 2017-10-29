@@ -35,6 +35,21 @@ class ListPostTableViewCell: UITableViewCell {
       nameLabel.text = post.contactInfo?.name
       statusLabel.text = post.status
     }
+    
+    // Change status to vietnamese
+    switch statusLabel.text! {
+    case "accepted":
+      statusLabel.text = "Đã chấp nhận"
+    case "denied":
+      statusLabel.text = "Từ chối"
+    case "pending":
+      statusLabel.text = "Đang chờ duyệt"
+    case "negotiating":
+      statusLabel.text = "Thương lượng"
+    default:
+      break
+    }
+    
     timeLabel.text = post.requestDate
     if post.status == "accepted" {
       statusImageView.image = UIImage(named: "checkmark-green")

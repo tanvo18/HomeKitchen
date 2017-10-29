@@ -157,13 +157,13 @@ extension MakeSuggestionViewController {
     NetworkingService.sharedInstance.sendSuggestion(orderId: orderInfo.id, deliveryTime: deliveryTimeTextField.text!, deliveryDate: deliveryDateLabel.text!, totalPrice: total, suggestionItems: suggestionItems) {[unowned self] (error) in
       if error != nil {
         print(error!)
-        self.alertError(message: "Cannot Send")
+        self.alertError(message: "Gửi thất bại")
       } else {
         let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
           // Go to List order screen
           self.performSegue(withIdentifier: "showListOrder", sender: self)
         })
-        self.alertWithAction(message: "Send Successfully", action: ok)
+        self.alertWithAction(message: "Thành công", action: ok)
       }
     }
   }

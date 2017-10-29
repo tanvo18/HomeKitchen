@@ -22,9 +22,9 @@ class LeftMenuTableViewController: UIViewController {
   // MARK: Properties
   let kCellIdentifier = "menuCell"
   // Header for table section
-  let headerTitles = ["MAIN", "USER","KITCHEN","QUIT"]
-  let data = [["Home"],["My Information","My Order","My Post"],["Kitchen's Order","Kitchen's Post","My Kitchen","Create Kitchen"],["Logout"]]
-  
+  let headerTitles = ["TRANG CHỦ", "KHÁCH HÀNG","BẾP","THOÁT"]
+  let data = [["Trang chủ"],["Thông tin khách hàng","Đơn hàng của tôi","Yêu cầu của tôi"],["Quản lý đơn hàng","Quản lý yêu cầu","Quản lý bếp","Tạo bếp"],["Đăng xuất"]]
+  let images = [["kitchen-white"],["user-white","paper-white","paper-white"],[""],[]]
   weak var delegate: LeftMenuDelegate?
   
   override func viewDidLoad() {

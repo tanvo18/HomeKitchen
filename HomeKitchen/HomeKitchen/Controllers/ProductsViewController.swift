@@ -63,14 +63,14 @@ extension ProductsViewController: UITableViewDataSource {
           [unowned self] (message,error) in
           if error != nil {
             print(error!)
-            self.alertError(message: "cannot delete")
+            self.alertError(message: "Xoá thất bại")
           } else {
             self.products.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
           }
         }
       })
-      self.alertConfirmation(message: "Are you sure", action: ok)
+      self.alertConfirmation(message: "Bạn có muốn?", action: ok)
     }
   }
 }

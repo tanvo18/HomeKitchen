@@ -84,13 +84,13 @@ extension SuggestionDetailViewController {
       (message,error) in
       if error != nil {
         print(error!)
-        self.alertError(message: "Request cannot be done")
+        self.alertError(message: "Gửi thất bại")
       } else {
         let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
           // Go to List order screen
           self.performSegue(withIdentifier: "showListOrder", sender: self)
         })
-        self.alertWithAction(message: "Accept Successfully", action: ok)
+        self.alertWithAction(message: "Thành công", action: ok)
       }
     }
   }
@@ -102,13 +102,13 @@ extension SuggestionDetailViewController {
       (message,error) in
       if error != nil {
         print(error!)
-        self.alertError(message: "Request cannot be done")
+        self.alertError(message: "Gửi thất bại")
       } else {
         let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
           // Go to List order screen
           self.performSegue(withIdentifier: "showListOrder", sender: self)
         })
-        self.alertWithAction(message: "Decline Successfully", action: ok)
+        self.alertWithAction(message: "Thành công", action: ok)
       }
     }
   }

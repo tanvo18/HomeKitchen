@@ -154,20 +154,20 @@ extension OrderInfoViewController {
   // Check all textfield not empty
   func checkNotNil() -> Bool {
     if  timeTextField.text!.isEmpty {
-      self.message = "Time is required"
+      self.message = "Bạn chưa nhập thời gian"
       return false
     }
     if dateLabel.text! == "date" {
-      self.message = "Date is required"
+      self.message = "Bạn chưa nhập ngày"
       return false
     }
     if Helper.user.contactInformations.isEmpty {
-      self.message = "You have to add contact"
+      self.message = "Bạn phải thêm địa chỉ"
       return false
     }
     
     if !isContactChosen() {
-      self.message = "You have to choose a contact"
+      self.message = "Bạn phải chọn địa chỉ"
       return false
     }
     
@@ -253,13 +253,13 @@ extension OrderInfoViewController {
       NetworkingService.sharedInstance.updateOrder(id: Helper.orderInfo.id, contact: chosenContact(), orderDate: setCurrentDate(), deliveryDate: dateLabel.text!, deliveryTime: timeTextField.text!, status: "pending", orderedItems: orderedItems) { [unowned self] (error) in
         if error != nil {
           print(error!)
-          self.alertError(message: "Cannot send order")
+          self.alertError(message: "Gửi thất bại")
         } else {
           let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
             // // Go to HomeScreen
             self.performSegue(withIdentifier: "showHomeScreen", sender: self)
           })
-          self.alertWithAction(message: "Order Successfully", action: ok)
+          self.alertWithAction(message: "Đặt hàng thành công", action: ok)
         }
       }
     } else {
@@ -271,7 +271,7 @@ extension OrderInfoViewController {
             // // Go to HomeScreen
             self.performSegue(withIdentifier: "showHomeScreen", sender: self)
           })
-          self.alertWithAction(message: "Order Successfully", action: ok)
+          self.alertWithAction(message: "Đặt hàng thành công", action: ok)
         }
       }
     }
@@ -283,7 +283,7 @@ extension OrderInfoViewController {
       if error != nil {
         print(error!)
         self.myActivityIndicator.stopAnimating()
-        self.alertError(message: "Cannot send")
+        self.alertError(message: "Gửi thất bại")
       } else {
         self.myActivityIndicator.stopAnimating()
         let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
@@ -309,7 +309,7 @@ extension OrderInfoViewController {
         }
       }
     } else {
-      let alert = UIAlertController(title: "Error", message: self.message, preferredStyle: UIAlertControllerStyle.alert)
+      let alert = UIAlertController(title: "Thông báo", message: self.message, preferredStyle: UIAlertControllerStyle.alert)
       alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
       self.present(alert, animated: true, completion: nil)
     }
@@ -379,7 +379,7 @@ extension OrderInfoViewController {
     
     if localFileName == nil
     {
-      alertError(message: "You have to choose image")
+      alertError(message: "Bạn phải chọn ảnh")
       return
     }
     

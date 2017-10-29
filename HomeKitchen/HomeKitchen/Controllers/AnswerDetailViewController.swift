@@ -104,12 +104,12 @@ extension AnswerDetailViewController {
       [unowned self] (message,error) in
       if error != nil {
         print(error!)
-        self.alertError(message: "Cannot accept")
+        self.alertError(message: "Gửi thất bại")
       } else {
         let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
           self.performSegue(withIdentifier: "showListPost", sender: self)
         })
-        self.alertWithAction(message: "Accept Successfully", action: ok)
+        self.alertWithAction(message: "Thành công", action: ok)
       }
     }
   }
@@ -119,12 +119,12 @@ extension AnswerDetailViewController {
       [unowned self] (message,error) in
       if error != nil {
         print(error!)
-        self.alertError(message: "Cannot decline")
+        self.alertError(message: "Gửi thất bại")
       } else {
         let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
           self.performSegue(withIdentifier: "showListPost", sender: self)
         })
-        self.alertWithAction(message: "Decline Successfully", action: ok)
+        self.alertWithAction(message: "Thành công", action: ok)
       }
     }
   }

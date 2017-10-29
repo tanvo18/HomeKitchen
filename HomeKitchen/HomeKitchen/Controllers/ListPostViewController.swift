@@ -105,8 +105,8 @@ extension ListPostViewController {
   func didTouchNotificationButton(sender: UIButton) {
     index = sender.tag
     if posts[index].answers.isEmpty {
-      let title = "Message"
-      let message = "This Order doesn't have any suggestion"
+      let title = "Thông báo"
+      let message = "Không có đề nghị nào"
       self.alert(title: title, message: message)
     } else {
       performSegue(withIdentifier: "showListAnswer", sender: self)

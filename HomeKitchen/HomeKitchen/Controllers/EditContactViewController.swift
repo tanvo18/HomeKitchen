@@ -63,15 +63,15 @@ extension EditContactViewController {
       NetworkingService.sharedInstance.editContactInfo(birthday: birthday, gender: gender, name: name, phoneNumber: phoneNumber, contactInfo: contact!) { [unowned self] (message,error) in
         if error != nil {
           print(error!)
-          self.alertError(message: "Cannot Edit")
+          self.alertError(message: "Gửi thất bại")
         } else {
           self.performSegue(withIdentifier: "unwindToOrderInfoController", sender: self)
         }
       }
       
     } else {
-      let message = "All field are required"
-      let title = "error"
+      let message = "Yêu cầu nhập tất cả các trường"
+      let title = "Lỗi"
       self.alert(title: title, message: message)
     }
   }

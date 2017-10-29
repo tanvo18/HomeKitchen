@@ -165,12 +165,12 @@ extension OrderViewController {
 extension OrderViewController {
   @IBAction func didTouchResetButton(_ sender: Any) {
     
-    let alert = UIAlertController(title: "Warning", message: "Do you want to reset the cart?", preferredStyle: UIAlertControllerStyle.alert)
-    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+    let alert = UIAlertController(title: "Xoá giỏ hàng", message: "Bạn có muốn xoá giỏ hàng?", preferredStyle: UIAlertControllerStyle.alert)
+    alert.addAction(UIAlertAction(title: "Xoá", style: UIAlertActionStyle.default, handler: {
       action in
       self.resetOrder()
     }))
-    alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+    alert.addAction(UIAlertAction(title: "Không", style: UIAlertActionStyle.cancel, handler: nil))
     self.present(alert, animated: true, completion: nil)
     
     for orderItem in products {
@@ -185,7 +185,7 @@ extension OrderViewController {
       addOrderedItems()
       performSegue(withIdentifier: "showOrderInfo", sender: self)
     } else {
-      let alert = UIAlertController(title: "Error", message: "You don't have any product in your cart.", preferredStyle: UIAlertControllerStyle.alert)
+      let alert = UIAlertController(title: "Thông báo", message: "Bạn không có món nào trong giỏ.", preferredStyle: UIAlertControllerStyle.alert)
       alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
       self.present(alert, animated: true, completion: nil)
     }

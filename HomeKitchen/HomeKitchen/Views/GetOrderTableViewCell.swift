@@ -29,21 +29,35 @@ class GetOrderTableViewCell: UITableViewCell {
   }
   
   func configureWithItem(orderInfo: OrderInfo, role: String, status: String) {
-    if orderInfo.status != "in_cart" {
-      if role == "customer" {
-        nameLabel.text = orderInfo.kitchen?.name
-        statusLabel.text = orderInfo.status
-      } else if role == "chef" {
-        nameLabel.text = orderInfo.contactInfo?.name
-        statusLabel.text = status
-      }
-      calendarLabel.text = orderInfo.orderDate
+    if role == "customer" {
+      nameLabel.text = orderInfo.kitchen?.name
+      statusLabel.text = orderInfo.status
+    } else if role == "chef" {
+      nameLabel.text = orderInfo.contactInfo?.name
+      statusLabel.text = status
     }
+    calendarLabel.text = orderInfo.orderDate
+    
+    // Change status to vietnamese
+    switch statusLabel.text! {
+      case "accepted":
+      statusLabel.text = "Đã chấp nhận"
+      case "denied":
+      statusLabel.text = "Từ chối"
+      case "pending":
+      statusLabel.text = "Đang chờ duyệt"
+      case "negotiating":
+      statusLabel.text = "Thương lượng"
+    default:
+      break
+    }
+    
+    // Set image
     if orderInfo.status == "accepted" {
       statusImageView.image = UIImage(named: "checkmark-green")
     } else if orderInfo.status == "denied"{
       statusImageView.image = UIImage(named: "icon-redtriangle")
-    } else {
+    } else{
       statusImageView.image = UIImage(named: "icon-yellowtriangle")
     }
     
