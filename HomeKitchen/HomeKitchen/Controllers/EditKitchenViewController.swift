@@ -21,6 +21,7 @@ class EditKitchenViewController: UIViewController {
   @IBOutlet weak var cityLabel: UILabel!
   @IBOutlet weak var countryLabel: UILabel!
   @IBOutlet weak var kitchenCoverImageView: UIImageView!
+  @IBOutlet weak var descriptionTextView: UITextView!
   var myActivityIndicator: UIActivityIndicatorView!
   
   // MARK: UITextField
@@ -35,7 +36,7 @@ class EditKitchenViewController: UIViewController {
     didSet {
       // avoid reset data in the second time
       if isFirstTime {
-        parseKitchenInfoData()
+        parseKitchenData()
         tableView.reloadData()
         downloadImage(imageUrl: kitchen!.imageUrl)
         isFirstTime = false
@@ -117,8 +118,11 @@ extension EditKitchenViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     if indexPath.section == 1 && indexPath.row == 0 {
       let timeCell = tableView.dequeueReusableCell(withIdentifier: reuseableTimeCell) as! CustomTimeTableViewCell
+      // Be careful when reference a textField with cell because if tableview small and cell is hide from view this will lead nil for reference variables and crash
       openingTimeTextField = timeCell.openingTextField
       closingTimeTextField = timeCell.closingTextField
+      timeCell.openingTextField.text = kitchen?.open
+      timeCell.closingTextField.text = kitchen?.close
       createPickerForOpeningTF(timeTextField: openingTimeTextField)
       createPickerForClosingTF(timeTextField: closingTimeTextField)
       // Set image for imageViewCell section 2
@@ -136,16 +140,21 @@ extension EditKitchenViewController: UITableViewDataSource {
       let createKitchenCell = tableView.dequeueReusableCell(withIdentifier: reuseableCreateCell) as! CreateKitchenTableViewCell
       // Set image for imageViewCell section 1
       createKitchenCell.imageViewCell.image = UIImage(named: Helper.createKitchenCellSection1[indexPath.row])
+      // Be careful when reference a textField with cell because if tableview small and cell is hide from view this will lead nil for reference variables and crash
       if indexPath.row == 0 {
         kitchenNameTF = createKitchenCell.textFieldCell
+        createKitchenCell.textFieldCell.text = kitchen?.name
       } else if indexPath.row == 1 {
         typeTF = createKitchenCell.textFieldCell
+        createKitchenCell.textFieldCell.text = kitchen?.type
       } else if indexPath.row == 2 {
         streetAddressTF = createKitchenCell.textFieldCell
+        createKitchenCell.textFieldCell.text = kitchen?.address?.address
       } else if indexPath.row == 3 {
         // Set number type for phone number textfield
         createKitchenCell.textFieldCell.keyboardType = .numberPad
         phoneNumberTF = createKitchenCell.textFieldCell
+        createKitchenCell.textFieldCell.text = kitchen?.address?.phoneNumber
       }
       createKitchenCell.configureWithItem(title: sectionOnePlaceHolder[indexPath.row])
       // Disable textField when not ready for edit
@@ -264,10 +273,10 @@ extension EditKitchenViewController {
   func postKitchenToServer() {
     let imageUrl = self.imageUrl
     let address = Address(city: cityLabel.text!, district: districtLabel.text!, address: streetAddressTF.text!, phoneNumber: phoneNumberTF.text!)
-    guard let id = kitchen?.id, let openingTime = openingTimeTextField.text,let closingTime = closingTimeTextField.text, let kitchenName = kitchenNameTF.text, let type = typeTF.text else {
+    guard let id = kitchen?.id, let openingTime = openingTimeTextField.text,let closingTime = closingTimeTextField.text, let kitchenName = kitchenNameTF.text, let type = typeTF.text, let description = descriptionTextView.text else {
       return
     }
-    NetworkingService.sharedInstance.editKitchen(id: id, openingTime: openingTime, closingTime: closingTime, kitchenName: kitchenName, imageUrl: imageUrl, type: type, address: address) {
+    NetworkingService.sharedInstance.editKitchen(id: id, openingTime: openingTime, closingTime: closingTime, kitchenName: kitchenName, imageUrl: imageUrl, type: type, description: description, address: address) {
       [unowned self] (message,error) in
       if error != nil {
         print(error!)
@@ -294,7 +303,7 @@ extension EditKitchenViewController {
   func checkNotNil() -> Bool {
     if  kitchenNameTF.text!.isEmpty || typeTF.text!.isEmpty || streetAddressTF.text!.isEmpty || phoneNumberTF.text!.isEmpty{
       return false
-    } else if districtLabel.text! == "Select District" {
+    } else if districtLabel.text! == "Chọn quận" {
       return false
     } else {
       return true
@@ -312,14 +321,9 @@ extension EditKitchenViewController {
     }
   }
   
-  func parseKitchenInfoData() {
+  func parseKitchenData() {
+    descriptionTextView.text = kitchen?.description
     districtLabel.text = kitchen?.address?.district
-    openingTimeTextField.text = kitchen?.open
-    closingTimeTextField.text = kitchen?.close
-    kitchenNameTF.text = kitchen?.name
-    typeTF.text = kitchen?.type
-    streetAddressTF.text = kitchen?.address?.address
-    phoneNumberTF.text = kitchen?.address?.phoneNumber
   }
   
   func setUpActivityIndicator()

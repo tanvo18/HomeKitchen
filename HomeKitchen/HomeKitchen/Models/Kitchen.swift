@@ -16,6 +16,7 @@ class Kitchen: Mappable {
   var close: String = ""
   var name: String = ""
   var type: String = ""
+  var description: String = ""
   var imageUrl: String = ""
   var point: Double = 0.0
   var address: Address?
@@ -35,6 +36,7 @@ class Kitchen: Mappable {
     close           <- map["close"]
     name            <- map["name"]
     type            <- map["type"]
+    description     <- map["description"]
     imageUrl        <- map["image_url"]
     point           <- map["point"]
     address         <- map["address"]

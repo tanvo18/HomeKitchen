@@ -23,6 +23,7 @@ class KitchenDetailViewController: UIViewController {
   // Foot View Outlet
   @IBOutlet weak var phoneLabel: UILabel!
   @IBOutlet weak var typeLabel: UILabel!
+  @IBOutlet weak var descriptionTextView: UITextView!
   
   var products: [OrderItem] = []{
     didSet {
@@ -179,6 +180,7 @@ extension KitchenDetailViewController {
     // Foot view
     phoneLabel.text = kitchen?.address?.phoneNumber
     typeLabel.text = kitchen?.type
+    descriptionTextView.text = kitchen?.description
   }
   
   // MARK: download image with url

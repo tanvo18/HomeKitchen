@@ -24,7 +24,7 @@ class LeftMenuTableViewController: UIViewController {
   // Header for table section
   let headerTitles = ["TRANG CHỦ", "KHÁCH HÀNG","BẾP","THOÁT"]
   let data = [["Trang chủ"],["Thông tin khách hàng","Đơn hàng của tôi","Yêu cầu của tôi"],["Quản lý đơn hàng","Quản lý yêu cầu","Quản lý bếp","Tạo bếp"],["Đăng xuất"]]
-  let images = [["kitchen-white"],["user-white","paper-white","paper-white"],[""],[]]
+  let images = [["kitchen-white"],["user-white","paper-white","paper-white"],["cart-white","cart-white","knife-spoon-white","fork-knife-white"],["logout-white"]]
   weak var delegate: LeftMenuDelegate?
   
   override func viewDidLoad() {
@@ -69,6 +69,7 @@ extension LeftMenuTableViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: kCellIdentifier, for: indexPath) as! MenuTableViewCell
     cell.titleLabel.text = data[indexPath.section][indexPath.row]
+    cell.imageViewCell.image = UIImage(named: images[indexPath.section][indexPath.row])
     return cell
   }
   

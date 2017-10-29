@@ -338,6 +338,7 @@
                     <connections>
                         <outlet property="addressLabel" destination="cNz-H1-55F" id="5jJ-38-TMf"/>
                         <outlet property="backgroundImage" destination="5Wx-sF-6bq" id="5JB-mb-6tk"/>
+                        <outlet property="descriptionTextView" destination="1n8-90-uel" id="4Nq-wb-IzU"/>
                         <outlet property="indicator" destination="7i1-MP-KEN" id="k7L-oT-UH4"/>
                         <outlet property="kitchenNameLabel" destination="IRZ-Im-Q9g" id="45d-VC-oNu"/>
                         <outlet property="phoneLabel" destination="rL0-Ks-Qea" id="mNm-W5-bEY"/>
@@ -362,26 +363,33 @@
                         <viewControllerLayoutGuide type="bottom" id="aV9-il-2Ac"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cmN-7U-2GX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a4z-8p-VkP">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="856"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1d9-bn-dWZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XXS-mL-HjS">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yZc-9u-ZRc">
-                                                <rect key="frame" x="0.0" y="292" width="375" height="297"/>
+                                                <rect key="frame" x="8" y="425" width="358" height="276"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.87833553552627563" green="0.87848657369613647" blue="0.87832605838775635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </tableView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mô tả bếp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zpr-vp-bfX">
+                                                <rect key="frame" x="8" y="283" width="92" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xtt-Hv-jpA">
-                                                <rect key="frame" x="0.0" y="224" width="375" height="60"/>
+                                                <rect key="frame" x="8" y="208" width="358" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Việt Nam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0im-Rv-Wg5">
@@ -401,7 +409,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chọn quận" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCQ-4P-7do">
-                                                        <rect key="frame" x="239" y="13" width="128" height="34"/>
+                                                        <rect key="frame" x="239" y="13" width="111" height="34"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" red="0.011764705882352941" green="0.37254901960784315" blue="0.6588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -410,9 +418,26 @@
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="a0p-gg-oLo">
+                                                <rect key="frame" x="8" y="312" width="358" height="99"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OpV-79-W7G">
-                                                <rect key="frame" x="8" y="606" width="359" height="36"/>
+                                                <rect key="frame" x="8" y="728" width="359" height="36"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.72379618883132935" green="0.64995455741882324" blue="0.41768035292625427" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
@@ -426,7 +451,7 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.87833553552627563" green="0.87848657369613647" blue="0.87832605838775635" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="800" id="adE-zD-1rr"/>
+                                            <constraint firstAttribute="height" constant="900" id="adE-zD-1rr"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -448,10 +473,11 @@
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="800"/>
+                    <size key="freeformSize" width="375" height="900"/>
                     <connections>
                         <outlet property="cityLabel" destination="fxr-aF-0gU" id="KBk-5j-l4T"/>
                         <outlet property="countryLabel" destination="0im-Rv-Wg5" id="kOs-Ec-el4"/>
+                        <outlet property="descriptionTextView" destination="a0p-gg-oLo" id="tfT-Zx-3d0"/>
                         <outlet property="districtLabel" destination="fCQ-4P-7do" id="P4C-Tf-ezk"/>
                         <outlet property="kitchenCoverImageView" destination="XXS-mL-HjS" id="SJ7-0k-aFO"/>
                         <outlet property="tableView" destination="yZc-9u-ZRc" id="PZP-a8-J1c"/>
@@ -477,7 +503,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Gf-VQ-kDi">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
@@ -636,7 +662,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JUn-qe-Zx4">
-                                <rect key="frame" x="0.0" y="96" width="375" height="60"/>
+                                <rect key="frame" x="8" y="72" width="358" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Việt Nam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqM-FL-Pyt">
@@ -656,7 +682,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chọn quận" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82o-dT-LgK">
-                                        <rect key="frame" x="239" y="13" width="128" height="34"/>
+                                        <rect key="frame" x="239" y="13" width="111" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.011764705882352941" green="0.37254901960784315" blue="0.6588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -665,18 +691,43 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dqm-TC-pVu">
-                                <rect key="frame" x="0.0" y="195" width="375" height="472"/>
+                                <rect key="frame" x="8" y="284" width="358" height="339"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="T8B-jt-Qfm">
+                                <rect key="frame" x="8" y="177" width="358" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mô tả bếp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGX-u0-48c">
+                                <rect key="frame" x="8" y="148" width="78" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.87684406725888331" green="0.87684406725888331" blue="0.87684406725888331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="cityLabel" destination="gCZ-rk-fQg" id="pXp-1G-Wxs"/>
                         <outlet property="countryLabel" destination="HqM-FL-Pyt" id="g7l-Mm-EYw"/>
+                        <outlet property="descriptionTextView" destination="T8B-jt-Qfm" id="6uf-OB-xYy"/>
                         <outlet property="districtLabel" destination="82o-dT-LgK" id="z3V-VM-EeT"/>
                         <outlet property="tableView" destination="Dqm-TC-pVu" id="mMr-UB-Wm6"/>
                         <segue destination="A0C-oV-XE3" kind="show" identifier="showLocation" id="JDc-Ee-M58"/>
@@ -685,7 +736,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xKZ-qo-F0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1209" y="466"/>
+            <point key="canvasLocation" x="1208.8" y="465.51724137931041"/>
         </scene>
         <!--Location View Controller-->
         <scene sceneID="0tt-mH-kty">
@@ -1257,7 +1308,7 @@
                         <viewControllerLayoutGuide type="bottom" id="405-Gq-sog"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ahG-Wj-iH5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="77" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nJr-ov-fqt">
@@ -2595,11 +2646,11 @@
         <image name="wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="WcN-74-H6N"/>
         <segue reference="W6m-Ez-T8T"/>
         <segue reference="HoI-MX-zAi"/>
-        <segue reference="WcN-74-H6N"/>
+        <segue reference="reK-M9-1VN"/>
         <segue reference="SiF-K6-Nzy"/>
         <segue reference="jg8-0O-AHV"/>
-        <segue reference="gQ6-1e-KpS"/>
     </inferredMetricsTieBreakers>
 </document>

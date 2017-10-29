@@ -304,7 +304,7 @@ class NetworkingService {
   }
   
   // Create kitchen
-  func createKitchen(openingTime: String, closingTime: String, kitchenName: String, imageUrl: String, type: String, createdDate: String, address: Address, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
+  func createKitchen(openingTime: String, closingTime: String, kitchenName: String, imageUrl: String, type: String, description: String, createdDate: String, address: Address, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
     
     let url = NetworkingService.baseURLString + "kitchens"
     let headers: HTTPHeaders = [
@@ -317,6 +317,7 @@ class NetworkingService {
                                   "name" : kitchenName,
                                   "image_url" : imageUrl,
                                   "type" : type,
+                                  "description" : description,
                                   "created_date" : createdDate,
                                   "address" : address.toJSON()
     ]
@@ -337,7 +338,7 @@ class NetworkingService {
   
   // Edit kitchen
   // Using responseString
-  func editKitchen(id: Int, openingTime: String, closingTime: String, kitchenName: String, imageUrl: String, type: String, address: Address, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
+  func editKitchen(id: Int, openingTime: String, closingTime: String, kitchenName: String, imageUrl: String, type: String, description: String, address: Address, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
     
     let url = NetworkingService.baseURLString + "kitchens"
     let headers: HTTPHeaders = [
@@ -351,6 +352,7 @@ class NetworkingService {
                                   "name" : kitchenName,
                                   "image_url" : imageUrl,
                                   "type" : type,
+                                  "description" : description,
                                   "address" : address.toJSON()
     ]
     Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in

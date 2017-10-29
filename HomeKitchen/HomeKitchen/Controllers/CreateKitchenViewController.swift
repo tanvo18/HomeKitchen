@@ -15,6 +15,7 @@ class CreateKitchenViewController: UIViewController {
   @IBOutlet weak var districtLabel: UILabel!
   @IBOutlet weak var cityLabel: UILabel!
   @IBOutlet weak var countryLabel: UILabel!
+  @IBOutlet weak var descriptionTextView: UITextView!
   // MARK: UITextField
   var openingTimeTextField: UITextField!
   var closingTimeTextField: UITextField!
@@ -192,21 +193,25 @@ extension CreateKitchenViewController {
       let today = setCurrentDate()
       let defaultImageUrl = Helper.defaultImageUrl
       let address = Address(city: cityLabel.text!, district: districtLabel.text!, address: streetAddressTF.text!, phoneNumber: phoneNumberTF.text!)
-      guard let openingTime = openingTimeTextField.text,let closingTime = closingTimeTextField.text, let kitchenName = kitchenNameTF.text, let type = typeTF.text else {
+      guard let openingTime = openingTimeTextField.text,let closingTime = closingTimeTextField.text, let kitchenName = kitchenNameTF.text, let type = typeTF.text, let description = descriptionTextView.text else {
         return
       }
       
-      NetworkingService.sharedInstance.createKitchen(openingTime: openingTime , closingTime: closingTime, kitchenName: kitchenName, imageUrl: defaultImageUrl, type: type, createdDate: today, address: address) {
+      NetworkingService.sharedInstance.createKitchen(openingTime: openingTime , closingTime: closingTime, kitchenName: kitchenName, imageUrl: defaultImageUrl, type: type, description: description, createdDate: today, address: address) {
         [unowned self] (message,error) in
         if error != nil {
           print(error!)
           self.alertError(message: "Gửi thất bại")
         } else {
-          let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-            // Go to Home Screen
-            self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-          })
-          self.alertWithAction(message: "Thành công", action: ok)
+          if message == "Failure!Your Kitchen is already existed" {
+            self.alertError(message: "Bếp của bạn đã tồn tại")
+          } else {
+            let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+              // Go to Home Screen
+              self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+            })
+            self.alertWithAction(message: "Thành công", action: ok)
+          }
         }
       }
     } else {
@@ -223,9 +228,9 @@ extension CreateKitchenViewController {
   }
   
   func checkNotNil() -> Bool {
-    if  kitchenNameTF.text!.isEmpty || typeTF.text!.isEmpty || streetAddressTF.text!.isEmpty || phoneNumberTF.text!.isEmpty{
+    if  kitchenNameTF.text!.isEmpty || typeTF.text!.isEmpty || streetAddressTF.text!.isEmpty || phoneNumberTF.text!.isEmpty || descriptionTextView.text!.isEmpty {
       return false
-    } else if districtLabel.text! == "Select District" {
+    } else if districtLabel.text! == "Chọn quận" {
       return false
     } else {
       return true
