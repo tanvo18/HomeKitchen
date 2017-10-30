@@ -241,6 +241,10 @@ extension KitchenDetailViewController {
   @IBAction func didTouchPostRequestButton(_ sender: Any) {
     performSegue(withIdentifier: "showPostRequest", sender: self)
   }
+  
+  @IBAction func didTouchReviewButton(_ sender: Any) {
+    performSegue(withIdentifier: "showReviews", sender: self)
+  }
 }
 
 extension KitchenDetailViewController {
@@ -248,6 +252,10 @@ extension KitchenDetailViewController {
     if segue.identifier == "showOrderScreen" {
       if let destination = segue.destination as? OrderViewController {
         destination.products = products
+      }
+    } else if segue.identifier == "showReviews" {
+      if let destination = segue.destination as? ReviewsViewController {
+        destination.reviews = reviews
       }
     }
   }

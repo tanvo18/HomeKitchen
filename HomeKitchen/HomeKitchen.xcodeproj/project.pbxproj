@@ -119,6 +119,9 @@
 		4DFDF94B1FA710E900BFA55C /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF94A1FA710E900BFA55C /* Review.swift */; };
 		4DFDF94E1FA7119A00BFA55C /* ResultReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF94D1FA7119A00BFA55C /* ResultReviews.swift */; };
 		4DFDF9501FA711A900BFA55C /* ReviewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF94F1FA711A900BFA55C /* ReviewDataModel.swift */; };
+		4DFDF9531FA72C3100BFA55C /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF9521FA72C3100BFA55C /* ReviewsViewController.swift */; };
+		4DFDF9571FA7303900BFA55C /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF9551FA7303900BFA55C /* ReviewsTableViewCell.swift */; };
+		4DFDF9581FA7303900BFA55C /* ReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFDF9561FA7303900BFA55C /* ReviewsTableViewCell.xib */; };
 		A523611545740C645967EF58 /* Pods_HomeKitchen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223CF9B73D9541A7B43ACFB0 /* Pods_HomeKitchen.framework */; };
 /* End PBXBuildFile section */
 
@@ -239,6 +242,9 @@
 		4DFDF94A1FA710E900BFA55C /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		4DFDF94D1FA7119A00BFA55C /* ResultReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultReviews.swift; sourceTree = "<group>"; };
 		4DFDF94F1FA711A900BFA55C /* ReviewDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewDataModel.swift; sourceTree = "<group>"; };
+		4DFDF9521FA72C3100BFA55C /* ReviewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
+		4DFDF9551FA7303900BFA55C /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
+		4DFDF9561FA7303900BFA55C /* ReviewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewsTableViewCell.xib; sourceTree = "<group>"; };
 		D9DF5D2093C2480DF0169BD0 /* Pods-HomeKitchen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeKitchen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HomeKitchen/Pods-HomeKitchen.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -696,6 +702,7 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4DFDF9511FA72C1600BFA55C /* ListReviewScreen */,
 				4DEE902E1FA63E75004921B2 /* EditUserInfoScreen */,
 				4D4F3E601F99AEF400FD0C6B /* ListAnswerScreen */,
 				4D0BBDCA1F9661B200BDA6AC /* AnswerDetailScreen */,
@@ -730,6 +737,7 @@
 		4DDB7ED11F59486C00A24730 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4DFDF9541FA7300000BFA55C /* ListReviewScreen */,
 				4D4F3E631F99AFD600FD0C6B /* ListAnswerScreen */,
 				4D0BBDCD1F96642500BDA6AC /* AnswerDetailScreen */,
 				4D09DF2C1F95ED970014E158 /* CreateAnswerScreen */,
@@ -936,6 +944,23 @@
 			name = GetKitchenReview;
 			sourceTree = "<group>";
 		};
+		4DFDF9511FA72C1600BFA55C /* ListReviewScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4DFDF9521FA72C3100BFA55C /* ReviewsViewController.swift */,
+			);
+			name = ListReviewScreen;
+			sourceTree = "<group>";
+		};
+		4DFDF9541FA7300000BFA55C /* ListReviewScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4DFDF9551FA7303900BFA55C /* ReviewsTableViewCell.swift */,
+				4DFDF9561FA7303900BFA55C /* ReviewsTableViewCell.xib */,
+			);
+			name = ListReviewScreen;
+			sourceTree = "<group>";
+		};
 		59DA56E9BE7B31EB6A86CD31 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1033,6 +1058,7 @@
 				4D24855B1F7A3F940025F810 /* SuggestionTableViewCell.xib in Resources */,
 				4D2AAAD21F8A8E7900F281A4 /* CustomTimeTableViewCell.xib in Resources */,
 				4DACF0B91F55C9A00043ED79 /* LaunchScreen.storyboard in Resources */,
+				4DFDF9581FA7303900BFA55C /* ReviewsTableViewCell.xib in Resources */,
 				4D1588051F59663C00B1FFB4 /* MenuTableViewCell.xib in Resources */,
 				4DACF0B61F55C9A00043ED79 /* Assets.xcassets in Resources */,
 				4D237C0A1F775C3C007C1201 /* GetOrderTableViewCell.xib in Resources */,
@@ -1117,6 +1143,7 @@
 				4D203BC91F90B8EB00A8F267 /* PostRequestViewController.swift in Sources */,
 				4DFDF94E1FA7119A00BFA55C /* ResultReviews.swift in Sources */,
 				4DF4A4AD1F7B573F00DC272D /* ResultKitchenOrder.swift in Sources */,
+				4DFDF9531FA72C3100BFA55C /* ReviewsViewController.swift in Sources */,
 				4D438D921F8B6E4200AF5233 /* LocationViewController.swift in Sources */,
 				4D24855E1F7A5EE00025F810 /* CalendarViewController.swift in Sources */,
 				4D203BC41F90B5A300A8F267 /* Post.swift in Sources */,
@@ -1132,6 +1159,7 @@
 				4DFDF9501FA711A900BFA55C /* ReviewDataModel.swift in Sources */,
 				4DACF0AF1F55C9A00043ED79 /* AppDelegate.swift in Sources */,
 				4DFDF94B1FA710E900BFA55C /* Review.swift in Sources */,
+				4DFDF9571FA7303900BFA55C /* ReviewsTableViewCell.swift in Sources */,
 				4D18E2191F750243007B83B6 /* NetworkingService.swift in Sources */,
 				4DEF2DC21F7BA32700C534FC /* MakeSuggestionViewController.swift in Sources */,
 				4D4F3E5C1F99A6C700FD0C6B /* SuggestionsTableViewCell.swift in Sources */,
