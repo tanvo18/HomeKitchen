@@ -37,7 +37,6 @@ class KitchenTableViewCell: UITableViewCell {
   
   // MARK: configure view cell
   func configureWithItem(kitchen: Kitchen) {
-    if kitchen.isOpened {
       guard let address = kitchen.address?.address, let city = kitchen.address?.city else {
         return
       }
@@ -66,7 +65,6 @@ class KitchenTableViewCell: UITableViewCell {
         qualityLabel.isHidden = true
       }
       downloadImage(imageUrl: kitchen.imageUrl)
-    }
   }
   
   // MARK: download image with url

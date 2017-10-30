@@ -19,7 +19,7 @@ class Kitchen: Mappable {
   var description: String = ""
   var imageUrl: String = ""
   var point: Double = 0.0
-  var isOpened: Bool = true
+  var isOpened: Bool = false
   var address: Address?
   var cart: OrderInfo?
   var products: [Product] = []

@@ -34,7 +34,14 @@ class KitchenDataModel {
         if let json = response.result.value as? [String: Any]{
           result = Mapper<ResultKitchen>().map(JSON: json)
           if let result = result {
-            kitchens = result.kitchens
+            // Receive all kitchens on server
+            let allKitchens = result.kitchens
+            // Filter valid kitchen which is opened
+            for kitchen in allKitchens {
+              if kitchen.isOpened {
+                 kitchens.append(kitchen)
+              }
+            }
             self.delegate?.didRecieveKitchenUpdate(data: kitchens)
           }
         }

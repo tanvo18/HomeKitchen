@@ -116,6 +116,9 @@
 		4DFAAEC31F5D44B600FE2EAE /* KitchenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFAAEC21F5D44B600FE2EAE /* KitchenViewController.swift */; };
 		4DFAAEC61F5D459500FE2EAE /* KitchenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFAAEC41F5D459500FE2EAE /* KitchenTableViewCell.swift */; };
 		4DFAAEC71F5D459500FE2EAE /* KitchenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFAAEC51F5D459500FE2EAE /* KitchenTableViewCell.xib */; };
+		4DFDF94B1FA710E900BFA55C /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF94A1FA710E900BFA55C /* Review.swift */; };
+		4DFDF94E1FA7119A00BFA55C /* ResultReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF94D1FA7119A00BFA55C /* ResultReviews.swift */; };
+		4DFDF9501FA711A900BFA55C /* ReviewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF94F1FA711A900BFA55C /* ReviewDataModel.swift */; };
 		A523611545740C645967EF58 /* Pods_HomeKitchen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223CF9B73D9541A7B43ACFB0 /* Pods_HomeKitchen.framework */; };
 /* End PBXBuildFile section */
 
@@ -233,6 +236,9 @@
 		4DFAAEC21F5D44B600FE2EAE /* KitchenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenViewController.swift; sourceTree = "<group>"; };
 		4DFAAEC41F5D459500FE2EAE /* KitchenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenTableViewCell.swift; sourceTree = "<group>"; };
 		4DFAAEC51F5D459500FE2EAE /* KitchenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KitchenTableViewCell.xib; sourceTree = "<group>"; };
+		4DFDF94A1FA710E900BFA55C /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		4DFDF94D1FA7119A00BFA55C /* ResultReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultReviews.swift; sourceTree = "<group>"; };
+		4DFDF94F1FA711A900BFA55C /* ReviewDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewDataModel.swift; sourceTree = "<group>"; };
 		D9DF5D2093C2480DF0169BD0 /* Pods-HomeKitchen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeKitchen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HomeKitchen/Pods-HomeKitchen.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -750,6 +756,7 @@
 		4DDB7ED21F59487700A24730 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4DFDF94C1FA7118100BFA55C /* GetKitchenReview */,
 				4DC4FB8F1F95B0B7005A94A3 /* GetKitchenPost */,
 				4D21D61B1F8C6AD200E71A29 /* GetKitchenInfo */,
 				4DF4A4B21F7B58A300DC272D /* GetUser */,
@@ -772,6 +779,7 @@
 				4D203BC51F90B5D900A8F267 /* PostItem.swift */,
 				4D09DF251F95EB750014E158 /* Answer.swift */,
 				4D0BBDD21F966D5900BDA6AC /* AnswerDetail.swift */,
+				4DFDF94A1FA710E900BFA55C /* Review.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -917,6 +925,15 @@
 				4DFAAEC51F5D459500FE2EAE /* KitchenTableViewCell.xib */,
 			);
 			path = KitchenCell;
+			sourceTree = "<group>";
+		};
+		4DFDF94C1FA7118100BFA55C /* GetKitchenReview */ = {
+			isa = PBXGroup;
+			children = (
+				4DFDF94D1FA7119A00BFA55C /* ResultReviews.swift */,
+				4DFDF94F1FA711A900BFA55C /* ReviewDataModel.swift */,
+			);
+			name = GetKitchenReview;
 			sourceTree = "<group>";
 		};
 		59DA56E9BE7B31EB6A86CD31 /* Pods */ = {
@@ -1098,6 +1115,7 @@
 				4D97B9921F8C5DFA00682A99 /* EditKitchenViewController.swift in Sources */,
 				4DEBE06E1F78095A00A0305D /* OrderDetailTableViewCell.swift in Sources */,
 				4D203BC91F90B8EB00A8F267 /* PostRequestViewController.swift in Sources */,
+				4DFDF94E1FA7119A00BFA55C /* ResultReviews.swift in Sources */,
 				4DF4A4AD1F7B573F00DC272D /* ResultKitchenOrder.swift in Sources */,
 				4D438D921F8B6E4200AF5233 /* LocationViewController.swift in Sources */,
 				4D24855E1F7A5EE00025F810 /* CalendarViewController.swift in Sources */,
@@ -1111,7 +1129,9 @@
 				4D3118A01F6C10CD00ACA713 /* OrderInfoViewController.swift in Sources */,
 				4DEDD33D1F5C075500D24E79 /* SignupViewController.swift in Sources */,
 				4D6E96D61F693B45000DD7EE /* OrderInfo.swift in Sources */,
+				4DFDF9501FA711A900BFA55C /* ReviewDataModel.swift in Sources */,
 				4DACF0AF1F55C9A00043ED79 /* AppDelegate.swift in Sources */,
+				4DFDF94B1FA710E900BFA55C /* Review.swift in Sources */,
 				4D18E2191F750243007B83B6 /* NetworkingService.swift in Sources */,
 				4DEF2DC21F7BA32700C534FC /* MakeSuggestionViewController.swift in Sources */,
 				4D4F3E5C1F99A6C700FD0C6B /* SuggestionsTableViewCell.swift in Sources */,

@@ -30,11 +30,15 @@ class KitchenDetailViewController: UIViewController {
       tableView.reloadData()
     }
   }
+  
+  var reviews: [Review] = []
+  
   // Items which customer ordered at Order Screen
   var orderedItems: [OrderItem] = []
   
   let reuseableCell = "Cell"
   let productModelDatasource = ProductDataModel()
+  let reviewDataModel = ReviewDataModel()
   var kitchen: Kitchen?
   
   override func viewDidLoad() {
@@ -54,6 +58,8 @@ class KitchenDetailViewController: UIViewController {
     parseDataForLabel()
     // Request data through delagate
     productModelDatasource.requestProduct()
+    // Request kitchen reviews
+    getKitchenReviews()
     // Set title for back button in navigation bar
     self.settingForNavigationBar(title: "Thông tin bếp")
     
@@ -162,6 +168,7 @@ extension KitchenDetailViewController: ProductDataModelDelegate {
   }
 }
 
+// MARK: Function
 extension KitchenDetailViewController {
   
   func parseDataForLabel() {
@@ -211,6 +218,17 @@ extension KitchenDetailViewController {
     formatter.dateFormat = "yyyy-MM-dd"
     let result = formatter.string(from: date)
     return result
+  }
+  
+  func getKitchenReviews() {
+    reviewDataModel.getKitchenReviews(kitchenId: Helper.kitchenId) {
+      [unowned self] (kitchenReviews,error) in
+      if error != nil {
+        print(error!)
+      } else {
+        self.reviews = kitchenReviews
+      }
+    }
   }
 }
 
