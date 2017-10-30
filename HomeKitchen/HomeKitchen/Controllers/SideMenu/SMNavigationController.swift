@@ -48,7 +48,7 @@ class SMNavigationController: LNSideMenuNavigationController {
     case 1:
       switch index {
       case 0:
-        break
+        nViewController = storyboard?.instantiateViewController(withIdentifier: "EditUserInfoViewController")
       case 1:
         Helper.role = "customer"
         nViewController = storyboard?.instantiateViewController(withIdentifier: "ListOrderViewController")

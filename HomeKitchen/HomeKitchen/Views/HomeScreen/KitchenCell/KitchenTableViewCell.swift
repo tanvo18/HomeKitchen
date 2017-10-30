@@ -37,34 +37,36 @@ class KitchenTableViewCell: UITableViewCell {
   
   // MARK: configure view cell
   func configureWithItem(kitchen: Kitchen) {
-    guard let address = kitchen.address?.address, let city = kitchen.address?.city else {
-      return
+    if kitchen.isOpened {
+      guard let address = kitchen.address?.address, let city = kitchen.address?.city else {
+        return
+      }
+      kitchenNameLabel.text = kitchen.name
+      addressLabel.text = "\(address), \(city)"
+      timeLabel.text = "\(kitchen.open) đến \(kitchen.close)"
+      pointLabel.text = "\(kitchen.point)"
+      switch kitchen.point {
+      case let point where point <= Constant.verybadPoint:
+        qualityLabel.text = "RÂT TỆ"
+      case let point where point <= Constant.badPoint:
+        qualityLabel.text = "TỆ"
+      case let point where point <= Constant.fairPoint:
+        qualityLabel.text = "TRUNG BÌNH"
+      case let point where point <= Constant.goodPoint:
+        qualityLabel.text = "TỐT"
+      case let point where point < Constant.excellentPoint:
+        qualityLabel.text = "RẤT TỐT"
+      case let point where point == Constant.excellentPoint:
+        qualityLabel.text = "TUYỆT VỜI"
+      default:
+        break
+      }
+      if kitchen.point < 0 {
+        pointLabel.isHidden = true
+        qualityLabel.isHidden = true
+      }
+      downloadImage(imageUrl: kitchen.imageUrl)
     }
-    kitchenNameLabel.text = kitchen.name
-    addressLabel.text = "\(address), \(city)"
-    timeLabel.text = "\(kitchen.open) đến \(kitchen.close)"
-    pointLabel.text = "\(kitchen.point)"
-    switch kitchen.point {
-    case let point where point <= Constant.verybadPoint:
-      qualityLabel.text = "RÂT TỆ"
-    case let point where point <= Constant.badPoint:
-      qualityLabel.text = "TỆ"
-    case let point where point <= Constant.fairPoint:
-      qualityLabel.text = "TRUNG BÌNH"
-    case let point where point <= Constant.goodPoint:
-      qualityLabel.text = "TỐT"
-    case let point where point < Constant.excellentPoint:
-      qualityLabel.text = "RẤT TỐT"
-    case let point where point == Constant.excellentPoint:
-      qualityLabel.text = "TUYỆT VỜI"
-    default:
-      break
-    }
-    if kitchen.point < 0 {
-      pointLabel.isHidden = true
-      qualityLabel.isHidden = true
-    }
-    downloadImage(imageUrl: kitchen.imageUrl)
   }
   
   // MARK: download image with url

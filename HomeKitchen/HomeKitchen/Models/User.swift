@@ -28,7 +28,7 @@ class User: Mappable {
     username                         <- map["username"]
     birthday                         <- map["birthday"]
     gender                           <- map["gender"]
-    phoneNumber                      <- map["phoneNumber"]
+    phoneNumber                      <- map["phone_number"]
     role                             <- map["role"]
     name                             <- map["name"]
     contactInformations              <- map["contact_information"]

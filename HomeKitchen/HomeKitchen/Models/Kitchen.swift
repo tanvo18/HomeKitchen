@@ -19,6 +19,7 @@ class Kitchen: Mappable {
   var description: String = ""
   var imageUrl: String = ""
   var point: Double = 0.0
+  var isOpened: Bool = true
   var address: Address?
   var cart: OrderInfo?
   var products: [Product] = []
@@ -39,6 +40,7 @@ class Kitchen: Mappable {
     description     <- map["description"]
     imageUrl        <- map["image_url"]
     point           <- map["point"]
+    isOpened        <- map["isopened"]
     address         <- map["address"]
     cart            <- map["cart"]
     products        <- map["products"]

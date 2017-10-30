@@ -98,6 +98,7 @@
 		4DEBE06F1F78095A00A0305D /* OrderDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DEBE06D1F78095A00A0305D /* OrderDetailTableViewCell.xib */; };
 		4DEDD3371F5BF90100D24E79 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEDD3361F5BF90100D24E79 /* LoginViewController.swift */; };
 		4DEDD33D1F5C075500D24E79 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEDD33C1F5C075500D24E79 /* SignupViewController.swift */; };
+		4DEE90301FA63EB2004921B2 /* EditUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE902F1FA63EB2004921B2 /* EditUserInfoViewController.swift */; };
 		4DEF2DC21F7BA32700C534FC /* MakeSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEF2DC11F7BA32700C534FC /* MakeSuggestionViewController.swift */; };
 		4DEF2DC61F7BA47100C534FC /* MakeSuggestionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEF2DC41F7BA47100C534FC /* MakeSuggestionViewCell.swift */; };
 		4DEF2DC71F7BA47100C534FC /* MakeSuggestionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DEF2DC51F7BA47100C534FC /* MakeSuggestionViewCell.xib */; };
@@ -214,6 +215,7 @@
 		4DEBE06D1F78095A00A0305D /* OrderDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailTableViewCell.xib; sourceTree = "<group>"; };
 		4DEDD3361F5BF90100D24E79 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4DEDD33C1F5C075500D24E79 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		4DEE902F1FA63EB2004921B2 /* EditUserInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserInfoViewController.swift; sourceTree = "<group>"; };
 		4DEF2DC11F7BA32700C534FC /* MakeSuggestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeSuggestionViewController.swift; sourceTree = "<group>"; };
 		4DEF2DC41F7BA47100C534FC /* MakeSuggestionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeSuggestionViewCell.swift; sourceTree = "<group>"; };
 		4DEF2DC51F7BA47100C534FC /* MakeSuggestionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MakeSuggestionViewCell.xib; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4DEE902E1FA63E75004921B2 /* EditUserInfoScreen */,
 				4D4F3E601F99AEF400FD0C6B /* ListAnswerScreen */,
 				4D0BBDCA1F9661B200BDA6AC /* AnswerDetailScreen */,
 				4D09DF241F95E8800014E158 /* CreateAnswerPostRequestScreen */,
@@ -826,6 +829,14 @@
 				4DEDD33C1F5C075500D24E79 /* SignupViewController.swift */,
 			);
 			path = LoginAndSignup;
+			sourceTree = "<group>";
+		};
+		4DEE902E1FA63E75004921B2 /* EditUserInfoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4DEE902F1FA63EB2004921B2 /* EditUserInfoViewController.swift */,
+			);
+			name = EditUserInfoScreen;
 			sourceTree = "<group>";
 		};
 		4DEF2DC01F7BA31000C534FC /* MakeSuggestionScreen */ = {
@@ -1145,6 +1156,7 @@
 				4D4F3E581F99A62100FD0C6B /* SuggestionsViewController.swift in Sources */,
 				4D1587FE1F59651900B1FFB4 /* SMNavigationController.swift in Sources */,
 				4D4466FC1F60DEA40022C91C /* OrderViewController.swift in Sources */,
+				4DEE90301FA63EB2004921B2 /* EditUserInfoViewController.swift in Sources */,
 				4D438D961F8B6ECA00AF5233 /* LocationTableViewCell.swift in Sources */,
 				4D8198B91F8DB409003FA2A7 /* ProductsViewController.swift in Sources */,
 				4DEF2DC61F7BA47100C534FC /* MakeSuggestionViewCell.swift in Sources */,

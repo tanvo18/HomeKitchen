@@ -115,7 +115,7 @@ class NetworkingService {
     }
   }
   
-  // Edit order
+  // Edit ContactInfo
   func editContactInfo(birthday: String, gender: Int, name: String, phoneNumber: String, contactInfo: ContactInfo, completion: @escaping (_ message: String?, _ error: Error?) -> Void) {
     let url = NetworkingService.baseURLString + "users"
     
@@ -138,6 +138,38 @@ class NetworkingService {
         switch response.result {
         case .success:
           if let message = response.result.value {
+            completion(message,nil)
+          }
+        case .failure(let error):
+          completion(nil,error)
+        }
+    }
+  }
+  
+  // Edit User Infomation
+  func editUserInfo(birthday: String, gender: Int, name: String, phoneNumber: String, contactInfos: [ContactInfo], completion: @escaping (_ message: String?, _ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "users"
+    
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let  parameters: Parameters = ["birthday": birthday,
+                                   "gender": gender,
+                                   "name": name,
+                                   "phone_number": phoneNumber,
+                                   "contact_information": contactInfos.toJSON()
+    ]
+    
+    print("====param: \(parameters.description)")
+    
+    Alamofire.request(url, method: .put,parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString
+      { response in
+        switch response.result {
+        case .success:
+          if let message = response.result.value {
+            print("====message \(message)")
             completion(message,nil)
           }
         case .failure(let error):

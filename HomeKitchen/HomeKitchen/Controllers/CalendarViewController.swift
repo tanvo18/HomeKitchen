@@ -109,13 +109,20 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
   
   func didSelectDayView(_ dayView: CVCalendarDayView, animationDidFinish: Bool) {
     selectedDay = dayView
-    let chosenDayString: String = "\(selectedDay.date.year)-\(selectedDay.date.month)-\(selectedDay.date.day) 00:00:00"
     let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-    let dateFromString: Date = dateFormatter.date(from: chosenDayString)!
     dateFormatter.dateFormat = "yyyy-MM-dd"
-    datePicking = dateFormatter.string(from: dateFromString)
+    let dateAsString = dateFormatter.string(from: selectedDay.date.convertedDate()!)
+    datePicking = dateAsString
     print("====date \(datePicking)")
+    
+    // Method convert from string to date As string you desire
+    
+    //    let chosenDayString: String = "\(selectedDay.date.year)-\(selectedDay.date.month)-\(selectedDay.date.day) 00:00:00"
+    //    let dateFormatter = DateFormatter()
+    //    dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+    //    let dateFromString: Date = dateFormatter.date(from: chosenDayString)!
+    //    dateFormatter.dateFormat = "yyyy-MM-dd"
+    //    datePicking = dateFormatter.string(from: dateFromString)
   }
   
   func presentedDateUpdated(_ date: CVDate) {
