@@ -12,8 +12,8 @@ import Cosmos
 class CreateReviewViewController: UIViewController {
   
   @IBOutlet weak var reviewTextView: UITextView!
-  @IBOutlet weak var cosmosView: CosmosView!
   
+  @IBOutlet weak var ratingView: CosmosView!
   let PLACEHOLDER_TEXT = "chia sẻ suy nghĩ về bếp ăn này"
   // Right button in navigation bar
   var rightButtonItem: UIBarButtonItem = UIBarButtonItem()
@@ -25,14 +25,11 @@ class CreateReviewViewController: UIViewController {
     reviewTextView.delegate = self
     reviewTextView.text = PLACEHOLDER_TEXT
     reviewTextView.textColor = .lightGray
-    
-    // Tab outside to close keyboard
-    let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-    view.addGestureRecognizer(tapOutside)
-    // Init rating view
-    createRatingStar()
+    // Rating Point
+    // Attention: we don't make function tapOutside to close keyboard when using ratingView, because it will make 
+    // ratingView work wrong (can not click to rate)
+    createRatingView()
     settingRightButtonItem()
-    
   }
   
   override func didReceiveMemoryWarning() {
@@ -63,18 +60,6 @@ extension CreateReviewViewController: UITextViewDelegate {
 // MARK: Function
 extension CreateReviewViewController {
   
-  func createRatingStar() {
-    cosmosView.rating = 3
-    // Show only fully filled stars
-    // Other fill modes: .half, .precise
-    cosmosView.settings.fillMode = .full
-    
-    cosmosView.didFinishTouchingCosmos = { rating in
-      self.ratingPoint = Int(rating)
-      print("====point \(self.ratingPoint)")
-    }
-  }
-  
   func settingRightButtonItem() {
     self.rightButtonItem = UIBarButtonItem.init(
       title: "Đăng",
@@ -93,7 +78,7 @@ extension CreateReviewViewController {
         if error != nil {
           self.alertError(message: "Gửi bình luận thất bại")
         } else {
-          
+          self.alert(title: "Thông báo", message: "Thành công")
         }
       }
     } else {
@@ -106,6 +91,13 @@ extension CreateReviewViewController {
       return false
     } else {
       return true
+    }
+  }
+  
+  func createRatingView() {
+    ratingView.didFinishTouchingCosmos = { rating in
+      print("====rating \(rating)")
+      self.ratingPoint = Int(rating)
     }
   }
 

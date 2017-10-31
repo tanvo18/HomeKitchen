@@ -148,7 +148,6 @@ extension KitchenDetailViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! TopOrderTableViewCell
-    cell.backgroundColor = .gray
     return cell
   }
   

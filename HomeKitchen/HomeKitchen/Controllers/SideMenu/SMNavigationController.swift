@@ -80,6 +80,8 @@ class SMNavigationController: LNSideMenuNavigationController {
       case 0:
         let loginManager = LoginManager()
         loginManager.logOut()
+        // Hide navigation bar
+        self.navigationBar.isHidden = true
         nViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
       default:
         break

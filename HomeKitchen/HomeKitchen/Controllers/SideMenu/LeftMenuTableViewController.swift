@@ -37,7 +37,7 @@ class LeftMenuTableViewController: UIViewController {
     let nib = UINib(nibName: "MenuTableViewCell", bundle: nil)
     menuTableView.register(nib, forCellReuseIdentifier: kCellIdentifier)
     // Set title for slide menu
-    userNameLabel.text = "Chào mừng " + Helper.user.name
+    userNameLabel.text = Helper.user.username
   }
   
   override func didReceiveMemoryWarning() {
