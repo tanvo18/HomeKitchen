@@ -18,6 +18,7 @@ class User: Mappable {
   var role: String = ""
   var name: String = ""
   var contactInformations: [ContactInfo] = []
+  
   init() {}
   
   required convenience init?(map: Map) {

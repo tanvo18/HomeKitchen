@@ -25,6 +25,9 @@ class KitchenViewController: UIViewController {
   // Indicator
   let myIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
   var position: Int = 0
+  // Checking user login or not, if login before, we have to get user information
+  var isLogin: Bool = true
+  let userModelDatasource = UserDataModel()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -45,6 +48,11 @@ class KitchenViewController: UIViewController {
     // Add left bar button
     let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
     self.navigationItem.leftBarButtonItem  = menuButton
+    
+    // Get user information if login before
+    if isLogin {
+      getUserInformation()
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -91,6 +99,19 @@ extension KitchenViewController: UITableViewDataSource {
 extension KitchenViewController {
   func didTouchMenuButton(_ sender: Any) {
     sideMenuManager?.toggleSideMenuView()
+  }
+  
+  func getUserInformation() {
+    userModelDatasource.getUserInfo() {
+      [unowned self] (user,error) in
+      if error != nil {
+        print(error!)
+        self.alertError(message: "Không thể lấy thông tin khách hàng")
+      } else {
+        Helper.user = user
+        print("====username: \(Helper.user.username)")
+      }
+    }
   }
 }
 

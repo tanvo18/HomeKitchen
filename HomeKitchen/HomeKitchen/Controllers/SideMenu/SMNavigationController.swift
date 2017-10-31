@@ -78,6 +78,9 @@ class SMNavigationController: LNSideMenuNavigationController {
     case 3:
       switch index {
       case 0:
+        // Clear token in UserDefault
+        UserDefaults.standard.removeObject(forKey: Helper.USER_DEFAULT_AUTHEN_TOKEN)
+        // Clear Facebook
         let loginManager = LoginManager()
         loginManager.logOut()
         // Hide navigation bar

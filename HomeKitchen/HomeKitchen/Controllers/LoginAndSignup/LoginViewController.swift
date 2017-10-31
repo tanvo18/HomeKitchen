@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
   
   let userModelDatasource = UserDataModel()
   var myActivityIndicator: UIActivityIndicatorView!
+  var isLogin: Bool = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,6 +27,16 @@ class LoginViewController: UIViewController {
     self.hideKeyboardWhenTappedAround()
     // Setup indicator
     setUpActivityIndicator()
+    
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    // Check user login or not
+    if isUserLogin() {
+      // param for parse to home screen
+      isLogin = true
+      performSegue(withIdentifier: "showHomeScreen", sender: self)
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -69,6 +80,18 @@ extension LoginViewController {
     myActivityIndicator.hidesWhenStopped = true
     view.addSubview(myActivityIndicator)
   }
+  
+  func isUserLogin() -> Bool {
+    if let authToken = UserDefaults.standard.value(forKey: "user_auth_token") {
+      if authToken as! String != "" {
+        // Save token
+        Helper.accessToken = authToken as! String
+        print("====token key \(Helper.accessToken)")
+        return true
+      }
+    }
+    return false
+  }
 }
 
 // MARK: IBAction
@@ -105,6 +128,10 @@ extension LoginViewController {
                     Helper.user = user
                     print("====nameOfUser \(user.name)")
                     self.myActivityIndicator.stopAnimating()
+                    // Save accessToken to UserDefault
+                    UserDefaults.standard.setValue(accessToken!, forKey: Helper.USER_DEFAULT_AUTHEN_TOKEN)
+                    // param for parse to home screen
+                    self.isLogin = false
                     self.performSegue(withIdentifier: "showHomeScreen", sender: self)
                   }
                 }
@@ -123,6 +150,16 @@ extension LoginViewController {
   // Back to Login screen
   @IBAction func unwindToLoginScreen(segue:UIStoryboardSegue) {
     
+  }
+}
+
+extension LoginViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showHomeScreen" {
+      if let destination = segue.destination as? KitchenViewController {
+        destination.isLogin = isLogin
+      }
+    }
   }
 }
 

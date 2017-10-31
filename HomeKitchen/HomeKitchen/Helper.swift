@@ -22,4 +22,5 @@ class Helper {
   static let createKitchenCellSection1 = ["home-line","type-line","location-line","phone-line"]
   // Image for section 2 CreateKitchenViewCell
   static let createKitchenCellSection2 = ["clock-line"]
+  static let USER_DEFAULT_AUTHEN_TOKEN = "user_auth_token"
 }
