@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qOq-UN-Haa">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photoalbum" translatesAutoresizingMaskIntoConstraints="NO" id="qOq-UN-Haa">
                         <rect key="frame" x="8" y="12" width="50" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -60,6 +60,7 @@
     </objects>
     <resources>
         <image name="minus" width="22" height="22"/>
+        <image name="photoalbum" width="64" height="64"/>
         <image name="plus" width="20" height="20"/>
     </resources>
 </document>

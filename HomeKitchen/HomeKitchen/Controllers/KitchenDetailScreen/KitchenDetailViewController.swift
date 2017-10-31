@@ -245,6 +245,10 @@ extension KitchenDetailViewController {
   @IBAction func didTouchReviewButton(_ sender: Any) {
     performSegue(withIdentifier: "showReviews", sender: self)
   }
+  
+  @IBAction func didTouchAddReviewButton(_ sender: Any) {
+    performSegue(withIdentifier: "showCreateReview", sender: self)
+  }
 }
 
 extension KitchenDetailViewController {

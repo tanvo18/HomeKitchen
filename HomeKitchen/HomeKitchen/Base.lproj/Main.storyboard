@@ -70,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9m5-mP-6oA">
-                                <rect key="frame" x="0.0" y="64" width="375" height="381"/>
+                                <rect key="frame" x="16" y="91" width="343" height="354"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -103,6 +103,11 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ghi chú" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DpO-DU-4r6">
                                 <rect key="frame" x="16" y="453" width="84" height="23"/>
@@ -112,7 +117,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.86233466863632202" green="0.87461161613464355" blue="0.87454229593276978" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
@@ -124,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nSF-tH-cGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2116" y="-1646"/>
+            <point key="canvasLocation" x="2116" y="-1646.6266866566718"/>
         </scene>
         <!--Kitchen Detail View Controller-->
         <scene sceneID="hqG-Ib-lzx">
@@ -316,6 +321,14 @@
                                                     <action selector="didTouchPostRequestButton:" destination="tLD-3D-VJE" eventType="touchUpInside" id="SlN-Kd-3KB"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVI-qY-AVA">
+                                                <rect key="frame" x="295" y="372" width="76" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Add review"/>
+                                                <connections>
+                                                    <action selector="didTouchAddReviewButton:" destination="tLD-3D-VJE" eventType="touchUpInside" id="GCy-4V-LMX"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94117647058823528" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -356,6 +369,7 @@
                         <segue destination="2DS-XS-LJa" kind="show" identifier="showOrderScreen" id="Exd-TF-GTv"/>
                         <segue destination="z0X-jk-iBe" kind="show" identifier="showPostRequest" id="lNP-HY-Dib"/>
                         <segue destination="2ic-Jm-Z6A" kind="show" identifier="showReviews" id="QTF-Td-U13"/>
+                        <segue destination="cOp-ps-sYd" kind="show" identifier="showCreateReview" id="m6M-Kj-f1N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7GQ-0c-4tV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1409,7 +1423,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BgX-qA-Yc6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KLR-er-G9K">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JB4-dC-nLq">
@@ -2083,7 +2097,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z22-D1-mHH" customClass="CVCalendarMenuView" customModule="CVCalendar">
-                                <rect key="frame" x="0.0" y="185" width="375" height="33"/>
+                                <rect key="frame" x="0.0" y="141" width="375" height="33"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="mGY-4k-OFd"/>
@@ -2093,13 +2107,13 @@
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tháng" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0F5-DT-hrj">
-                                <rect key="frame" x="0.0" y="124" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xN6-rQ-kRV" customClass="CVCalendarView" customModule="CVCalendar">
-                                <rect key="frame" x="0.0" y="226" width="375" height="300"/>
+                                <rect key="frame" x="0.0" y="182" width="375" height="300"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="Hff-Qa-74A"/>
@@ -2387,7 +2401,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kua-sF-6y5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-471" y="-1999"/>
+            <point key="canvasLocation" x="-1234" y="-2036"/>
         </scene>
         <!--Reviews View Controller-->
         <scene sceneID="cWh-mC-NS8">
@@ -2417,7 +2431,57 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F8V-Ln-8Xr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="488.80000000000001" y="-1999.2503748125939"/>
+            <point key="canvasLocation" x="-274" y="-2036"/>
+        </scene>
+        <!--Create Review View Controller-->
+        <scene sceneID="oa6-NK-hUI">
+            <objects>
+                <viewController id="cOp-ps-sYd" customClass="CreateReviewViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wrx-rS-XUg"/>
+                        <viewControllerLayoutGuide type="bottom" id="oYm-A3-gGq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bWW-Ij-Ilo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ĐÁNH GIÁ VÀ NHẬN XÉT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMz-H3-fN2">
+                                <rect key="frame" x="16" y="83" width="221" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.51206463865957619" green="0.52514923964688998" blue="0.53554534034680601" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cWg-vf-uQk" customClass="CosmosView" customModule="Cosmos">
+                                <rect key="frame" x="16" y="114" width="161" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qqV-eS-pML">
+                                <rect key="frame" x="16" y="164" width="343" height="192"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="cosmosView" destination="cWg-vf-uQk" id="B1d-fK-0XE"/>
+                        <outlet property="reviewTextView" destination="qqV-eS-pML" id="hIO-ba-3aA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RHz-8D-rkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="567.20000000000005" y="-2054.1229385307347"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="qOp-Hd-Zlr">
@@ -2772,11 +2836,11 @@
         <image name="wallpaper" width="375" height="667"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vXk-Gz-ofm"/>
-        <segue reference="ixT-ty-4nl"/>
         <segue reference="SEn-in-l5v"/>
+        <segue reference="ixT-ty-4nl"/>
         <segue reference="HoI-MX-zAi"/>
-        <segue reference="SiF-K6-Nzy"/>
-        <segue reference="gQ6-1e-KpS"/>
+        <segue reference="vXk-Gz-ofm"/>
+        <segue reference="PYR-hP-BMS"/>
+        <segue reference="B1h-dc-fmz"/>
     </inferredMetricsTieBreakers>
 </document>

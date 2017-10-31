@@ -49,6 +49,7 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Cosmos (11.0.3)
   - CVCalendar (1.5.2)
   - FacebookCore (0.2.0):
     - Bolts (~> 1.8)
@@ -96,6 +97,7 @@ DEPENDENCIES:
   - AWSSimpleDB
   - AWSSNS
   - AWSSQS
+  - Cosmos (~> 11.0)
   - CVCalendar (~> 1.5.2)
   - FacebookCore
   - FacebookLogin
@@ -138,6 +140,7 @@ SPEC CHECKSUMS:
   AWSSNS: c92b66ebd6f434ae106d3ba49f9432436daba37e
   AWSSQS: 8e55f609a5be369ec5c7348285c75d91cae9f3fe
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Cosmos: eb506859929f4add2d2aec822a27efb2f718a95d
   CVCalendar: 6d429042961f2abdf90a1795e66ef5e1032c88bb
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
@@ -149,6 +152,6 @@ SPEC CHECKSUMS:
   LNSideMenu: a36d902c8142af3febafa63e118c351a150f2321
   ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
 
-PODFILE CHECKSUM: 4d09a22b52001931ccc218aa1f36b0794fd9efb9
+PODFILE CHECKSUM: 9a0125a7a7911edf42fa724c3dcb9badc4235856
 
 COCOAPODS: 1.2.1

@@ -42,12 +42,12 @@ extension ReviewsViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! ReviewsTableViewCell
-    cell.backgroundColor = .gray
+    cell.configureWithReview(review: reviews[indexPath.row])
     return cell
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 70
+    return 160
   }
   
 }

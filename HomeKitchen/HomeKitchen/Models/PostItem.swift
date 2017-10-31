@@ -21,6 +21,8 @@ class PostItem: Mappable {
   // Data of image
   var data: Data?
   var price: Int = 0
+  // Check if product in post have image
+  var didPickImage: Bool = false
   
   init() {}
   

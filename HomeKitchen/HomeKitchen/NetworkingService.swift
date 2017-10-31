@@ -543,4 +543,29 @@ class NetworkingService {
       }
     }
   }
+  
+  // Send review of kitchen
+  func sendKitchenReview(reviewMessage: String, reviewPoint: Int, kitchenId: Int, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "kitchens/\(kitchenId)/reviews"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let parameters: Parameters = ["point" : reviewPoint,
+                                  "message" : reviewMessage,
+                                  "kitchen" : ["id" : kitchenId]
+    ]
+    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        if let message = response.result.value {
+          print("====message \(message)")
+          completion(message,nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
 }

@@ -27,6 +27,7 @@ class PostRequestViewController: UIViewController {
   var foodImageViews: [UIImageView] = []
   // message of textview
   var message: String = ""
+  let PLACEHOLDER_TEXT = "Nhập ghi chú cho các món ăn"
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -41,7 +42,10 @@ class PostRequestViewController: UIViewController {
     // Tab outside to close keyboard
     let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
     view.addGestureRecognizer(tapOutside)
-    
+    // TextView delegate
+    textViewMessage.delegate = self
+    textViewMessage.text = PLACEHOLDER_TEXT
+    textViewMessage.textColor = .lightGray
   }
   
   override func didReceiveMemoryWarning() {
@@ -65,8 +69,6 @@ extension PostRequestViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseable) as! PostTableViewCell
     cell.quantityLabel.text = "\(post.postItems[indexPath.row].quantity)"
-    // Set default image for imageview
-    cell.imageViewCell.image = UIImage(named: "photoalbum")
     // Handle button in cell
     cell.buttonPlus.tag = indexPath.row
     cell.buttonPlus.addTarget(self, action: #selector(self.didTouchButtonPlus), for: .touchUpInside)
@@ -139,7 +141,7 @@ extension PostRequestViewController {
   // A product is valid when it has quantity > 0 and a name
   func isValidProduct() -> Bool {
     for item in post.postItems {
-      if item.productName.isEmpty || item.quantity == 0 {
+      if item.productName.isEmpty || item.quantity == 0 || item.didPickImage == false {
         return false
       }
     }
@@ -177,6 +179,8 @@ extension PostRequestViewController: UIImagePickerControllerDelegate, UINavigati
     // Make data from image and saving to item
     let data = UIImageJPEGRepresentation(foodImageView.image!, 0.6)
     post.postItems[index].data = data
+    // Check picked image
+    post.postItems[index].didPickImage = true
     self.dismiss(animated: true, completion: nil)
   }
   
@@ -190,15 +194,32 @@ extension PostRequestViewController {
         // Take message from textView
         message = textViewMessage.text
         
-        print("====message: \(message)")
-        
-        
         performSegue(withIdentifier: "showOrderInfo", sender: self)
       } else {
-        self.alertError(message: "Not valid product")
+        self.alertError(message: "Sản phẩm phải có tên, số lượng và ảnh")
       }
     } else {
-      self.alertError(message: "You have to create at least a post")
+      self.alertError(message: "Bạn chưa có sản phẩm nào")
+    }
+  }
+}
+
+extension PostRequestViewController: UITextViewDelegate {
+  func textViewDidBeginEditing(_ textView: UITextView)
+  {
+    if (textView.text == PLACEHOLDER_TEXT)
+    {
+      textView.text = ""
+      textView.textColor = .black
+    }
+    textView.becomeFirstResponder() //Optional
+  }
+  
+  func textViewDidChange(_ textView: UITextView) {
+    if (textView.text == "")
+    {
+      textView.text = PLACEHOLDER_TEXT
+      textView.textColor = .lightGray
     }
   }
 }
