@@ -27,13 +27,16 @@ class KitchenDataModel {
       "Authorization": Helper.accessToken,
       "Accept": "application/json"
     ]
+    let url = NetworkingService.baseURLString + "kitchens/filter"
     
     // test
     let status = "city"
     let keyword = "Danang"
-    let url = NetworkingService.baseURLString + "kitchens/filter?status=\(status)&key_word=\(keyword)"
     
-    Alamofire.request(url, method: .post, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseJSON { response in
+    let parameters: Parameters = ["status" : status,
+                                  "key_word" : keyword]
+    
+    Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseJSON { response in
       switch response.result {
       case .success:
         if let json = response.result.value as? [String: Any]{

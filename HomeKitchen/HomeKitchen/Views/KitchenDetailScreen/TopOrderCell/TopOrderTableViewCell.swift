@@ -19,6 +19,8 @@ class TopOrderTableViewCell: UITableViewCell {
   
   @IBOutlet weak var priceLabel: UILabel!
   
+  @IBOutlet weak var separatorView: UIView!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
   }

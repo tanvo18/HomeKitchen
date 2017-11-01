@@ -27,6 +27,8 @@ class KitchenDetailViewController: UIViewController {
   
   var products: [OrderItem] = []{
     didSet {
+      // sorted product totalOrderAmount
+      products.sort{ $0.product!.totalOrderAmount > $1.product!.totalOrderAmount}
       tableView.reloadData()
     }
   }
@@ -40,6 +42,7 @@ class KitchenDetailViewController: UIViewController {
   let productModelDatasource = ProductDataModel()
   let reviewDataModel = ReviewDataModel()
   var kitchen: Kitchen?
+  let TOP_ORDER_ROW: Int = 3
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -62,7 +65,8 @@ class KitchenDetailViewController: UIViewController {
     getKitchenReviews()
     // Set title for back button in navigation bar
     self.settingForNavigationBar(title: "Thông tin bếp")
-    
+    // Disable scroll tableview
+    tableView.isScrollEnabled = false
   }
   
   override func didReceiveMemoryWarning() {
@@ -143,16 +147,27 @@ extension KitchenDetailViewController: UITableViewDelegate {
 // MARK: tableView Datasource
 extension KitchenDetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 3
+    if products.count < TOP_ORDER_ROW {
+      return 0
+    } else {
+      return products.count
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! TopOrderTableViewCell
+    if products.count > TOP_ORDER_ROW {
+      cell.configureWithItem(product: products[indexPath.row].product!)
+      // Hide separator of last row
+      if indexPath.row == 2 {
+        cell.separatorView.isHidden = true
+      }
+    }
     return cell
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 70
+    return 120
   }
   
 }
@@ -171,14 +186,14 @@ extension KitchenDetailViewController: ProductDataModelDelegate {
 extension KitchenDetailViewController {
   
   func parseDataForLabel() {
-    guard let kitchenName = kitchen?.name, let point = kitchen?.point, let openTime = kitchen?.open, let closeTime = kitchen?.close, let address = kitchen?.address?.address, let imageUrl = kitchen?.imageUrl else {
+    guard let kitchenName = kitchen?.name, let point = kitchen?.point, let openTime = kitchen?.open, let closeTime = kitchen?.close, let address = kitchen?.address, let imageUrl = kitchen?.imageUrl else {
       return
     }
     downloadBackgroundImage(imageUrl: imageUrl)
     
     pointLabel.text = "\(point)"
     timeLabel.text = "\(openTime) - \(closeTime)"
-    addressLabel.text = address
+    addressLabel.text = address.address + " " + address.district + " " + address.city
     kitchenNameLabel.text = kitchenName
     if point < 0 {
       pointLabel.isHidden = true

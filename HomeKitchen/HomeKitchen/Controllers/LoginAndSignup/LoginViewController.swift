@@ -35,6 +35,8 @@ class LoginViewController: UIViewController {
     if isUserLogin() {
       // param for parse to home screen
       isLogin = true
+      // Read username in UserDefault to render title of slide menu
+      Helper.user.username = UserDefaults.standard.value(forKey: Helper.USER_DEFAULT_USERNAME) as! String
       performSegue(withIdentifier: "showHomeScreen", sender: self)
     }
   }
@@ -82,7 +84,7 @@ extension LoginViewController {
   }
   
   func isUserLogin() -> Bool {
-    if let authToken = UserDefaults.standard.value(forKey: "user_auth_token") {
+    if let authToken = UserDefaults.standard.value(forKey: Helper.USER_DEFAULT_AUTHEN_TOKEN) {
       if authToken as! String != "" {
         // Save token
         Helper.accessToken = authToken as! String
@@ -130,6 +132,8 @@ extension LoginViewController {
                     self.myActivityIndicator.stopAnimating()
                     // Save accessToken to UserDefault
                     UserDefaults.standard.setValue(accessToken!, forKey: Helper.USER_DEFAULT_AUTHEN_TOKEN)
+                    // Save email to UserDefault
+                    UserDefaults.standard.setValue(user.username, forKey: Helper.USER_DEFAULT_USERNAME)
                     // param for parse to home screen
                     self.isLogin = false
                     self.performSegue(withIdentifier: "showHomeScreen", sender: self)
