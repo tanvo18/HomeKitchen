@@ -24,11 +24,15 @@ class KitchenDetailViewController: UIViewController {
   @IBOutlet weak var phoneLabel: UILabel!
   @IBOutlet weak var typeLabel: UILabel!
   @IBOutlet weak var descriptionTextView: UITextView!
+  @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
   
   var products: [OrderItem] = []{
     didSet {
       // sorted product totalOrderAmount
       products.sort{ $0.product!.totalOrderAmount > $1.product!.totalOrderAmount}
+      // Calculate height for tableview (tableView has 3 rows)
+      heightOfRows = 3 * heightForOneRow
+      updateViewConstraints()
       tableView.reloadData()
     }
   }
@@ -43,6 +47,8 @@ class KitchenDetailViewController: UIViewController {
   let reviewDataModel = ReviewDataModel()
   var kitchen: Kitchen?
   let TOP_ORDER_ROW: Int = 3
+  var heightOfRows: CGFloat = 0
+  var heightForOneRow: CGFloat = 120
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -67,6 +73,11 @@ class KitchenDetailViewController: UIViewController {
     self.settingForNavigationBar(title: "Thông tin bếp")
     // Disable scroll tableview
     tableView.isScrollEnabled = false
+  }
+  
+  override func updateViewConstraints() {
+    super.updateViewConstraints()
+    tableHeightConstraint.constant = heightOfRows
   }
   
   override func didReceiveMemoryWarning() {
@@ -147,6 +158,7 @@ extension KitchenDetailViewController: UITableViewDelegate {
 // MARK: tableView Datasource
 extension KitchenDetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    print("====datasource")
     if products.count < TOP_ORDER_ROW {
       return 0
     } else {
@@ -167,7 +179,7 @@ extension KitchenDetailViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 120
+    return heightForOneRow
   }
   
 }
@@ -258,10 +270,6 @@ extension KitchenDetailViewController {
   
   @IBAction func didTouchReviewButton(_ sender: Any) {
     performSegue(withIdentifier: "showReviews", sender: self)
-  }
-  
-  @IBAction func didTouchAddReviewButton(_ sender: Any) {
-    performSegue(withIdentifier: "showCreateReview", sender: self)
   }
 }
 

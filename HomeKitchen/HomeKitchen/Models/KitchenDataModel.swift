@@ -19,7 +19,7 @@ class KitchenDataModel {
   
   weak var delegate: KitchenDataModelDelegate?
   
-  func requestKitchen() {
+  func requestKitchen(status: String, keyword: String) {
     var kitchens: [Kitchen] = []
     var result: ResultKitchen?
     
@@ -28,10 +28,6 @@ class KitchenDataModel {
       "Accept": "application/json"
     ]
     let url = NetworkingService.baseURLString + "kitchens/filter"
-    
-    // test
-    let status = "city"
-    let keyword = "Danang"
     
     let parameters: Parameters = ["status" : status,
                                   "key_word" : keyword]

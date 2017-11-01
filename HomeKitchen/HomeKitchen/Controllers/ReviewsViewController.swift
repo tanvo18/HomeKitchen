@@ -14,6 +14,8 @@ class ReviewsViewController: UIViewController {
   
   var reviews: [Review] = []
   let reuseableCell = "Cell"
+  // Right button in navigation bar
+  var rightButtonItem: UIBarButtonItem = UIBarButtonItem()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -21,6 +23,8 @@ class ReviewsViewController: UIViewController {
     tableView.dataSource = self
     tableView.register(UINib(nibName: "ReviewsTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     self.settingForNavigationBar(title: "Danh sách đánh giá")
+    // Right item button
+    settingRightButtonItem()
   }
   
   override func didReceiveMemoryWarning() {
@@ -50,5 +54,22 @@ extension ReviewsViewController: UITableViewDataSource {
     return 160
   }
   
+}
+
+// MARK: Function
+extension ReviewsViewController {
+  func settingRightButtonItem() {
+    self.rightButtonItem = UIBarButtonItem.init(
+      title: "Đánh giá",
+      style: .done,
+      target: self,
+      action: #selector(rightButtonAction(sender:))
+    )
+    self.navigationItem.rightBarButtonItem = rightButtonItem
+  }
+  
+  func rightButtonAction(sender: UIBarButtonItem) {
+    performSegue(withIdentifier: "showCreateReview", sender: self)
+  }
 }
 

@@ -62,7 +62,7 @@ class KitchenViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     // MARK: enable sidemenu
     sideMenuManager?.sideMenuController()?.sideMenu?.disabled = false
-    kitchenModelDatasource.requestKitchen()
+    kitchenModelDatasource.requestKitchen(status: "city", keyword: "Danang")
   }
   
 }
