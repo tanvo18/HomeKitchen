@@ -16,9 +16,16 @@ class CreateAnswerViewController: UIViewController {
   @IBOutlet weak var deliveryDateLabel: UILabel!
   @IBOutlet weak var deliveryTimeTextField: UITextField!
   
+  @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
+  
+  @IBOutlet weak var viewHeightConstraint: NSLayoutConstraint!
+  
+  let reuseableCell = "Cell"
+  var heightOfRows: CGFloat = 0
+  var heightForOneRow: CGFloat = 80
+  
   var index: Int = 0
   var totalPrice: Int = 0
-  let reuseableCell = "Cell"
   // Information from post detail
   var postItems: [PostItem] = []
   var postId: Int = 0
@@ -48,6 +55,21 @@ class CreateAnswerViewController: UIViewController {
     deliveryDateLabel.addGestureRecognizer(tapLable)
     // Create picker for time
     createDatePicker()
+    // Calculate height of tableview
+    heightOfRows = CGFloat(postItems.count) * heightForOneRow
+  }
+  
+  override func updateViewConstraints() {
+    print("====heightOfRows Update: \(heightOfRows)")
+    super.updateViewConstraints()
+    // Update height of view inside scrollView
+    let extraHeight = heightOfRows - tableHeightConstraint.constant
+    if extraHeight > 0 {
+      // Need to add more height for view
+      viewHeightConstraint.constant += heightOfRows - tableHeightConstraint.constant
+    }
+    print("====constraintHeightView After \(viewHeightConstraint.constant)")
+    tableHeightConstraint.constant = heightOfRows
   }
   
   override func didReceiveMemoryWarning() {
@@ -74,6 +96,10 @@ extension CreateAnswerViewController: UITableViewDataSource {
     cell.priceTextField.tag = indexPath.row
     cell.priceTextField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return heightForOneRow
   }
 }
 

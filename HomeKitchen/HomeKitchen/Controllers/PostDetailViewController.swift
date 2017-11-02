@@ -23,8 +23,13 @@ class PostDetailViewController: UIViewController {
   @IBOutlet weak var declinedButton: UIButton!
   @IBOutlet weak var messageTextView: UITextView!
   @IBOutlet weak var phoneNumberLabel: UILabel!
+  @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var viewHeightConstraint: NSLayoutConstraint!
   
   let reuseableCell = "Cell"
+  var heightOfRows: CGFloat = 0
+  var heightForOneRow: CGFloat = 80
+  
   var post: Post = Post()
   
   override func viewDidLoad() {
@@ -35,6 +40,22 @@ class PostDetailViewController: UIViewController {
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     self.settingForNavigationBar(title: "Chi tiết yêu cầu")
+  
+    // Calculate height of tableview
+    heightOfRows = CGFloat(post.postItems.count) * heightForOneRow
+  }
+  
+  override func updateViewConstraints() {
+    print("====heightOfRows Update: \(heightOfRows)")
+    super.updateViewConstraints()
+    // Update height of view inside scrollView
+    let extraHeight = heightOfRows - tableHeightConstraint.constant
+    if extraHeight > 0 {
+      // Need to add more height for view
+      viewHeightConstraint.constant += heightOfRows - tableHeightConstraint.constant
+    }
+    print("====constraintHeightView After \(viewHeightConstraint.constant)")
+    tableHeightConstraint.constant = heightOfRows
   }
   
   override func didReceiveMemoryWarning() {
@@ -61,6 +82,10 @@ extension PostDetailViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! PostDetailTableViewCell
     cell.configureWithItem(item: post.postItems[indexPath.row])
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return heightForOneRow
   }
 }
 

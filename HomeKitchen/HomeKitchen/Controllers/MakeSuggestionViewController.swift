@@ -11,17 +11,19 @@ import ObjectMapper
 
 class MakeSuggestionViewController: UIViewController {
   
+  @IBOutlet weak var deliveryDateLabel: UILabel!
+  @IBOutlet weak var totalLabel: UILabel!
+  @IBOutlet weak var deliveryTimeTextField: UITextField!
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var viewHeightConstraint: NSLayoutConstraint!
+  
   let reuseableCell = "Cell"
+  var heightOfRows: CGFloat = 0
+  var heightForOneRow: CGFloat = 80
+  
   var orderInfo: OrderInfo = OrderInfo()
   var suggestionItems: [SuggestionItem] = []
-  
-  @IBOutlet weak var deliveryDateLabel: UILabel!
-  
-  @IBOutlet weak var totalLabel: UILabel!
-  
-  @IBOutlet weak var deliveryTimeTextField: UITextField!
-  
   var index: Int = 0
   var totalPrice: Int = 0
   
@@ -48,6 +50,21 @@ class MakeSuggestionViewController: UIViewController {
     view.addGestureRecognizer(tapOutside)
     // setting navigationbar
     self.settingForNavigationBar(title: "Make Suggestion")
+    // Calculate height of tableview
+    heightOfRows = CGFloat(orderInfo.products.count) * heightForOneRow
+  }
+  
+  override func updateViewConstraints() {
+    print("====heightOfRows Update: \(heightOfRows)")
+    super.updateViewConstraints()
+    // Update height of view inside scrollView
+    let extraHeight = heightOfRows - tableHeightConstraint.constant
+    if extraHeight > 0 {
+      // Need to add more height for view
+      viewHeightConstraint.constant += heightOfRows - tableHeightConstraint.constant
+    }
+    print("====constraintHeightView After \(viewHeightConstraint.constant)")
+    tableHeightConstraint.constant = heightOfRows
   }
   
   override func didReceiveMemoryWarning() {
@@ -75,7 +92,7 @@ extension MakeSuggestionViewController: UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 80
+    return heightForOneRow
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

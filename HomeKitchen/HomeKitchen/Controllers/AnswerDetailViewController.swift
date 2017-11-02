@@ -17,12 +17,17 @@ class AnswerDetailViewController: UIViewController {
   @IBOutlet weak var acceptedButton: UIButton!
   @IBOutlet weak var declinedButton: UIButton!
   @IBOutlet weak var totalPriceLabel: UILabel!
+  @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var viewHeightConstraint: NSLayoutConstraint!
   
   var answer: Answer!
   var postItem: [PostItem] = []
   var deliveryTime: String = ""
   var deliveryDate: String = ""
+  
   let reuseableCell = "Cell"
+  var heightOfRows: CGFloat = 0
+  var heightForOneRow: CGFloat = 80
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,6 +53,22 @@ class AnswerDetailViewController: UIViewController {
       acceptedButton.isHidden = true
       declinedButton.isHidden = true
     }
+    
+    // Calculate height of tableview
+    heightOfRows = CGFloat(answer.answerDetails.count) * heightForOneRow
+  }
+  
+  override func updateViewConstraints() {
+    print("====heightOfRows Update: \(heightOfRows)")
+    super.updateViewConstraints()
+    // Update height of view inside scrollView
+    let extraHeight = heightOfRows - tableHeightConstraint.constant
+    if extraHeight > 0 {
+      // Need to add more height for view
+      viewHeightConstraint.constant += heightOfRows - tableHeightConstraint.constant
+    }
+    print("====constraintHeightView After \(viewHeightConstraint.constant)")
+    tableHeightConstraint.constant = heightOfRows
   }
   
   override func didReceiveMemoryWarning() {
@@ -71,6 +92,10 @@ extension AnswerDetailViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! AnswerTableViewCell
     cell.configureWithItem(answerDetail: answer.answerDetails[indexPath.row])
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return heightForOneRow
   }
   
 }
