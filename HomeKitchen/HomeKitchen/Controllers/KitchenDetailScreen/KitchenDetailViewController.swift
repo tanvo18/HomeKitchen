@@ -46,7 +46,7 @@ class KitchenDetailViewController: UIViewController {
   let productModelDatasource = ProductDataModel()
   let reviewDataModel = ReviewDataModel()
   var kitchen: Kitchen?
-  let TOP_ORDER_ROW: Int = 3
+  let TOP_ORDER_ROW_QUANTITIES: Int = 3
   var heightOfRows: CGFloat = 0
   var heightForOneRow: CGFloat = 120
   
@@ -158,8 +158,7 @@ extension KitchenDetailViewController: UITableViewDelegate {
 // MARK: tableView Datasource
 extension KitchenDetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    print("====datasource")
-    if products.count < TOP_ORDER_ROW {
+    if products.count < TOP_ORDER_ROW_QUANTITIES {
       return 0
     } else {
       return products.count
@@ -168,12 +167,12 @@ extension KitchenDetailViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! TopOrderTableViewCell
-    if products.count > TOP_ORDER_ROW {
+    if products.count > TOP_ORDER_ROW_QUANTITIES {
       cell.configureWithItem(product: products[indexPath.row].product!)
       // Hide separator of last row
       if indexPath.row == 2 {
         cell.separatorView.isHidden = true
-      }
+      } 
     }
     return cell
   }

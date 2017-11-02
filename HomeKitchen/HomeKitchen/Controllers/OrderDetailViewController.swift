@@ -37,8 +37,13 @@ class OrderDetailViewController: UIViewController {
   
   @IBOutlet weak var declinedButton: UIButton!
   
+  @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
+  
+  @IBOutlet weak var viewHeightConstraint: NSLayoutConstraint!
   
   let reuseableCell = "Cell"
+  var heightOfRows: CGFloat = 0
+  var heightForOneRow: CGFloat = 40
   
   var orderInfo: OrderInfo = OrderInfo()
   var orderId: Int = 0
@@ -55,6 +60,21 @@ class OrderDetailViewController: UIViewController {
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     self.settingForNavigationBar(title: "Chi tiết đơn hàng")
+    // Calculate height of tableview
+    heightOfRows = CGFloat(orderInfo.products.count) * heightForOneRow
+  }
+  
+  override func updateViewConstraints() {
+    print("====heightOfRows Update: \(heightOfRows)")
+    super.updateViewConstraints()
+    // Update height of view inside scrollView
+    let extraHeight = heightOfRows - tableHeightConstraint.constant
+    if extraHeight > 0 {
+      // Need to add more height for view 
+      viewHeightConstraint.constant += heightOfRows - tableHeightConstraint.constant
+    }
+    print("====constraintHeightView After \(viewHeightConstraint.constant)")
+    tableHeightConstraint.constant = heightOfRows
   }
   
   override func didReceiveMemoryWarning() {
@@ -67,9 +87,11 @@ class OrderDetailViewController: UIViewController {
   
 }
 
+// MARK: TableView Delegate
 extension OrderDetailViewController: UITableViewDelegate {
 }
 
+// MARK: TableView DataSource
 extension OrderDetailViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,11 +101,17 @@ extension OrderDetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! OrderDetailTableViewCell
     cell.configureWithItem(orderItem: orderInfo.products[indexPath.row])
+    // Hide seperator of last row
+    if indexPath.row == orderInfo.products.count - 1 {
+      cell.separatorView.isHidden = true
+    } else {
+      cell.separatorView.isHidden = false
+    }
     return cell
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 40
+    return heightForOneRow
   }
 }
 

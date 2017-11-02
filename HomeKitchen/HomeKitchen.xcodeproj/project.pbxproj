@@ -387,13 +387,13 @@
 			name = GetListOrderCell;
 			sourceTree = "<group>";
 		};
-		4D2485571F7A3F710025F810 /* CustomerSuggestionScreen */ = {
+		4D2485571F7A3F710025F810 /* DetailSuggestionScreen */ = {
 			isa = PBXGroup;
 			children = (
 				4D2485581F7A3F940025F810 /* SuggestionTableViewCell.swift */,
 				4D2485591F7A3F940025F810 /* SuggestionTableViewCell.xib */,
 			);
-			name = CustomerSuggestionScreen;
+			name = DetailSuggestionScreen;
 			sourceTree = "<group>";
 		};
 		4D24855C1F7A5E4B0025F810 /* CalendarScreen */ = {
@@ -760,7 +760,7 @@
 				4D2AAAC61F8A6E6C00F281A4 /* CreateKitchenScreen */,
 				4DEF2DC31F7BA45300C534FC /* MakeSuggestionScreen */,
 				4D4F3E591F99A67400FD0C6B /* ListSuggestionsScreen */,
-				4D2485571F7A3F710025F810 /* CustomerSuggestionScreen */,
+				4D2485571F7A3F710025F810 /* DetailSuggestionScreen */,
 				4DEBE06A1F78092800A0305D /* OrderDetailScreen */,
 				4D237C031F775BA8007C1201 /* GetListOrderScreen */,
 				4D86C0421F72515F00C3D555 /* OrderInfoScreen */,

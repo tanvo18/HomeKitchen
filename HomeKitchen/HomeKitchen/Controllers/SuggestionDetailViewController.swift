@@ -17,8 +17,13 @@ class SuggestionDetailViewController: UIViewController {
   @IBOutlet weak var acceptedButton: UIButton!
   @IBOutlet weak var declinedButton: UIButton!
   @IBOutlet weak var totalPriceLabel: UILabel!
+  @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var viewHeightConstraint: NSLayoutConstraint!
   
   let reuseableCell = "Cell"
+  var heightOfRows: CGFloat = 0
+  var heightForOneRow: CGFloat = 70
+  
   var suggestion: Suggestion = Suggestion()
   var suggestionId: Int = 0
   var isAccepted: Bool = true
@@ -47,6 +52,22 @@ class SuggestionDetailViewController: UIViewController {
       acceptedButton.isHidden = true
       declinedButton.isHidden = true
     }
+    
+    // Calculate height of tableview
+    heightOfRows = CGFloat(suggestion.suggestItems.count) * heightForOneRow
+  }
+  
+  override func updateViewConstraints() {
+    print("====heightOfRows Update: \(heightOfRows)")
+    super.updateViewConstraints()
+    // Update height of view inside scrollView
+    let extraHeight = heightOfRows - tableHeightConstraint.constant
+    if extraHeight > 0 {
+      // Need to add more height for view
+      viewHeightConstraint.constant += heightOfRows - tableHeightConstraint.constant
+    }
+    print("====constraintHeightView After \(viewHeightConstraint.constant)")
+    tableHeightConstraint.constant = heightOfRows
   }
   
   override func didReceiveMemoryWarning() {
@@ -55,9 +76,11 @@ class SuggestionDetailViewController: UIViewController {
   
 }
 
+// MARK: TableView Delegate
 extension SuggestionDetailViewController: UITableViewDelegate {
 }
 
+// MARK: TableView DataSource
 extension SuggestionDetailViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,11 +90,15 @@ extension SuggestionDetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! SuggestionTableViewCell
     cell.configureWithItem(item: suggestion.suggestItems[indexPath.row])
+    // Hide separator of last cell
+    if indexPath.row == suggestion.suggestItems.count - 1 {
+      cell.separatorView.isHidden = true
+    }
     return cell
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 70
+    return heightForOneRow
   }
 }
 

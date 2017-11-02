@@ -16,6 +16,8 @@ class OrderDetailTableViewCell: UITableViewCell {
   
   @IBOutlet weak var orderItemPriceLabel: UILabel!
   
+  @IBOutlet weak var separatorView: UIView!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
   }

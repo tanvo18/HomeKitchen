@@ -73,6 +73,7 @@
                 <outlet property="nameProductLabel" destination="3gq-eF-POu" id="Io4-hd-zku"/>
                 <outlet property="orderItemPriceLabel" destination="qJI-Q0-QPm" id="dtd-95-aWU"/>
                 <outlet property="quantityLabel" destination="xjR-3M-2y8" id="hVY-Ao-Uqt"/>
+                <outlet property="separatorView" destination="vV4-JQ-WFL" id="9Cx-ut-9v0"/>
             </connections>
             <point key="canvasLocation" x="61" y="61"/>
         </tableViewCell>
