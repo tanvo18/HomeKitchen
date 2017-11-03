@@ -36,6 +36,9 @@ class ListPostViewController: UIViewController {
       title = "Yêu cầu của tôi"
     }
     self.settingForNavigationBar(title: title)
+    // Init Menu Button
+    let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
+    self.navigationItem.leftBarButtonItem  = menuButton
   }
   
   override func didReceiveMemoryWarning() {
@@ -69,7 +72,8 @@ class ListPostViewController: UIViewController {
       }
     }
     
-    
+    // MARK: enable sidemenu
+    sideMenuManager?.sideMenuController()?.sideMenu?.disabled = false
   }
   
 }
@@ -111,7 +115,10 @@ extension ListPostViewController {
     } else {
       performSegue(withIdentifier: "showListAnswer", sender: self)
     }
-    
+  }
+  
+  func didTouchMenuButton(_ sender: Any) {
+    sideMenuManager?.toggleSideMenuView()
   }
 }
 

@@ -18,9 +18,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1CL-ya-mlP">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1CL-ya-mlP">
                         <rect key="frame" x="8" y="11" width="20" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="YmS-xH-DWQ"/>
+                        </constraints>
                     </imageView>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0vd-os-ZxM">
                         <rect key="frame" x="36" y="11" width="276" height="20"/>
@@ -39,12 +41,16 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="wCD-RV-uFu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="3uL-D9-eTe"/>
+                    <constraint firstItem="1CL-ya-mlP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="P0L-P7-HKT"/>
                     <constraint firstAttribute="bottom" secondItem="wCD-RV-uFu" secondAttribute="bottom" id="VwU-hf-mVs"/>
                     <constraint firstAttribute="trailing" secondItem="wCD-RV-uFu" secondAttribute="trailing" constant="8" id="YCk-mI-1ZE"/>
+                    <constraint firstItem="wCD-RV-uFu" firstAttribute="top" secondItem="1CL-ya-mlP" secondAttribute="bottom" constant="11.5" id="j9Z-eu-Bms"/>
+                    <constraint firstItem="1CL-ya-mlP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="tJv-oT-ypS"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="imageViewCell" destination="1CL-ya-mlP" id="IQB-6e-nUI"/>
+                <outlet property="separatorView" destination="wCD-RV-uFu" id="hIW-Gd-qWy"/>
                 <outlet property="textFieldCell" destination="0vd-os-ZxM" id="sBx-EN-cW2"/>
             </connections>
         </tableViewCell>

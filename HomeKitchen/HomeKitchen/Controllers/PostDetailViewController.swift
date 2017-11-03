@@ -34,6 +34,8 @@ class PostDetailViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    // MARK: Disable sidemenu
+    sideMenuManager?.sideMenuController()?.sideMenu?.disabled = true
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UINib(nibName: "PostDetailTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
@@ -81,6 +83,10 @@ extension PostDetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! PostDetailTableViewCell
     cell.configureWithItem(item: post.postItems[indexPath.row])
+    // Hide separator of last row
+    if indexPath.row == post.postItems.count - 1 {
+      cell.separatorView.isHidden = true
+    }
     return cell
   }
   

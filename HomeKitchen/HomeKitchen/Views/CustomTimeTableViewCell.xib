@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,41 +19,68 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lYz-SS-9Wt">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lYz-SS-9Wt">
                         <rect key="frame" x="8" y="11" width="20" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="Y1D-5f-Uev"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Giờ mở cửa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lza-87-cBK">
-                        <rect key="frame" x="36" y="11" width="97" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="đến" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeT-Bv-Fva">
-                        <rect key="frame" x="197" y="7" width="29" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="đến" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeT-Bv-Fva">
+                        <rect key="frame" x="206" y="11" width="29" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="29" id="Bn8-PU-eRY"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="09:00 " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dto-MT-kqu">
-                        <rect key="frame" x="234" y="4" width="70" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="09:00 " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dto-MT-kqu">
+                        <rect key="frame" x="243" y="6" width="70" height="31"/>
                         <color key="backgroundColor" red="0.011764705882352941" green="0.37254901960784315" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="dpS-Nz-w4a"/>
+                        </constraints>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="09:00 " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qU4-sb-Ucl">
-                        <rect key="frame" x="119" y="4" width="70" height="31"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="09:00 " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qU4-sb-Ucl">
+                        <rect key="frame" x="129" y="6" width="70" height="31"/>
                         <color key="backgroundColor" red="0.011764705882352941" green="0.37254901960784315" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="p7u-9c-rb8"/>
+                        </constraints>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giờ mở cửa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lza-87-cBK">
+                        <rect key="frame" x="36" y="13" width="85" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="85" id="6iA-zS-kv6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Dto-MT-kqu" secondAttribute="trailing" constant="7" id="28c-fx-KxX"/>
+                    <constraint firstItem="lza-87-cBK" firstAttribute="leading" secondItem="lYz-SS-9Wt" secondAttribute="trailing" constant="8" id="AMS-k5-Vvv"/>
+                    <constraint firstItem="Dto-MT-kqu" firstAttribute="leading" secondItem="xeT-Bv-Fva" secondAttribute="trailing" constant="8" id="C0f-va-Myr"/>
+                    <constraint firstAttribute="bottom" secondItem="Dto-MT-kqu" secondAttribute="bottom" constant="6.5" id="Cu3-9a-GNa"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="lYz-SS-9Wt" secondAttribute="bottom" constant="4.5" id="DuD-Ey-yYe"/>
+                    <constraint firstItem="xeT-Bv-Fva" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="EmS-YI-ubl"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="lza-87-cBK" secondAttribute="bottom" constant="5.5" id="JNx-2x-Bie"/>
+                    <constraint firstItem="xeT-Bv-Fva" firstAttribute="leading" secondItem="qU4-sb-Ucl" secondAttribute="trailing" constant="7" id="Lgb-H9-tfR"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="xeT-Bv-Fva" secondAttribute="bottom" constant="3.5" id="Q5u-Fy-TiK"/>
+                    <constraint firstItem="lYz-SS-9Wt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="TXR-2K-hxA"/>
+                    <constraint firstItem="lYz-SS-9Wt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="UQp-Xb-HrY"/>
+                    <constraint firstItem="Dto-MT-kqu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="fHO-Bb-BaU"/>
+                    <constraint firstItem="qU4-sb-Ucl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="gFR-Nd-EJE"/>
+                    <constraint firstAttribute="bottom" secondItem="qU4-sb-Ucl" secondAttribute="bottom" constant="6.5" id="qkP-cM-6O6"/>
+                    <constraint firstItem="lza-87-cBK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="t2v-8Q-NsR"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="closingTextField" destination="Dto-MT-kqu" id="FRa-mp-Ply"/>

@@ -87,6 +87,11 @@ class EditKitchenViewController: UIViewController {
     setUpActivityIndicator()
     // Start indicator for download image
     myActivityIndicator.startAnimating()
+    // Init Menu Button
+    let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
+    self.navigationItem.leftBarButtonItem  = menuButton
+    // Disable tableview scroll
+    tableView.isScrollEnabled = false
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +103,7 @@ class EditKitchenViewController: UIViewController {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
+  
 }
 
 // MARK: tableView Delegate
@@ -132,7 +138,7 @@ extension EditKitchenViewController: UITableViewDataSource {
         timeCell.backgroundColor = .white
         timeCell.isUserInteractionEnabled = true
       } else {
-        timeCell.backgroundColor = .gray
+        timeCell.backgroundColor = .lightGray
         timeCell.isUserInteractionEnabled = false
       }
       return timeCell
@@ -162,7 +168,7 @@ extension EditKitchenViewController: UITableViewDataSource {
         createKitchenCell.backgroundColor = .white
         createKitchenCell.isUserInteractionEnabled = true
       } else {
-        createKitchenCell.backgroundColor = .gray
+        createKitchenCell.backgroundColor = .lightGray
         createKitchenCell.isUserInteractionEnabled = false
       }
       
@@ -350,6 +356,10 @@ extension EditKitchenViewController {
       self.kitchenCoverImageView.image = image
     }
   }
+  
+  func didTouchMenuButton(_ sender: Any) {
+    sideMenuManager?.toggleSideMenuView()
+  }
 }
 
 // MARK: Function of UIImagePickerControllerDelegate, UINavigationControllerDelegate
@@ -489,7 +499,7 @@ extension EditKitchenViewController {
     }
   }
   
-  @IBAction func didTouchMenuButton(_ sender: Any) {
+  @IBAction func didTouchManageMenuButton(_ sender: Any) {
     performSegue(withIdentifier: "showProducts", sender: self)
   }
 }

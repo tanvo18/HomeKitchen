@@ -18,14 +18,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pZ-Qg-bpd">
-                        <rect key="frame" x="8" y="11" width="299" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pZ-Qg-bpd">
+                        <rect key="frame" x="8" y="11" width="304" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="0pZ-Qg-bpd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="1EY-Qt-siC"/>
+                    <constraint firstItem="0pZ-Qg-bpd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="bwY-8F-zbd"/>
+                    <constraint firstAttribute="trailing" secondItem="0pZ-Qg-bpd" secondAttribute="trailing" constant="8" id="qUr-bq-ZVF"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="locationLabel" destination="0pZ-Qg-bpd" id="h0i-uP-TeL"/>

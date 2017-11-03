@@ -55,6 +55,8 @@ class SuggestionDetailViewController: UIViewController {
     
     // Calculate height of tableview
     heightOfRows = CGFloat(suggestion.suggestItems.count) * heightForOneRow
+    // Disable tableview scroll
+    tableView.isScrollEnabled = false
   }
   
   override func updateViewConstraints() {

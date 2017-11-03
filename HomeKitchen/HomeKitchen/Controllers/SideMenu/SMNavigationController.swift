@@ -41,7 +41,7 @@ class SMNavigationController: LNSideMenuNavigationController {
     case 0:
       switch index {
       case 0:
-        nViewController = storyboard?.instantiateViewController(withIdentifier: "RestaurantViewController")
+        nViewController = storyboard?.instantiateViewController(withIdentifier: "KitchenViewController")
       default:
         break
       }

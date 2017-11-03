@@ -13,6 +13,11 @@ class ListOrderViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   
   @IBOutlet weak var statusTextField: UITextField!
+  
+  @IBOutlet weak var statusTFHeight: NSLayoutConstraint!
+  
+  @IBOutlet weak var topSpaceTableView: NSLayoutConstraint!
+  
   let reuseableCell = "Cell"
   var orderInfos: [OrderInfo] = [] {
     didSet {
@@ -49,6 +54,9 @@ class ListOrderViewController: UIViewController {
     } else if Helper.role == "customer" {
       title = "Đơn hàng của tôi"
       statusTextField.isHidden = true
+      // status height 0
+      statusTFHeight.constant = 0
+      topSpaceTableView.constant = 0
     }
     self.settingForNavigationBar(title: title)
     createStatusPicker()
@@ -63,6 +71,11 @@ class ListOrderViewController: UIViewController {
       selectedStatus = "pending"
       kitchenOrderModelDatasource.requestKitchenOrder(status: selectedStatus)
     }
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    // MARK: enable sidemenu
+    sideMenuManager?.sideMenuController()?.sideMenu?.disabled = false
   }
   
   override func didReceiveMemoryWarning() {

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -38,7 +39,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hwe-AI-GkD">
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hwe-AI-GkD">
                         <rect key="frame" x="79" y="32" width="132" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="0hd-H7-TnB"/>
@@ -48,13 +49,24 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     </textField>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMX-6O-eCg">
+                        <rect key="frame" x="79" y="63" width="132" height="1"/>
+                        <color key="backgroundColor" red="0.76862745098039209" green="0.76470588235294112" blue="0.76470588235294112" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="7y8-f2-tjd"/>
+                            <constraint firstAttribute="width" constant="132" id="J5y-AR-g1k"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Hwe-AI-GkD" firstAttribute="leading" secondItem="LiU-Z7-8BH" secondAttribute="trailing" constant="8" id="7fL-I6-NvW"/>
                     <constraint firstItem="cmv-az-hhc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="8ex-fx-40m"/>
                     <constraint firstItem="LiU-Z7-8BH" firstAttribute="top" secondItem="cmv-az-hhc" secondAttribute="bottom" constant="8" id="9Oh-iz-Oh5"/>
                     <constraint firstItem="LiU-Z7-8BH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="M0g-me-jBG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="bMX-6O-eCg" secondAttribute="trailing" constant="101" id="Wdw-k6-cN0"/>
                     <constraint firstItem="Hwe-AI-GkD" firstAttribute="centerY" secondItem="LiU-Z7-8BH" secondAttribute="centerY" id="ZY9-oq-s6N"/>
+                    <constraint firstItem="bMX-6O-eCg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="71" id="afO-q5-zwA"/>
+                    <constraint firstItem="bMX-6O-eCg" firstAttribute="top" secondItem="Hwe-AI-GkD" secondAttribute="bottom" constant="1" id="rfK-CW-GPa"/>
                     <constraint firstItem="cmv-az-hhc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="w6d-4A-o9P"/>
                 </constraints>
             </tableViewCellContentView>
@@ -63,7 +75,7 @@
                 <outlet property="priceTextField" destination="Hwe-AI-GkD" id="tOs-zd-jBX"/>
                 <outlet property="quantityLabel" destination="LiU-Z7-8BH" id="35E-zD-NDB"/>
             </connections>
-            <point key="canvasLocation" x="44" y="75.5"/>
+            <point key="canvasLocation" x="44" y="75"/>
         </tableViewCell>
     </objects>
 </document>

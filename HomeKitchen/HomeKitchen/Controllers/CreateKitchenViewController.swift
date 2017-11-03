@@ -48,7 +48,13 @@ class CreateKitchenViewController: UIViewController {
     districtLabel.addGestureRecognizer(tap)
     // Navigation bar
     self.settingForNavigationBar(title: "Tạo bếp")
+    // Right button in navigation bar
     settingRightButtonItem()
+    // Init Menu Button
+    let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
+    self.navigationItem.leftBarButtonItem  = menuButton
+    // Disable tableview scroll
+    tableView.isScrollEnabled = false
   }
   
   override func didReceiveMemoryWarning() {
@@ -95,6 +101,8 @@ extension CreateKitchenViewController: UITableViewDataSource {
          // Set number type for phone number textfield
         createKitchenCell.textFieldCell.keyboardType = .numberPad
         phoneNumberTF = createKitchenCell.textFieldCell
+        // Hide separator of last row
+        createKitchenCell.separatorView.isHidden = true
       }
       createKitchenCell.configureWithItem(title: sectionOnePlaceHolder[indexPath.row])
       return createKitchenCell
@@ -185,7 +193,6 @@ extension CreateKitchenViewController {
       action: #selector(rightButtonAction(sender:))
     )
     self.navigationItem.rightBarButtonItem = rightButtonItem
-    self.navigationItem.rightBarButtonItem?.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
   }
   
   func rightButtonAction(sender: UIBarButtonItem) {
@@ -235,6 +242,10 @@ extension CreateKitchenViewController {
     } else {
       return true
     }
+  }
+  
+  func didTouchMenuButton(_ sender: Any) {
+    sideMenuManager?.toggleSideMenuView()
   }
 }
 

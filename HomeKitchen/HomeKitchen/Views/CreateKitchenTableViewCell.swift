@@ -14,6 +14,8 @@ class CreateKitchenTableViewCell: UITableViewCell {
   
   @IBOutlet weak var textFieldCell: UITextField!
   
+  @IBOutlet weak var separatorView: UIView!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
   }

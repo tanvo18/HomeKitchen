@@ -19,6 +19,8 @@ class LocationViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    // MARK: Disable sidemenu
+    sideMenuManager?.sideMenuController()?.sideMenu?.disabled = true
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UINib(nibName: "LocationTableViewCell", bundle: nil), forCellReuseIdentifier: reuseable)

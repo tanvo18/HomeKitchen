@@ -56,6 +56,8 @@ class AnswerDetailViewController: UIViewController {
     
     // Calculate height of tableview
     heightOfRows = CGFloat(answer.answerDetails.count) * heightForOneRow
+    // Disable tableview scroll
+    tableView.isScrollEnabled = false
   }
   
   override func updateViewConstraints() {
@@ -91,6 +93,10 @@ extension AnswerDetailViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! AnswerTableViewCell
     cell.configureWithItem(answerDetail: answer.answerDetails[indexPath.row])
+    // Hide separator of last row
+    if indexPath.row == answer.answerDetails.count - 1 {
+      cell.separatorView.isHidden = true
+    }
     return cell
   }
   

@@ -15,6 +15,7 @@ class PostDetailTableViewCell: UITableViewCell {
   @IBOutlet weak var foodImageView: UIImageView!
   @IBOutlet weak var productNameLabel: UILabel!
   @IBOutlet weak var quantityLabel: UILabel!
+  @IBOutlet weak var separatorView: UIView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
