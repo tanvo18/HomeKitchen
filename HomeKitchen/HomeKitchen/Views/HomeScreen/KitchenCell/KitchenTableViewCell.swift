@@ -69,14 +69,17 @@ class KitchenTableViewCell: UITableViewCell {
   
   // MARK: download image with url
   func downloadImage(imageUrl: String) {
-    myIndicator.startAnimating()
-    let url = URL(string: imageUrl)!
-    ImageDownloader.default.downloadImage(with: url, options: [], progressBlock: nil) {
-      (image, error, url, data) in
-      self.backgroundImageView.image = image
-      // stop indicator
-      self.myIndicator.stopAnimating()
-      self.myIndicator.isHidden = true
+    // check imageUrl not blank
+    if imageUrl != "" {
+      myIndicator.startAnimating()
+      let url = URL(string: imageUrl)!
+      ImageDownloader.default.downloadImage(with: url, options: [], progressBlock: nil) {
+        (image, error, url, data) in
+        self.backgroundImageView.image = image
+        // stop indicator
+        self.myIndicator.stopAnimating()
+        self.myIndicator.isHidden = true
+      }
     }
   }
 }

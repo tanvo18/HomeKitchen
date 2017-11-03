@@ -52,6 +52,15 @@ class EditKitchenViewController: UIViewController {
   let headerTitles = ["Thông tin bắt buộc", "Thông tin thêm"]
   let sectionOnePlaceHolder = ["Tên bếp", "Kiểu bếp", "Địa chỉ","Số điện thoại"]
   let datePicker = UIDatePicker()
+  
+  // Recognize function tapCity or tapDistrict
+  var distinguishFunction = ""
+  let FUNCTION_TAP_DISTRICT = "tab_district"
+  let FUNCTION_TAP_CITY = "tab_city"
+  let INVALID_CITY = "Thành phố"
+  // Recognize index of city in array to choose district
+  var cityIndex = 0
+  
   var selectedImageUrl: URL!
   // Check the first time go to EditKitchen Controller to set image
   var isFirstTime: Bool = true
@@ -70,6 +79,11 @@ class EditKitchenViewController: UIViewController {
     // Tab outside to close keyboard
     let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
     view.addGestureRecognizer(tapOutside)
+    
+    // Tapping cityLabel
+    let tapCity = UITapGestureRecognizer(target: self, action: #selector(tapCityLabel))
+    cityLabel.isUserInteractionEnabled = true
+    cityLabel.addGestureRecognizer(tapCity)
     // Tapping districtLabel
     let tap = UITapGestureRecognizer(target: self, action: #selector(tapDistrictLabel))
     districtLabel.isUserInteractionEnabled = true
@@ -249,6 +263,16 @@ extension EditKitchenViewController {
   }
   
   func tapDistrictLabel(sender:UITapGestureRecognizer) {
+    if cityLabel.text! != INVALID_CITY {
+      distinguishFunction = FUNCTION_TAP_DISTRICT
+      performSegue(withIdentifier: "showLocation", sender: self)
+    } else {
+      self.alertError(message: "Bạn phải chọn thành phố trước")
+    }
+  }
+  
+  func tapCityLabel(sender:UITapGestureRecognizer) {
+    distinguishFunction = FUNCTION_TAP_CITY
     performSegue(withIdentifier: "showLocation", sender: self)
   }
   
@@ -494,7 +518,23 @@ extension EditKitchenViewController {
   @IBAction func unwindToEditKitchenController(segue:UIStoryboardSegue) {
     if segue.source is LocationViewController {
       if let senderVC = segue.source as? LocationViewController {
-        districtLabel.text = senderVC.selectedLocation
+        if distinguishFunction == FUNCTION_TAP_CITY {
+          cityLabel.text = senderVC.selectedLocation
+          switch senderVC.selectedLocation {
+          case "Hà Nội":
+            cityIndex = 0
+          case "Đà Nẵng":
+            cityIndex = 1
+          case "TP.Hồ Chí Minh":
+            cityIndex = 2
+          default:
+            break
+          }
+          // Reset district label to avoid unmatch city with district
+          districtLabel.text = "Chọn quận"
+        } else if distinguishFunction == FUNCTION_TAP_DISTRICT {
+          districtLabel.text = senderVC.selectedLocation
+        }
       }
     }
   }
@@ -508,8 +548,12 @@ extension EditKitchenViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showLocation" {
       if let destination = segue.destination as? LocationViewController {
-        destination.locations = Helper.districtLocations
         destination.viewcontroller = "EditKitchenViewController"
+        if distinguishFunction == FUNCTION_TAP_CITY {
+          destination.locations = Helper.cityLocations
+        } else if distinguishFunction == FUNCTION_TAP_DISTRICT {
+          destination.locations = Helper.districtLocations[cityIndex]
+        }
       }
     } else if segue.identifier == "showProducts" {
       if let destination = segue.destination as? ProductsViewController {

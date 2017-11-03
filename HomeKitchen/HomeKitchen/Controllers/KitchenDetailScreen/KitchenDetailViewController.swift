@@ -167,7 +167,7 @@ extension KitchenDetailViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! TopOrderTableViewCell
-    if products.count > TOP_ORDER_ROW_QUANTITIES {
+    if products.count >= TOP_ORDER_ROW_QUANTITIES {
       cell.configureWithItem(product: products[indexPath.row].product!)
       // Hide separator of last row
       if indexPath.row == 2 {
