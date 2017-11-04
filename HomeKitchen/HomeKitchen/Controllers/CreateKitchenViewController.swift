@@ -38,6 +38,9 @@ class CreateKitchenViewController: UIViewController {
   let INVALID_CITY = "Thành phố"
   // Recognize index of city in array to choose district
   var cityIndex = 0
+  // Type of kitchens
+  var listType: [String] = ["Ăn chay","Bánh","Ăn vặt","Cơm văn phòng","Đồ nướng","Đặc sản miền Bắc","Đặc sản miền Trung","Đặc sản miền Nam"]
+  var selectedType: String = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -110,6 +113,9 @@ extension CreateKitchenViewController: UITableViewDataSource {
         kitchenNameTF = createKitchenCell.textFieldCell
       } else if indexPath.row == 1 {
         typeTF = createKitchenCell.textFieldCell
+        // Create picker for type row
+        createTypePicker(textField: createKitchenCell.textFieldCell)
+        createToolbar(textField: createKitchenCell.textFieldCell)
       } else if indexPath.row == 2 {
         streetAddressTF = createKitchenCell.textFieldCell
       } else if indexPath.row == 3 {
@@ -271,6 +277,47 @@ extension CreateKitchenViewController {
   
   func didTouchMenuButton(_ sender: Any) {
     sideMenuManager?.toggleSideMenuView()
+  }
+  
+  func createTypePicker(textField: UITextField) {
+    let statusPicker = UIPickerView()
+    statusPicker.delegate = self
+    textField.inputView = statusPicker
+  }
+  
+  // Toolbar for typePicker
+  func createToolbar(textField: UITextField) {
+    // Create a toolbar
+    let toolbar = UIToolbar()
+    toolbar.sizeToFit()
+    // Add a done button on this toolbar
+    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
+    toolbar.setItems([doneButton], animated: true)
+    textField.inputAccessoryView = toolbar
+  }
+  
+  // Click done button on toolbar of statusPicker
+  func doneClicked() {
+    self.dismissKeyboard()
+  }
+}
+
+extension CreateKitchenViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return listType.count
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return listType[row]
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    selectedType = listType[row]
+    typeTF.text = selectedType
   }
 }
 

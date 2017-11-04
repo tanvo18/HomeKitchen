@@ -310,7 +310,7 @@ extension OrderInfoViewController {
       }
     } else {
       let alert = UIAlertController(title: "Thông báo", message: self.message, preferredStyle: UIAlertControllerStyle.alert)
-      alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+      alert.addAction(UIAlertAction(title: "Huỷ", style: UIAlertActionStyle.default, handler: nil))
       self.present(alert, animated: true, completion: nil)
     }
   }

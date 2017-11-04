@@ -69,6 +69,10 @@ class EditKitchenViewController: UIViewController {
   // Right button in navigation bar
   var rightButtonItem: UIBarButtonItem = UIBarButtonItem()
   
+  // Type of kitchens
+  var listType: [String] = ["Ăn chay","Bánh","Ăn vặt","Cơm văn phòng","Đồ nướng","Đặc sản miền Bắc","Đặc sản miền Trung","Đặc sản miền Nam"]
+  var selectedType: String = ""
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.delegate = self
@@ -167,6 +171,10 @@ extension EditKitchenViewController: UITableViewDataSource {
       } else if indexPath.row == 1 {
         typeTF = createKitchenCell.textFieldCell
         createKitchenCell.textFieldCell.text = kitchen?.type
+        // Create picker for type row
+        createTypePicker(textField: createKitchenCell.textFieldCell)
+        createToolbar(textField: createKitchenCell.textFieldCell)
+        
       } else if indexPath.row == 2 {
         streetAddressTF = createKitchenCell.textFieldCell
         createKitchenCell.textFieldCell.text = kitchen?.address?.address
@@ -354,6 +362,7 @@ extension EditKitchenViewController {
   func parseKitchenData() {
     descriptionTextView.text = kitchen?.description
     districtLabel.text = kitchen?.address?.district
+    cityLabel.text = kitchen?.address?.city
   }
   
   func setUpActivityIndicator()
@@ -381,8 +390,51 @@ extension EditKitchenViewController {
     }
   }
   
+  // Toggle slide menu
   func didTouchMenuButton(_ sender: Any) {
     sideMenuManager?.toggleSideMenuView()
+  }
+  
+  func createTypePicker(textField: UITextField) {
+    let statusPicker = UIPickerView()
+    statusPicker.delegate = self
+    textField.inputView = statusPicker
+  }
+  
+  // Toolbar for typePicker
+  func createToolbar(textField: UITextField) {
+    // Create a toolbar
+    let toolbar = UIToolbar()
+    toolbar.sizeToFit()
+    // Add a done button on this toolbar
+    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
+    toolbar.setItems([doneButton], animated: true)
+    textField.inputAccessoryView = toolbar
+  }
+  
+  // Click done button on toolbar of statusPicker
+  func doneClicked() {
+    self.dismissKeyboard()
+  }
+  
+}
+
+extension EditKitchenViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+  func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return listType.count
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return listType[row]
+  }
+  
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    selectedType = listType[row]
+    typeTF.text = selectedType
   }
 }
 

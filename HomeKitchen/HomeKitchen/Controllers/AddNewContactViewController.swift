@@ -46,7 +46,7 @@ extension AddNewContactViewController {
       performSegue(withIdentifier: "unwindToOrderInfoController", sender: self)
     } else {
       let title = "Message"
-      let message = "All fields are required"
+      let message = "Tất cả các trường phải được nhập"
       self.alert(title: title, message: message)
     }
   }
