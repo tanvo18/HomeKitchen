@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
   let userModelDatasource = UserDataModel()
   var myActivityIndicator: UIActivityIndicatorView!
   var isLogin: Bool = false
+  var errorMessage: String = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -112,7 +113,7 @@ extension LoginViewController {
         self.getUserInfo { info, error in
           if let info = info, let _ = info["name"] as? String, let email = info["email"] as? String, let id = info["id"] as? String{
             print("====facebookId: \(id)")
-            NetworkingService.sharedInstance.getAuthorizationFromServer(username: email, password: "", facebookToken: userInfo.authenticationToken) { [unowned self] (accessToken, error) in
+            NetworkingService.sharedInstance.getAuthorizationFromServer(username: email, password: "", facebookToken: userInfo.authenticationToken, loginMethod: Helper.LOGIN_BY_FACEBOOK) { [unowned self] (accessToken, error) in
               if error != nil {
                 print(error!)
               } else {
@@ -149,6 +150,54 @@ extension LoginViewController {
   
   @IBAction func didTouchRegisterButton(_ sender: Any) {
     performSegue(withIdentifier: "showSignup", sender: self)
+  }
+  
+  @IBAction func didTouchLoginButton(_ sender: Any) {
+    if checkNotNil() {
+      // Login by Normal account no need to param facebookToken
+      NetworkingService.sharedInstance.getAuthorizationFromServer(username: usernameTextfield.text!, password: passwordTextfield.text!, facebookToken: "", loginMethod: Helper.LOGIN_BY_NORMAL_USER) {
+        [unowned self] (accessToken, error) in
+        if error != nil {
+          print(error!)
+          self.alertError(message: "Đăng nhập thất bại")
+        }  else {
+          // Save access token
+          Helper.accessToken = accessToken!
+          print("accessToken: \(Helper.accessToken)")
+          // Save user information
+          self.userModelDatasource.getUserInfo() {
+            [unowned self] (user,error) in
+            if error != nil {
+              print(error!)
+              self.alertError(message: "Không thể nhận được thông tin người dùng")
+            } else {
+              // Save user info
+              Helper.user = user
+              print("====nameOfUser \(user.name)")
+              self.myActivityIndicator.stopAnimating()
+              // Save accessToken to UserDefault
+              UserDefaults.standard.setValue(accessToken!, forKey: Helper.USER_DEFAULT_AUTHEN_TOKEN)
+              // Save email to UserDefault
+              UserDefaults.standard.setValue(user.username, forKey: Helper.USER_DEFAULT_USERNAME)
+              // param for parse to home screen
+              self.isLogin = false
+              self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+            }
+          }
+        }
+      }
+    } else {
+      self.alertError(message: errorMessage)
+    }
+  }
+  
+  func checkNotNil() -> Bool {
+    if usernameTextfield.text!.isEmpty || passwordTextfield.text!.isEmpty {
+      errorMessage = "Bạn phải nhập tất cả các trường"
+      return false
+    } else {
+      return true
+    }
   }
   
   // Back to Login screen

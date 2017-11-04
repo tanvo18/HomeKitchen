@@ -22,10 +22,19 @@ class NetworkingService {
   }
   
   // Post Json to get Authorization, we have to use responseString to get header
-  func getAuthorizationFromServer(username: String, password: String, facebookToken: String, completion: @escaping(_ token: String?,_ error: Error?) -> Void ) {
-    let parameters: Parameters = ["username" : username,
-                                  "password" : password,
-                                  "token" : facebookToken]
+  func getAuthorizationFromServer(username: String, password: String, facebookToken: String, loginMethod: String, completion: @escaping(_ token: String?,_ error: Error?) -> Void ) {
+    
+    var parameters: Parameters = [:]
+    if loginMethod == Helper.LOGIN_BY_FACEBOOK {
+      parameters = ["username" : username,
+      "password" : password,
+      "token" : facebookToken]
+    } else if loginMethod == Helper.LOGIN_BY_NORMAL_USER {
+      // parameters don't have token
+      parameters = ["username" : username,
+                    "password" : password ]
+    }
+    
     let url = NetworkingService.baseURLString + "login"
     Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate(statusCode: 200..<300).responseString { response in
       switch response.result {
@@ -232,7 +241,7 @@ class NetworkingService {
    This function use for chef response kitchen's order
    */
   func responseOrder(orderId: Int, status: String, completion: @escaping(_ message: String?, _ error: Error?) -> Void) {
-     let url = NetworkingService.baseURLString + "kitchens/orders?orderId=\(orderId)&status=\(status)"
+    let url = NetworkingService.baseURLString + "kitchens/orders?orderId=\(orderId)&status=\(status)"
     
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
@@ -443,7 +452,7 @@ class NetworkingService {
                                   "type" : type,
                                   "image_url" : imageUrl,
                                   "status" : status
-                                  ]
+    ]
     Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
       switch response.result {
       case .success:
@@ -473,7 +482,7 @@ class NetworkingService {
                                   "type" : type,
                                   "image_url" : imageUrl,
                                   "status" : status
-                                  ]
+    ]
     
     Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
       switch response.result {
@@ -557,6 +566,28 @@ class NetworkingService {
                                   "kitchen" : ["id" : kitchenId]
     ]
     Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        if let message = response.result.value {
+          print("====message \(message)")
+          completion(message,nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
+  
+  // Sign up
+  func signUp(username: String, password: String, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "register"
+    
+    let parameters: Parameters = ["username" : username,
+                                  "password" : password
+    ]
+    
+    Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default).validate(statusCode: 200..<300).responseString { response in
+      
       switch response.result {
       case .success:
         if let message = response.result.value {
