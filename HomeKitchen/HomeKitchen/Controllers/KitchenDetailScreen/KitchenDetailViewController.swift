@@ -172,7 +172,7 @@ extension KitchenDetailViewController: UITableViewDataSource {
       // Hide separator of last row
       if indexPath.row == 2 {
         cell.separatorView.isHidden = true
-      } 
+      }
     }
     return cell
   }
@@ -279,7 +279,7 @@ extension KitchenDetailViewController {
         destination.products = products
       }
     } else if segue.identifier == "showReviews" {
-      if let destination = segue.destination as? ReviewsViewController {
+      if let destination = segue.destination as? KitchenReviewsViewController {
         destination.reviews = reviews
       }
     }

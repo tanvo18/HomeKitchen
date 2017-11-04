@@ -9,6 +9,7 @@
 import UIKit
 import Cosmos
 
+// Create Kitchen and Product review
 class CreateReviewViewController: UIViewController {
   
   @IBOutlet weak var reviewTextView: UITextView!
@@ -18,6 +19,10 @@ class CreateReviewViewController: UIViewController {
   // Right button in navigation bar
   var rightButtonItem: UIBarButtonItem = UIBarButtonItem()
   var ratingPoint:Int = 3
+  // Distinguish Kitchen review and Product Review
+  var sourceViewController: String = ""
+  // Parse from product reviews viewcontroller
+  var productId: Int = 0
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -72,15 +77,28 @@ extension CreateReviewViewController {
   
   func rightButtonAction(sender: UIBarButtonItem) {
     if checkNotNil() {
-      let reviewMessage = reviewTextView.text
-      NetworkingService.sharedInstance.sendKitchenReview(reviewMessage: reviewMessage!, reviewPoint: self.ratingPoint, kitchenId: Helper.kitchenId) {
-        [unowned self] (message, error) in
-        if error != nil {
-          self.alertError(message: "Gửi bình luận thất bại")
-        } else {
-          self.alert(title: "Thông báo", message: "Thành công")
+      if sourceViewController == "KitchenReviewsViewController" {
+        let reviewMessage = reviewTextView.text!
+        NetworkingService.sharedInstance.sendKitchenReview(reviewMessage: reviewMessage, reviewPoint: self.ratingPoint, kitchenId: Helper.kitchenId) {
+          [unowned self] (message, error) in
+          if error != nil {
+            self.alertError(message: "Gửi bình luận thất bại")
+          } else {
+            self.alert(title: "Thông báo", message: "Thành công")
+          }
+        }
+      } else if sourceViewController == "ProductReviewsViewController"{
+        let reviewMessage = reviewTextView.text!
+        NetworkingService.sharedInstance.sendProductReview(reviewMessage: reviewMessage, reviewPoint: self.ratingPoint, productId: productId) {
+          [unowned self] (message, error) in
+          if error != nil {
+            self.alertError(message: "Gửi bình luận thất bại")
+          } else {
+            self.alert(title: "Thông báo", message: "Thành công")
+          }
         }
       }
+      
     } else {
       self.alertError(message: "Bạn phải nhập bình luận")
     }

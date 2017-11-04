@@ -92,6 +92,12 @@
 		4DC4FB931F95B504005A94A3 /* PostDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC4FB921F95B504005A94A3 /* PostDataModel.swift */; };
 		4DC4FB961F95BF5C005A94A3 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC4FB951F95BF5C005A94A3 /* PostDetailViewController.swift */; };
 		4DCC35191F668B870005BD40 /* OrderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCC35181F668B870005BD40 /* OrderItem.swift */; };
+		4DE42E1A1FAE178E00BAAA86 /* ProductReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE42E191FAE178E00BAAA86 /* ProductReviewsViewController.swift */; };
+		4DE42E1C1FAE17BA00BAAA86 /* KitchenReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE42E1B1FAE17BA00BAAA86 /* KitchenReviewsViewController.swift */; };
+		4DE42E201FAE1AC200BAAA86 /* ProductReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE42E1E1FAE1AC200BAAA86 /* ProductReviewsTableViewCell.swift */; };
+		4DE42E211FAE1AC200BAAA86 /* ProductReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DE42E1F1FAE1AC200BAAA86 /* ProductReviewsTableViewCell.xib */; };
+		4DE42E241FAE1E6E00BAAA86 /* ProductReviewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE42E231FAE1E6E00BAAA86 /* ProductReviewDataModel.swift */; };
+		4DE42E261FAE1F8A00BAAA86 /* ResultProductReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE42E251FAE1F8A00BAAA86 /* ResultProductReviews.swift */; };
 		4DE6EC2D1F68EC1000A1A4DE /* getorder.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE6EC2C1F68EC1000A1A4DE /* getorder.json */; };
 		4DEBE0671F77ED2E00A0305D /* ResultOrderInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEBE0661F77ED2E00A0305D /* ResultOrderInfo.swift */; };
 		4DEBE0691F78082A00A0305D /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEBE0681F78082A00A0305D /* OrderDetailViewController.swift */; };
@@ -120,7 +126,6 @@
 		4DFDF94B1FA710E900BFA55C /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF94A1FA710E900BFA55C /* Review.swift */; };
 		4DFDF94E1FA7119A00BFA55C /* ResultReviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF94D1FA7119A00BFA55C /* ResultReviews.swift */; };
 		4DFDF9501FA711A900BFA55C /* ReviewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF94F1FA711A900BFA55C /* ReviewDataModel.swift */; };
-		4DFDF9531FA72C3100BFA55C /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF9521FA72C3100BFA55C /* ReviewsViewController.swift */; };
 		4DFDF9571FA7303900BFA55C /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DFDF9551FA7303900BFA55C /* ReviewsTableViewCell.swift */; };
 		4DFDF9581FA7303900BFA55C /* ReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4DFDF9561FA7303900BFA55C /* ReviewsTableViewCell.xib */; };
 		A523611545740C645967EF58 /* Pods_HomeKitchen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223CF9B73D9541A7B43ACFB0 /* Pods_HomeKitchen.framework */; };
@@ -216,6 +221,12 @@
 		4DC4FB921F95B504005A94A3 /* PostDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDataModel.swift; sourceTree = "<group>"; };
 		4DC4FB951F95BF5C005A94A3 /* PostDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		4DCC35181F668B870005BD40 /* OrderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderItem.swift; sourceTree = "<group>"; };
+		4DE42E191FAE178E00BAAA86 /* ProductReviewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductReviewsViewController.swift; sourceTree = "<group>"; };
+		4DE42E1B1FAE17BA00BAAA86 /* KitchenReviewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KitchenReviewsViewController.swift; sourceTree = "<group>"; };
+		4DE42E1E1FAE1AC200BAAA86 /* ProductReviewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductReviewsTableViewCell.swift; sourceTree = "<group>"; };
+		4DE42E1F1FAE1AC200BAAA86 /* ProductReviewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductReviewsTableViewCell.xib; sourceTree = "<group>"; };
+		4DE42E231FAE1E6E00BAAA86 /* ProductReviewDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductReviewDataModel.swift; sourceTree = "<group>"; };
+		4DE42E251FAE1F8A00BAAA86 /* ResultProductReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultProductReviews.swift; sourceTree = "<group>"; };
 		4DE6EC2C1F68EC1000A1A4DE /* getorder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getorder.json; sourceTree = "<group>"; };
 		4DEBE0661F77ED2E00A0305D /* ResultOrderInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultOrderInfo.swift; sourceTree = "<group>"; };
 		4DEBE0681F78082A00A0305D /* OrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
@@ -244,7 +255,6 @@
 		4DFDF94A1FA710E900BFA55C /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		4DFDF94D1FA7119A00BFA55C /* ResultReviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultReviews.swift; sourceTree = "<group>"; };
 		4DFDF94F1FA711A900BFA55C /* ReviewDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewDataModel.swift; sourceTree = "<group>"; };
-		4DFDF9521FA72C3100BFA55C /* ReviewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		4DFDF9551FA7303900BFA55C /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		4DFDF9561FA7303900BFA55C /* ReviewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewsTableViewCell.xib; sourceTree = "<group>"; };
 		D9DF5D2093C2480DF0169BD0 /* Pods-HomeKitchen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HomeKitchen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HomeKitchen/Pods-HomeKitchen.debug.xcconfig"; sourceTree = "<group>"; };
@@ -712,8 +722,9 @@
 		4DDB7ED01F59486300A24730 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4DE42E181FAE174700BAAA86 /* ListProductReviewScreen */,
 				4D5D14491FA8148400185C67 /* CreateReviewScreen */,
-				4DFDF9511FA72C1600BFA55C /* ListReviewScreen */,
+				4DFDF9511FA72C1600BFA55C /* ListKitchenReviewScreen */,
 				4DEE902E1FA63E75004921B2 /* EditUserInfoScreen */,
 				4D4F3E601F99AEF400FD0C6B /* ListAnswerScreen */,
 				4D0BBDCA1F9661B200BDA6AC /* AnswerDetailScreen */,
@@ -737,9 +748,9 @@
 				4D3F6DA91F76165900F95EB9 /* AddNewContactScreen */,
 				4D31189E1F6C10B600ACA713 /* OrderInfoScreen */,
 				4DDB7ED51F59623500A24730 /* HomeScreen */,
+				4D4466FA1F60DE5A0022C91C /* OrderScreen */,
 				4D4086541F5F8E33004697CE /* KitchenDetailScreen */,
 				4DEDD3351F5BF8D500D24E79 /* LoginAndSignup */,
-				4D4466FA1F60DE5A0022C91C /* OrderScreen */,
 				4D1587FC1F5964F400B1FFB4 /* SideMenu */,
 			);
 			path = Controllers;
@@ -748,7 +759,8 @@
 		4DDB7ED11F59486C00A24730 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				4DFDF9541FA7300000BFA55C /* ListReviewScreen */,
+				4DE42E1D1FAE1A9E00BAAA86 /* ListProductReviewScreen */,
+				4DFDF9541FA7300000BFA55C /* ListKitchenReviewScreen */,
 				4D4F3E631F99AFD600FD0C6B /* ListAnswerScreen */,
 				4D0BBDCD1F96642500BDA6AC /* AnswerDetailScreen */,
 				4D09DF2C1F95ED970014E158 /* CreateAnswerScreen */,
@@ -775,6 +787,7 @@
 		4DDB7ED21F59487700A24730 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4DE42E221FAE1E5200BAAA86 /* GetProductReview */,
 				4DFDF94C1FA7118100BFA55C /* GetKitchenReview */,
 				4DC4FB8F1F95B0B7005A94A3 /* GetKitchenPost */,
 				4D21D61B1F8C6AD200E71A29 /* GetKitchenInfo */,
@@ -822,6 +835,32 @@
 				4D3E1C891F7FEE2B0037E4A2 /* Constant.swift */,
 			);
 			name = Helper;
+			sourceTree = "<group>";
+		};
+		4DE42E181FAE174700BAAA86 /* ListProductReviewScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4DE42E191FAE178E00BAAA86 /* ProductReviewsViewController.swift */,
+			);
+			name = ListProductReviewScreen;
+			sourceTree = "<group>";
+		};
+		4DE42E1D1FAE1A9E00BAAA86 /* ListProductReviewScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4DE42E1E1FAE1AC200BAAA86 /* ProductReviewsTableViewCell.swift */,
+				4DE42E1F1FAE1AC200BAAA86 /* ProductReviewsTableViewCell.xib */,
+			);
+			name = ListProductReviewScreen;
+			sourceTree = "<group>";
+		};
+		4DE42E221FAE1E5200BAAA86 /* GetProductReview */ = {
+			isa = PBXGroup;
+			children = (
+				4DE42E231FAE1E6E00BAAA86 /* ProductReviewDataModel.swift */,
+				4DE42E251FAE1F8A00BAAA86 /* ResultProductReviews.swift */,
+			);
+			name = GetProductReview;
 			sourceTree = "<group>";
 		};
 		4DEBE0651F77A70A00A0305D /* OrderDetailScreen */ = {
@@ -955,21 +994,21 @@
 			name = GetKitchenReview;
 			sourceTree = "<group>";
 		};
-		4DFDF9511FA72C1600BFA55C /* ListReviewScreen */ = {
+		4DFDF9511FA72C1600BFA55C /* ListKitchenReviewScreen */ = {
 			isa = PBXGroup;
 			children = (
-				4DFDF9521FA72C3100BFA55C /* ReviewsViewController.swift */,
+				4DE42E1B1FAE17BA00BAAA86 /* KitchenReviewsViewController.swift */,
 			);
-			name = ListReviewScreen;
+			name = ListKitchenReviewScreen;
 			sourceTree = "<group>";
 		};
-		4DFDF9541FA7300000BFA55C /* ListReviewScreen */ = {
+		4DFDF9541FA7300000BFA55C /* ListKitchenReviewScreen */ = {
 			isa = PBXGroup;
 			children = (
 				4DFDF9551FA7303900BFA55C /* ReviewsTableViewCell.swift */,
 				4DFDF9561FA7303900BFA55C /* ReviewsTableViewCell.xib */,
 			);
-			name = ListReviewScreen;
+			name = ListKitchenReviewScreen;
 			sourceTree = "<group>";
 		};
 		59DA56E9BE7B31EB6A86CD31 /* Pods */ = {
@@ -1068,6 +1107,7 @@
 				4D51E9621F93683500299AFC /* PostTableViewCell.xib in Resources */,
 				4D24855B1F7A3F940025F810 /* SuggestionTableViewCell.xib in Resources */,
 				4D2AAAD21F8A8E7900F281A4 /* CustomTimeTableViewCell.xib in Resources */,
+				4DE42E211FAE1AC200BAAA86 /* ProductReviewsTableViewCell.xib in Resources */,
 				4DACF0B91F55C9A00043ED79 /* LaunchScreen.storyboard in Resources */,
 				4DFDF9581FA7303900BFA55C /* ReviewsTableViewCell.xib in Resources */,
 				4D1588051F59663C00B1FFB4 /* MenuTableViewCell.xib in Resources */,
@@ -1143,6 +1183,7 @@
 				4DEDD3371F5BF90100D24E79 /* LoginViewController.swift in Sources */,
 				4D09DF2B1F95ED450014E158 /* CreateAnswerViewController.swift in Sources */,
 				4D09DF2F1F95EDB40014E158 /* CreateAnswerTableViewCell.swift in Sources */,
+				4DE42E1C1FAE17BA00BAAA86 /* KitchenReviewsViewController.swift in Sources */,
 				4DC4FB911F95B4F5005A94A3 /* ResultPosts.swift in Sources */,
 				4D18E21D1F750DA6007B83B6 /* UI.swift in Sources */,
 				4DC4FB931F95B504005A94A3 /* PostDataModel.swift in Sources */,
@@ -1154,7 +1195,6 @@
 				4D203BC91F90B8EB00A8F267 /* PostRequestViewController.swift in Sources */,
 				4DFDF94E1FA7119A00BFA55C /* ResultReviews.swift in Sources */,
 				4DF4A4AD1F7B573F00DC272D /* ResultKitchenOrder.swift in Sources */,
-				4DFDF9531FA72C3100BFA55C /* ReviewsViewController.swift in Sources */,
 				4D438D921F8B6E4200AF5233 /* LocationViewController.swift in Sources */,
 				4D24855E1F7A5EE00025F810 /* CalendarViewController.swift in Sources */,
 				4D203BC41F90B5A300A8F267 /* Post.swift in Sources */,
@@ -1164,6 +1204,7 @@
 				4D237C021F775B71007C1201 /* ListOrderViewController.swift in Sources */,
 				4D2BB7971F8E1AA0002045EB /* EditProductViewController.swift in Sources */,
 				4D7471DD1F604B23007C53E2 /* Ingredient.swift in Sources */,
+				4DE42E261FAE1F8A00BAAA86 /* ResultProductReviews.swift in Sources */,
 				4D3118A01F6C10CD00ACA713 /* OrderInfoViewController.swift in Sources */,
 				4DEDD33D1F5C075500D24E79 /* SignupViewController.swift in Sources */,
 				4D6E96D61F693B45000DD7EE /* OrderInfo.swift in Sources */,
@@ -1192,6 +1233,7 @@
 				4D3F6DAB1F76167700F95EB9 /* AddNewContactViewController.swift in Sources */,
 				4DFAAEC61F5D459500FE2EAE /* KitchenTableViewCell.swift in Sources */,
 				4D4A73151F7AA9D6008A487C /* EditContactViewController.swift in Sources */,
+				4DE42E241FAE1E6E00BAAA86 /* ProductReviewDataModel.swift in Sources */,
 				4D6620E71F5C5A6200B96DC7 /* User.swift in Sources */,
 				4D3BB8101F5FFDAF00D6686C /* Product.swift in Sources */,
 				4D09DF221F95E2860014E158 /* PostDetailTableViewCell.swift in Sources */,
@@ -1212,6 +1254,7 @@
 				4D4467001F60DF1E0022C91C /* OrderTableViewCell.swift in Sources */,
 				4D900EFC1F716FB600D7C9A8 /* UserDataModel.swift in Sources */,
 				4DC4FB891F95AA35005A94A3 /* ListPostViewController.swift in Sources */,
+				4DE42E1A1FAE178E00BAAA86 /* ProductReviewsViewController.swift in Sources */,
 				4D2F0BCE1F711F550017B8E7 /* ResultUser.swift in Sources */,
 				4D4F3E581F99A62100FD0C6B /* SuggestionsViewController.swift in Sources */,
 				4D1587FE1F59651900B1FFB4 /* SMNavigationController.swift in Sources */,
@@ -1226,6 +1269,7 @@
 				4D09DF261F95EB750014E158 /* Answer.swift in Sources */,
 				4D1588041F59663C00B1FFB4 /* MenuTableViewCell.swift in Sources */,
 				4DF43FFF1F5E3DC200365F57 /* ResultKitchen.swift in Sources */,
+				4DE42E201FAE1AC200BAAA86 /* ProductReviewsTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

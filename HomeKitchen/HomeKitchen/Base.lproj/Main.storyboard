@@ -1203,6 +1203,7 @@
                         <outlet property="tableView" destination="xZ1-hg-mI4" id="peZ-8d-o4e"/>
                         <outlet property="totalPriceLabel" destination="Kvh-tX-MzO" id="8Ra-cY-YD4"/>
                         <segue destination="7H9-XT-YV1" kind="show" identifier="showOrderInfo" id="WcN-74-H6N"/>
+                        <segue destination="rCo-FZ-KPl" kind="show" identifier="showProductReviews" id="w0a-eT-e3M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XrC-0A-iZc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3158,10 +3159,44 @@
             </objects>
             <point key="canvasLocation" x="-1234.4000000000001" y="-2036.1319340329837"/>
         </scene>
-        <!--Reviews View Controller-->
+        <!--Product Reviews View Controller-->
+        <scene sceneID="doB-na-ude">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="rCo-FZ-KPl" customClass="ProductReviewsViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Mlv-XR-xQD"/>
+                        <viewControllerLayoutGuide type="bottom" id="GWZ-wb-EXk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cob-cp-siN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FXw-FZ-S2V">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FXw-FZ-S2V" secondAttribute="trailing" id="Cxt-Vr-NfN"/>
+                            <constraint firstItem="FXw-FZ-S2V" firstAttribute="top" secondItem="Mlv-XR-xQD" secondAttribute="bottom" id="QSe-ki-jPG"/>
+                            <constraint firstItem="FXw-FZ-S2V" firstAttribute="leading" secondItem="Cob-cp-siN" secondAttribute="leading" id="RWh-VU-y4I"/>
+                            <constraint firstAttribute="bottom" secondItem="FXw-FZ-S2V" secondAttribute="bottom" id="rjg-uG-tbU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="FXw-FZ-S2V" id="rxe-WU-6gG"/>
+                        <segue destination="cOp-ps-sYd" kind="show" identifier="showCreateReview" id="aw3-EE-4Eb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tkM-uv-7bV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-274.39999999999998" y="-2758.4707646176912"/>
+        </scene>
+        <!--Kitchen Reviews View Controller-->
         <scene sceneID="cWh-mC-NS8">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="2ic-Jm-Z6A" customClass="ReviewsViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="2ic-Jm-Z6A" customClass="KitchenReviewsViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yJe-IS-WAU"/>
                         <viewControllerLayoutGuide type="bottom" id="J12-uA-pX5"/>
@@ -3186,7 +3221,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
-                        <outlet property="tableView" destination="f79-Lu-D5d" id="s6t-HV-vi2"/>
+                        <outlet property="tableView" destination="f79-Lu-D5d" id="w7O-fq-7Sk"/>
                         <segue destination="cOp-ps-sYd" kind="show" identifier="showCreateReview" id="khe-fI-qVg"/>
                     </connections>
                 </viewController>
@@ -3391,7 +3426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="opv-Bk-ZJy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-470" y="-1201"/>
+            <point key="canvasLocation" x="-591" y="-1223"/>
         </scene>
         <!--Left Menu Table View Controller-->
         <scene sceneID="bmg-WJ-VmS">
@@ -3558,7 +3593,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uGN-Oa-EIM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="HFz-at-sMA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1268" y="-1182"/>
+            <point key="canvasLocation" x="-1388" y="-1204"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="deH-ht-tuN">
@@ -3605,8 +3640,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="ixT-ty-4nl"/>
         <segue reference="JDc-Ee-M58"/>
-        <segue reference="m6M-Kj-f1N"/>
-        <segue reference="vXk-Gz-ofm"/>
+        <segue reference="WcN-74-H6N"/>
+        <segue reference="aw3-EE-4Eb"/>
         <segue reference="dZ9-ny-SC3"/>
         <segue reference="jg8-0O-AHV"/>
         <segue reference="ycJ-Fd-3Hc"/>

@@ -1,14 +1,14 @@
 //
-//  ReviewsViewController.swift
+//  KitchenReviewsViewController.swift
 //  HomeKitchen
 //
-//  Created by Tan Vo on 10/30/17.
+//  Created by Tan Vo on 11/4/17.
 //  Copyright © 2017 Tan Vo. All rights reserved.
 //
 
 import UIKit
 
-class ReviewsViewController: UIViewController {
+class KitchenReviewsViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   
@@ -30,16 +30,15 @@ class ReviewsViewController: UIViewController {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }
-  
 }
 
 // MARK: tableView Delegate
-extension ReviewsViewController: UITableViewDelegate {
+extension KitchenReviewsViewController: UITableViewDelegate {
   
 }
 
 // MARK: tableView Datasource
-extension ReviewsViewController: UITableViewDataSource {
+extension KitchenReviewsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return reviews.count
   }
@@ -57,7 +56,7 @@ extension ReviewsViewController: UITableViewDataSource {
 }
 
 // MARK: Function
-extension ReviewsViewController {
+extension KitchenReviewsViewController {
   func settingRightButtonItem() {
     self.rightButtonItem = UIBarButtonItem.init(
       title: "Đánh giá",
@@ -73,3 +72,12 @@ extension ReviewsViewController {
   }
 }
 
+extension KitchenReviewsViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showCreateReview" {
+      if let destination = segue.destination as? CreateReviewViewController {
+        destination.sourceViewController = "KitchenReviewsViewController"
+      }
+    }
+  }
+}

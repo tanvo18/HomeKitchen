@@ -1,17 +1,15 @@
 //
-//  ReviewsTableViewCell.swift
+//  ProductReviewsTableViewCell.swift
 //  HomeKitchen
 //
-//  Created by Tan Vo on 10/30/17.
+//  Created by Tan Vo on 11/4/17.
 //  Copyright © 2017 Tan Vo. All rights reserved.
 //
 
 import UIKit
 import Cosmos
 
-class ReviewsTableViewCell: UITableViewCell {
-  
-  // MARK: IBOutlet
+class ProductReviewsTableViewCell: UITableViewCell {
   
   @IBOutlet weak var usernameLabel: UILabel!
   @IBOutlet weak var cosmosView: CosmosView!

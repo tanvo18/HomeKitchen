@@ -45,9 +45,11 @@ class OrderViewController: UIViewController {
   
 }
 
+// MARK: Table Delegate
 extension OrderViewController: UITableViewDelegate {
 }
 
+// MARK: Table DataSource
 extension OrderViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return products.count
@@ -68,6 +70,11 @@ extension OrderViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 80
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    position = indexPath.row
+    performSegue(withIdentifier: "showProductReviews", sender: self)
   }
 }
 
@@ -198,6 +205,12 @@ extension OrderViewController {
       if let destination = segue.destination as? OrderInfoViewController {
         destination.orderedItems = orderedItems
         destination.sourceViewController = "OrderViewController"
+      }
+    } else if segue.identifier == "showProductReviews" {
+      if let destination = segue.destination as? ProductReviewsViewController {
+        if let productId = products[position].product?.id {
+          destination.productId = productId
+        }
       }
     }
   }

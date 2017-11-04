@@ -578,6 +578,30 @@ class NetworkingService {
     }
   }
   
+  // Send review of product
+  func sendProductReview(reviewMessage: String, reviewPoint: Int, productId: Int, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
+    let url = NetworkingService.baseURLString + "kitchens/products/\(productId)/reviews"
+    let headers: HTTPHeaders = [
+      "Authorization": Helper.accessToken,
+      "Accept": "application/json"
+    ]
+    
+    let parameters: Parameters = ["point" : reviewPoint,
+                                  "message" : reviewMessage,
+    ]
+    Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString { response in
+      switch response.result {
+      case .success:
+        if let message = response.result.value {
+          print("====message \(message)")
+          completion(message,nil)
+        }
+      case .failure(let error):
+        completion(nil,error)
+      }
+    }
+  }
+  
   // Sign up
   func signUp(username: String, password: String, completion: @escaping(_ message: String?,_ error: Error?) -> Void) {
     let url = NetworkingService.baseURLString + "register"
