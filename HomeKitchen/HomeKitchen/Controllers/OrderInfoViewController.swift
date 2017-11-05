@@ -289,7 +289,7 @@ extension OrderInfoViewController {
         let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
           self.performSegue(withIdentifier: "showHomeScreen", sender: self)
         })
-        self.alertWithAction(message: "Create Successfully", action: ok)
+        self.alertWithAction(message: "Đặt hàng thành công", action: ok)
       }
     }
   }

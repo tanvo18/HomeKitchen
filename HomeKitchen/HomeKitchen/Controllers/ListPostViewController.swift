@@ -12,15 +12,26 @@ class ListPostViewController: UIViewController {
   
   // MARK: IBOutlet
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet var tabButtons: [UIButton]!
+  
   let reuseableCell = "Cell"
   var posts: [Post] = [] {
     didSet {
-      
+      // Default displayingPosts follow status pending
+      initDisplayingPosts(status: STATUS_PENDING)
       tableView.reloadData()
     }
   }
+  
+  // posts displaying to tableview follow status
+  var displayingPosts: [Post] = []
+  
   let postDataModel = PostDataModel()
   var index: Int = 0
+  // constant for status
+  let STATUS_PENDING = "pending"
+  let STATUS_ACCEPTED = "accepted"
+  let STATUS_DENIED = "denied"
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,6 +50,7 @@ class ListPostViewController: UIViewController {
     // Init Menu Button
     let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
     self.navigationItem.leftBarButtonItem  = menuButton
+    getPostsFromServer()
   }
   
   override func didReceiveMemoryWarning() {
@@ -46,32 +58,6 @@ class ListPostViewController: UIViewController {
   }
   
   override func viewWillAppear(_ animated: Bool) {
-    if Helper.role == "chef" {
-      // Get list post
-      postDataModel.getKitchenPosts() {
-        [unowned self] (kitchenPosts,error) in
-        if error != nil {
-          print(error!)
-        } else {
-          if let kitchenPosts = kitchenPosts {
-            self.posts = kitchenPosts
-          }
-        }
-      }
-    } else if Helper.role == "customer" {
-      // Get list post
-      postDataModel.getCustomerPosts() {
-        [unowned self] (kitchenPosts,error) in
-        if error != nil {
-          print(error!)
-        } else {
-          if let kitchenPosts = kitchenPosts {
-            self.posts = kitchenPosts
-          }
-        }
-      }
-    }
-    
     // MARK: enable sidemenu
     sideMenuManager?.sideMenuController()?.sideMenu?.disabled = false
   }
@@ -86,12 +72,12 @@ extension ListPostViewController: UITableViewDelegate {
 extension ListPostViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return posts.count
+    return displayingPosts.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! ListPostTableViewCell
-    cell.configureWithItem(post: posts[indexPath.row], role: Helper.role)
+    cell.configureWithItem(post: displayingPosts[indexPath.row], role: Helper.role)
     // Handle button on cell
     cell.notificationButton.tag = indexPath.row
     cell.notificationButton.addTarget(self, action: #selector(self.didTouchNotificationButton), for: .touchUpInside)
@@ -120,17 +106,77 @@ extension ListPostViewController {
   func didTouchMenuButton(_ sender: Any) {
     sideMenuManager?.toggleSideMenuView()
   }
+  
+  func initDisplayingPosts(status: String) {
+    for post in posts {
+      if post.status == status {
+        displayingPosts.append(post)
+      }
+    }
+  }
+  
+  func getPostsFromServer() {
+    if Helper.role == "chef" {
+      // Get list post
+      postDataModel.getKitchenPosts() {
+        [unowned self] (kitchenPosts,error) in
+        if error != nil {
+          print(error!)
+        } else {
+          if let kitchenPosts = kitchenPosts {
+            self.posts = kitchenPosts
+          }
+        }
+      }
+    } else if Helper.role == "customer" {
+      // Get list post
+      postDataModel.getCustomerPosts() {
+        [unowned self] (kitchenPosts,error) in
+        if error != nil {
+          print(error!)
+        } else {
+          if let kitchenPosts = kitchenPosts {
+            self.posts = kitchenPosts
+          }
+        }
+      }
+    }
+  }
+}
+
+// MARK: IBAction
+extension ListPostViewController {
+  // All tab buttons using this function
+  @IBAction func didTouchTabButton(_ sender: UIButton) {
+    print("====tag \(sender.tag)")
+    switch sender.tag {
+    case 0:
+      displayingPosts.removeAll()
+      initDisplayingPosts(status: STATUS_PENDING)
+      tableView.reloadData()
+    case 1:
+      displayingPosts.removeAll()
+      initDisplayingPosts(status: STATUS_ACCEPTED)
+      tableView.reloadData()
+    case 2:
+      displayingPosts.removeAll()
+      initDisplayingPosts(status: STATUS_DENIED)
+      tableView.reloadData()
+    default:
+      break
+    }
+  }
 }
 
 extension ListPostViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showPostDetail" {
       if let destination = segue.destination as? PostDetailViewController {
-        destination.post = posts[index]
+        destination.post = displayingPosts[index]
       }
     } else if segue.identifier == "showListAnswer" {
       if let destination = segue.destination as? AnswersViewController {
-        destination.post = posts[index]
+        destination.post = displayingPosts[index]
       }
     }
   }

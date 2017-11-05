@@ -230,7 +230,11 @@ extension PostRequestViewController {
       if let destination = segue.destination as? OrderInfoViewController {
         destination.post = post 
         destination.sourceViewController = "PostRequestViewController"
-        destination.textViewMessage = message
+        if message != PLACEHOLDER_TEXT {
+          destination.textViewMessage = message
+        } else {
+          destination.textViewMessage = ""
+        }
       }
     }
   }

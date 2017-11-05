@@ -12,17 +12,19 @@ class ListOrderViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   
-  @IBOutlet weak var statusTextField: UITextField!
-  
-  @IBOutlet weak var statusTFHeight: NSLayoutConstraint!
-  
   @IBOutlet weak var topSpaceTableView: NSLayoutConstraint!
   
   let reuseableCell = "Cell"
   var orderInfos: [OrderInfo] = [] {
     didSet {
-      
-      tableView.reloadData()
+      if Helper.role == ROLE_CUSTOMER {
+        // the first time have status = pending
+        initDisplayingCustomerOrders(status: STATUS_PENDING)
+        tableView.reloadData()
+      } else if Helper.role == ROLE_CHEF {
+        tableView.reloadData()
+      }
+      myActivityIndicator.stopAnimating()
     }
   }
   // Save index of table row
@@ -33,6 +35,24 @@ class ListOrderViewController: UIViewController {
   var listStatus: [String] = ["Đang chờ duyệt","Đã chấp nhận","Thương lượng","Từ chối"]
   // Default status
   var selectedStatus: String = "Đang chờ duyệt"
+  var myActivityIndicator: UIActivityIndicatorView!
+  // constant for status
+  let STATUS_PENDING = "pending"
+  let STATUS_ACCEPTED = "accepted"
+  let STATUS_DENIED = "denied"
+  let STATUS_NEGOTIATING = "negotiating"
+  
+  // We will use orderInfos for entire this class if role = chef
+  // And use displayingCustomerOrders for entire this class if role = customer
+  // Because API of 2 roles are different, role chef need status and role customer doesn't need
+  // role chef will click tab button and then load data from server
+  // role customer get all data in the first time and will filter data for displayingCustomerOrders
+  // this array for role customer
+  var displayingCustomerOrders: [OrderInfo] = []
+  let ROLE_CHEF = "chef"
+  let ROLE_CUSTOMER = "customer"
+  // variable using for role chef and customer
+  var orderInfo: OrderInfo = OrderInfo()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,25 +68,15 @@ class ListOrderViewController: UIViewController {
     // Add left bar button
     let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
     self.navigationItem.leftBarButtonItem  = menuButton
-    var title = ""
-    if Helper.role == "chef" {
-      title = "Đơn hàng của bếp"
-    } else if Helper.role == "customer" {
-      title = "Đơn hàng của tôi"
-      statusTextField.isHidden = true
-      // status height 0
-      statusTFHeight.constant = 0
-      topSpaceTableView.constant = 0
-    }
+    let title = ""
     self.settingForNavigationBar(title: title)
-    createStatusPicker()
-    createToolbar()
-    // Set default content for textfield
-    statusTextField.text = selectedStatus
+    setUpActivityIndicator()
     // Request Data
     if Helper.role == "customer" {
+      myActivityIndicator.startAnimating()
       customerOrderModelDatasource.requestCustomerOrder()
     } else if Helper.role == "chef" {
+      myActivityIndicator.startAnimating()
       // Change to english status
       selectedStatus = "pending"
       kitchenOrderModelDatasource.requestKitchenOrder(status: selectedStatus)
@@ -91,14 +101,25 @@ extension ListOrderViewController: UITableViewDelegate {
 extension ListOrderViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return orderInfos.count
+    if Helper.role == ROLE_CUSTOMER {
+      return displayingCustomerOrders.count
+    } else {
+      return orderInfos.count
+    }
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! GetOrderTableViewCell
     // Distinguish role
     let role = Helper.role
-    cell.configureWithItem(orderInfo: orderInfos[indexPath.row], role: role, status: selectedStatus)
+    // Distinguish orderInfo of orderInfos or displayingCustomerOrders
+    if role == ROLE_CHEF {
+      self.orderInfo = orderInfos[indexPath.row]
+    } else if role == ROLE_CUSTOMER {
+      self.orderInfo = displayingCustomerOrders[indexPath.row]
+    }
+    
+    cell.configureWithItem(orderInfo: self.orderInfo, role: role, status: selectedStatus)
     // Handle button on cell
     cell.buttonNotification.tag = indexPath.row
     cell.buttonNotification.addTarget(self, action: #selector(self.didTouchButtonNotification), for: .touchUpInside)
@@ -137,24 +158,6 @@ extension ListOrderViewController: KitchenOrderDataModelDelegate {
   }
 }
 
-extension ListOrderViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-  func numberOfComponents(in pickerView: UIPickerView) -> Int {
-    return 1
-  }
-  
-  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return listStatus.count
-  }
-  
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return listStatus[row]
-  }
-  
-  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    selectedStatus = listStatus[row]
-    statusTextField.text = selectedStatus
-  }
-}
 
 // MARK: Function
 extension ListOrderViewController {
@@ -164,7 +167,13 @@ extension ListOrderViewController {
   
   func didTouchButtonNotification(sender: UIButton) {
     index = sender.tag
-    if orderInfos[index].suggestions.isEmpty {
+    if Helper.role == ROLE_CHEF {
+      self.orderInfo = orderInfos[index]
+    } else if Helper.role == ROLE_CUSTOMER {
+      self.orderInfo = displayingCustomerOrders[index]
+    }
+    
+    if self.orderInfo.suggestions.isEmpty {
       let title = "Thông báo"
       let message = "Không có đề nghị nào"
       self.alert(title: title, message: message)
@@ -173,40 +182,92 @@ extension ListOrderViewController {
     }
   }
   
-  func createStatusPicker() {
-    let statusPicker = UIPickerView()
-    statusPicker.delegate = self
-    statusTextField.inputView = statusPicker
+  func setUpActivityIndicator()
+  {
+    //Create Activity Indicator
+    myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+    
+    // Position Activity Indicator in the center of the main view
+    myActivityIndicator.center = view.center
+    
+    // If needed, you can prevent Acivity Indicator from hiding when stopAnimating() is called
+    myActivityIndicator.hidesWhenStopped = true
+    
+    myActivityIndicator.backgroundColor = .white
+    
+    view.addSubview(myActivityIndicator)
   }
   
-  // Toolbar for statusPicker
-  func createToolbar() {
-    // Create a toolbar
-    let toolbar = UIToolbar()
-    toolbar.sizeToFit()
-    // Add a done button on this toolbar
-    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
-    toolbar.setItems([doneButton], animated: true)
-    statusTextField.inputAccessoryView = toolbar
-  }
-  
-  // Click done button on toolbar of statusPicker
-  func doneClicked() {
-    self.dismissKeyboard()
-    // Change to English for selectedStatus
-    switch selectedStatus {
-    case "Đang chờ duyệt":
-      selectedStatus = "pending"
-    case "Đã chấp nhận":
-      selectedStatus = "accepted"
-    case "Thương lượng":
-      selectedStatus = "negotiating"
-    case "Từ chối":
-      selectedStatus = "denied"
-    default :
-      break
+  func initDisplayingCustomerOrders(status: String) {
+    for orderInfo in orderInfos {
+      if orderInfo.status == status {
+        displayingCustomerOrders.append(orderInfo)
+      }
     }
-    kitchenOrderModelDatasource.requestKitchenOrder(status: selectedStatus)
+  }
+  
+}
+
+// MARK: IBAction
+extension ListOrderViewController {
+  @IBAction func didTouchTabButton(_ sender: UIButton) {
+    myActivityIndicator.startAnimating()
+    print("====tag \(sender.tag)")
+    if Helper.role == ROLE_CHEF {
+      switch sender.tag {
+      case 0:
+        myActivityIndicator.startAnimating()
+        orderInfos.removeAll()
+        selectedStatus = STATUS_PENDING
+        kitchenOrderModelDatasource.requestKitchenOrder(status: STATUS_PENDING)
+      case 1:
+        myActivityIndicator.startAnimating()
+        orderInfos.removeAll()
+        selectedStatus = STATUS_NEGOTIATING
+        kitchenOrderModelDatasource.requestKitchenOrder(status: STATUS_NEGOTIATING)
+      case 2:
+        myActivityIndicator.startAnimating()
+        orderInfos.removeAll()
+        selectedStatus = STATUS_ACCEPTED
+        kitchenOrderModelDatasource.requestKitchenOrder(status: STATUS_ACCEPTED)
+      case 3:
+        myActivityIndicator.startAnimating()
+        orderInfos.removeAll()
+        selectedStatus = STATUS_DENIED
+        kitchenOrderModelDatasource.requestKitchenOrder(status: STATUS_DENIED)
+      default:
+        break
+      }
+    } else if Helper.role == ROLE_CUSTOMER {
+      switch sender.tag {
+      case 0:
+        myActivityIndicator.startAnimating()
+        displayingCustomerOrders.removeAll()
+        initDisplayingCustomerOrders(status: STATUS_PENDING)
+        tableView.reloadData()
+        myActivityIndicator.stopAnimating()
+      case 1:
+        myActivityIndicator.startAnimating()
+        displayingCustomerOrders.removeAll()
+        initDisplayingCustomerOrders(status: STATUS_NEGOTIATING)
+        tableView.reloadData()
+        myActivityIndicator.stopAnimating()
+      case 2:
+        myActivityIndicator.startAnimating()
+        displayingCustomerOrders.removeAll()
+        initDisplayingCustomerOrders(status: STATUS_ACCEPTED)
+        tableView.reloadData()
+        myActivityIndicator.stopAnimating()
+      case 3:
+        myActivityIndicator.startAnimating()
+        displayingCustomerOrders.removeAll()
+        initDisplayingCustomerOrders(status: STATUS_DENIED)
+        tableView.reloadData()
+        myActivityIndicator.stopAnimating()
+      default:
+        break
+      }
+    }
   }
 }
 
@@ -235,7 +296,13 @@ extension ListOrderViewController {
       }
     } else if segue.identifier == "showListSuggestion" {
       if let destination = segue.destination as? SuggestionsViewController {
-        destination.suggestions = orderInfos[index].suggestions
+        if Helper.role == ROLE_CHEF {
+          self.orderInfo = orderInfos[index]
+        } else if Helper.role == ROLE_CUSTOMER {
+          self.orderInfo = displayingCustomerOrders[index]
+        }
+        
+        destination.suggestions = orderInfo.suggestions
       }
     }
   }
