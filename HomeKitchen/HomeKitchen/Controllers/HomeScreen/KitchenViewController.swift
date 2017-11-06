@@ -53,6 +53,9 @@ class KitchenViewController: UIViewController {
     if isLogin {
       getUserInformation()
     }
+    // Right button in navigation bar
+    settingRightButtonItem()
+    
   }
   
   override func didReceiveMemoryWarning() {
@@ -112,6 +115,22 @@ extension KitchenViewController {
         print("====username: \(Helper.user.username)")
       }
     }
+  }
+  
+  func settingRightButtonItem() {
+    // Set nil for title if UIBarButton have an image to avoid bug button move down when alert message appears
+    let rightButtonItem = UIBarButtonItem.init(
+      title: nil,
+      style: .done,
+      target: self,
+      action: #selector(rightButtonAction(sender:))
+    )
+    rightButtonItem.image = UIImage(named: "search-white")
+    self.navigationItem.rightBarButtonItem = rightButtonItem
+  }
+  
+  func rightButtonAction(sender: UIBarButtonItem) {
+    performSegue(withIdentifier: "showSearchView", sender: self)
   }
 }
 

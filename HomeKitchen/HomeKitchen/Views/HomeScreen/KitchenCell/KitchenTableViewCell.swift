@@ -24,6 +24,7 @@ class KitchenTableViewCell: UITableViewCell {
   @IBOutlet weak var backgroundImageView: UIImageView!
   
   @IBOutlet weak var myIndicator: UIActivityIndicatorView!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     

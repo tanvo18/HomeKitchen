@@ -128,7 +128,7 @@ extension PostRequestViewController {
     )
     rightButtonItem.image = UIImage(named: "barbutton-plus")
     self.navigationItem.rightBarButtonItem = rightButtonItem
-    self.navigationItem.rightBarButtonItem?.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
+//    self.navigationItem.rightBarButtonItem?.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
   }
   
   func rightButtonAction(sender: UIBarButtonItem) {
