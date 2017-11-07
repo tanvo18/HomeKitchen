@@ -44,7 +44,7 @@ class KitchenTableViewCell: UITableViewCell {
       kitchenNameLabel.text = kitchen.name
       addressLabel.text = "\(address), \(city)"
       timeLabel.text = "\(kitchen.open) đến \(kitchen.close)"
-      pointLabel.text = "\(kitchen.point)"
+      pointLabel.text = "\(Double(round(10*kitchen.point)/10))"  
       switch kitchen.point {
       case let point where point <= Constant.verybadPoint:
         qualityLabel.text = "RÂT TỆ"

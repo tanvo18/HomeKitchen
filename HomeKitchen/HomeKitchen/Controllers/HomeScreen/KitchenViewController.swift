@@ -9,6 +9,7 @@
 import LNSideMenu
 import Alamofire
 import ObjectMapper
+import ESPullToRefresh
 
 class KitchenViewController: UIViewController {
   
@@ -16,10 +17,16 @@ class KitchenViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   var kitchens: [Kitchen] = [] {
     didSet {
+      // add kitchen from kitchens to kitchensRendering
+      for kitchen in kitchens {
+        kitchensRendering.append(kitchen)
+      }
       tableView.reloadData()
       myIndicator.stopAnimating()
+      print("====function doing \(kitchensRendering.count)")
     }
   }
+  var kitchensRendering: [Kitchen] = []
   let kitchenModelDatasource = KitchenDataModel()
   let reuseableCell = "Cell"
   // Indicator
@@ -28,6 +35,10 @@ class KitchenViewController: UIViewController {
   // Checking user login or not, if login before, we have to get user information
   var isLogin: Bool = true
   let userModelDatasource = UserDataModel()
+  // param for request list kitchen
+  var page = 0
+  // page on server
+  let MAX_PAGE = 4
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,14 +59,21 @@ class KitchenViewController: UIViewController {
     // Add left bar button
     let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
     self.navigationItem.leftBarButtonItem  = menuButton
-    
     // Get user information if login before
     if isLogin {
       getUserInformation()
     }
     // Right button in navigation bar
     settingRightButtonItem()
-    
+    // Get kitchen data in the first time
+    kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: 0)
+    // Refresh and Load more
+    self.tableView.es.addPullToRefresh { [weak self] in
+      self?.refreshTableView()
+    }
+    self.tableView.es.addInfiniteScrolling { [weak self] in
+      self?.loadMoreTableView()
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -65,7 +83,6 @@ class KitchenViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     // MARK: enable sidemenu
     sideMenuManager?.sideMenuController()?.sideMenu?.disabled = false
-    kitchenModelDatasource.requestKitchen(status: "city", keyword: "Đà Nẵng")
   }
   
 }
@@ -77,12 +94,12 @@ extension KitchenViewController: UITableViewDelegate {
 // MARK: Tableview Datasource
 extension KitchenViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return kitchens.count
+    return kitchensRendering.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! KitchenTableViewCell
-    cell.configureWithItem(kitchen: kitchens[indexPath.row])
+    cell.configureWithItem(kitchen: kitchensRendering[indexPath.row])
     return cell
   }
   
@@ -93,7 +110,7 @@ extension KitchenViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     position = indexPath.row
     // Save kitchenID
-    Helper.kitchenId = kitchens[indexPath.row].id
+    Helper.kitchenId = kitchensRendering[indexPath.row].id
     performSegue(withIdentifier: "showKitchenDetail", sender: self)
   }
 }
@@ -132,6 +149,26 @@ extension KitchenViewController {
   func rightButtonAction(sender: UIBarButtonItem) {
     performSegue(withIdentifier: "showSearchView", sender: self)
   }
+  
+  func refreshTableView() {
+    print("refresh")
+    kitchensRendering.removeAll()
+    self.page = 0
+    kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: page)
+    tableView.reloadData()
+    self.tableView.es.stopPullToRefresh()
+  }
+  
+  func loadMoreTableView() {
+    print("loadmore")
+    self.page += 1
+    if self.page <= MAX_PAGE {
+      kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: page)
+      self.tableView.es.stopLoadingMore()
+    } else {
+      self.tableView.es.noticeNoMoreData()
+    }
+  }
 }
 
 // MARK: KitchenDataModel Delegate
@@ -148,7 +185,7 @@ extension KitchenViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showKitchenDetail" {
       if let destination = segue.destination as? KitchenDetailViewController {
-        destination.kitchen = kitchens[position]
+        destination.kitchen = kitchensRendering[position]
       }
     }
   }

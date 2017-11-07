@@ -20,18 +20,26 @@ class KitchenDetailViewController: UIViewController {
   @IBOutlet weak var indicator: UIActivityIndicatorView!
   @IBOutlet weak var timeLabel: UILabel!
   @IBOutlet weak var kitchenNameLabel: UILabel!
+  @IBOutlet weak var popularFoodLabel: UILabel!
   // Foot View Outlet
   @IBOutlet weak var phoneLabel: UILabel!
   @IBOutlet weak var typeLabel: UILabel!
   @IBOutlet weak var descriptionTextView: UITextView!
   @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
+  @IBOutlet weak var buttonShowReviews: UIButton!
   
   var products: [OrderItem] = []{
     didSet {
       // sorted product totalOrderAmount
       products.sort{ $0.product!.totalOrderAmount > $1.product!.totalOrderAmount}
-      // Calculate height for tableview (tableView has 3 rows)
-      heightOfRows = 3 * heightForOneRow
+      if products.count < TOP_ORDER_ROW_QUANTITIES {
+        heightOfRows = 0
+        popularFoodLabel.isHidden = true
+      } else {
+        // Calculate height for tableview (tableView has 3 rows)
+        heightOfRows = 3 * heightForOneRow
+        popularFoodLabel.isHidden = false
+      }
       updateViewConstraints()
       tableView.reloadData()
     }
@@ -202,7 +210,7 @@ extension KitchenDetailViewController {
     }
     downloadBackgroundImage(imageUrl: imageUrl)
     
-    pointLabel.text = "\(point)"
+    pointLabel.text = "\(Double(round(10*point)/10))"
     timeLabel.text = "\(openTime) - \(closeTime)"
     addressLabel.text = address.address + " " + address.district + " " + address.city
     kitchenNameLabel.text = kitchenName

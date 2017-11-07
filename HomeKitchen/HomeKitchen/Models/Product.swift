@@ -19,6 +19,7 @@ class Product: Mappable {
   var name: String = ""
   var recipe: Recipe?
   var status: String = ""
+  var point: Double = 0.0
   
   init() {}
   
@@ -36,5 +37,6 @@ class Product: Mappable {
     name                     <- map["name"]
     recipe                   <- map["recipe"]
     status                   <- map["status"]
+    point                    <- map["point"]
   }
 }

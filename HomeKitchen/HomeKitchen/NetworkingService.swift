@@ -188,7 +188,7 @@ class NetworkingService {
   }
   
   // Using responseString instead of responseJSON
-  func sendSuggestion(orderId: Int,deliveryTime: String, deliveryDate: String, totalPrice: Int, suggestionItems: [SuggestionItem], completion: @escaping (_ error: Error?) -> Void) {
+  func sendSuggestion(orderId: Int,deliveryTime: String, deliveryDate: String, totalPrice: Int, message : String, suggestionItems: [SuggestionItem], completion: @escaping (_ error: Error?) -> Void) {
     let url = NetworkingService.baseURLString + "users/suggestions"
     let headers: HTTPHeaders = [
       "Authorization": Helper.accessToken,
@@ -199,6 +199,7 @@ class NetworkingService {
                                     "delivery_time": deliveryTime,
                                     "delivery_date": deliveryDate,
                                     "total_price": totalPrice,
+                                    "message" : message,
                                     "suggestion_items": suggestionItems.toJSON()
     ]
     

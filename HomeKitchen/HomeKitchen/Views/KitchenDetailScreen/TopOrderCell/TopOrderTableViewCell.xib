@@ -60,22 +60,35 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hb7-77-oy7" customClass="CosmosView" customModule="Cosmos">
+                        <rect key="frame" x="95" y="99" width="197" height="15"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ieL-hH-7Ue" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1ko-BD-tPh"/>
                     <constraint firstItem="Qjg-y5-sjR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="95" id="3Jy-4T-9kK"/>
                     <constraint firstItem="tqO-Vn-iEe" firstAttribute="top" secondItem="HJM-ce-H8y" secondAttribute="bottom" constant="3" id="81S-Ud-27H"/>
+                    <constraint firstItem="hb7-77-oy7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="95" id="84W-4Q-1AR"/>
                     <constraint firstAttribute="bottom" secondItem="Qjg-y5-sjR" secondAttribute="bottom" id="C61-jf-0aj"/>
                     <constraint firstAttribute="trailing" secondItem="Qjg-y5-sjR" secondAttribute="trailing" id="F17-0j-oJF"/>
                     <constraint firstItem="bsX-72-GeG" firstAttribute="top" secondItem="tqO-Vn-iEe" secondAttribute="bottom" constant="10" id="Ftg-UV-VhO"/>
+                    <constraint firstAttribute="trailing" secondItem="hb7-77-oy7" secondAttribute="trailing" constant="28" id="GoG-w2-nte"/>
                     <constraint firstItem="tqO-Vn-iEe" firstAttribute="leading" secondItem="ieL-hH-7Ue" secondAttribute="trailing" constant="17" id="IoO-FX-xI6"/>
                     <constraint firstAttribute="trailingMargin" secondItem="HJM-ce-H8y" secondAttribute="trailing" constant="20" id="Md6-EI-kfV"/>
                     <constraint firstItem="ieL-hH-7Ue" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Pom-Fp-IHj"/>
                     <constraint firstItem="HJM-ce-H8y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="17" id="SMA-h6-Fb4"/>
                     <constraint firstItem="bsX-72-GeG" firstAttribute="leading" secondItem="ieL-hH-7Ue" secondAttribute="trailing" constant="17" id="SRc-QS-ilb"/>
                     <constraint firstItem="HJM-ce-H8y" firstAttribute="leading" secondItem="ieL-hH-7Ue" secondAttribute="trailing" constant="17" id="UTI-AG-Sho"/>
+                    <constraint firstItem="hb7-77-oy7" firstAttribute="top" secondItem="bsX-72-GeG" secondAttribute="bottom" constant="4" id="WkD-d2-Edy"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bsX-72-GeG" secondAttribute="trailing" constant="20" id="dW9-GP-R5N"/>
                     <constraint firstAttribute="trailingMargin" secondItem="tqO-Vn-iEe" secondAttribute="trailing" constant="20" id="hpj-qd-QtK"/>
+                    <constraint firstItem="Qjg-y5-sjR" firstAttribute="top" secondItem="hb7-77-oy7" secondAttribute="bottom" constant="4.5" id="wBv-cy-iff"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -83,6 +96,7 @@
                 <outlet property="nameLabel" destination="HJM-ce-H8y" id="9S0-kH-CkH"/>
                 <outlet property="priceLabel" destination="bsX-72-GeG" id="H94-3b-RVL"/>
                 <outlet property="separatorView" destination="Qjg-y5-sjR" id="CfQ-eu-hfS"/>
+                <outlet property="starRatingView" destination="hb7-77-oy7" id="QpE-5n-ffs"/>
                 <outlet property="typeLabel" destination="tqO-Vn-iEe" id="6rg-Ze-l16"/>
             </connections>
             <point key="canvasLocation" x="-64" y="62"/>

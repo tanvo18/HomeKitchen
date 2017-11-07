@@ -17,6 +17,7 @@ class Suggestion: Mappable {
   var deliveryDate: String = ""
   var totalPrice: Int = 0
   var suggestItems: [SuggestionItem] = []
+  var message: String = ""
   
   init() {}
   
@@ -32,5 +33,6 @@ class Suggestion: Mappable {
     deliveryDate              <- map["delivery_date"]
     totalPrice                <- map["total_price"]
     suggestItems              <- map["suggestion_items"]
+    message                   <- map["message"]
   }
 }

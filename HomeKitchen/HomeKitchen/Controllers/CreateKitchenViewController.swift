@@ -75,6 +75,11 @@ class CreateKitchenViewController: UIViewController {
     
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    // MARK: enable sidemenu
+    sideMenuManager?.sideMenuController()?.sideMenu?.disabled = false
+  }
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
   }

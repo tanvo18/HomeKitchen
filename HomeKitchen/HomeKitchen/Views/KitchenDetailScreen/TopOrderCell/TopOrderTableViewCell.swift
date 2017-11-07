@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import Cosmos
 
 class TopOrderTableViewCell: UITableViewCell {
   
@@ -20,6 +21,8 @@ class TopOrderTableViewCell: UITableViewCell {
   @IBOutlet weak var priceLabel: UILabel!
   
   @IBOutlet weak var separatorView: UIView!
+  
+  @IBOutlet weak var starRatingView: CosmosView!
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -35,6 +38,12 @@ class TopOrderTableViewCell: UITableViewCell {
     nameLabel.text = product.name
     typeLabel.text = product.type
     priceLabel.text = "\(product.price)"
+    starRatingView.settings.fillMode = .half
+    if product.point <= 0 {
+      starRatingView.isHidden = true
+    } else {
+      starRatingView.rating = product.point
+    }
     downloadProductImage(imageUrl: product.imageUrl)
   }
   

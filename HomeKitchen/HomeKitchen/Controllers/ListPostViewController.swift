@@ -14,6 +14,10 @@ class ListPostViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet var tabButtons: [UIButton]!
   
+  // list image appear when click and not click tab
+  let tabButtonClickedImage: [String] = ["tab-pending-yellow","tab-accepted-yellow","tab-denied-yellow"]
+  let tabButtonNotClickedImage: [String] = ["tab-pending-gray","tab-accepted-gray","tab-denied-gray"]
+  
   let reuseableCell = "Cell"
   var posts: [Post] = [] {
     didSet {
@@ -142,6 +146,17 @@ extension ListPostViewController {
       }
     }
   }
+  
+  func setImageForTabButton(index: Int) {
+    // 3 tab buttons
+    for position in 0..<3 {
+      if position == index {
+        tabButtons[position].setBackgroundImage(UIImage(named: tabButtonClickedImage[position]), for: .normal)
+      } else {
+        tabButtons[position].setBackgroundImage(UIImage(named: tabButtonNotClickedImage[position]), for: .normal)
+      }
+    }
+  }
 }
 
 // MARK: IBAction
@@ -151,14 +166,17 @@ extension ListPostViewController {
     print("====tag \(sender.tag)")
     switch sender.tag {
     case 0:
+      setImageForTabButton(index: 0)
       displayingPosts.removeAll()
       initDisplayingPosts(status: STATUS_PENDING)
       tableView.reloadData()
     case 1:
+      setImageForTabButton(index: 1)
       displayingPosts.removeAll()
       initDisplayingPosts(status: STATUS_ACCEPTED)
       tableView.reloadData()
     case 2:
+      setImageForTabButton(index: 2)
       displayingPosts.removeAll()
       initDisplayingPosts(status: STATUS_DENIED)
       tableView.reloadData()

@@ -17,6 +17,7 @@ class SuggestionDetailViewController: UIViewController {
   @IBOutlet weak var acceptedButton: UIButton!
   @IBOutlet weak var declinedButton: UIButton!
   @IBOutlet weak var totalPriceLabel: UILabel!
+  @IBOutlet weak var messageTextView: UITextView!
   @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak var viewHeightConstraint: NSLayoutConstraint!
   
@@ -34,6 +35,7 @@ class SuggestionDetailViewController: UIViewController {
     deliveryTimeLabel.text = suggestion.deliveryTime
     deliveryDateLabel.text = suggestion.deliveryDate
     totalPriceLabel.text = "\(suggestion.totalPrice)"
+    messageTextView.text = suggestion.message
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UINib(nibName: "SuggestionTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)

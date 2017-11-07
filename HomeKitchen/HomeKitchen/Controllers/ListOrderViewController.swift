@@ -14,6 +14,12 @@ class ListOrderViewController: UIViewController {
   
   @IBOutlet weak var topSpaceTableView: NSLayoutConstraint!
   
+  @IBOutlet var tabButtons: [UIButton]!
+  
+  // list image appear when click and not click tab
+  let tabButtonClickedImage: [String] = ["tab-pending-yellow","tab-negotiating-yellow","tab-accepted-yellow","tab-denied-yellow"]
+  let tabButtonNotClickedImage: [String] = ["tab-pending-gray","tab-negotiating-gray","tab-accepted-gray","tab-denied-gray"]
+  
   let reuseableCell = "Cell"
   var orderInfos: [OrderInfo] = [] {
     didSet {
@@ -27,6 +33,7 @@ class ListOrderViewController: UIViewController {
       myActivityIndicator.stopAnimating()
     }
   }
+  
   // Save index of table row
   var index: Int = 0
   let customerOrderModelDatasource = CustomerOrderDataModel()
@@ -206,6 +213,17 @@ extension ListOrderViewController {
     }
   }
   
+  func setImageForTabButton(index: Int) {
+    // 4 tab buttons
+    for position in 0..<4 {
+      if position == index {
+        tabButtons[position].setBackgroundImage(UIImage(named: tabButtonClickedImage[position]), for: .normal)
+      } else {
+        tabButtons[position].setBackgroundImage(UIImage(named: tabButtonNotClickedImage[position]), for: .normal)
+      }
+    }
+  }
+  
 }
 
 // MARK: IBAction
@@ -217,24 +235,33 @@ extension ListOrderViewController {
       switch sender.tag {
       case 0:
         myActivityIndicator.startAnimating()
+        tabButtons[sender.tag].backgroundColor = UIColor.gray
         orderInfos.removeAll()
         selectedStatus = STATUS_PENDING
         kitchenOrderModelDatasource.requestKitchenOrder(status: STATUS_PENDING)
+        // Set image
+        setImageForTabButton(index: 0)
       case 1:
         myActivityIndicator.startAnimating()
         orderInfos.removeAll()
         selectedStatus = STATUS_NEGOTIATING
         kitchenOrderModelDatasource.requestKitchenOrder(status: STATUS_NEGOTIATING)
+        // Set image
+        setImageForTabButton(index: 1)
       case 2:
         myActivityIndicator.startAnimating()
         orderInfos.removeAll()
         selectedStatus = STATUS_ACCEPTED
         kitchenOrderModelDatasource.requestKitchenOrder(status: STATUS_ACCEPTED)
+        // Set image
+        setImageForTabButton(index: 2)
       case 3:
         myActivityIndicator.startAnimating()
         orderInfos.removeAll()
         selectedStatus = STATUS_DENIED
         kitchenOrderModelDatasource.requestKitchenOrder(status: STATUS_DENIED)
+        // Set image
+        setImageForTabButton(index: 3)
       default:
         break
       }

@@ -19,7 +19,7 @@ class KitchenDataModel {
   
   weak var delegate: KitchenDataModelDelegate?
   
-  func requestKitchen(status: String, keyword: String) {
+  func requestKitchen(status: String, keyword: String, city: String, page: Int) {
     var kitchens: [Kitchen] = []
     var result: ResultKitchen?
     
@@ -30,7 +30,10 @@ class KitchenDataModel {
     let url = NetworkingService.baseURLString + "kitchens/filter"
     
     let parameters: Parameters = ["status" : status,
-                                  "key_word" : keyword]
+                                  "key_word" : keyword,
+                                  "city" : city,
+                                  "page" : page
+    ]
     
     Alamofire.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default, headers: headers).validate(statusCode: 200..<300).responseJSON { response in
       switch response.result {

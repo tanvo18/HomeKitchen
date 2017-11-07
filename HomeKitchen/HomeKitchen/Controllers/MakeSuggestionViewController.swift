@@ -14,6 +14,7 @@ class MakeSuggestionViewController: UIViewController {
   @IBOutlet weak var deliveryDateLabel: UILabel!
   @IBOutlet weak var totalLabel: UILabel!
   @IBOutlet weak var deliveryTimeTextField: UITextField!
+  @IBOutlet weak var messageTextView: UITextView!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var tableHeightConstraint: NSLayoutConstraint!
   @IBOutlet weak var viewHeightConstraint: NSLayoutConstraint!
@@ -26,7 +27,6 @@ class MakeSuggestionViewController: UIViewController {
   var suggestionItems: [SuggestionItem] = []
   var index: Int = 0
   var totalPrice: Int = 0
-  
   let datePicker = UIDatePicker()
   
   override func viewDidLoad() {
@@ -170,8 +170,9 @@ extension MakeSuggestionViewController {
 extension MakeSuggestionViewController {
   @IBAction func didTouchSendButton(_ sender: Any) {
     let total: Int = Int(totalLabel.text!)!
+    let suggestionMessage: String = messageTextView.text!
     addItemToSuggestionItems()
-    NetworkingService.sharedInstance.sendSuggestion(orderId: orderInfo.id, deliveryTime: deliveryTimeTextField.text!, deliveryDate: deliveryDateLabel.text!, totalPrice: total, suggestionItems: suggestionItems) {[unowned self] (error) in
+    NetworkingService.sharedInstance.sendSuggestion(orderId: orderInfo.id, deliveryTime: deliveryTimeTextField.text!, deliveryDate: deliveryDateLabel.text!, totalPrice: total, message: suggestionMessage , suggestionItems: suggestionItems) {[unowned self] (error) in
       if error != nil {
         print(error!)
         self.alertError(message: "Gửi thất bại")
