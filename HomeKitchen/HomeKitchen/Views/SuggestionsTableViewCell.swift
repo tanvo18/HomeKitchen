@@ -34,5 +34,18 @@ class SuggestionsTableViewCell: UITableViewCell {
     } else {
       statusImageView.image = UIImage(named: "icon-yellowtriangle")
     }
+    // change status to vietnamese
+    switch statusLabel.text! {
+    case "accepted":
+      statusLabel.text = "Đã chấp nhận"
+    case "denied":
+      statusLabel.text = "Từ chối"
+    case "pending":
+      statusLabel.text = "Đang chờ duyệt"
+    case "negotiating":
+      statusLabel.text = "Thương lượng"
+    default:
+      break
+    }
   }
 }

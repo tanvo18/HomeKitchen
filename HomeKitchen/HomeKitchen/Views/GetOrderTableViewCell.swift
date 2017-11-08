@@ -19,6 +19,7 @@ class GetOrderTableViewCell: UITableViewCell {
   @IBOutlet weak var notificationLabel: UILabel!
   
   var newMessage = 0
+  var didHaveDeniedMessage: Bool = false
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -40,22 +41,22 @@ class GetOrderTableViewCell: UITableViewCell {
     
     // Change status to vietnamese
     switch statusLabel.text! {
-      case "accepted":
+    case "accepted":
       statusLabel.text = "Đã chấp nhận"
-      case "denied":
+    case "denied":
       statusLabel.text = "Từ chối"
-      case "pending":
+    case "pending":
       statusLabel.text = "Đang chờ duyệt"
-      case "negotiating":
+    case "negotiating":
       statusLabel.text = "Thương lượng"
     default:
       break
     }
     
     // Set image
-    if orderInfo.status == "accepted" {
+    if orderInfo.status == "accepted" || status == "accepted" {
       statusImageView.image = UIImage(named: "checkmark-green")
-    } else if orderInfo.status == "denied"{
+    } else if orderInfo.status == "denied" || status == "denied" {
       statusImageView.image = UIImage(named: "icon-redtriangle")
     } else{
       statusImageView.image = UIImage(named: "icon-yellowtriangle")
@@ -64,6 +65,7 @@ class GetOrderTableViewCell: UITableViewCell {
     // Round label
     notificationLabel.layer.masksToBounds = true
     notificationLabel.layer.cornerRadius = notificationLabel.frame.size.width / 2
+    
     // Set number for notiLabel
     self.newMessage = 0
     for suggestion in orderInfo.suggestions {
@@ -72,8 +74,20 @@ class GetOrderTableViewCell: UITableViewCell {
       }
     }
     notificationLabel.text = "\(newMessage)"
-    if self.newMessage == 0 {
+    
+    for suggestion in orderInfo.suggestions {
+      if suggestion.status == "denied" {
+        didHaveDeniedMessage = true
+      }
+    }
+    
+    // If we dont have a pending message and have a denied message then set ! for notification label
+    // If we have a pending message then set number for notification label
+    if self.newMessage == 0 && didHaveDeniedMessage == false {
       notificationLabel.isHidden = true
+    } else if self.newMessage == 0 && didHaveDeniedMessage == true {
+      notificationLabel.isHidden = false
+      notificationLabel.text = "!"
     } else {
       notificationLabel.isHidden = false
     }

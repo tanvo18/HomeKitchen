@@ -18,6 +18,7 @@ class ListPostTableViewCell: UITableViewCell {
   @IBOutlet weak var notificationLabel: UILabel!
   
   var newMessage = 0
+  var didHaveDeniedMessage: Bool = false
   
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -69,6 +70,7 @@ class ListPostTableViewCell: UITableViewCell {
       }
     }
     notificationLabel.text = "\(newMessage)"
+    
     if self.newMessage == 0 {
       notificationLabel.isHidden = true
     } else {

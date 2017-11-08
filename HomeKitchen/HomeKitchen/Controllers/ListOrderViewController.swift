@@ -33,7 +33,8 @@ class ListOrderViewController: UIViewController {
       myActivityIndicator.stopAnimating()
     }
   }
-  
+  // Set title if dont have any order
+  let notiLabel: UILabel = UILabel()
   // Save index of table row
   var index: Int = 0
   let customerOrderModelDatasource = CustomerOrderDataModel()
@@ -78,6 +79,8 @@ class ListOrderViewController: UIViewController {
     let title = ""
     self.settingForNavigationBar(title: title)
     setUpActivityIndicator()
+    // When start, pending button is yellow, default is status pending
+    setImageForTabButton(index: 0)
     // Request Data
     if Helper.role == "customer" {
       myActivityIndicator.startAnimating()
@@ -273,24 +276,32 @@ extension ListOrderViewController {
         initDisplayingCustomerOrders(status: STATUS_PENDING)
         tableView.reloadData()
         myActivityIndicator.stopAnimating()
+        // Set image
+        setImageForTabButton(index: 0)
       case 1:
         myActivityIndicator.startAnimating()
         displayingCustomerOrders.removeAll()
         initDisplayingCustomerOrders(status: STATUS_NEGOTIATING)
         tableView.reloadData()
         myActivityIndicator.stopAnimating()
+        // Set image
+        setImageForTabButton(index: 1)
       case 2:
         myActivityIndicator.startAnimating()
         displayingCustomerOrders.removeAll()
         initDisplayingCustomerOrders(status: STATUS_ACCEPTED)
         tableView.reloadData()
         myActivityIndicator.stopAnimating()
+        // Set image
+        setImageForTabButton(index: 2)
       case 3:
         myActivityIndicator.startAnimating()
         displayingCustomerOrders.removeAll()
         initDisplayingCustomerOrders(status: STATUS_DENIED)
         tableView.reloadData()
         myActivityIndicator.stopAnimating()
+        // Set image
+        setImageForTabButton(index: 3)
       default:
         break
       }
@@ -306,13 +317,13 @@ extension ListOrderViewController {
         // Change to English for selectedStatus
         switch selectedStatus {
         case "Đang chờ duyệt":
-          selectedStatus = "pending"
+          selectedStatus = STATUS_PENDING
         case "Đã chấp nhận":
-          selectedStatus = "accepted"
+          selectedStatus = STATUS_ACCEPTED
         case "Thương lượng":
-          selectedStatus = "negotiating"
+          selectedStatus = STATUS_NEGOTIATING
         case "Từ chối":
-          selectedStatus = "denied"
+          selectedStatus = STATUS_DENIED
         default :
           break
         }

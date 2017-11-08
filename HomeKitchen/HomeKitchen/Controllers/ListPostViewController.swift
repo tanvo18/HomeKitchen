@@ -55,6 +55,8 @@ class ListPostViewController: UIViewController {
     let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
     self.navigationItem.leftBarButtonItem  = menuButton
     getPostsFromServer()
+    // When start, pending button is yellow, default is status pending
+    setImageForTabButton(index: 0)
   }
   
   override func didReceiveMemoryWarning() {
