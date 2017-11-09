@@ -338,7 +338,7 @@ extension CreateKitchenViewController {
             cityIndex = 0
           case "Đà Nẵng":
             cityIndex = 1
-          case "TP.Hồ Chí Minh":
+          case "TP. HCM":
             cityIndex = 2
           default:
             break
@@ -357,7 +357,7 @@ extension CreateKitchenViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showLocation" {
       if let destination = segue.destination as? LocationViewController {
-        destination.viewcontroller = "CreateKitchenViewController"
+        destination.sourceViewController = "CreateKitchenViewController"
         if distinguishFunction == FUNCTION_TAP_CITY {
           destination.locations = Helper.cityLocations
         } else if distinguishFunction == FUNCTION_TAP_DISTRICT {

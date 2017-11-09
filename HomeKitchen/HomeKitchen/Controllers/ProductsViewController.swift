@@ -55,24 +55,6 @@ extension ProductsViewController: UITableViewDataSource {
     performSegue(withIdentifier: "showEditProduct", sender: self)
     
   }
-  
-  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    if editingStyle == .delete {
-      let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-        NetworkingService.sharedInstance.deleteProduct(productId: self.products[indexPath.row].id) {
-          [unowned self] (message,error) in
-          if error != nil {
-            print(error!)
-            self.alertError(message: "Xoá thất bại")
-          } else {
-            self.products.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-          }
-        }
-      })
-      self.alertConfirmation(message: "Bạn có muốn?", action: ok)
-    }
-  }
 }
 
 // MARK: Function

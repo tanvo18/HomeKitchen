@@ -22,25 +22,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0vM-aN-bsY">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0vM-aN-bsY">
+                                <rect key="frame" x="0.0" y="131" width="375" height="492"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <sections/>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tìm kiếm" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="alI-gg-Ofx">
+                                <rect key="frame" x="16" y="72" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Đà Nẵng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpD-tu-MYS">
+                                <rect key="frame" x="278" y="77" width="67" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Địa điểm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTC-en-7wC">
+                                <rect key="frame" x="187" y="77" width="67" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="GV6-9p-RYl" firstAttribute="top" secondItem="0vM-aN-bsY" secondAttribute="bottom" id="G8V-T7-QUz"/>
-                            <constraint firstItem="0vM-aN-bsY" firstAttribute="leading" secondItem="1gI-l9-JKl" secondAttribute="leading" id="MAT-rR-oIx"/>
-                            <constraint firstAttribute="trailing" secondItem="0vM-aN-bsY" secondAttribute="trailing" id="c2r-Fl-woo"/>
-                            <constraint firstItem="0vM-aN-bsY" firstAttribute="top" secondItem="WbT-Fl-zqr" secondAttribute="bottom" id="sP8-OS-KT9"/>
-                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Nqd-Jk-y3R"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="criteriaLabel" destination="yTC-en-7wC" id="T27-UP-A18"/>
+                        <outlet property="locationLabel" destination="JpD-tu-MYS" id="pMl-vf-l7x"/>
+                        <outlet property="searchTextField" destination="alI-gg-Ofx" id="d0p-1Q-AIy"/>
                         <outlet property="tableView" destination="0vM-aN-bsY" id="ZKv-36-DsJ"/>
                         <segue destination="tLD-3D-VJE" kind="show" identifier="showKitchenDetail" id="Xcv-ct-VD3"/>
                         <segue destination="mi3-E6-qgR" kind="show" identifier="showListOrderViewController" id="reK-M9-1VN"/>
@@ -49,6 +68,7 @@
                         <segue destination="ROF-h6-tIT" kind="show" identifier="showListPost" id="SEn-in-l5v"/>
                         <segue destination="OAw-be-eO0" kind="show" identifier="showEditUser" id="EJC-fn-2zt"/>
                         <segue destination="ZNb-Mi-o0F" kind="show" identifier="showSearchView" id="nNN-Sv-yvJ"/>
+                        <segue destination="REw-I3-8Al" kind="show" identifier="showCriteria" id="D3D-Au-5LU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNc-zY-ucy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -516,6 +536,7 @@
                     <connections>
                         <outlet property="tableView" destination="2Ie-k1-IRx" id="A6E-rk-PYJ"/>
                         <segue destination="jHJ-Aa-sZ9" kind="unwind" identifier="unwindToSearchViewController" unwindAction="unwindToSearchViewControllerWithSegue:" id="8by-Nw-7XT"/>
+                        <segue destination="jHJ-Aa-sZ9" kind="unwind" identifier="unwindToKitchenViewController" unwindAction="unwindToKitchenViewControllerWithSegue:" id="Wq9-Hp-D5g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTW-Qb-LLz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -535,39 +556,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wmb-x3-bxB">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faE-F5-H92">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faE-F5-H92">
                                 <rect key="frame" x="16" y="72" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ujx-hJ-qH6"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thành phố" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGS-5M-epr">
-                                <rect key="frame" x="268" y="77" width="83" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Địa điểm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGS-5M-epr">
+                                <rect key="frame" x="172" y="77" width="83" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Đà Nẵng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXA-gC-u4T">
+                                <rect key="frame" x="281" y="77" width="67" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3ti-zI-d3e">
+                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="faE-F5-H92" firstAttribute="leading" secondItem="SQe-JY-1KL" secondAttribute="leading" constant="16" id="0LX-B1-IGU"/>
+                            <constraint firstAttribute="trailing" secondItem="faE-F5-H92" secondAttribute="trailing" constant="16" id="FRF-Gn-lSg"/>
+                            <constraint firstItem="faE-F5-H92" firstAttribute="top" secondItem="sbq-NZ-JgC" secondAttribute="bottom" constant="8" id="eYZ-SG-bsd"/>
+                            <constraint firstAttribute="trailing" secondItem="3ti-zI-d3e" secondAttribute="trailing" id="hx0-f3-ECy"/>
+                            <constraint firstItem="3ti-zI-d3e" firstAttribute="leading" secondItem="SQe-JY-1KL" secondAttribute="leading" id="pxj-28-zGN"/>
+                            <constraint firstItem="3ti-zI-d3e" firstAttribute="top" secondItem="faE-F5-H92" secondAttribute="bottom" constant="8" id="roL-H5-nsn"/>
+                            <constraint firstAttribute="bottom" secondItem="3ti-zI-d3e" secondAttribute="bottom" id="s3L-aF-s0Z"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="criteriaLabel" destination="bGS-5M-epr" id="I92-g6-jdz"/>
-                        <outlet property="searchTextField" destination="faE-F5-H92" id="Ngn-17-vrz"/>
-                        <outlet property="tableView" destination="wmb-x3-bxB" id="NRX-tV-oUE"/>
+                        <outlet property="criteriaLabel" destination="bGS-5M-epr" id="1BF-FB-eun"/>
+                        <outlet property="locationLabel" destination="eXA-gC-u4T" id="amo-Hs-VWm"/>
+                        <outlet property="searchTextField" destination="faE-F5-H92" id="XZN-Gl-BkQ"/>
+                        <outlet property="tableView" destination="3ti-zI-d3e" id="viG-35-y2s"/>
                         <segue destination="REw-I3-8Al" kind="show" identifier="showCriteria" id="Tbs-hA-oxr"/>
                         <segue destination="tLD-3D-VJE" kind="show" identifier="showKitchenDetail" id="WZO-en-ByL"/>
+                        <segue destination="A0C-oV-XE3" kind="show" identifier="showLocation" id="UH8-W7-Xds"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cdu-y2-eTi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-591.20000000000005" y="399.85007496251876"/>
+            <point key="canvasLocation" x="-623" y="400"/>
         </scene>
         <!--Edit Kitchen View Controller-->
         <scene sceneID="SH7-13-2c6">
@@ -1200,6 +1240,7 @@
                         <outlet property="tableView" destination="IHr-5o-eDE" id="Mgr-g5-XOQ"/>
                         <segue destination="sDy-uO-x6X" kind="unwind" identifier="unwindToCreateKitchenController" unwindAction="unwindToCreateKitchenControllerWithSegue:" id="5py-7k-HcP"/>
                         <segue destination="sDy-uO-x6X" kind="unwind" identifier="unwindToEditKitchenController" unwindAction="unwindToEditKitchenControllerWithSegue:" id="sM1-60-WcQ"/>
+                        <segue destination="sDy-uO-x6X" kind="unwind" identifier="unwindToSearchViewController" unwindAction="unwindToSearchViewControllerWithSegue:" id="vAE-cf-TaG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D0R-MX-HLN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3893,11 +3934,12 @@
     <inferredMetricsTieBreakers>
         <segue reference="SEn-in-l5v"/>
         <segue reference="ixT-ty-4nl"/>
+        <segue reference="D3D-Au-5LU"/>
         <segue reference="Xcv-ct-VD3"/>
         <segue reference="reK-M9-1VN"/>
-        <segue reference="JDc-Ee-M58"/>
-        <segue reference="m6M-Kj-f1N"/>
         <segue reference="WcN-74-H6N"/>
         <segue reference="SiF-K6-Nzy"/>
+        <segue reference="aw3-EE-4Eb"/>
+        <segue reference="UH8-W7-Xds"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,6 +15,10 @@ class KitchenViewController: UIViewController {
   
   // MARK: IBOutlet
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var locationLabel: UILabel!
+  @IBOutlet weak var criteriaLabel: UILabel!
+  @IBOutlet weak var searchTextField: UITextField!
+  // array contains all kitchens request from server when load more (1 load more return a specific quantities of kitchen)
   var kitchens: [Kitchen] = [] {
     didSet {
       // add kitchen from kitchens to kitchensRendering
@@ -26,6 +30,7 @@ class KitchenViewController: UIViewController {
       print("====function doing \(kitchensRendering.count)")
     }
   }
+  // array contains all kitchens after load more (add many kitchens in many load more time)
   var kitchensRendering: [Kitchen] = []
   let kitchenModelDatasource = KitchenDataModel()
   let reuseableCell = "Cell"
@@ -39,6 +44,9 @@ class KitchenViewController: UIViewController {
   var page = 0
   // page on server
   let MAX_PAGE = 4
+  var filterTypes: [String] = ["Thành phố","Đánh giá"]
+  let filterButton =  UIButton(type: .custom)
+  var filterButtonTitle: String = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -54,8 +62,6 @@ class KitchenViewController: UIViewController {
     myIndicator.center = view.center
     myIndicator.startAnimating()
     view.addSubview(myIndicator)
-    // Adjust navigation bar
-    self.settingForNavigationBar(title: "Trang chủ")
     // Add left bar button
     let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
     self.navigationItem.leftBarButtonItem  = menuButton
@@ -74,6 +80,16 @@ class KitchenViewController: UIViewController {
     self.tableView.es.addInfiniteScrolling { [weak self] in
       self?.loadMoreTableView()
     }
+    
+    // Adjust navigation bar
+    self.settingForNavigationBar(title: "")
+    // Setting filterButton
+    filterButton.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+    filterButton.backgroundColor = UIColor.clear
+    filterButton.setTitle("Thành phố", for: .normal)
+    filterButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+    filterButton.addTarget(self, action: #selector(self.didTouchFilterButton), for: .touchUpInside)
+    self.navigationItem.titleView = filterButton
   }
   
   override func didReceiveMemoryWarning() {
@@ -150,20 +166,37 @@ extension KitchenViewController {
     performSegue(withIdentifier: "showSearchView", sender: self)
   }
   
+  func didTouchFilterButton() {
+    performSegue(withIdentifier: "showCriteria", sender: self)
+  }
+  
   func refreshTableView() {
     print("refresh")
+    // Get title of button
+    filterButtonTitle = filterButton.titleLabel!.text!
+    // Remove all data
     kitchensRendering.removeAll()
     self.page = 0
-    kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: page)
+    if filterButtonTitle == filterTypes[0] {
+      kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: page)
+    } else if filterButtonTitle == filterTypes[1] {
+      kitchenModelDatasource.requestKitchen(status: "review", keyword: "", city: "Da Nang", page: page)
+    }
     tableView.reloadData()
     self.tableView.es.stopPullToRefresh()
   }
   
   func loadMoreTableView() {
     print("loadmore")
+    // Get title of button
+    filterButtonTitle = filterButton.titleLabel!.text!
     self.page += 1
     if self.page <= MAX_PAGE {
-      kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: page)
+      if filterButtonTitle == filterTypes[0] {
+        kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: page)
+      } else if filterButtonTitle == filterTypes[1] {
+        kitchenModelDatasource.requestKitchen(status: "review", keyword: "", city: "Da Nang", page: page)
+      }
       self.tableView.es.stopLoadingMore()
     } else {
       self.tableView.es.noticeNoMoreData()
@@ -181,11 +214,29 @@ extension KitchenViewController: KitchenDataModelDelegate {
   }
 }
 
+// MARK: IBAction
+extension KitchenViewController {
+  @IBAction func unwindToKitchenViewController(segue:UIStoryboardSegue) {
+    if segue.source is CriteriaViewController {
+      if let senderVC = segue.source as? CriteriaViewController {
+        let type = senderVC.selectedCriteria
+        filterButton.setTitle(type, for: .normal)
+        refreshTableView()
+      }
+    }
+  }
+}
+
 extension KitchenViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showKitchenDetail" {
       if let destination = segue.destination as? KitchenDetailViewController {
         destination.kitchen = kitchensRendering[position]
+      }
+    } else if segue.identifier == "showCriteria" {
+      if let destination = segue.destination as? CriteriaViewController {
+        destination.sourceViewController = "KitchenViewController"
+        destination.criterias = filterTypes
       }
     }
   }

@@ -12,9 +12,16 @@ class CriteriaViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   
-  var criterias: [String] = ["Thành phố","Kiểu","Đánh giá"]
+  // parse from KitchenViewController or SearchViewController
+  var criterias: [String] = []
   var selectedCriteria: String = ""
+  
+  
   let reuseableCell = "Cell"
+  var sourceViewController = ""
+  
+  var data = [["Thành phố","Đánh giá"],["Ăn chay","Bánh","Ăn vặt","Cơm văn phòng","Đồ nướng","Đặc sản miền Bắc","Đặc sản miền Trung","Đặc sản miền Nam"]]
+  let headerTitles = ["Tìm theo thành phố hoặc đánh giá", "Tìm theo kiểu bếp"]
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,23 +46,46 @@ extension CriteriaViewController: UITableViewDelegate {
 
 // MARK: Tableview Datasource
 extension CriteriaViewController: UITableViewDataSource {
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return data.count
+  }
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return criterias.count
+    return data[section].count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! CriteriaTableViewCell
-    cell.criteriaLabel.text = criterias[indexPath.row]
-    return cell
+    if indexPath.section == 0 {
+      let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! CriteriaTableViewCell
+      cell.criteriaLabel.text = data[indexPath.section][indexPath.row]
+      return cell
+    } else  {
+      let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! CriteriaTableViewCell
+      cell.criteriaLabel.text = data[indexPath.section][indexPath.row]
+      return cell
+    }
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 44
   }
   
+  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    if section < headerTitles.count {
+      return headerTitles[section]
+    }
+    return nil
+  }
+  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    selectedCriteria = criterias[indexPath.row]
-    print("====criteria \(selectedCriteria)")
-    performSegue(withIdentifier: "unwindToSearchViewController", sender: self)
+    selectedCriteria = data[indexPath.section][indexPath.row]
+    print("====selected \(selectedCriteria)")
+    if sourceViewController == "SearchViewController" {
+      performSegue(withIdentifier: "unwindToSearchViewController", sender: self)
+    }
+    
+//    else if sourceViewController == "KitchenViewController" {
+//      performSegue(withIdentifier: "unwindToKitchenViewController", sender: self)
+//    }
   }
 }

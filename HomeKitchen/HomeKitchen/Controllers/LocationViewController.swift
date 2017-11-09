@@ -15,7 +15,7 @@ class LocationViewController: UIViewController {
   var selectedLocation = ""
   var locations: [String] = []
   // Recognize viewcontroller
-  var viewcontroller = ""
+  var sourceViewController = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -52,10 +52,12 @@ extension LocationViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     selectedLocation = locations[indexPath.row]
-    if viewcontroller == "CreateKitchenViewController" {
+    if sourceViewController == "CreateKitchenViewController" {
       performSegue(withIdentifier: "unwindToCreateKitchenController", sender: self)
-    } else if viewcontroller == "EditKitchenViewController" {
+    } else if sourceViewController == "EditKitchenViewController" {
       performSegue(withIdentifier: "unwindToEditKitchenController", sender: self)
+    } else if sourceViewController == "SearchViewController" {
+      performSegue(withIdentifier: "unwindToSearchViewController", sender: self)
     }
   }
 }
