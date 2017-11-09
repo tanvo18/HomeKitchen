@@ -44,9 +44,7 @@ class KitchenViewController: UIViewController {
   var page = 0
   // page on server
   let MAX_PAGE = 4
-  var filterTypes: [String] = ["Thành phố","Đánh giá"]
-  let filterButton =  UIButton(type: .custom)
-  var filterButtonTitle: String = ""
+ 
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -69,8 +67,6 @@ class KitchenViewController: UIViewController {
     if isLogin {
       getUserInformation()
     }
-    // Right button in navigation bar
-    settingRightButtonItem()
     // Get kitchen data in the first time
     kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: 0)
     // Refresh and Load more
@@ -83,13 +79,15 @@ class KitchenViewController: UIViewController {
     
     // Adjust navigation bar
     self.settingForNavigationBar(title: "")
-    // Setting filterButton
-    filterButton.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
-    filterButton.backgroundColor = UIColor.clear
-    filterButton.setTitle("Thành phố", for: .normal)
-    filterButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-    filterButton.addTarget(self, action: #selector(self.didTouchFilterButton), for: .touchUpInside)
-    self.navigationItem.titleView = filterButton
+    
+    // Tapping criteria label
+    let tap = UITapGestureRecognizer(target: self, action: #selector(tapCriteriaLabel))
+    criteriaLabel.isUserInteractionEnabled = true
+    criteriaLabel.addGestureRecognizer(tap)
+    // Tapping location label
+    let tapLocation = UITapGestureRecognizer(target: self, action: #selector(tapLocationLabel))
+    locationLabel.isUserInteractionEnabled = true
+    locationLabel.addGestureRecognizer(tapLocation)
   }
   
   override func didReceiveMemoryWarning() {
@@ -150,36 +148,15 @@ extension KitchenViewController {
     }
   }
   
-  func settingRightButtonItem() {
-    // Set nil for title if UIBarButton have an image to avoid bug button move down when alert message appears
-    let rightButtonItem = UIBarButtonItem.init(
-      title: nil,
-      style: .done,
-      target: self,
-      action: #selector(rightButtonAction(sender:))
-    )
-    rightButtonItem.image = UIImage(named: "search-white")
-    self.navigationItem.rightBarButtonItem = rightButtonItem
-  }
-  
-  func rightButtonAction(sender: UIBarButtonItem) {
-    performSegue(withIdentifier: "showSearchView", sender: self)
-  }
-  
-  func didTouchFilterButton() {
-    performSegue(withIdentifier: "showCriteria", sender: self)
-  }
   
   func refreshTableView() {
     print("refresh")
-    // Get title of button
-    filterButtonTitle = filterButton.titleLabel!.text!
     // Remove all data
     kitchensRendering.removeAll()
     self.page = 0
-    if filterButtonTitle == filterTypes[0] {
+    if criteriaLabel.text! == "Thành phố" {
       kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: page)
-    } else if filterButtonTitle == filterTypes[1] {
+    } else if criteriaLabel.text! == "Đánh giá" {
       kitchenModelDatasource.requestKitchen(status: "review", keyword: "", city: "Da Nang", page: page)
     }
     tableView.reloadData()
@@ -188,19 +165,25 @@ extension KitchenViewController {
   
   func loadMoreTableView() {
     print("loadmore")
-    // Get title of button
-    filterButtonTitle = filterButton.titleLabel!.text!
     self.page += 1
     if self.page <= MAX_PAGE {
-      if filterButtonTitle == filterTypes[0] {
+      if criteriaLabel.text! == "Thành phố" {
         kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: page)
-      } else if filterButtonTitle == filterTypes[1] {
+      } else if criteriaLabel.text! == "Đánh giá" {
         kitchenModelDatasource.requestKitchen(status: "review", keyword: "", city: "Da Nang", page: page)
       }
       self.tableView.es.stopLoadingMore()
     } else {
       self.tableView.es.noticeNoMoreData()
     }
+  }
+  
+  func tapCriteriaLabel(sender:UITapGestureRecognizer) {
+    performSegue(withIdentifier: "showCriteria", sender: self)
+  }
+  
+  func tapLocationLabel(sender:UITapGestureRecognizer) {
+    performSegue(withIdentifier: "showLocation", sender: self)
   }
 }
 
@@ -219,8 +202,12 @@ extension KitchenViewController {
   @IBAction func unwindToKitchenViewController(segue:UIStoryboardSegue) {
     if segue.source is CriteriaViewController {
       if let senderVC = segue.source as? CriteriaViewController {
-        let type = senderVC.selectedCriteria
-        filterButton.setTitle(type, for: .normal)
+        criteriaLabel.text = senderVC.selectedCriteria
+        refreshTableView()
+      }
+    } else if segue.source is LocationViewController {
+      if let senderVC = segue.source as? LocationViewController {
+        locationLabel.text = senderVC.selectedLocation
         refreshTableView()
       }
     }
@@ -236,7 +223,11 @@ extension KitchenViewController {
     } else if segue.identifier == "showCriteria" {
       if let destination = segue.destination as? CriteriaViewController {
         destination.sourceViewController = "KitchenViewController"
-        destination.criterias = filterTypes
+      } 
+    } else if segue.identifier == "showLocation" {
+      if let destination = segue.destination as? LocationViewController {
+        destination.sourceViewController = "KitchenViewController"
+        destination.locations = Helper.cityLocations
       }
     }
   }

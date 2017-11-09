@@ -39,14 +39,14 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Đà Nẵng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpD-tu-MYS">
                                 <rect key="frame" x="278" y="77" width="67" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Địa điểm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTC-en-7wC">
                                 <rect key="frame" x="187" y="77" width="67" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -67,8 +67,8 @@
                         <segue destination="H4H-cO-DrU" kind="show" identifier="showEditKitchen" id="xrl-av-OTb"/>
                         <segue destination="ROF-h6-tIT" kind="show" identifier="showListPost" id="SEn-in-l5v"/>
                         <segue destination="OAw-be-eO0" kind="show" identifier="showEditUser" id="EJC-fn-2zt"/>
-                        <segue destination="ZNb-Mi-o0F" kind="show" identifier="showSearchView" id="nNN-Sv-yvJ"/>
                         <segue destination="REw-I3-8Al" kind="show" identifier="showCriteria" id="D3D-Au-5LU"/>
+                        <segue destination="A0C-oV-XE3" kind="show" identifier="showLocation" id="4cs-pS-prg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNc-zY-ucy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -535,7 +535,6 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="2Ie-k1-IRx" id="A6E-rk-PYJ"/>
-                        <segue destination="jHJ-Aa-sZ9" kind="unwind" identifier="unwindToSearchViewController" unwindAction="unwindToSearchViewControllerWithSegue:" id="8by-Nw-7XT"/>
                         <segue destination="jHJ-Aa-sZ9" kind="unwind" identifier="unwindToKitchenViewController" unwindAction="unwindToKitchenViewControllerWithSegue:" id="Wq9-Hp-D5g"/>
                     </connections>
                 </viewController>
@@ -543,71 +542,6 @@
                 <exit id="jHJ-Aa-sZ9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1364" y="399.85007496251876"/>
-        </scene>
-        <!--Search View Controller-->
-        <scene sceneID="3gN-hi-gCj">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ZNb-Mi-o0F" customClass="SearchViewController" customModule="HomeKitchen" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="sbq-NZ-JgC"/>
-                        <viewControllerLayoutGuide type="bottom" id="JpW-If-uEd"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SQe-JY-1KL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="faE-F5-H92">
-                                <rect key="frame" x="16" y="72" width="343" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Ujx-hJ-qH6"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Địa điểm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGS-5M-epr">
-                                <rect key="frame" x="172" y="77" width="83" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Đà Nẵng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXA-gC-u4T">
-                                <rect key="frame" x="281" y="77" width="67" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3ti-zI-d3e">
-                                <rect key="frame" x="0.0" y="110" width="375" height="557"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="faE-F5-H92" firstAttribute="leading" secondItem="SQe-JY-1KL" secondAttribute="leading" constant="16" id="0LX-B1-IGU"/>
-                            <constraint firstAttribute="trailing" secondItem="faE-F5-H92" secondAttribute="trailing" constant="16" id="FRF-Gn-lSg"/>
-                            <constraint firstItem="faE-F5-H92" firstAttribute="top" secondItem="sbq-NZ-JgC" secondAttribute="bottom" constant="8" id="eYZ-SG-bsd"/>
-                            <constraint firstAttribute="trailing" secondItem="3ti-zI-d3e" secondAttribute="trailing" id="hx0-f3-ECy"/>
-                            <constraint firstItem="3ti-zI-d3e" firstAttribute="leading" secondItem="SQe-JY-1KL" secondAttribute="leading" id="pxj-28-zGN"/>
-                            <constraint firstItem="3ti-zI-d3e" firstAttribute="top" secondItem="faE-F5-H92" secondAttribute="bottom" constant="8" id="roL-H5-nsn"/>
-                            <constraint firstAttribute="bottom" secondItem="3ti-zI-d3e" secondAttribute="bottom" id="s3L-aF-s0Z"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="criteriaLabel" destination="bGS-5M-epr" id="1BF-FB-eun"/>
-                        <outlet property="locationLabel" destination="eXA-gC-u4T" id="amo-Hs-VWm"/>
-                        <outlet property="searchTextField" destination="faE-F5-H92" id="XZN-Gl-BkQ"/>
-                        <outlet property="tableView" destination="3ti-zI-d3e" id="viG-35-y2s"/>
-                        <segue destination="REw-I3-8Al" kind="show" identifier="showCriteria" id="Tbs-hA-oxr"/>
-                        <segue destination="tLD-3D-VJE" kind="show" identifier="showKitchenDetail" id="WZO-en-ByL"/>
-                        <segue destination="A0C-oV-XE3" kind="show" identifier="showLocation" id="UH8-W7-Xds"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cdu-y2-eTi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-623" y="400"/>
         </scene>
         <!--Edit Kitchen View Controller-->
         <scene sceneID="SH7-13-2c6">
@@ -1240,7 +1174,7 @@
                         <outlet property="tableView" destination="IHr-5o-eDE" id="Mgr-g5-XOQ"/>
                         <segue destination="sDy-uO-x6X" kind="unwind" identifier="unwindToCreateKitchenController" unwindAction="unwindToCreateKitchenControllerWithSegue:" id="5py-7k-HcP"/>
                         <segue destination="sDy-uO-x6X" kind="unwind" identifier="unwindToEditKitchenController" unwindAction="unwindToEditKitchenControllerWithSegue:" id="sM1-60-WcQ"/>
-                        <segue destination="sDy-uO-x6X" kind="unwind" identifier="unwindToSearchViewController" unwindAction="unwindToSearchViewControllerWithSegue:" id="vAE-cf-TaG"/>
+                        <segue destination="sDy-uO-x6X" kind="unwind" identifier="unwindToKitchenViewController" unwindAction="unwindToKitchenViewControllerWithSegue:" id="UO4-3Y-OBq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D0R-MX-HLN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2729,7 +2663,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0uN-Ml-4oF">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ep0-v4-FY9">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -2864,7 +2798,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ghi chú" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n3-b3-lI2">
-                                                <rect key="frame" x="16" y="480" width="59" height="18"/>
+                                                <rect key="frame" x="20" y="480" width="59" height="18"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="59" id="4dE-Dn-47g"/>
                                                 </constraints>
@@ -2886,7 +2820,7 @@
                                             <constraint firstAttribute="trailing" secondItem="0ph-V6-9bD" secondAttribute="trailing" constant="16" id="HHI-LR-5AY"/>
                                             <constraint firstAttribute="trailing" secondItem="nGF-SJ-pco" secondAttribute="trailing" constant="16" id="SwY-WX-2dV"/>
                                             <constraint firstItem="QuX-L4-gR4" firstAttribute="leading" secondItem="Ep0-v4-FY9" secondAttribute="leading" constant="16" id="UYs-0x-TCX"/>
-                                            <constraint firstItem="6n3-b3-lI2" firstAttribute="leading" secondItem="Ep0-v4-FY9" secondAttribute="leading" constant="16" id="kV2-1z-g1Q"/>
+                                            <constraint firstItem="6n3-b3-lI2" firstAttribute="leading" secondItem="Ep0-v4-FY9" secondAttribute="leading" constant="20" id="kV2-1z-g1Q"/>
                                             <constraint firstItem="0ph-V6-9bD" firstAttribute="top" secondItem="6n3-b3-lI2" secondAttribute="bottom" constant="3" id="mNu-JV-bY9"/>
                                             <constraint firstItem="N8H-BS-EZg" firstAttribute="top" secondItem="Ep0-v4-FY9" secondAttribute="top" constant="98" id="mj6-j7-aBk"/>
                                             <constraint firstAttribute="trailing" secondItem="NN0-Hm-0js" secondAttribute="trailing" constant="16" id="nUs-EV-rHJ"/>
@@ -3934,12 +3868,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="SEn-in-l5v"/>
         <segue reference="ixT-ty-4nl"/>
-        <segue reference="D3D-Au-5LU"/>
-        <segue reference="Xcv-ct-VD3"/>
-        <segue reference="reK-M9-1VN"/>
+        <segue reference="4cs-pS-prg"/>
         <segue reference="WcN-74-H6N"/>
         <segue reference="SiF-K6-Nzy"/>
         <segue reference="aw3-EE-4Eb"/>
-        <segue reference="UH8-W7-Xds"/>
+        <segue reference="gQ6-1e-KpS"/>
     </inferredMetricsTieBreakers>
 </document>

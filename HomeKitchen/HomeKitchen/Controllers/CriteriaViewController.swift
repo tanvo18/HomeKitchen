@@ -12,7 +12,7 @@ class CriteriaViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   
-  // parse from KitchenViewController or SearchViewController
+  // parse from KitchenViewController or
   var criterias: [String] = []
   var selectedCriteria: String = ""
   
@@ -80,12 +80,8 @@ extension CriteriaViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     selectedCriteria = data[indexPath.section][indexPath.row]
     print("====selected \(selectedCriteria)")
-    if sourceViewController == "SearchViewController" {
-      performSegue(withIdentifier: "unwindToSearchViewController", sender: self)
+    if sourceViewController == "KitchenViewController" {
+      performSegue(withIdentifier: "unwindToKitchenViewController", sender: self)
     }
-    
-//    else if sourceViewController == "KitchenViewController" {
-//      performSegue(withIdentifier: "unwindToKitchenViewController", sender: self)
-//    }
   }
 }

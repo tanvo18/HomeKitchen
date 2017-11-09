@@ -56,8 +56,8 @@ extension LocationViewController: UITableViewDataSource {
       performSegue(withIdentifier: "unwindToCreateKitchenController", sender: self)
     } else if sourceViewController == "EditKitchenViewController" {
       performSegue(withIdentifier: "unwindToEditKitchenController", sender: self)
-    } else if sourceViewController == "SearchViewController" {
-      performSegue(withIdentifier: "unwindToSearchViewController", sender: self)
+    } else if sourceViewController == "KitchenViewController" {
+      performSegue(withIdentifier: "unwindToKitchenViewController", sender: self)
     }
   }
 }
