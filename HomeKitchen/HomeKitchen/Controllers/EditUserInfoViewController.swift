@@ -34,6 +34,9 @@ class EditUserInfoViewController: UIViewController {
     // Init Menu Button
     let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.didTouchMenuButton))
     self.navigationItem.leftBarButtonItem  = menuButton
+    // Tab outside to close keyboard
+    let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+    view.addGestureRecognizer(tapOutside)
   }
   
   override func didReceiveMemoryWarning() {

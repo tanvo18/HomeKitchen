@@ -18,6 +18,8 @@ class KitchenViewController: UIViewController {
   @IBOutlet weak var locationLabel: UILabel!
   @IBOutlet weak var criteriaLabel: UILabel!
   @IBOutlet weak var searchTextField: UITextField!
+  var searchText:String = ""
+  
   // array contains all kitchens request from server when load more (1 load more return a specific quantities of kitchen)
   var kitchens: [Kitchen] = [] {
     didSet {
@@ -44,7 +46,7 @@ class KitchenViewController: UIViewController {
   var page = 0
   // page on server
   let MAX_PAGE = 4
- 
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -68,7 +70,7 @@ class KitchenViewController: UIViewController {
       getUserInformation()
     }
     // Get kitchen data in the first time
-    kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: 0)
+    kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", searchText: "", page: 0)
     // Refresh and Load more
     self.tableView.es.addPullToRefresh { [weak self] in
       self?.refreshTableView()
@@ -88,7 +90,9 @@ class KitchenViewController: UIViewController {
     let tapLocation = UITapGestureRecognizer(target: self, action: #selector(tapLocationLabel))
     locationLabel.isUserInteractionEnabled = true
     locationLabel.addGestureRecognizer(tapLocation)
-  }
+    // Search text field delegate
+    searchTextField.delegate = self
+    }
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -129,6 +133,38 @@ extension KitchenViewController: UITableViewDataSource {
   }
 }
 
+// MARK: TextField delegate
+extension KitchenViewController: UITextFieldDelegate {
+  
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+  }
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    if !searchTextField.text!.isEmpty {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        self.refreshTableView()
+      }
+    }
+  }
+  
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    searchTextField.resignFirstResponder()
+    return true
+  }
+  
+  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    if string.isEmpty
+    {
+      searchText = String(searchText.characters.dropLast())
+    }
+    else
+    {
+      searchText=textField.text!+string
+    }
+    print("====text \(searchText)")
+    return true
+  }
+}
+
 // MARK: Function
 extension KitchenViewController {
   func didTouchMenuButton(_ sender: Any) {
@@ -154,23 +190,34 @@ extension KitchenViewController {
     // Remove all data
     kitchensRendering.removeAll()
     self.page = 0
-    if criteriaLabel.text! == "Thành phố" {
-      kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: page)
-    } else if criteriaLabel.text! == "Đánh giá" {
-      kitchenModelDatasource.requestKitchen(status: "review", keyword: "", city: "Da Nang", page: page)
+    if searchTextField.text!.isEmpty {
+      if criteriaLabel.text! == "Địa điểm" {
+        kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", searchText: "", page: page)
+      } else if criteriaLabel.text! == "Đánh giá" {
+        kitchenModelDatasource.requestKitchen(status: "review", keyword: "", city: "Da Nang", searchText: "", page: page)
+      }
+    } else {
+      // Searching
+      kitchenModelDatasource.requestKitchen(status: "name", keyword: "", city: "Da Nang", searchText: searchText, page: page)
     }
     tableView.reloadData()
     self.tableView.es.stopPullToRefresh()
+    
   }
   
   func loadMoreTableView() {
     print("loadmore")
     self.page += 1
     if self.page <= MAX_PAGE {
-      if criteriaLabel.text! == "Thành phố" {
-        kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", page: page)
-      } else if criteriaLabel.text! == "Đánh giá" {
-        kitchenModelDatasource.requestKitchen(status: "review", keyword: "", city: "Da Nang", page: page)
+      if searchTextField.text!.isEmpty {
+        if criteriaLabel.text! == "Địa điểm" {
+          kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", searchText: "", page: page)
+        } else if criteriaLabel.text! == "Đánh giá" {
+          kitchenModelDatasource.requestKitchen(status: "review", keyword: "", city: "Da Nang", searchText: "", page: page)
+        }
+      } else {
+        // Searching
+        kitchenModelDatasource.requestKitchen(status: "name", keyword: "", city: "Da Nang", searchText: searchText, page: page)
       }
       self.tableView.es.stopLoadingMore()
     } else {
@@ -223,7 +270,7 @@ extension KitchenViewController {
     } else if segue.identifier == "showCriteria" {
       if let destination = segue.destination as? CriteriaViewController {
         destination.sourceViewController = "KitchenViewController"
-      } 
+      }
     } else if segue.identifier == "showLocation" {
       if let destination = segue.destination as? LocationViewController {
         destination.sourceViewController = "KitchenViewController"

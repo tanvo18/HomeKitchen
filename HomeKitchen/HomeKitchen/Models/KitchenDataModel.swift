@@ -19,7 +19,16 @@ class KitchenDataModel {
   
   weak var delegate: KitchenDataModelDelegate?
   
-  func requestKitchen(status: String, keyword: String, city: String, page: Int) {
+  /*
+   params for this function
+   there are 4 type in this function depend on param status, param which no need on function will be ""
+   switch(status)
+   case "city":  need param (status,keyword,page)  -> filter by city
+   case "category": need param (status,keyword,city,page -> filter by category
+   case "review": need param (status,city,page) -> filter by review
+   case "name": need param (status,text,city,page) -> search by name of kitchen and city
+   **/
+  func requestKitchen(status: String, keyword: String, city: String,searchText: String, page: Int) {
     var kitchens: [Kitchen] = []
     var result: ResultKitchen?
     
@@ -32,6 +41,7 @@ class KitchenDataModel {
     let parameters: Parameters = ["status" : status,
                                   "key_word" : keyword,
                                   "city" : city,
+                                  "text" : searchText,
                                   "page" : page
     ]
     

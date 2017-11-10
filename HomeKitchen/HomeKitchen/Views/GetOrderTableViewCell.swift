@@ -81,15 +81,19 @@ class GetOrderTableViewCell: UITableViewCell {
       }
     }
     
+    print("====didHaveDenied \(didHaveDeniedMessage) ")
     // If we dont have a pending message and have a denied message then set ! for notification label
     // If we have a pending message then set number for notification label
     if self.newMessage == 0 && didHaveDeniedMessage == false {
       notificationLabel.isHidden = true
     } else if self.newMessage == 0 && didHaveDeniedMessage == true {
+      print("====bingo ")
       notificationLabel.isHidden = false
       notificationLabel.text = "!"
     } else {
       notificationLabel.isHidden = false
     }
+    // Reset didHaveDeniedMessage to avoid keeping old value to new row in another status
+    didHaveDeniedMessage = false
   }
 }
