@@ -25,6 +25,9 @@ class KitchenReviewsViewController: UIViewController {
     self.settingForNavigationBar(title: "Danh sách đánh giá")
     // Right item button
     settingRightButtonItem()
+    // self-sizing tableview row
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 140
   }
   
   override func didReceiveMemoryWarning() {
@@ -47,10 +50,6 @@ extension KitchenReviewsViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! ReviewsTableViewCell
     cell.configureWithReview(review: reviews[indexPath.row])
     return cell
-  }
-  
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 160
   }
   
 }

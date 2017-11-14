@@ -34,6 +34,9 @@ class ProductReviewsViewController: UIViewController {
     // Right item button
     settingRightButtonItem()
     getProductReviews()
+    // self-sizing tableview row
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 140
   }
   
   override func didReceiveMemoryWarning() {
@@ -56,10 +59,6 @@ extension ProductReviewsViewController: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: reuseableCell) as! ProductReviewsTableViewCell
     cell.configureWithReview(review: reviews[indexPath.row])
     return cell
-  }
-  
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 160
   }
   
 }

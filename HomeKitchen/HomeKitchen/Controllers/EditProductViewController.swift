@@ -20,7 +20,7 @@ class EditProductViewController: UIViewController {
   @IBOutlet weak var typeTextField: UITextField!
   @IBOutlet weak var statusTextField: UITextField!
   
-  var listStatus: [String] = ["public","private"]
+  var listStatus: [String] = ["Ẩn","Hiển thị"]
   var selectedStatus: String = ""
   var selectedImageUrl: URL!
   var myActivityIndicator: UIActivityIndicatorView!
@@ -103,7 +103,14 @@ extension EditProductViewController {
     nameTextField.text = product.name
     priceTextField.text = "\(product.price)"
     typeTextField.text = product.type
-    statusTextField.text = product.status
+    
+    // Change status to Vietnamese
+    if product.status == "private" {
+      statusTextField.text = "Ẩn"
+    } else if product.status == "public" {
+      statusTextField.text = "Hiển thị"
+    }
+    
     downloadProductImage(imageUrl: product.imageUrl)
     // Set default for imageURL in case customer only change information, not change image
     self.imageUrl = product.imageUrl
@@ -161,9 +168,17 @@ extension EditProductViewController {
   
   func postProductToServer() {
     myActivityIndicator.startAnimating()
-    guard let productName = nameTextField.text, let productPrice = priceTextField.text, let type = typeTextField.text, let status = statusTextField.text else {
+    guard let productName = nameTextField.text, let productPrice = priceTextField.text, let type = typeTextField.text, var status = statusTextField.text else {
       return
     }
+    
+    // Change status from Vietnamese to English
+    if status == "Ẩn" {
+      status = "private"
+    } else if status == "Hiển thị" {
+      status = "public"
+    }
+    
     let productId = self.product.id
     NetworkingService.sharedInstance.editProduct(id: productId, productName: productName, productPrice: productPrice, type: type, imageUrl: self.imageUrl, status: status) {
       [unowned self] (message,error) in

@@ -72,9 +72,9 @@ class KitchenViewController: UIViewController {
     // Get kitchen data in the first time
     kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", searchText: "", page: 0)
     // Refresh and Load more
-    self.tableView.es.addPullToRefresh { [weak self] in
-      self?.refreshTableView()
-    }
+//    self.tableView.es.addPullToRefresh { [weak self] in
+//      self?.refreshTableView()
+//    }
     self.tableView.es.addInfiniteScrolling { [weak self] in
       self?.loadMoreTableView()
     }

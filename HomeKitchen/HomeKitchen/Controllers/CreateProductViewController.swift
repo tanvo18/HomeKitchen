@@ -20,7 +20,7 @@ class CreateProductViewController: UIViewController {
   @IBOutlet weak var typeTextField: UITextField!
   @IBOutlet weak var statusTextField: UITextField!
   
-  var listStatus: [String] = ["public","private"]
+  var listStatus: [String] = ["Ẩn","Hiển thị"]
   var selectedStatus: String = ""
   var selectedImageUrl: URL!
   var myActivityIndicator: UIActivityIndicatorView!
@@ -46,7 +46,7 @@ class CreateProductViewController: UIViewController {
     // Setup indicator
     setUpActivityIndicator()
     // Set default value for statusTextField
-    statusTextField.text = "public"
+    statusTextField.text = "Hiển thị"
     // Set number pad for price textfield
     priceTextField.keyboardType = .numberPad
   }
@@ -139,9 +139,16 @@ extension CreateProductViewController {
   
   func postProductToServer() {
     myActivityIndicator.startAnimating()
-    guard let productName = nameTextField.text, let productPrice = priceTextField.text, let type = typeTextField.text, let status = statusTextField.text else {
+    guard let productName = nameTextField.text, let productPrice = priceTextField.text, let type = typeTextField.text, var status = statusTextField.text else {
       return
     }
+    // Change status from Vietnamese to English
+    if status == "Ẩn" {
+      status = "private"
+    } else if status == "Hiển thị" {
+      status = "public"
+    }
+    
     NetworkingService.sharedInstance.createProduct(productName: productName, productPrice: productPrice, type: type, imageUrl: self.imageUrl, status: status) {
       [unowned self] (message,error) in
       if error != nil {

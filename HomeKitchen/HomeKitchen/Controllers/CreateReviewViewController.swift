@@ -84,7 +84,7 @@ extension CreateReviewViewController {
           if error != nil {
             self.alertError(message: "Gửi bình luận thất bại")
           } else {
-            self.alert(title: "Thông báo", message: "Thành công")
+            self.performSegue(withIdentifier: "showKitchenDetail", sender: self)
           }
         }
       } else if sourceViewController == "ProductReviewsViewController"{
@@ -94,7 +94,7 @@ extension CreateReviewViewController {
           if error != nil {
             self.alertError(message: "Gửi bình luận thất bại")
           } else {
-            self.alert(title: "Thông báo", message: "Thành công")
+            self.performSegue(withIdentifier: "showKitchenDetail", sender: self)
           }
         }
       }

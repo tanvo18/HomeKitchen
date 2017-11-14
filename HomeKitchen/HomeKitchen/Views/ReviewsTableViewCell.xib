@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="154" id="KGk-i7-Jjw" customClass="ReviewsTableViewCell" customModule="HomeKitchen" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="113" id="KGk-i7-Jjw" customClass="ReviewsTableViewCell" customModule="HomeKitchen" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="159.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="118.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-review-black" translatesAutoresizingMaskIntoConstraints="NO" id="9au-JP-8lu">
@@ -33,14 +33,14 @@
                             <constraint firstAttribute="height" constant="24" id="ixI-z4-QPk"/>
                         </constraints>
                     </view>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="89a-S0-Pxs">
-                        <rect key="frame" x="8" y="82" width="304" height="69"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="89a-S0-Pxs">
+                        <rect key="frame" x="8" y="82" width="304" height="25"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yD-H6-Qb6">
-                        <rect key="frame" x="0.0" y="158.5" width="320" height="1"/>
+                        <rect key="frame" x="0.0" y="117.5" width="320" height="1"/>
                         <color key="backgroundColor" red="0.76862745098039209" green="0.76470588235294112" blue="0.76470588235294112" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="M2b-Xe-ez1"/>
@@ -54,19 +54,19 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="89a-S0-Pxs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="5zi-YI-VMZ"/>
                     <constraint firstAttribute="trailing" secondItem="0yD-H6-Qb6" secondAttribute="trailing" id="6bp-Bu-UqS"/>
+                    <constraint firstItem="89a-S0-Pxs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="8dq-MD-vOQ"/>
                     <constraint firstItem="9au-JP-8lu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="8jg-L0-xf3"/>
                     <constraint firstItem="9au-JP-8lu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="AVJ-jo-uFf"/>
                     <constraint firstItem="evo-qC-PLr" firstAttribute="top" secondItem="9au-JP-8lu" secondAttribute="bottom" constant="8" id="BGm-kU-wjl"/>
-                    <constraint firstItem="0yD-H6-Qb6" firstAttribute="top" secondItem="89a-S0-Pxs" secondAttribute="bottom" constant="8" id="LvA-Gh-xGJ"/>
                     <constraint firstItem="0yD-H6-Qb6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NnH-h0-7gf"/>
                     <constraint firstItem="evo-qC-PLr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Q6Q-BP-r5b"/>
                     <constraint firstAttribute="bottom" secondItem="0yD-H6-Qb6" secondAttribute="bottom" id="VJ7-ul-Isa"/>
                     <constraint firstItem="YVo-Px-9Il" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="XyY-US-3pM"/>
-                    <constraint firstItem="89a-S0-Pxs" firstAttribute="top" secondItem="evo-qC-PLr" secondAttribute="bottom" constant="2" id="cie-oo-bM6"/>
+                    <constraint firstItem="89a-S0-Pxs" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="fc9-5m-gam"/>
                     <constraint firstAttribute="trailingMargin" secondItem="YVo-Px-9Il" secondAttribute="trailing" constant="19" id="ftj-Gm-vdA"/>
-                    <constraint firstAttribute="trailing" secondItem="89a-S0-Pxs" secondAttribute="trailing" constant="8" id="hIS-dV-dkE"/>
+                    <constraint firstItem="0yD-H6-Qb6" firstAttribute="top" secondItem="89a-S0-Pxs" secondAttribute="bottom" constant="10.5" id="ljz-VL-7Ln"/>
+                    <constraint firstItem="89a-S0-Pxs" firstAttribute="top" secondItem="evo-qC-PLr" secondAttribute="bottom" constant="2" id="qUf-GN-dOF"/>
                     <constraint firstAttribute="trailing" secondItem="evo-qC-PLr" secondAttribute="trailing" constant="189" id="wzn-pL-bjQ"/>
                     <constraint firstItem="YVo-Px-9Il" firstAttribute="leading" secondItem="9au-JP-8lu" secondAttribute="trailing" constant="8" id="z0u-ad-YJi"/>
                 </constraints>
@@ -76,7 +76,7 @@
                 <outlet property="cosmosView" destination="evo-qC-PLr" id="Gzd-aH-G0X"/>
                 <outlet property="usernameLabel" destination="YVo-Px-9Il" id="6dg-hb-9Pa"/>
             </connections>
-            <point key="canvasLocation" x="-1" y="107"/>
+            <point key="canvasLocation" x="-1" y="86.5"/>
         </tableViewCell>
     </objects>
     <resources>
