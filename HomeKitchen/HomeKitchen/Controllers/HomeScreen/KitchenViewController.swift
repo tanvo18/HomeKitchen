@@ -17,8 +17,11 @@ class KitchenViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var locationLabel: UILabel!
   @IBOutlet weak var criteriaLabel: UILabel!
+  @IBOutlet weak var conjunctionLabel: UILabel!
   @IBOutlet weak var searchTextField: UITextField!
   var searchText:String = ""
+  // Right button in navigation bar
+  var rightButtonItem: UIBarButtonItem = UIBarButtonItem()
   
   // array contains all kitchens request from server when load more (1 load more return a specific quantities of kitchen)
   var kitchens: [Kitchen] = [] {
@@ -46,7 +49,12 @@ class KitchenViewController: UIViewController {
   var page = 0
   // page on server
   let MAX_PAGE = 4
-  
+  // criteria choose from CriteriaViewController
+  var selectedCriteria: String = ""
+  // distinguish in function search
+  var searchMethod: String = ""
+  let BY_LOCATION = "location"
+  let BY_FILTER = "filter"
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -70,7 +78,10 @@ class KitchenViewController: UIViewController {
       getUserInformation()
     }
     // Get kitchen data in the first time
-    kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", searchText: "", page: 0)
+    kitchenModelDatasource.requestKitchen(status: "city", keyword: locationLabel.text!, city: "", searchText: "", page: 0)
+    // search Method when start app follow location of user
+    searchMethod = BY_LOCATION
+    
     // Refresh and Load more
 //    self.tableView.es.addPullToRefresh { [weak self] in
 //      self?.refreshTableView()
@@ -82,16 +93,13 @@ class KitchenViewController: UIViewController {
     // Adjust navigation bar
     self.settingForNavigationBar(title: "")
     
-    // Tapping criteria label
-    let tap = UITapGestureRecognizer(target: self, action: #selector(tapCriteriaLabel))
-    criteriaLabel.isUserInteractionEnabled = true
-    criteriaLabel.addGestureRecognizer(tap)
     // Tapping location label
     let tapLocation = UITapGestureRecognizer(target: self, action: #selector(tapLocationLabel))
     locationLabel.isUserInteractionEnabled = true
     locationLabel.addGestureRecognizer(tapLocation)
     // Search text field delegate
     searchTextField.delegate = self
+    settingRightButtonItem()
     }
   
   override func didReceiveMemoryWarning() {
@@ -139,11 +147,13 @@ extension KitchenViewController: UITextFieldDelegate {
   func textFieldDidBeginEditing(_ textField: UITextField) {
   }
   func textFieldDidEndEditing(_ textField: UITextField) {
-    if !searchTextField.text!.isEmpty {
+  
+    searchMethod = BY_LOCATION
+//    if !searchTextField.text!.isEmpty {
       DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
         self.refreshTableView()
       }
-    }
+//    }
   }
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -152,14 +162,27 @@ extension KitchenViewController: UITextFieldDelegate {
   }
   
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    // When delete a characters, it will trigger this function
     if string.isEmpty
     {
       searchText = String(searchText.characters.dropLast())
-    }
-    else
-    {
+    } else {
       searchText=textField.text!+string
     }
+    
+    // Search text have nothing
+    if searchText.isEmpty {
+      // Show criteria and location label
+      criteriaLabel.isHidden = false
+      locationLabel.isHidden = false
+      conjunctionLabel.isHidden = false
+    } else {
+      // Hide criteria and location label
+      criteriaLabel.isHidden = true
+      locationLabel.isHidden = true
+      conjunctionLabel.isHidden = true
+    }
+    
     print("====text \(searchText)")
     return true
   }
@@ -190,16 +213,22 @@ extension KitchenViewController {
     // Remove all data
     kitchensRendering.removeAll()
     self.page = 0
-    if searchTextField.text!.isEmpty {
-      if criteriaLabel.text! == "Địa điểm" {
-        kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", searchText: "", page: page)
-      } else if criteriaLabel.text! == "Đánh giá" {
-        kitchenModelDatasource.requestKitchen(status: "review", keyword: "", city: "Da Nang", searchText: "", page: page)
+      if searchMethod == BY_LOCATION {
+      if searchTextField.text!.isEmpty {
+          kitchenModelDatasource.requestKitchen(status: "city", keyword: locationLabel.text!, city: "", searchText: "", page: page)
+      } else {
+        // Searching
+        kitchenModelDatasource.requestKitchen(status: "name", keyword: "", city: locationLabel.text!, searchText: searchText, page: page)
       }
-    } else {
-      // Searching
-      kitchenModelDatasource.requestKitchen(status: "name", keyword: "", city: "Da Nang", searchText: searchText, page: page)
+    } else if searchMethod == BY_FILTER {
+      if selectedCriteria == "Đánh giá" {
+        kitchenModelDatasource.requestKitchen(status: "review", keyword: "", city: locationLabel.text!, searchText: "", page: page)
+      } else {
+        // search by category
+        kitchenModelDatasource.requestKitchen(status: "category", keyword: selectedCriteria, city: locationLabel.text!, searchText: "", page: page)
+      }
     }
+    
     tableView.reloadData()
     self.tableView.es.stopPullToRefresh()
     
@@ -208,16 +237,24 @@ extension KitchenViewController {
   func loadMoreTableView() {
     print("loadmore")
     self.page += 1
+    
     if self.page <= MAX_PAGE {
-      if searchTextField.text!.isEmpty {
-        if criteriaLabel.text! == "Địa điểm" {
-          kitchenModelDatasource.requestKitchen(status: "city", keyword: "Da Nang", city: "", searchText: "", page: page)
-        } else if criteriaLabel.text! == "Đánh giá" {
-          kitchenModelDatasource.requestKitchen(status: "review", keyword: "", city: "Da Nang", searchText: "", page: page)
+      if searchMethod == BY_LOCATION {
+        if searchTextField.text!.isEmpty {
+          kitchenModelDatasource.requestKitchen(status: "city", keyword: locationLabel.text!, city: "", searchText: "", page: page)
+        } else {
+          // Searching
+          myIndicator.startAnimating()
+          kitchenModelDatasource.requestKitchen(status: "name", keyword: "", city: locationLabel.text!, searchText: searchText, page: page)
         }
-      } else {
-        // Searching
-        kitchenModelDatasource.requestKitchen(status: "name", keyword: "", city: "Da Nang", searchText: searchText, page: page)
+      } else if searchMethod == BY_FILTER {
+        if selectedCriteria == "Đánh giá" {
+          kitchenModelDatasource.requestKitchen(status: "review", keyword: "", city: locationLabel.text!, searchText: "", page: page)
+        } else {
+          myIndicator.startAnimating()
+          // search by category
+          kitchenModelDatasource.requestKitchen(status: "category", keyword: selectedCriteria, city: locationLabel.text!, searchText: "", page: page)
+        }
       }
       self.tableView.es.stopLoadingMore()
     } else {
@@ -225,12 +262,23 @@ extension KitchenViewController {
     }
   }
   
-  func tapCriteriaLabel(sender:UITapGestureRecognizer) {
-    performSegue(withIdentifier: "showCriteria", sender: self)
-  }
-  
   func tapLocationLabel(sender:UITapGestureRecognizer) {
     performSegue(withIdentifier: "showLocation", sender: self)
+  }
+  
+  func settingRightButtonItem() {
+    self.rightButtonItem = UIBarButtonItem.init(
+      title: nil,
+      style: .done,
+      target: self,
+      action: #selector(rightButtonAction(sender:))
+    )
+    rightButtonItem.image = UIImage(named: "filter-white")
+    self.navigationItem.rightBarButtonItem = rightButtonItem
+  }
+  
+  func rightButtonAction(sender: UIBarButtonItem) {
+    performSegue(withIdentifier: "showCriteria", sender: self)
   }
 }
 
@@ -249,12 +297,14 @@ extension KitchenViewController {
   @IBAction func unwindToKitchenViewController(segue:UIStoryboardSegue) {
     if segue.source is CriteriaViewController {
       if let senderVC = segue.source as? CriteriaViewController {
-        criteriaLabel.text = senderVC.selectedCriteria
+        selectedCriteria = senderVC.selectedCriteria
+        searchMethod = BY_FILTER
         refreshTableView()
       }
     } else if segue.source is LocationViewController {
       if let senderVC = segue.source as? LocationViewController {
         locationLabel.text = senderVC.selectedLocation
+        searchMethod = BY_LOCATION
         refreshTableView()
       }
     }

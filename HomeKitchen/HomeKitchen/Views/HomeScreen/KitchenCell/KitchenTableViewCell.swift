@@ -64,7 +64,10 @@ class KitchenTableViewCell: UITableViewCell {
       if kitchen.point < 0 {
         pointLabel.isHidden = true
         qualityLabel.isHidden = true
-      }
+      } else {
+        pointLabel.isHidden = false
+        qualityLabel.isHidden = false
+    }
       downloadImage(imageUrl: kitchen.imageUrl)
   }
   

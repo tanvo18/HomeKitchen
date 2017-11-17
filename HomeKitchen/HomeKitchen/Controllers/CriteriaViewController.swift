@@ -20,8 +20,8 @@ class CriteriaViewController: UIViewController {
   let reuseableCell = "Cell"
   var sourceViewController = ""
   
-  var data = [["Địa điểm","Đánh giá"],["Ăn chay","Bánh","Ăn vặt","Cơm văn phòng","Đồ nướng","Đặc sản miền Bắc","Đặc sản miền Trung","Đặc sản miền Nam"]]
-  let headerTitles = ["Tìm theo thành phố hoặc đánh giá", "Tìm theo kiểu bếp"]
+  var data = [["Ăn chay","Bánh","Ăn vặt","Cơm văn phòng","Đồ nướng","Đặc sản miền Bắc","Đặc sản miền Trung","Đặc sản miền Nam"]]
+  let headerTitles = ["Theo kiểu bếp"]
   
   override func viewDidLoad() {
     super.viewDidLoad()
