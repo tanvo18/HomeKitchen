@@ -12,6 +12,8 @@ import FacebookCore
 
 class SMNavigationController: LNSideMenuNavigationController {
   
+  var nViewController: UIViewController? = nil
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Custom side menu
@@ -36,7 +38,6 @@ class SMNavigationController: LNSideMenuNavigationController {
   fileprivate func setContentVC(_ index: Int, _ sectionIndex: Int) {
     print("Did select item at index: \(index)")
     print("section: \(sectionIndex)")
-    var nViewController: UIViewController? = nil
     switch sectionIndex {
     case 0:
       switch index {
@@ -78,15 +79,15 @@ class SMNavigationController: LNSideMenuNavigationController {
     case 3:
       switch index {
       case 0:
-        // Clear UserDefault
-        UserDefaults.standard.removeObject(forKey: Helper.USER_DEFAULT_AUTHEN_TOKEN)
-        UserDefaults.standard.removeObject(forKey: Helper.USER_DEFAULT_USERNAME)
-        // Clear Facebook
-        let loginManager = LoginManager()
-        loginManager.logOut()
-        // Hide navigation bar
-        self.navigationBar.isHidden = true
-        nViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
+          // Clear UserDefault
+          UserDefaults.standard.removeObject(forKey: Helper.USER_DEFAULT_AUTHEN_TOKEN)
+          UserDefaults.standard.removeObject(forKey: Helper.USER_DEFAULT_USERNAME)
+          // Clear Facebook
+          let loginManager = LoginManager()
+          loginManager.logOut()
+          // Hide navigation bar
+          self.navigationBar.isHidden = true
+          nViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
       default:
         break
       }

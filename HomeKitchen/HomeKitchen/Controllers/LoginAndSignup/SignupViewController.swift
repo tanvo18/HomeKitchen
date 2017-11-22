@@ -15,8 +15,14 @@ class SignupViewController: UIViewController {
   @IBOutlet weak var passwordTextField: UITextField!
   @IBOutlet weak var confirmPassTextField: UITextField!
   
+  
   var errorMessage: String = ""
   let EXIST_USERNAME_ERROR = "Username is Existed!Please try again"
+  // Check Create account successfully
+  var isSuccessful: Bool = false
+  // Save username and password for auto login after sign up successfully
+  var username: String = ""
+  var password: String = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -60,11 +66,13 @@ extension SignupViewController {
       return true
     }
   }
+  
 }
 
 // IBAction
 extension SignupViewController {
   @IBAction func didTouchButtonBack(_ sender: Any) {
+    isSuccessful = false
     performSegue(withIdentifier: "unwindToLogin", sender: self)
   }
   
@@ -78,7 +86,11 @@ extension SignupViewController {
         } else {
           if message != self.EXIST_USERNAME_ERROR {
             let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-              // // Go to Login
+              self.isSuccessful = true
+              // Save username and password in textfield
+              self.username = self.usernameTextField.text!
+              self.password = self.passwordTextField.text!
+              // Go to Login
               self.performSegue(withIdentifier: "unwindToLogin", sender: self)
             })
             self.alertWithAction(message: "Đăng ký thành công", action: ok)

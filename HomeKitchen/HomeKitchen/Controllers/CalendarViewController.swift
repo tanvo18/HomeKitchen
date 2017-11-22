@@ -298,13 +298,12 @@ extension CalendarViewController {
   
   func settingRightButtonItem() {
     let rightButtonItem = UIBarButtonItem.init(
-      title: "Done",
+      title: "Xong",
       style: .done,
       target: self,
       action: #selector(rightButtonAction(sender:))
     )
     self.navigationItem.rightBarButtonItem = rightButtonItem
-    self.navigationItem.rightBarButtonItem?.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
   }
   
   func rightButtonAction(sender: UIBarButtonItem) {

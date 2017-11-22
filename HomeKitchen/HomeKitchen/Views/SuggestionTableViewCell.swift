@@ -18,6 +18,7 @@ class SuggestionTableViewCell: UITableViewCell {
   
   @IBOutlet weak var separatorView: UIView!
   
+  
   override func awakeFromNib() {
     super.awakeFromNib()
   }

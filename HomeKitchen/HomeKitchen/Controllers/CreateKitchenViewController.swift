@@ -247,7 +247,12 @@ extension CreateKitchenViewController {
           self.alertError(message: "Gửi thất bại")
         } else {
           if message == "Failure!Your Kitchen is already existed" {
-            self.alertError(message: "Bếp của bạn đã tồn tại")
+            let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+              // Go to Home Screen
+              self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+            })
+            self.alertWithAction(message: "Bạn đã tạo bếp rồi", action: ok)
+            
           } else {
             let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
               // Go to Home Screen

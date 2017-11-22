@@ -63,7 +63,9 @@ extension EditUserInfoViewController {
       radMaleStatus = false
     }
     parseImageToRadButton()
-    nameTextField.text = Helper.user.name
+    if Helper.user.name != "anonymous" {
+      nameTextField.text = Helper.user.name
+    }
     birthdayTextField.text = Helper.user.birthday
     phoneTextField.text = Helper.user.phoneNumber
   }

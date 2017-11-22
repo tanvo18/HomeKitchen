@@ -63,8 +63,8 @@ extension AnswersViewController {
     if segue.identifier == "showAnswerDetail" {
       if let destination = segue.destination as? AnswerDetailViewController {
         destination.answer = post.answers[index]
-        destination.deliveryTime = post.deliveryTime
-        destination.deliveryDate = post.deliveryDate
+        destination.deliveryTime = post.answers[index].deliveryTime
+        destination.deliveryDate = post.answers[index].deliveryDate
         destination.postItem = post.postItems
       }
     }

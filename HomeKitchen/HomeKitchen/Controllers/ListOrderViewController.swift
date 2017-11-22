@@ -82,10 +82,10 @@ class ListOrderViewController: UIViewController {
     // When start, pending button is yellow, default is status pending
     setImageForTabButton(index: 0)
     // Request Data
-    if Helper.role == "customer" {
+    if Helper.role == ROLE_CUSTOMER {
       myActivityIndicator.startAnimating()
       customerOrderModelDatasource.requestCustomerOrder()
-    } else if Helper.role == "chef" {
+    } else if Helper.role == ROLE_CHEF {
       myActivityIndicator.startAnimating()
       // Change to english status
       selectedStatus = "pending"
@@ -341,6 +341,7 @@ extension ListOrderViewController {
         }
         
         destination.suggestions = orderInfo.suggestions
+        destination.orderStatus = orderInfo.status
       }
     }
   }

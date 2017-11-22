@@ -19,6 +19,8 @@ class KitchenViewController: UIViewController {
   @IBOutlet weak var criteriaLabel: UILabel!
   @IBOutlet weak var conjunctionLabel: UILabel!
   @IBOutlet weak var searchTextField: UITextField!
+  @IBOutlet weak var deleteCharButton: UIButton!
+  
   var searchText:String = ""
   // Right button in navigation bar
   var rightButtonItem: UIBarButtonItem = UIBarButtonItem()
@@ -100,7 +102,17 @@ class KitchenViewController: UIViewController {
     // Search text field delegate
     searchTextField.delegate = self
     settingRightButtonItem()
-    }
+    
+    // Add image to left view of search textfield
+    searchTextField.leftViewMode = UITextFieldViewMode.always
+    let searchImView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20.0,  height: 20.0))
+    searchImView.image = UIImage(named: "search-bar-gray")
+    searchImView.contentMode = UIViewContentMode.center
+    searchTextField.leftView = searchImView
+    
+    // Hide delete character button when init
+    deleteCharButton.isHidden = true
+}
   
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
@@ -146,14 +158,9 @@ extension KitchenViewController: UITextFieldDelegate {
   
   func textFieldDidBeginEditing(_ textField: UITextField) {
   }
+  
   func textFieldDidEndEditing(_ textField: UITextField) {
   
-    searchMethod = BY_LOCATION
-//    if !searchTextField.text!.isEmpty {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-        self.refreshTableView()
-      }
-//    }
   }
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -176,15 +183,24 @@ extension KitchenViewController: UITextFieldDelegate {
       criteriaLabel.isHidden = false
       locationLabel.isHidden = false
       conjunctionLabel.isHidden = false
+      // Hide delete character button
+      deleteCharButton.isHidden = true
     } else {
       // Hide criteria and location label
       criteriaLabel.isHidden = true
       locationLabel.isHidden = true
       conjunctionLabel.isHidden = true
+      // Show delete character button
+      deleteCharButton.isHidden = false
     }
     
     print("====text \(searchText)")
     return true
+  }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    super.touchesBegan(touches, with: event)
+    self.view.endEditing(true)
   }
 }
 
@@ -238,7 +254,7 @@ extension KitchenViewController {
     print("loadmore")
     self.page += 1
     
-    if self.page <= MAX_PAGE {
+//    if self.page <= MAX_PAGE {
       if searchMethod == BY_LOCATION {
         if searchTextField.text!.isEmpty {
           kitchenModelDatasource.requestKitchen(status: "city", keyword: locationLabel.text!, city: "", searchText: "", page: page)
@@ -257,9 +273,11 @@ extension KitchenViewController {
         }
       }
       self.tableView.es.stopLoadingMore()
-    } else {
-      self.tableView.es.noticeNoMoreData()
-    }
+//    }
+    
+//    else {
+//      self.tableView.es.noticeNoMoreData()
+//    }
   }
   
   func tapLocationLabel(sender:UITapGestureRecognizer) {
@@ -273,7 +291,7 @@ extension KitchenViewController {
       target: self,
       action: #selector(rightButtonAction(sender:))
     )
-    rightButtonItem.image = UIImage(named: "filter-white")
+    rightButtonItem.image = UIImage(named: "filter-line-white")
     self.navigationItem.rightBarButtonItem = rightButtonItem
   }
   
@@ -308,6 +326,21 @@ extension KitchenViewController {
         refreshTableView()
       }
     }
+  }
+  
+  @IBAction func didTouchSearchButton(_ sender: Any) {
+    searchMethod = BY_LOCATION
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+      self.refreshTableView()
+    }
+  }
+  
+  @IBAction func didTouchDeleteCharButton(_ sender: Any) {
+    searchTextField.text = ""
+    criteriaLabel.isHidden = false
+    locationLabel.isHidden = false
+    conjunctionLabel.isHidden = false
+    deleteCharButton.isHidden = true
   }
 }
 

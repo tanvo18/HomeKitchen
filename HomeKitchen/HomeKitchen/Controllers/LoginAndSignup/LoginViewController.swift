@@ -95,6 +95,50 @@ extension LoginViewController {
     }
     return false
   }
+  
+  func login() {
+    // Login by Normal account no need to param facebookToken
+    NetworkingService.sharedInstance.getAuthorizationFromServer(username: usernameTextfield.text!, password: passwordTextfield.text!, facebookToken: "", loginMethod: Helper.LOGIN_BY_NORMAL_USER) {
+      [unowned self] (accessToken, error) in
+      if error != nil {
+        print(error!)
+        self.alertError(message: "Đăng nhập thất bại")
+      }  else {
+        // Save access token
+        Helper.accessToken = accessToken!
+        print("accessToken: \(Helper.accessToken)")
+        // Save user information
+        self.userModelDatasource.getUserInfo() {
+          [unowned self] (user,error) in
+          if error != nil {
+            print(error!)
+            self.alertError(message: "Không thể nhận được thông tin người dùng")
+          } else {
+            // Save user info
+            Helper.user = user
+            print("====nameOfUser \(user.name)")
+            self.myActivityIndicator.stopAnimating()
+            // Save accessToken to UserDefault
+            UserDefaults.standard.setValue(accessToken!, forKey: Helper.USER_DEFAULT_AUTHEN_TOKEN)
+            // Save email to UserDefault
+            UserDefaults.standard.setValue(user.username, forKey: Helper.USER_DEFAULT_USERNAME)
+            // param for parse to home screen
+            self.isLogin = false
+            self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+          }
+        }
+      }
+    }
+  }
+  
+  func checkNotNil() -> Bool {
+    if usernameTextfield.text!.isEmpty || passwordTextfield.text!.isEmpty {
+      errorMessage = "Bạn phải nhập tất cả các trường"
+      return false
+    } else {
+      return true
+    }
+  }
 }
 
 // MARK: IBAction
@@ -137,6 +181,9 @@ extension LoginViewController {
                     UserDefaults.standard.setValue(user.username, forKey: Helper.USER_DEFAULT_USERNAME)
                     // param for parse to home screen
                     self.isLogin = false
+                    // Clear text
+                    self.usernameTextfield.text = ""
+                    self.passwordTextfield.text = ""
                     self.performSegue(withIdentifier: "showHomeScreen", sender: self)
                   }
                 }
@@ -154,55 +201,23 @@ extension LoginViewController {
   
   @IBAction func didTouchLoginButton(_ sender: Any) {
     if checkNotNil() {
-      // Login by Normal account no need to param facebookToken
-      NetworkingService.sharedInstance.getAuthorizationFromServer(username: usernameTextfield.text!, password: passwordTextfield.text!, facebookToken: "", loginMethod: Helper.LOGIN_BY_NORMAL_USER) {
-        [unowned self] (accessToken, error) in
-        if error != nil {
-          print(error!)
-          self.alertError(message: "Đăng nhập thất bại")
-        }  else {
-          // Save access token
-          Helper.accessToken = accessToken!
-          print("accessToken: \(Helper.accessToken)")
-          // Save user information
-          self.userModelDatasource.getUserInfo() {
-            [unowned self] (user,error) in
-            if error != nil {
-              print(error!)
-              self.alertError(message: "Không thể nhận được thông tin người dùng")
-            } else {
-              // Save user info
-              Helper.user = user
-              print("====nameOfUser \(user.name)")
-              self.myActivityIndicator.stopAnimating()
-              // Save accessToken to UserDefault
-              UserDefaults.standard.setValue(accessToken!, forKey: Helper.USER_DEFAULT_AUTHEN_TOKEN)
-              // Save email to UserDefault
-              UserDefaults.standard.setValue(user.username, forKey: Helper.USER_DEFAULT_USERNAME)
-              // param for parse to home screen
-              self.isLogin = false
-              self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-            }
-          }
-        }
-      }
+      login()
     } else {
       self.alertError(message: errorMessage)
     }
   }
   
-  func checkNotNil() -> Bool {
-    if usernameTextfield.text!.isEmpty || passwordTextfield.text!.isEmpty {
-      errorMessage = "Bạn phải nhập tất cả các trường"
-      return false
-    } else {
-      return true
-    }
-  }
-  
   // Back to Login screen
   @IBAction func unwindToLoginScreen(segue:UIStoryboardSegue) {
-    
+//    if segue.source is SignupViewController {
+//      if let senderVC = segue.source as? SignupViewController {
+//        if senderVC.isSuccessful {
+//          usernameTextfield.text = senderVC.username
+//          passwordTextfield.text = senderVC.password
+//          login()
+//        }
+//      }
+//    }
   }
 }
 

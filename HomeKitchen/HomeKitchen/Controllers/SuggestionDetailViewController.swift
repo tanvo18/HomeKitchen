@@ -28,6 +28,8 @@ class SuggestionDetailViewController: UIViewController {
   var suggestion: Suggestion = Suggestion()
   var suggestionId: Int = 0
   var isAccepted: Bool = true
+  // Receive status from SuggestionsViewController to hide button in suggestion detail when status != negotiation
+  var orderStatus: String = ""
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -59,6 +61,12 @@ class SuggestionDetailViewController: UIViewController {
     heightOfRows = CGFloat(suggestion.suggestItems.count) * heightForOneRow
     // Disable tableview scroll
     tableView.isScrollEnabled = false
+    
+    // Hide button if orderStatus != negotiating
+    if orderStatus != "negotiating" {
+      acceptedButton.isHidden = true
+      declinedButton.isHidden = true
+    }
   }
   
   override func updateViewConstraints() {

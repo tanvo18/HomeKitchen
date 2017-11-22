@@ -13,6 +13,8 @@ class SuggestionsViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   let reuseableCell = "Cell"
   var suggestions: [Suggestion] = []
+  // Receive status from ListOrderViewController to hide button in suggestion detail when status != negotiation
+  var orderStatus: String = ""
   var index: Int = 0
   
   override func viewDidLoad() {
@@ -59,6 +61,7 @@ extension SuggestionsViewController {
     if segue.identifier == "showSuggestionDetail" {
       if let destination = segue.destination as? SuggestionDetailViewController {
         destination.suggestion = suggestions[index]
+        destination.orderStatus = orderStatus
       }
     }
   }
