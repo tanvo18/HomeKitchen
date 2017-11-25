@@ -26,7 +26,7 @@
                             <constraint firstAttribute="width" constant="50" id="d1Z-ek-Zqb"/>
                         </constraints>
                     </imageView>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xKL-uH-9Oi">
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tên món ăn" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xKL-uH-9Oi">
                         <rect key="frame" x="66" y="31" width="168" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="SuX-c3-2LR"/>

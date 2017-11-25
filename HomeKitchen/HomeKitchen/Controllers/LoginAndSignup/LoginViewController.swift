@@ -173,7 +173,7 @@ extension LoginViewController {
                   } else {
                     // Save user info
                     Helper.user = user
-                    print("====nameOfUser \(user.name)")
+                    print("====NameOfUser \(user.username)")
                     self.myActivityIndicator.stopAnimating()
                     // Save accessToken to UserDefault
                     UserDefaults.standard.setValue(accessToken!, forKey: Helper.USER_DEFAULT_AUTHEN_TOKEN)

@@ -68,6 +68,7 @@ extension LeftMenuTableViewController: UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: kCellIdentifier, for: indexPath) as! MenuTableViewCell
+    
     cell.titleLabel.text = data[indexPath.section][indexPath.row]
     cell.imageViewCell.image = UIImage(named: images[indexPath.section][indexPath.row])
     return cell

@@ -164,14 +164,26 @@ class NetworkingService {
       "Accept": "application/json"
     ]
     
-    let  parameters: Parameters = ["birthday": birthday,
-                                   "gender": gender,
-                                   "name": name,
-                                   "phone_number": phoneNumber,
-                                   "contact_information": contactInfos.toJSON()
-    ]
+    let  parameters: Parameters?
     
-    print("====param: \(parameters.description)")
+    // If contactInfos is empty, dont send "contact_information": contactInfos.toJSON()
+    if contactInfos.isEmpty {
+      parameters = ["birthday": birthday,
+                    "gender": gender,
+                    "name": name,
+                    "phone_number": phoneNumber
+      ]
+    } else {
+      parameters = ["birthday": birthday,
+                    "gender": gender,
+                    "name": name,
+                    "phone_number": phoneNumber,
+                    "contact_information": contactInfos.toJSON()
+      ]
+
+    }
+    
+    print("====param: \(parameters!.description)")
     
     Alamofire.request(url, method: .put,parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate(statusCode: 200..<300).responseString
       { response in

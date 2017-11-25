@@ -13,7 +13,10 @@ class Helper {
   static var kitchenId: Int = 0
   static var user: User = User()
   static var orderInfo: OrderInfo = OrderInfo()
-  // Saving role 
+  // Saving role for slide menu, because chef has 2 roles so we define this variable to distinguish when 
+  // chef click slide menu
+  // example when chef click to manage my order, chef has role customer
+  // when check click to manage kitchen order, chef has role chef
   // Chef has 2 roles: chef and customer
   static var role: String = ""
   static var districtLocations = [["Ba Đình","Hoàn Kiếm","Hai Bà Trưng","Đống Đa","Tây Hồ","Cầu Giấy"],["Hải Châu","Hoà Vang","Cẩm Lệ","Liên Chiểu","Ngũ Hành Sơn","Sơn Trà","Thanh Khê","Hoàng Sa"],["Quận 1","Quận 2","Quận 3","Quận 4","Quận 5","Quận 6","Quận 7","Quận 8","Quận 9","Quận 10","Quận 11","Quận 12","Bình Tân","Bình Thạnh","Gò Vấp","Phú Nhuận","Tân Bình","Tân Phú","Thủ Đức"]]

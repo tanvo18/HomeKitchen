@@ -85,6 +85,7 @@ class ListOrderViewController: UIViewController {
     if Helper.role == ROLE_CUSTOMER {
       myActivityIndicator.startAnimating()
       customerOrderModelDatasource.requestCustomerOrder()
+      self.settingForNavigationBar(title: "Quản lý đơn hàng")
     } else if Helper.role == ROLE_CHEF {
       myActivityIndicator.startAnimating()
       // Change to english status

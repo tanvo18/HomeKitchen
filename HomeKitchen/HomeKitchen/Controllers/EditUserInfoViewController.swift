@@ -66,8 +66,21 @@ extension EditUserInfoViewController {
     if Helper.user.name != "anonymous" {
       nameTextField.text = Helper.user.name
     }
-    birthdayTextField.text = Helper.user.birthday
+    
+    // Because birthday get from server has format dd/MM/yyyy so we must convert to yyyy-MM-dd to match when send to server
+    // Server is not consistence in date format
+    let stringDate: String = convertDay(stringDate: Helper.user.birthday)
+    birthdayTextField.text = stringDate
     phoneTextField.text = Helper.user.phoneNumber
+  }
+  
+  func convertDay(stringDate: String) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd/MM/yyyy"
+    let dateFromString: Date = dateFormatter.date(from: stringDate)!
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    let convertStringDate = dateFormatter.string(from: dateFromString)
+    return convertStringDate
   }
   
   func settingRightButtonItem() {
@@ -92,6 +105,7 @@ extension EditUserInfoViewController {
       } else {
         gender = 0
       }
+      
       NetworkingService.sharedInstance.editUserInfo(birthday: birthday, gender: gender, name: name, phoneNumber: phoneNumber, contactInfos: Helper.user.contactInformations) {
         [unowned self] (message,error) in
         if error != nil {

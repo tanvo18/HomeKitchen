@@ -54,7 +54,7 @@ class CalendarViewController: UIViewController {
     // Init current date for datePicking
     initCurrentDate()
     // Setup navigation bar and add right item button
-    self.settingForNavigationBar(title: "Calendar")
+    self.settingForNavigationBar(title: "Lịch")
     settingRightButtonItem()
   }
   
