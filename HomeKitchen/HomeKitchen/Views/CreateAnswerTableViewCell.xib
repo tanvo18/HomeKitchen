@@ -32,14 +32,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQi-Xh-uiy">
-                        <rect key="frame" x="103" y="70" width="132" height="1"/>
+                        <rect key="frame" x="79" y="70" width="233" height="1"/>
                         <color key="backgroundColor" red="0.76862745098039209" green="0.76470588235294112" blue="0.76470588235294112" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="TX7-x1-ciY"/>
+                            <constraint firstAttribute="height" constant="1" id="7q4-dv-WgS"/>
                         </constraints>
                     </view>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="juU-sf-xw8">
-                        <rect key="frame" x="103" y="48" width="132" height="17"/>
+                        <rect key="frame" x="79" y="46" width="233" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="233" id="k52-gg-gRb"/>
+                        </constraints>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -48,15 +51,14 @@
                 <constraints>
                     <constraint firstItem="sMg-lV-ntA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="2VQ-8Y-ulT"/>
                     <constraint firstItem="sUV-Ut-O3y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="91I-9R-NAD"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="juU-sf-xw8" secondAttribute="trailing" constant="77" id="97h-dp-Fq9"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="JQi-Xh-uiy" secondAttribute="bottom" constant="0.5" id="AHx-dH-meZ"/>
+                    <constraint firstItem="JQi-Xh-uiy" firstAttribute="width" secondItem="juU-sf-xw8" secondAttribute="width" id="Chq-33-yJQ"/>
                     <constraint firstAttribute="bottomMargin" secondItem="sMg-lV-ntA" secondAttribute="bottom" constant="6.5" id="RZE-Vx-r04"/>
-                    <constraint firstItem="JQi-Xh-uiy" firstAttribute="top" secondItem="juU-sf-xw8" secondAttribute="bottom" constant="5" id="Vss-04-foW"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="JQi-Xh-uiy" secondAttribute="trailing" constant="77" id="YPu-iv-70S"/>
                     <constraint firstItem="sUV-Ut-O3y" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Z0C-cm-UND"/>
+                    <constraint firstItem="JQi-Xh-uiy" firstAttribute="leading" secondItem="juU-sf-xw8" secondAttribute="trailing" constant="-233" id="eHu-8P-hRM"/>
                     <constraint firstItem="sMg-lV-ntA" firstAttribute="top" secondItem="sUV-Ut-O3y" secondAttribute="bottom" constant="11" id="ebE-7n-xk6"/>
-                    <constraint firstItem="JQi-Xh-uiy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="95" id="xsa-zp-hlh"/>
-                    <constraint firstItem="juU-sf-xw8" firstAttribute="leading" secondItem="sMg-lV-ntA" secondAttribute="trailing" constant="32" id="yyI-5Z-jXt"/>
+                    <constraint firstItem="JQi-Xh-uiy" firstAttribute="top" secondItem="juU-sf-xw8" secondAttribute="bottom" constant="7" id="pQC-6m-QOk"/>
+                    <constraint firstItem="juU-sf-xw8" firstAttribute="centerY" secondItem="sMg-lV-ntA" secondAttribute="centerY" id="vUd-g4-9Ht"/>
+                    <constraint firstItem="juU-sf-xw8" firstAttribute="leading" secondItem="sMg-lV-ntA" secondAttribute="trailing" constant="8" id="yyI-5Z-jXt"/>
                     <constraint firstItem="sUV-Ut-O3y" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="z6N-js-tTt"/>
                 </constraints>
             </tableViewCellContentView>

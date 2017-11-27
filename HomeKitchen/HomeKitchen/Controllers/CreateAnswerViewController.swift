@@ -42,7 +42,7 @@ class CreateAnswerViewController: UIViewController {
     tableView.register(UINib(nibName: "CreateAnswerTableViewCell", bundle: nil), forCellReuseIdentifier: reuseableCell)
     // Hide Foot view
     tableView.tableFooterView = UIView(frame: CGRect.zero)
-    self.settingForNavigationBar(title: "Create Answer")
+    self.settingForNavigationBar(title: "Trả lời yêu cầu")
     // init data for date and time
     deliveryDateLabel.text = deliveryDateOfPost
     deliveryTimeTextField.text = deliveryTimeOfPost

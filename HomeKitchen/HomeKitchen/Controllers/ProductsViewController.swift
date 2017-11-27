@@ -22,7 +22,7 @@ class ProductsViewController: UIViewController {
     tableView.register(UINib(nibName: "ProductsTableViewCell", bundle: nil), forCellReuseIdentifier: reuseable)
     tableView.tableFooterView = UIView(frame: CGRect.zero)
     settingRightButtonItem()
-    self.settingForNavigationBar(title: "Kitchen's Products")
+    self.settingForNavigationBar(title: "Sản phẩm của bếp")
     // MARK: Disable sidemenu
     sideMenuManager?.sideMenuController()?.sideMenu?.disabled = true
   }
