@@ -71,6 +71,16 @@ extension LeftMenuTableViewController: UITableViewDataSource {
     
     cell.titleLabel.text = data[indexPath.section][indexPath.row]
     cell.imageViewCell.image = UIImage(named: images[indexPath.section][indexPath.row])
+    // Hide 3 rows if user is customer
+    if indexPath.section == 2 {
+      if indexPath.row != 3 {
+        if Helper.user.role == "customer" {
+          cell.isHidden = true
+        } else {
+          cell.isHidden = false
+        }
+      }
+    }
     return cell
   }
   
@@ -85,7 +95,18 @@ extension LeftMenuTableViewController: UITableViewDataSource {
 
 extension LeftMenuTableViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 50
+    var height: CGFloat = 50
+    if indexPath.section == 2 {
+      if indexPath.row != 3 {
+        if Helper.user.role == "customer" {
+          height = 0
+        }
+        else {
+          height = 50
+        }
+      }
+    }
+    return height
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

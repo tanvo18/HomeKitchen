@@ -38,7 +38,22 @@ class LoginViewController: UIViewController {
       isLogin = true
       // Read username in UserDefault to render title of slide menu
       Helper.user.username = UserDefaults.standard.value(forKey: Helper.USER_DEFAULT_USERNAME) as! String
-      performSegue(withIdentifier: "showHomeScreen", sender: self)
+      
+      Helper.accessToken = UserDefaults.standard.value(forKey: Helper.USER_DEFAULT_AUTHEN_TOKEN) as! String
+      
+      self.userModelDatasource.getUserInfo() {
+        [unowned self] (user,error) in
+        if error != nil {
+          print(error!)
+          self.alertError(message: "Không thể nhận được thông tin người dùng")
+        } else {
+          // Save user info
+          Helper.user = user
+          print("====role \(user.role)")
+          self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+        }
+      }
+      
     }
   }
   
