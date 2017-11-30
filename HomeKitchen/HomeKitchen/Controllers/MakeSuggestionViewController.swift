@@ -49,7 +49,7 @@ class MakeSuggestionViewController: UIViewController {
     let tapOutside: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
     view.addGestureRecognizer(tapOutside)
     // setting navigationbar
-    self.settingForNavigationBar(title: "Make Suggestion")
+    self.settingForNavigationBar(title: "Tạo đề nghị")
     // Calculate height of tableview
     heightOfRows = CGFloat(orderInfo.products.count) * heightForOneRow
   }
@@ -130,7 +130,7 @@ extension MakeSuggestionViewController {
     let toolbar = UIToolbar()
     toolbar.sizeToFit()
     // Add a done button on this toolbar
-    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
+    let doneButton = UIBarButtonItem(title: "Xong", style: .done, target: nil, action: #selector(doneClicked))
     toolbar.setItems([doneButton], animated: true)
     deliveryTimeTextField.inputAccessoryView = toolbar
     

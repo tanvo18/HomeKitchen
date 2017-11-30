@@ -29,10 +29,7 @@
                         <state key="normal" backgroundImage="message-blue"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1z3-gn-HV2">
-                        <rect key="frame" x="89" y="24.5" width="146" height="21.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="146" id="Pic-82-E2a"/>
-                        </constraints>
+                        <rect key="frame" x="89" y="25" width="223" height="22"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -99,6 +96,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Ne1-eF-2zO" firstAttribute="top" secondItem="qP3-59-7k5" secondAttribute="bottom" constant="7" id="2vm-eL-nnc"/>
+                    <constraint firstItem="1z3-gn-HV2" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="5i1-b7-TpA"/>
                     <constraint firstItem="qP3-59-7k5" firstAttribute="leading" secondItem="9PG-7e-PYc" secondAttribute="trailing" constant="8" id="9WW-pD-Hu4"/>
                     <constraint firstItem="Td8-2l-rZq" firstAttribute="centerY" secondItem="Ne1-eF-2zO" secondAttribute="centerY" id="9u0-QT-V6J"/>
                     <constraint firstAttribute="trailing" secondItem="qcr-Vi-UjZ" secondAttribute="trailing" id="DGp-be-YjO"/>
@@ -114,7 +112,7 @@
                     <constraint firstItem="gPY-TD-PzO" firstAttribute="leading" secondItem="Ne1-eF-2zO" secondAttribute="trailing" constant="8" id="j87-Tk-WSW"/>
                     <constraint firstItem="QuD-zJ-uaf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kfF-Nx-OjA"/>
                     <constraint firstItem="9PG-7e-PYc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="17" id="r6L-Jh-YgI"/>
-                    <constraint firstItem="1z3-gn-HV2" firstAttribute="centerY" secondItem="qP3-59-7k5" secondAttribute="centerY" id="sGf-vV-ZgN"/>
+                    <constraint firstItem="1z3-gn-HV2" firstAttribute="centerY" secondItem="qP3-59-7k5" secondAttribute="centerY" constant="1" id="sGf-vV-ZgN"/>
                     <constraint firstItem="gPY-TD-PzO" firstAttribute="centerY" secondItem="Ne1-eF-2zO" secondAttribute="centerY" id="v4f-qi-pQc"/>
                     <constraint firstItem="xYy-s7-TXd" firstAttribute="centerY" secondItem="Ne1-eF-2zO" secondAttribute="centerY" id="vI7-FT-a9c"/>
                 </constraints>

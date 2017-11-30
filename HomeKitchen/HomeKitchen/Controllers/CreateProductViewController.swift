@@ -108,7 +108,7 @@ extension CreateProductViewController {
     let toolbar = UIToolbar()
     toolbar.sizeToFit()
     // Add a done button on this toolbar
-    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
+    let doneButton = UIBarButtonItem(title: "Xong", style: .done, target: nil, action: #selector(doneClicked))
     toolbar.setItems([doneButton], animated: true)
     statusTextField.inputAccessoryView = toolbar
   }
@@ -120,13 +120,12 @@ extension CreateProductViewController {
   
   func settingRightButtonItem() {
     let rightButtonItem = UIBarButtonItem.init(
-      title: "Add",
+      title: "Thêm",
       style: .done,
       target: self,
       action: #selector(rightButtonAction(sender:))
     )
     self.navigationItem.rightBarButtonItem = rightButtonItem
-    self.navigationItem.rightBarButtonItem?.tintColor = UIColor(red: CGFloat(170/255.0), green: CGFloat(151/255.0), blue: CGFloat(88/255.0), alpha: 1.0)
   }
   
   func rightButtonAction(sender: UIBarButtonItem) {
