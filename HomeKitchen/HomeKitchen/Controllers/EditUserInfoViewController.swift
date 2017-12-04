@@ -69,8 +69,10 @@ extension EditUserInfoViewController {
     
     // Because birthday get from server has format dd/MM/yyyy so we must convert to yyyy-MM-dd to match when send to server
     // Server is not consistence in date format
-    let stringDate: String = convertDay(stringDate: Helper.user.birthday)
-    birthdayTextField.text = stringDate
+    if Helper.user.birthday != "" {
+      let stringDate: String = convertDay(stringDate: Helper.user.birthday)
+      birthdayTextField.text = stringDate
+    }
     phoneTextField.text = Helper.user.phoneNumber
   }
   

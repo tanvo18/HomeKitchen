@@ -117,12 +117,12 @@ extension CalendarViewController: CVCalendarViewDelegate, CVCalendarMenuViewDele
     
     // Method convert from string to date As string you desire
     
-    //    let chosenDayString: String = "\(selectedDay.date.year)-\(selectedDay.date.month)-\(selectedDay.date.day) 00:00:00"
-    //    let dateFormatter = DateFormatter()
-    //    dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
-    //    let dateFromString: Date = dateFormatter.date(from: chosenDayString)!
-    //    dateFormatter.dateFormat = "yyyy-MM-dd"
-    //    datePicking = dateFormatter.string(from: dateFromString)
+//        let chosenDayString: String = "\(selectedDay.date.year)-\(selectedDay.date.month)-\(selectedDay.date.day) 00:00:00"
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+//        let dateFromString: Date = dateFormatter.date(from: chosenDayString)!
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        datePicking = dateFormatter.string(from: dateFromString)
   }
   
   func presentedDateUpdated(_ date: CVDate) {
@@ -291,7 +291,7 @@ extension CalendarViewController {
   func initCurrentDate() {
     let date = Date()
     let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy/MM/dd"
+    formatter.dateFormat = "yyyy-MM-dd"
     datePicking = formatter.string(from: date)
     
   }
