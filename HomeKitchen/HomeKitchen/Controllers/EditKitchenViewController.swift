@@ -110,15 +110,15 @@ class EditKitchenViewController: UIViewController {
     self.navigationItem.leftBarButtonItem  = menuButton
     // Disable tableview scroll
     tableView.isScrollEnabled = false
-    
-    // Only edit kitchen if user have role chef
-    if Helper.user.role == "customer" {
-      let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
-        // Go to Home Screen
-        self.performSegue(withIdentifier: "showHomeScreen", sender: self)
-      })
-      self.alertWithAction(message: "Bạn chưa được cấp quyền chỉnh sửa", action: ok)
-    }
+  
+//    // Only edit kitchen if user have role chef
+//    if Helper.user.role == "customer" {
+//      let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action:UIAlertAction!) in
+//        // Go to Home Screen
+//        self.performSegue(withIdentifier: "showHomeScreen", sender: self)
+//      })
+//      self.alertWithAction(message: "Bạn chưa được cấp quyền chỉnh sửa", action: ok)
+//    }
   }
   
   override func viewWillAppear(_ animated: Bool) {

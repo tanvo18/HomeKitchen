@@ -155,7 +155,7 @@ extension CreateKitchenViewController {
     let toolbar = UIToolbar()
     toolbar.sizeToFit()
     // Add a done button on this toolbar
-    let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(didTouchOpeningDoneButton))
+    let doneButton = UIBarButtonItem(title: "Xong", style: .done, target: nil, action: #selector(didTouchOpeningDoneButton))
     toolbar.setItems([doneButton], animated: true)
     timeTextField.inputAccessoryView = toolbar
   }

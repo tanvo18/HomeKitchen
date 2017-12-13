@@ -127,7 +127,7 @@ extension LoginViewController {
           [unowned self] (user,error) in
           if error != nil {
             print(error!)
-            self.alertError(message: "Không thể nhận được thông tin người dùng")
+            self.alertError(message: "Tài khoản này đã bị khoá")
           } else {
             // Save user info
             Helper.user = user

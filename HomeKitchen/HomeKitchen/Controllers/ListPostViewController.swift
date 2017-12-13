@@ -100,7 +100,7 @@ extension ListPostViewController: UITableViewDataSource {
 extension ListPostViewController {
   func didTouchNotificationButton(sender: UIButton) {
     index = sender.tag
-    if posts[index].answers.isEmpty {
+    if displayingPosts[index].answers.isEmpty {
       let title = "Thông báo"
       let message = "Không có đề nghị nào"
       self.alert(title: title, message: message)
@@ -137,12 +137,12 @@ extension ListPostViewController {
     } else if Helper.role == "customer" {
       // Get list post
       postDataModel.getCustomerPosts() {
-        [unowned self] (kitchenPosts,error) in
+        [unowned self] (customerPosts,error) in
         if error != nil {
           print(error!)
         } else {
-          if let kitchenPosts = kitchenPosts {
-            self.posts = kitchenPosts
+          if let customerPosts = customerPosts {
+            self.posts = customerPosts
           }
         }
       }
